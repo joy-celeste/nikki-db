@@ -1,7 +1,8 @@
 ## To Do
 
 ### Milestone 0: Post publically a preview video - proof of concept, stripped MVP
-- [X] Create repository, import in typescript, react
+- [X] Create repository, import in typescript, react, redux, firebase
+- [X] Set up basic redux functionality
 - [ ] Import API for pulling data - print into the screen
 - [ ] Type in item ID to load image (locally-hosted images)
 - - [ ] Putting in new item of category = replaces the item

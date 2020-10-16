@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataState Action: ADD_ITEMS / Use-case: loadItem -- successfully calls API and adds multiple items to the store 1`] = `
+Object {
+  "30987": ItemData {
+    "amputationData": AmputationData {
+      "arm": true,
+      "body": false,
+      "leg": false,
+      "panty": false,
+    },
+    "depthType": 48,
+    "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
+    "id": 30987,
+    "name": "Rose Heart",
+    "position": Array [
+      PositionData {
+        "depth": 1,
+        "scale": 1,
+        "x": -27,
+        "y": 200.5,
+      },
+      PositionData {
+        "depth": 2,
+        "scale": 1,
+        "x": -202,
+        "y": -130,
+      },
+      PositionData {
+        "depth": 3,
+        "scale": 1,
+        "x": 101,
+        "y": -119,
+      },
+      PositionData {
+        "depth": 4,
+        "scale": 1,
+        "x": -81,
+        "y": -153,
+      },
+      PositionData {
+        "depth": 13,
+        "scale": 1,
+        "x": -88.5,
+        "y": 245,
+      },
+      PositionData {
+        "depth": 14,
+        "scale": 1,
+        "x": 42.5,
+        "y": 234.5,
+      },
+      PositionData {
+        "depth": 101,
+        "scale": 1,
+        "x": -30.5,
+        "y": 242.5,
+      },
+      PositionData {
+        "depth": 201,
+        "scale": 1,
+        "x": -47.5,
+        "y": 262,
+      },
+      PositionData {
+        "depth": 301,
+        "scale": 1,
+        "x": 124.5,
+        "y": 139,
+      },
+    ],
+  },
+  "71927": ItemData {
+    "amputationData": AmputationData {
+      "arm": false,
+      "body": false,
+      "leg": true,
+      "panty": true,
+    },
+    "depthType": 16,
+    "description": "Those old stories fade into dust and get blown away by the wind. Yi walks in the mortal world and listens.",
+    "id": 71927,
+    "name": "Sparse Stars",
+    "position": Array [
+      PositionData {
+        "depth": 1,
+        "scale": 1,
+        "x": -365.5,
+        "y": -487,
+      },
+      PositionData {
+        "depth": 4,
+        "scale": 1,
+        "x": -672.5,
+        "y": -357,
+      },
+    ],
+  },
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: complex hair 1`] = `
+ItemData {
+  "amputationData": null,
+  "depthType": 1,
+  "description": "As the night falls, the grand theatre is all empty. The touching music behind the curtain feels strangely beautiful.",
+  "id": 12363,
+  "name": "Dreamland Snow",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": 1,
+      "x": -25,
+      "y": 378,
+    },
+    PositionData {
+      "depth": 2,
+      "scale": 1,
+      "x": 254.5,
+      "y": 45.5,
+    },
+    PositionData {
+      "depth": 9,
+      "scale": 1,
+      "x": 81,
+      "y": 55.5,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: deer spirit 1`] = `
+ItemData {
+  "amputationData": null,
+  "depthType": 61,
+  "description": "The season may change, but flowers will bloom if there is spring in your heart. The boy never forgets this place.",
+  "id": 880048,
+  "name": "Deer and Cliff",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": null,
+      "x": 124.5,
+      "y": 51,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: motorcycle spririt 1`] = `
+ItemData {
+  "amputationData": null,
+  "depthType": 61,
+  "description": "At 24, Louie wore the white robe of Nameless Order and held the knight spear, leaving Bluebird and the past behind",
+  "id": 880092,
+  "name": "Dark Night Motor",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": null,
+      "x": 154,
+      "y": -200,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: posed coat 1`] = `
+ItemData {
+  "amputationData": AmputationData {
+    "arm": true,
+    "body": false,
+    "leg": false,
+    "panty": false,
+  },
+  "depthType": 48,
+  "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
+  "id": 30987,
+  "name": "Rose Heart",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": 1,
+      "x": -27,
+      "y": 200.5,
+    },
+    PositionData {
+      "depth": 2,
+      "scale": 1,
+      "x": -202,
+      "y": -130,
+    },
+    PositionData {
+      "depth": 3,
+      "scale": 1,
+      "x": 101,
+      "y": -119,
+    },
+    PositionData {
+      "depth": 4,
+      "scale": 1,
+      "x": -81,
+      "y": -153,
+    },
+    PositionData {
+      "depth": 13,
+      "scale": 1,
+      "x": -88.5,
+      "y": 245,
+    },
+    PositionData {
+      "depth": 14,
+      "scale": 1,
+      "x": 42.5,
+      "y": 234.5,
+    },
+    PositionData {
+      "depth": 101,
+      "scale": 1,
+      "x": -30.5,
+      "y": 242.5,
+    },
+    PositionData {
+      "depth": 201,
+      "scale": 1,
+      "x": -47.5,
+      "y": 262,
+    },
+    PositionData {
+      "depth": 301,
+      "scale": 1,
+      "x": 124.5,
+      "y": 139,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: posed dress 1`] = `
+ItemData {
+  "amputationData": AmputationData {
+    "arm": true,
+    "body": true,
+    "leg": true,
+    "panty": false,
+  },
+  "depthType": 41,
+  "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
+  "id": 22008,
+  "name": "Sakura Dream",
+  "position": Array [
+    PositionData {
+      "depth": 2,
+      "scale": 1,
+      "x": -32.5,
+      "y": -164.5,
+    },
+    PositionData {
+      "depth": 901,
+      "scale": 1,
+      "x": -59.5,
+      "y": 328,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: posed shoes 1`] = `
+ItemData {
+  "amputationData": AmputationData {
+    "arm": false,
+    "body": false,
+    "leg": true,
+    "panty": true,
+  },
+  "depthType": 16,
+  "description": "Those old stories fade into dust and get blown away by the wind. Yi walks in the mortal world and listens.",
+  "id": 71927,
+  "name": "Sparse Stars",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": 1,
+      "x": -365.5,
+      "y": -487,
+    },
+    PositionData {
+      "depth": 4,
+      "scale": 1,
+      "x": -672.5,
+      "y": -357,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: simple hat 1`] = `
+ItemData {
+  "amputationData": null,
+  "depthType": 19,
+  "description": "Every cowboy in the Apple Federal has a cap like this.",
+  "id": 80078,
+  "name": "Denim Cap·Rare",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": null,
+      "x": -17.5,
+      "y": 426,
+    },
+    PositionData {
+      "depth": 2,
+      "scale": null,
+      "x": -96.5,
+      "y": 447,
+    },
+  ],
+}
+`;
+
+exports[`ItemData Successfully deserializes ItemData: simple_hair 1`] = `
+ItemData {
+  "amputationData": null,
+  "depthType": 1,
+  "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
+  "id": 10007,
+  "name": "Elegant Nobleman",
+  "position": Array [
+    PositionData {
+      "depth": 1,
+      "scale": null,
+      "x": -21.5,
+      "y": 426,
+    },
+  ],
+}
+`;

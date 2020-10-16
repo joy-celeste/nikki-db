@@ -1,37 +1,37 @@
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux';
 
 type UserState = {
     username: string;
 };
 
-const initialState: UserState = { 
-    username: ''
+const initialState: UserState = {
+  username: '',
 };
 
 export const login = (username: string) => ({
-    type: 'user/LOGIN',
-    payload: username,
+  type: 'user/LOGIN',
+  payload: username,
 });
 
 export const logout = () => ({
-    type: 'user/LOGOUT'
+  type: 'user/LOGOUT',
 });
 
 export function userReducer(
   state = initialState,
-  action: AnyAction
+  action: AnyAction,
 ): UserState {
   switch (action.type) {
     case 'user/LOGIN':
-      return { 
+      return {
         ...state,
-        username: action.payload
-    };
+        username: action.payload,
+      };
     case 'user/LOGOUT':
       return {
         ...state,
-        username: ''
-    };
+        username: '',
+      };
     default:
       return state;
   }

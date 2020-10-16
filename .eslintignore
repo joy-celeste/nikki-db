@@ -1,0 +1,8 @@
+# testing folder
+/src/tests/*
+
+# create-react-app files
+/src/serviceWorker.ts
+
+# presentational-pages
+/src/App.tsx

@@ -1,45 +1,47 @@
 import React, { PureComponent } from 'react';
 import './App.css';
-import { RootState } from './modules';
-import { login, logout } from './modules/user'
-import { loadProducts, CartItem, Product, addToCart } from './modules/products'
 import { connect } from 'react-redux';
+import { RootState } from './modules';
+import { login, logout } from './modules/user';
+import { ItemData, loadItem } from './modules/data';
 
 export interface AppDispatchProps {
   username: string,
-  products: Product[],
-  cart: CartItem[]
+  itemsData: Record<number, ItemData>,
 }
 
 export interface AppStateProps {
   dispatch: any;
-  loadProducts(): void,
-  addToCart(productId: number, quantity: number): void,
-  login(username: string): void,
-  logout(): void
+  loadItem(itemId: number): void,
+  login(username: string): void;
 }
 
 export type AppProps = AppDispatchProps & AppStateProps;
 
 class UnconnectedApp extends PureComponent<AppProps> {
   state = {
-    initialString: "string"
+    initialString: 'string',
   }
 
   componentDidMount() {
-    this.props.loadProducts()
-    this.props.login("test_username")
+    this.props.login('test_username');
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <p>Hello my username is: {this.props.username}</p>
-          <p>And here are the possible items: {this.props.products.map(item => (`Item Id: ${item.id} - Name: ${item.name} - Price: ${item.price}`))}</p>
-          <p>And here is my cart: {this.props.cart.map(item => (`Item Id: ${item.id} - Count: ${item.quantity}`))}</p>
-          <p><a onClick={() => this.props.addToCart(1, 1)} style={{cursor: 'pointer'}}>Click to add to cart</a></p>
-          <p>And here is my state's initialString: {this.state.initialString}</p>
+          <p>
+            Hello my username is:
+            {this.props.username}
+          </p>
+          <p>And here are the items I've loaded:</p>
+          <p>{Object.entries(this.props.itemsData).map(([key, value]) => `Key: ${key} - Name: ${value.name} - Value: ${value.description}`)}</p>
+          <p><a onClick={() => { this.props.loadItem(22008); this.props.loadItem(30987); }} style={{ cursor: 'pointer' }}>Click to load an item data</a></p>
+          <p>
+            And here is my state's initialString:
+            {this.state.initialString}
+          </p>
         </header>
       </div>
     );
@@ -48,19 +50,15 @@ class UnconnectedApp extends PureComponent<AppProps> {
 
 const mapStateToProps = (state: RootState) => ({
   username: state.user.username,
-  products: state.products.products,
-  cart: state.products.cart,
+  itemsData: state.data.itemsData,
 });
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    dispatch: dispatch,
-    loadProducts: () => dispatch(loadProducts()),
-    addToCart: (productId: number, quantity: number) => dispatch(addToCart(productId, quantity)),
-    login: (username: string) => dispatch(login(username)),
-    logout: () => dispatch(logout()),
-  }
-};
+const mapDispatchToProps = (dispatch: any) => ({
+  dispatch,
+  loadItem: (itemId: number) => dispatch(loadItem(itemId)),
+  login: (username: string) => dispatch(login(username)),
+  logout: () => dispatch(logout()),
+});
 
 const App = connect(mapStateToProps, mapDispatchToProps)(UnconnectedApp);
 export default App;

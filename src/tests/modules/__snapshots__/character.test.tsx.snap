@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Character CHARACTER: remove() - success: does nothing if removing nothing 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: remove() - success: does nothing if removing nothing 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success case: dress on new character 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "5": Array [],
+    "9": Array [
+      22008,
+    ],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: replacing default hair with something else 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+  },
+  "clothes": Object {
+    "1": 10007,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: replacing dress on character 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "5": Array [],
+    "9": Array [
+      22008,
+    ],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: replacing dress on character 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+    9,
+    10,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 21305,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing multiple items that amputate the same body parts 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "5": Array [],
+    "9": Array [
+      22008,
+    ],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing multiple items that amputate the same body parts 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "5": Array [],
+    "9": Array [
+      22008,
+      30987,
+    ],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+    "3": 30987,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing multiple items that amputate the same body parts 3`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [
+      30987,
+    ],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+    10,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "3": 30987,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;
+
+exports[`Character Initializes to default data if empty constructor 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+  },
+  "hide": [Function],
+  "remove": [Function],
+  "show": [Function],
+  "updateAmputations": [Function],
+  "updateVisibleBodyParts": [Function],
+  "wear": [Function],
+}
+`;

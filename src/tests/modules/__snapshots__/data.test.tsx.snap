@@ -3,13 +3,23 @@
 exports[`DataState Action: ADD_ITEMS / Use-case: loadItem -- calls API only once if the item is already loaded 1`] = `
 Object {
   "30987": ItemData {
-    "amputationData": AmputationData {
-      "arm": true,
-      "body": false,
-      "leg": false,
-      "panty": false,
+    "amputationData": Object {
+      "10": false,
+      "12": false,
+      "5": false,
+      "9": true,
     },
     "depthType": 48,
+    "depths": Object {
+      "1": 36700,
+      "12": 10190,
+      "13": 10160,
+      "14": 9880,
+      "2": 27000,
+      "3": 19000,
+      "4": 5000,
+      "5": 840,
+    },
     "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
     "id": 30987,
     "name": "Rose Heart",
@@ -69,6 +79,7 @@ Object {
         "y": 139,
       },
     ],
+    "subType": 3,
   },
 }
 `;
@@ -76,13 +87,23 @@ Object {
 exports[`DataState Action: ADD_ITEMS / Use-case: loadItem -- successfully calls API and adds multiple items to the store 1`] = `
 Object {
   "30987": ItemData {
-    "amputationData": AmputationData {
-      "arm": true,
-      "body": false,
-      "leg": false,
-      "panty": false,
+    "amputationData": Object {
+      "10": false,
+      "12": false,
+      "5": false,
+      "9": true,
     },
     "depthType": 48,
+    "depths": Object {
+      "1": 36700,
+      "12": 10190,
+      "13": 10160,
+      "14": 9880,
+      "2": 27000,
+      "3": 19000,
+      "4": 5000,
+      "5": 840,
+    },
     "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
     "id": 30987,
     "name": "Rose Heart",
@@ -142,15 +163,22 @@ Object {
         "y": 139,
       },
     ],
+    "subType": 3,
   },
   "71927": ItemData {
-    "amputationData": AmputationData {
-      "arm": false,
-      "body": false,
-      "leg": true,
-      "panty": true,
+    "amputationData": Object {
+      "10": true,
+      "12": false,
+      "5": true,
+      "9": false,
     },
     "depthType": 16,
+    "depths": Object {
+      "1": 13750,
+      "2": 13500,
+      "3": 9000,
+      "9": 10220,
+    },
     "description": "Those old stories fade into dust and get blown away by the wind. Yi walks in the mortal world and listens.",
     "id": 71927,
     "name": "Sparse Stars",
@@ -168,6 +196,7 @@ Object {
         "y": -357,
       },
     ],
+    "subType": 8,
   },
 }
 `;
@@ -176,6 +205,13 @@ exports[`ItemData Successfully deserializes ItemData: complex hair 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 1,
+  "depths": Object {
+    "1": 33000,
+    "2": 3500,
+    "7": 38000,
+    "8": 37200,
+    "9": 3510,
+  },
   "description": "As the night falls, the grand theatre is all empty. The touching music behind the curtain feels strangely beautiful.",
   "id": 12363,
   "name": "Dreamland Snow",
@@ -199,6 +235,7 @@ ItemData {
       "y": 55.5,
     },
   ],
+  "subType": 1,
 }
 `;
 
@@ -206,6 +243,9 @@ exports[`ItemData Successfully deserializes ItemData: deer spirit 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 61,
+  "depths": Object {
+    "1": 60000,
+  },
   "description": "The season may change, but flowers will bloom if there is spring in your heart. The boy never forgets this place.",
   "id": 880048,
   "name": "Deer and Cliff",
@@ -217,6 +257,7 @@ ItemData {
       "y": 51,
     },
   ],
+  "subType": 34,
 }
 `;
 
@@ -224,6 +265,9 @@ exports[`ItemData Successfully deserializes ItemData: motorcycle spririt 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 61,
+  "depths": Object {
+    "1": 60000,
+  },
   "description": "At 24, Louie wore the white robe of Nameless Order and held the knight spear, leaving Bluebird and the past behind",
   "id": 880092,
   "name": "Dark Night Motor",
@@ -235,18 +279,29 @@ ItemData {
       "y": -200,
     },
   ],
+  "subType": 34,
 }
 `;
 
 exports[`ItemData Successfully deserializes ItemData: posed coat 1`] = `
 ItemData {
-  "amputationData": AmputationData {
-    "arm": true,
-    "body": false,
-    "leg": false,
-    "panty": false,
+  "amputationData": Object {
+    "10": false,
+    "12": false,
+    "5": false,
+    "9": true,
   },
   "depthType": 48,
+  "depths": Object {
+    "1": 36700,
+    "12": 10190,
+    "13": 10160,
+    "14": 9880,
+    "2": 27000,
+    "3": 19000,
+    "4": 5000,
+    "5": 840,
+  },
   "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
   "id": 30987,
   "name": "Rose Heart",
@@ -306,18 +361,33 @@ ItemData {
       "y": 139,
     },
   ],
+  "subType": 3,
 }
 `;
 
 exports[`ItemData Successfully deserializes ItemData: posed dress 1`] = `
 ItemData {
-  "amputationData": AmputationData {
-    "arm": true,
-    "body": true,
-    "leg": true,
-    "panty": false,
+  "amputationData": Object {
+    "10": true,
+    "12": true,
+    "5": false,
+    "9": true,
   },
   "depthType": 41,
+  "depths": Object {
+    "1": 36600,
+    "12": 10200,
+    "13": 10170,
+    "14": 9900,
+    "2": 24000,
+    "21": 24000,
+    "22": 24000,
+    "3": 18000,
+    "4": 6000,
+    "5": 850,
+    "8": 27150,
+    "9": 10220,
+  },
   "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
   "id": 22008,
   "name": "Sakura Dream",
@@ -335,18 +405,25 @@ ItemData {
       "y": 328,
     },
   ],
+  "subType": 2,
 }
 `;
 
 exports[`ItemData Successfully deserializes ItemData: posed shoes 1`] = `
 ItemData {
-  "amputationData": AmputationData {
-    "arm": false,
-    "body": false,
-    "leg": true,
-    "panty": true,
+  "amputationData": Object {
+    "10": true,
+    "12": false,
+    "5": true,
+    "9": false,
   },
   "depthType": 16,
+  "depths": Object {
+    "1": 13750,
+    "2": 13500,
+    "3": 9000,
+    "9": 10220,
+  },
   "description": "Those old stories fade into dust and get blown away by the wind. Yi walks in the mortal world and listens.",
   "id": 71927,
   "name": "Sparse Stars",
@@ -364,6 +441,7 @@ ItemData {
       "y": -357,
     },
   ],
+  "subType": 8,
 }
 `;
 
@@ -371,6 +449,13 @@ exports[`ItemData Successfully deserializes ItemData: simple hat 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 19,
+  "depths": Object {
+    "1": 36000,
+    "2": 3000,
+    "6": 35150,
+    "7": 890,
+    "8": 37300,
+  },
   "description": "Every cowboy in the Apple Federal has a cap like this.",
   "id": 80078,
   "name": "Denim Cap·Rare",
@@ -388,6 +473,7 @@ ItemData {
       "y": 447,
     },
   ],
+  "subType": 10,
 }
 `;
 
@@ -395,6 +481,13 @@ exports[`ItemData Successfully deserializes ItemData: simple_hair 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 1,
+  "depths": Object {
+    "1": 33000,
+    "2": 3500,
+    "7": 38000,
+    "8": 37200,
+    "9": 3510,
+  },
   "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
   "id": 10007,
   "name": "Elegant Nobleman",
@@ -406,6 +499,7 @@ ItemData {
       "y": 426,
     },
   ],
+  "subType": 1,
 }
 `;
 
@@ -413,10 +507,12 @@ exports[`ItemData Successfully deserializes for the null cases 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": null,
+  "depths": null,
   "description": "",
   "id": null,
   "name": "",
   "position": null,
+  "subType": null,
 }
 `;
 
@@ -426,14 +522,5 @@ PositionData {
   "scale": null,
   "x": undefined,
   "y": undefined,
-}
-`;
-
-exports[`ItemData Successfully deserializes for the null cases 3`] = `
-AmputationData {
-  "arm": false,
-  "body": false,
-  "leg": false,
-  "panty": false,
 }
 `;

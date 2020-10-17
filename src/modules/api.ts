@@ -7,14 +7,15 @@ export const fetchItemData = async (itemId: number): Promise<any> =>
     .get()
     .then((response) => {
       if (!response) {
-      console.log(response, 'No such document!');
+        console.log('No such document!');
         return null;
       }
-      console.log('Retrieved data from database.', response.data());
+      console.log('Retrieved data from database.');
       return response.data();
     })
     .catch((error) => {
-      console.log(new HttpRequestException(error, 'Error getting response.'));
+      console.log('HttpRequestException: Error getting response.');
+      // console.log(new HttpRequestException(error, 'Error getting response.'));
     });
 
 export {};

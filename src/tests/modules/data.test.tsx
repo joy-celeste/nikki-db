@@ -4,7 +4,7 @@ import {
 } from '../test_data/data';
 import { DeserializeNullException } from '../../modules/errors';
 import { RootState } from '../../modules';
-import { AmputationData, ItemData, loadItem, PositionData } from '../../modules/data';
+import { ItemData, loadItem, PositionData } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
 import * as api from '../../modules/api';
 
@@ -12,7 +12,6 @@ describe('ItemData', () => {
   test('Errors if given empty data', () => {
     expect(() => new ItemData()).toThrowError(DeserializeNullException);
     expect(() => new PositionData(0, '')).toThrowError(DeserializeNullException);
-    expect(() => new AmputationData('')).toThrowError(DeserializeNullException);
   });
 
   test('Successfully deserializes for the null cases', () => {
@@ -20,8 +19,6 @@ describe('ItemData', () => {
     expect(empty_item_data).toMatchSnapshot();
     const empty_position_data: PositionData = new PositionData(10, {});
     expect(empty_position_data).toMatchSnapshot();
-    const empty_amputation_data: AmputationData = new AmputationData({});
-    expect(empty_amputation_data).toMatchSnapshot();
   });
 
   test('Successfully deserializes ItemData: simple_hair', () => {

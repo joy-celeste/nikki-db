@@ -1,15 +1,25 @@
-import { Dispatch, AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
-import { ACTION_CONSTANTS } from './constants';
+import { ACTION_CONSTANTS, DEPTHTYPE_TO_SUBTYPES } from './constants';
+import { wearItem } from './character';
+
+export type AmputationParts = 12 | 5 | 9 | 10; // body, panty, arm, leg
+export type AmputationData = Record<AmputationParts, boolean>;
+export type Depths = Record<number, number>;
+export type ItemId = number;
+export type DepthType = number;
+export type SubType = 8 | 17 | 10 | 5 | 13 | 3 | 2 | 11 | 1 | 14 | 9 | 88 | 12 | 7 | 6 | 16 | 4 | 15;
 
 export class ItemData {
-  id?: number;
+  id?: ItemId;
   name?: string;
   description?: string;
-  depthType?: number;
+  depthType?: DepthType;
+  subType?: SubType;
   amputationData?: AmputationData;
   position?: PositionData[];
+  depths?: Depths;
 
   constructor(init?: any) {
     this.deserialize(init);
@@ -23,9 +33,28 @@ export class ItemData {
     this.id = input.id || null;
     this.name = input.name || '';
     this.description = input.desc || '';
-    this.depthType = input.depth_type || null;
-    this.amputationData = input.amputation_data ? new AmputationData(input.amputation_data) : null;
     this.position = null;
+    this.depthType = null;
+    this.subType = null;
+    this.depths = null;
+    this.amputationData = null;
+
+    if (input.amputation_data) {
+      this.amputationData = {
+        9: !!input.amputation_data.arm,
+        12: !!input.amputation_data.body,
+        10: !!input.amputation_data.leg,
+        5: !!input.amputation_data.panty,
+      };
+    }
+
+    if (input.depth_type) {
+      this.depthType = input.depth_type;
+      const key = input.depth_type.toString();
+      const subtypeData = DEPTHTYPE_TO_SUBTYPES[key];
+      this.subType = subtypeData.sub_type;
+      this.depths = subtypeData.depth;
+    }
 
     if (input.position) {
       const position: PositionData[] = [];
@@ -60,31 +89,8 @@ export class PositionData {
   }
 }
 
-export class AmputationData {
-  arm: boolean;
-  body: boolean;
-  leg: boolean;
-  panty: boolean;
-
-  constructor(input?: any) {
-    this.deserialize(input);
-  }
-
-  deserialize(input: any) {
-    if (!input) {
-      throw new DeserializeNullException('Cannot deserialize null input for AmputationData');
-    }
-
-    this.arm = !!input.arm || false;
-    this.body = !!input.body || false;
-    this.leg = !!input.leg || false;
-    this.panty = !!input.panty || false;
-    return this;
-  }
-}
-
-type DataState = {
-  itemsData: Record<number, ItemData>;
+export type DataState = {
+  itemsData: Record<ItemId, ItemData>;
   loading: boolean;
 };
 
@@ -100,8 +106,8 @@ const addItemData = (itemId: number, itemData: ItemData) => ({
 });
 
 // USE-CASE
-export const loadItem = (itemId: number) =>
-  async(dispatch: Dispatch<AnyAction>, getState: Function) => {
+export const loadItem = (itemId: ItemId) =>
+  async(dispatch: Function, getState: Function) => {
     const items: DataState = getState().data.itemsData;
     if (!(itemId in items)) {
       const response = await fetchItemData(itemId);
@@ -110,6 +116,7 @@ export const loadItem = (itemId: number) =>
         dispatch(addItemData(itemId, itemData));
       }
     }
+    dispatch(wearItem(itemId));
   };
 
 // REDUCER

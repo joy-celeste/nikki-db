@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { RootState } from '../modules';
 import { ItemData, ItemId, loadItem } from '../modules/data';
 import { Character, wearItem } from '../modules/character';
+import Draggable from '../components/Draggable';
 
 export interface AppOwnState {
-  initialString: string,
   inputValue: string,
 }
 
@@ -27,7 +27,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      initialString: 'string',
       inputValue: '',
     };
   }
@@ -47,48 +46,41 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   };
 
   render() {
-    const { character, itemsData, loadItem } = this.props;
-    const { inputValue, initialString } = this.state;
+    const { loadItem } = this.props;
+    const { inputValue } = this.state;
 
     return (
       <div className="App">
         <header className="App-header">
-          <form onSubmit={this.handleSubmit}>
-            <input value={inputValue} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
-          </form>
+          <div className="canvas-form">
+            <form onSubmit={this.handleSubmit}>
+              <input value={inputValue} onChange={this.handleChange} />
+              <input type="submit" value="Submit" />
+            </form>
 
-          <p>Here are the items I have loaded:</p>
-          <p>{character.body}</p>
-          <p>{JSON.stringify(character)}</p>
+            <p>
+              <button type="button" onClick={() => { loadItem(22008); }}>
+                Sakura Dream (posed dress)
+              </button>
 
-          <p>
-            <button type="button" onClick={() => { loadItem(22008); }}>
-              Sakura Dream (posed dress)
-            </button>
+              <button type="button" onClick={() => { loadItem(30987); }}>
+                Rose Heart (posed coat)
+              </button>
 
-            <button type="button" onClick={() => { loadItem(30987); }}>
-              Rose Heart (posed coat)
-            </button>
+              <button type="button" onClick={() => { loadItem(71927); }}>
+                Sparse Stars (posed shoes)
+              </button>
 
-            <button type="button" onClick={() => { loadItem(71927); }}>
-              Sparse Stars (posed shoes)
-            </button>
+              <button type="button" onClick={() => { loadItem(10007); }}>
+                Elegant Nobleman (simple hair)
+              </button>
+            </p>
+          </div>
 
-            <button type="button" onClick={() => { loadItem(10007); }}>
-              Elegant Nobleman (simple hair)
-            </button>
-          </p>
+          <div className="canvas-figure">
+            <Draggable><div>Test</div></Draggable>
+          </div>
 
-          <p>
-            {Object.entries(itemsData).map(([key, value]) =>
-              `Key: ${key} - Name: ${value.name} - Value: ${JSON.stringify(value)}`)}
-          </p>
-
-          <p>
-            And here is my state&lsquo;s initialString:
-            {initialString}
-          </p>
         </header>
       </div>
     );

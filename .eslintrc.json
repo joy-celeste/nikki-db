@@ -1,9 +1,12 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
@@ -18,7 +21,27 @@
     "react",
     "@typescript-eslint"
   ],
+  "ignorePatterns": [
+    "/src/serviceWorker.ts"
+  ],
+  "overrides": [
+    {
+      "files": ["*.test.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }, {
+      "files": ["src/modules/*"],
+      "rules": {
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/explicit-module-boundary-types": ["error", {
+          "allowArgumentsExplicitlyTypedAsAny": true
+        }]
+      }
+    }
+  ],
   "rules": {
+    "no-shadow": "off",
     "lines-between-class-members": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
@@ -29,6 +52,12 @@
     "max-classes-per-file": "off",
     "max-len": ["warn", 120, 2],
     "implicit-arrow-linebreak": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "array-callback-return": "off",
+    "object-curly-newline": ["error", {
+      "ObjectPattern": { "multiline": true },
+      "ImportDeclaration": "never",
+      "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+    }]
   }
 }

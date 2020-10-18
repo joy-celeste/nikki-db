@@ -5,17 +5,23 @@
 - [X] Set up basic redux functionality
 - [x] Set up linter, unit testing
 - [ ] Install custom console
+- [ ] Update amputation deserialization portion to not hardcode body parts
+- [ ] Broader tests - cross-module
 
 ### Milestone 0: Post publically a preview video - proof of concept, stripped MVP
 - [x] Import API for pulling data - print into the screen
+- [x] Load tshirt + underwear Nikki by default
+- [x] Type in item ID to load clothes
+- [x] Can delete currently worn items
+- - [x] Putting in new item of category = replaces the item
+- - - [x] Replace clothes ID
+- - - [x] Update amputation data
+- - [x] Enforce wearing one item at a time
+- - [x] Enforce unable to remove hair when selecting the hair again
 - [ ] Load in clothes on top of Nikki (locally)
 - - [ ] Figure out item's depth
 - - [ ] Figure out item's displacement
 - - [ ] Load assets
-- [ ] Load tshirt + underwear Nikki by default
-- [ ] Can delete currently worn items
-- - [ ] Putting in new item of category = replaces the item
-- - [ ] Enforce wearing one item at a time
 - [ ] Display currently-worn items
 - [ ] Make Nikki draggable
 - [ ] Load backgrounds

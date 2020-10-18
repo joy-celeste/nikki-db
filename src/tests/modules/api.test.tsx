@@ -1,7 +1,7 @@
 import database from '../../modules/database';
 import { fetchItemData } from '../../modules/api';
 import { API_CONSTANTS } from '../../modules/constants';
-import { posed_dress } from '../test_data/data';
+import { posedDress } from '../test_data/data';
 
 describe('API: fetchItemData', () => {
   let collection: any;
@@ -9,16 +9,20 @@ describe('API: fetchItemData', () => {
   let doc: any;
 
   test('Successfully fetches item data from API', () => {
-    let response = {
+    const response = {
       exists: true,
-      data: () => posed_dress
-    }
+      data: () => posedDress,
+    };
     get = jest.fn().mockResolvedValue(response);
-    doc = jest.fn(() => ({get}));
+    doc = jest.fn(() => ({
+      get,
+    }));
     collection = jest.spyOn(database, 'collection')
-      .mockReturnValue((({ doc } as unknown) as any))
+      .mockReturnValue((({
+        doc,
+      } as any) as any));
 
-    const itemId: number = 10001;
+    const itemId = 10001;
     fetchItemData(itemId);
     expect(collection).toHaveBeenCalledWith(API_CONSTANTS.CLOTHES);
     expect(doc).toHaveBeenCalledWith(itemId.toString());
@@ -26,12 +30,16 @@ describe('API: fetchItemData', () => {
   });
 
   test('Returns null if it cannot find the document', () => {
-    get = jest.fn().mockResolvedValue(null)
-    doc = jest.fn(() => ({get}));
+    get = jest.fn().mockResolvedValue(null);
+    doc = jest.fn(() => ({
+      get,
+    }));
     collection = jest.spyOn(database, 'collection')
-      .mockReturnValue((({ doc } as unknown) as any))
+      .mockReturnValue((({
+        doc,
+      } as any) as any));
 
-    const itemId: number = 10001;
+    const itemId = 10001;
     fetchItemData(itemId);
     expect(collection).toHaveBeenCalledWith(API_CONSTANTS.CLOTHES);
     expect(doc).toHaveBeenCalledWith(itemId.toString());
@@ -39,12 +47,16 @@ describe('API: fetchItemData', () => {
   });
 
   test('Catches an exception if the API call fails', () => {
-    get = jest.fn().mockRejectedValue(new Error)
-    doc = jest.fn(() => ({get}));
+    get = jest.fn().mockRejectedValue(new Error());
+    doc = jest.fn(() => ({
+      get,
+    }));
     collection = jest.spyOn(database, 'collection')
-      .mockReturnValue((({ doc } as unknown) as any))
+      .mockReturnValue((({
+        doc,
+      } as any) as any));
 
-    const itemId: number = 10001;
+    const itemId = 10001;
     fetchItemData(itemId);
     expect(get()).rejects.toThrowError();
   });

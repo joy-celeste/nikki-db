@@ -5,6 +5,7 @@ import { RootState } from '../modules';
 import { ItemData, ItemId, loadItem } from '../modules/data';
 import { Character, wearItem } from '../modules/character';
 import Draggable from '../components/Draggable';
+import Figure from '../components/Figure';
 
 export interface AppOwnState {
   inputValue: string,
@@ -46,12 +47,11 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   };
 
   render() {
-    const { loadItem } = this.props;
+    const { loadItem, character } = this.props;
     const { inputValue } = this.state;
 
     return (
       <div className="App">
-        <header className="App-header">
           <div className="canvas-form">
             <form onSubmit={this.handleSubmit}>
               <input value={inputValue} onChange={this.handleChange} />
@@ -78,10 +78,10 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </div>
 
           <div className="canvas-figure">
-            <Draggable><div>Test</div></Draggable>
+            <Draggable>
+              <Figure characterData={character} />
+            </Draggable>
           </div>
-
-        </header>
       </div>
     );
   }

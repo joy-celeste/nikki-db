@@ -84,7 +84,7 @@ Object {
 }
 `;
 
-exports[`DataState Action: ADD_ITEMS / Use-case: loadItem -- successfully calls API and adds multiple items to the store 1`] = `
+exports[`DataState Action: ADD_ITEMS / Use-case: loadItem -- successfully adds multiple items to the store 1`] = `
 Object {
   "30987": ItemData {
     "amputationData": Object {
@@ -477,7 +477,7 @@ ItemData {
 }
 `;
 
-exports[`ItemData Successfully deserializes ItemData: simple_hair 1`] = `
+exports[`ItemData Successfully deserializes ItemData: simpleHair 1`] = `
 ItemData {
   "amputationData": null,
   "depthType": 1,

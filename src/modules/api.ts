@@ -14,8 +14,7 @@ export const fetchItemData = async (itemId: number): Promise<any> =>
       return response.data();
     })
     .catch((error) => {
-      console.log('HttpRequestException: Error getting response.');
-      // console.log(new HttpRequestException(error, 'Error getting response.'));
+      console.log(new HttpRequestException(error, 'Error getting response.'));
     });
 
 export {};

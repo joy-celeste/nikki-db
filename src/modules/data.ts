@@ -3,6 +3,7 @@ import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, DEPTHTYPE_TO_SUBTYPES } from './constants';
 import { wearItem } from './character';
+import { RootState } from '.';
 
 export type AmputationParts = 12 | 5 | 9 | 10; // body, panty, arm, leg
 export type AmputationData = Record<AmputationParts, boolean>;
@@ -25,7 +26,7 @@ export class ItemData {
     this.deserialize(init);
   }
 
-  deserialize(input: any) {
+  deserialize(input: any): ItemData {
     if (!input) {
       throw new DeserializeNullException('Cannot deserialize null input for ItemData');
     }
@@ -63,6 +64,7 @@ export class ItemData {
       });
       this.position = position;
     }
+    return this;
   }
 }
 
@@ -76,7 +78,7 @@ export class PositionData {
     this.deserialize(depth, input);
   }
 
-  deserialize(depth: number, input: any) {
+  deserialize(depth: number, input: any): PositionData {
     if (!depth || !input) {
       throw new DeserializeNullException('Cannot deserialize null input for PositionData');
     }
@@ -89,26 +91,30 @@ export class PositionData {
   }
 }
 
+export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {
-  itemsData: Record<ItemId, ItemData>;
+  itemsData: ItemsData;
   loading: boolean;
 };
 
 const initialState: DataState = {
-  itemsData: {},
+  itemsData: {
+  },
   loading: false,
 };
 
 // ACTIONS
-const addItemData = (itemId: number, itemData: ItemData) => ({
+const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   type: ACTION_CONSTANTS.DATA_ADD_ITEMS,
-  payload: { itemId, itemData },
+  payload: {
+    itemId, itemData,
+  },
 });
 
 // USE-CASE
 export const loadItem = (itemId: ItemId) =>
-  async(dispatch: Function, getState: Function) => {
-    const items: DataState = getState().data.itemsData;
+  async(dispatch: Function, getState: () => RootState): Promise<any> => {
+    const items: ItemsData = getState().data.itemsData;
     if (!(itemId in items)) {
       const response = await fetchItemData(itemId);
       if (response) {

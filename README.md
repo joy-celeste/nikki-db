@@ -6,6 +6,7 @@
 - [x] Set up linter, unit testing
 - [ ] Install custom console
 - [ ] Update amputation deserialization portion to not hardcode body parts
+- [ ] Broader tests - cross-module
 
 ### Milestone 0: Post publically a preview video - proof of concept, stripped MVP
 - [x] Import API for pulling data - print into the screen

@@ -1,15 +1,14 @@
+import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
-import {
-  ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES,
-} from './constants';
-import {
-  AmputationData, AmputationParts, ItemId, SubType,
-} from './data';
+import { RootState } from '.';
+import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES } from './constants';
+import { AmputationData, AmputationParts, ItemId, ItemsData, SubType } from './data';
 
 export type BodyPart = number;
 export type Body = Set<BodyPart>;
 export type Clothes = Record<SubType, ItemId>;
 export type Amputations = Record<AmputationParts, ItemId[]>;
+
 export class Character {
   body: Body;
   clothes: Clothes;
@@ -21,17 +20,17 @@ export class Character {
     this.amputations = input && input.amputations ? { ...input.amputations } : { ...DEFAULT_AMPUTATIONS };
   }
 
-  hide = (bodyPart: BodyPart): void => {
+  hide(bodyPart: BodyPart): void {
     if (this.body.has(bodyPart)) {
       this.body.delete(bodyPart);
     }
   }
 
-  show = (bodyPart: BodyPart): void => {
+  show(bodyPart: BodyPart): void {
     this.body.add(bodyPart);
   }
 
-  wear = (subtype: SubType, itemId: ItemId, amputationData: AmputationData): void => {
+  wear(subtype: SubType, itemId: ItemId, amputationData: AmputationData): void {
     if (this.clothes[subtype] && this.clothes[subtype] === itemId && subtype !== SUBTYPES.HAIR) {
       this.remove(subtype);
       return;
@@ -48,12 +47,12 @@ export class Character {
     }
   }
 
-  remove = (subtype: SubType): SubType => {
+  remove(subtype: SubType): SubType {
     if (this.clothes[subtype]) {
       const foundItem : ItemId = this.clothes[subtype];
       delete this.clothes[subtype];
 
-      Object.keys(this.amputations).map((bodyPartStr) => {
+      Object.keys(this.amputations).forEach((bodyPartStr) => {
         const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
         this.amputations[bodyPart] = this.amputations[bodyPart].filter((itemId: ItemId) => itemId !== foundItem);
         if (this.amputations[bodyPart].length === 0) {
@@ -65,8 +64,8 @@ export class Character {
     return null;
   }
 
-  updateAmputations = (itemId: ItemId, amputationData: AmputationData): void => {
-    Object.entries(amputationData).map(([bodyPartStr, visibility]) => {
+  updateAmputations(itemId: ItemId, amputationData: AmputationData): void {
+    Object.entries(amputationData).forEach(([bodyPartStr, visibility]) => {
       if (visibility) {
         const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
         this.amputations[bodyPart] = [...this.amputations[bodyPart], itemId];
@@ -74,10 +73,10 @@ export class Character {
     });
   }
 
-  updateVisibleBodyParts = (): void => {
+  updateVisibleBodyParts(): void {
     // If any amputation data is associated with an amputation location, hide the limb
     // Else if nothing is being worn on this amputation location right now, make it visible
-    Object.entries(this.amputations).map(([bodyPartStr, items]) => {
+    Object.entries(this.amputations).forEach(([bodyPartStr, items]) => {
       const bodyPart = parseInt(bodyPartStr, 10) as BodyPart;
       if (items.length >= 1) {
         this.hide(bodyPart); // have to cast as int as Object.keys turns keys into string
@@ -88,7 +87,7 @@ export class Character {
   }
 }
 
-type CharacterState = {
+export type CharacterState = {
   history: Character[];
   step: number;
 };
@@ -99,15 +98,17 @@ const initialState: CharacterState = {
 };
 
 // ACTIONS
-const addToHistory = (character: Character, step: number) => ({
+const addToHistory = (character: Character, step: number): AnyAction => ({
   type: ACTION_CONSTANTS.CHARACTER_ADD_TO_HISTORY,
-  payload: { character, step },
+  payload: {
+    character, step,
+  },
 });
 
 // USE-CASE
 export const wearItem = (itemId: ItemId) =>
-  async(dispatch: Function, getState: Function) => {
-    const itemDataState: any = getState().data.itemsData;
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<any> => {
+    const itemDataState: ItemsData = getState().data.itemsData;
     const itemData = itemDataState[itemId];
 
     if (itemData && itemData.subType) {

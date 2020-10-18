@@ -1,16 +1,16 @@
 import { AnyAction } from 'redux';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
-import { ACTION_CONSTANTS, DEPTHTYPE_TO_SUBTYPES } from './constants';
+import { ACTION_CONSTANTS, BODY, DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
 import { wearItem } from './character';
 import { RootState } from '.';
 
-export type AmputationParts = 12 | 5 | 9 | 10; // body, panty, arm, leg
+export type SubType = typeof SUBTYPES_LIST[number];
+export type AmputationParts = typeof DEFAULT_AMPUTATIONS_LIST[number];
 export type AmputationData = Record<AmputationParts, boolean>;
 export type Depths = Record<number, number>;
 export type ItemId = number;
 export type DepthType = number;
-export type SubType = 8 | 17 | 10 | 5 | 13 | 3 | 2 | 11 | 1 | 14 | 9 | 88 | 12 | 7 | 6 | 16 | 4 | 15;
 
 export class ItemData {
   id?: ItemId;
@@ -42,10 +42,10 @@ export class ItemData {
 
     if (input.amputation_data) {
       this.amputationData = {
-        9: !!input.amputation_data.arm,
-        12: !!input.amputation_data.body,
-        10: !!input.amputation_data.leg,
-        5: !!input.amputation_data.panty,
+        [BODY.ARM]: !!input.amputation_data.arm,
+        [BODY.TORSO]: !!input.amputation_data.body,
+        [BODY.LEG]: !!input.amputation_data.leg,
+        [BODY.PANTY]: !!input.amputation_data.panty,
       };
     }
 

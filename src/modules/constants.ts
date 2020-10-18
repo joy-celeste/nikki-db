@@ -31,8 +31,10 @@ export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM
 export const DEFAULT_CLOTHES = {
   1: 10001,
 };
+
+export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
 export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {
-  12: [], 5: [], 9: [], 10: [],
+  [BODY.TORSO]: [], [BODY.PANTY]: [], [BODY.ARM]: [], [BODY.LEG]: [],
 };
 
 export const SUBTYPES = {
@@ -59,6 +61,8 @@ export const SUBTYPES = {
   TOP: 4,
   WAIST_DECO: 15,
 };
+
+export const SUBTYPES_LIST = Object.values(SUBTYPES);
 
 export const DEPTHTYPES = {
   Badge: 33,

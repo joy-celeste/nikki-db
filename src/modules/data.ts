@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
-import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS, DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
+import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
+  DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
 import { wearItem } from './character';
 import { RootState } from '.';
 
@@ -51,7 +52,9 @@ export class ItemData {
 
     if (input.depth_type || input.id === BODY_ITEM_ID) {
       this.depthType = input.depth_type;
-      const subtypeData = input.id !== BODY_ITEM_ID ? DEPTHTYPE_TO_SUBTYPES[input.depth_type.toString()] : BODY_PARTS_DEPTHS;
+      const subtypeData = input.id !== BODY_ITEM_ID
+        ? DEPTHTYPE_TO_SUBTYPES[input.depth_type.toString()]
+        : BODY_PARTS_DEPTHS;
       this.subType = subtypeData.sub_type;
       this.depths = subtypeData.depth;
     }
@@ -86,8 +89,12 @@ export class PositionData {
     this.depth = depth;
     this.x = input.posx;
     this.y = input.posy;
-    this.z = depths ? (depth < 100 ? depths[depth] : depths[Math.ceil(depth / 100)]) : null;
+    this.z = null;
     this.scale = input.pot_scale || null;
+
+    if (depths) {
+      this.z = depth < 100 ? depths[depth] : depths[Math.ceil(depth / 100)];
+    }
     return this;
   }
 }

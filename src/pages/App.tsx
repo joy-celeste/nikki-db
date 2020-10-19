@@ -32,6 +32,12 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     };
   }
 
+  componentDidMount() {
+    const { loadItem } = this.props;
+
+    loadItem(10001);
+  }
+
   handleSubmit = (event: any) => {
     const { inputValue } = this.state;
     const { loadItem } = this.props;
@@ -47,7 +53,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   };
 
   render() {
-    const { loadItem, character } = this.props;
+    const { loadItem, character, itemsData } = this.props;
     const { inputValue } = this.state;
 
     return (
@@ -83,7 +89,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 
         <div className="canvas-figure">
           <Draggable>
-            <Figure characterData={character} />
+            <Figure itemsData={itemsData} characterData={character} />
           </Draggable>
         </div>
       </div>

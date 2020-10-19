@@ -93,9 +93,23 @@ export class PositionData {
     this.scale = input.pot_scale || null;
 
     if (depths) {
-      this.z = depth < 100 ? depths[depth] : depths[Math.ceil(depth / 100)];
+      this.calculateDepth(depth, depths);
     }
     return this;
+  }
+
+  // Don't ask me about this logic... I'm just copying this straight from the original devs
+  calculateDepth(depth: number, depths: Depths): void {
+    if (depth < 100) {
+      this.z = depths[depth];
+    } else {
+      const key: number = depth / 100;
+      const ceil: number = Math.ceil(key);
+      if (key <= 0 || ceil === key) {
+        this.z = depths[ceil] - 5;
+      }
+      this.z = depths[ceil - 1] - 5;
+    }
   }
 }
 

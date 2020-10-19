@@ -1,4 +1,4 @@
-import { posedCoat } from '../test_data/data';
+import { posedCoat, posedDress } from '../test_data/data';
 import { Body, Item } from '../../modules/item';
 import { NoDataException } from '../../modules/errors';
 import { ItemData } from '../../modules/data';
@@ -19,5 +19,11 @@ describe('Item', () => {
     const coat = new ItemData(posedCoat);
     const coatItem = new Item(coat);
     expect(coatItem).toMatchSnapshot();
+  });
+
+  test('Returns an ITEM object with pieces if given ItemData', () => {
+    const dress = new ItemData(posedDress);
+    const dressItem = new Item(dress);
+    expect(dressItem).toMatchSnapshot();
   });
 });

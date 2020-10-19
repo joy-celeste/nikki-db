@@ -5,29 +5,29 @@ import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, S
 import { AmputationData, AmputationParts, ItemId, ItemsData, SubType } from './data';
 
 export type BodyPart = number;
-export type Body = Set<BodyPart>;
+export type BodyParts = Set<BodyPart>;
 export type Clothes = Record<SubType, ItemId>;
 export type Amputations = Record<AmputationParts, ItemId[]>;
 
 export class Character {
-  body: Body;
+  visibleParts: BodyParts;
   clothes: Clothes;
   amputations: Amputations;
 
   constructor(input?: any) {
-    this.body = input && input.body ? new Set(input.body) : new Set(DEFAULT_BODY);
+    this.visibleParts = input && input.visibleParts ? new Set(input.visibleParts) : new Set(DEFAULT_BODY);
     this.clothes = input && input.clothes ? { ...input.clothes } : { ...DEFAULT_CLOTHES };
     this.amputations = input && input.amputations ? { ...input.amputations } : { ...DEFAULT_AMPUTATIONS };
   }
 
   hide(bodyPart: BodyPart): void {
-    if (this.body.has(bodyPart)) {
-      this.body.delete(bodyPart);
+    if (this.visibleParts.has(bodyPart)) {
+      this.visibleParts.delete(bodyPart);
     }
   }
 
   show(bodyPart: BodyPart): void {
-    this.body.add(bodyPart);
+    this.visibleParts.add(bodyPart);
   }
 
   wear(subtype: SubType, itemId: ItemId, amputationData: AmputationData): void {

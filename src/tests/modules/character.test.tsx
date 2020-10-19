@@ -3,7 +3,7 @@ import { posedDress, posedCoat, simpleDress, simpleHair } from '../test_data/dat
 import { RootState } from '../../modules';
 import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { Character, Body, CharacterState, characterReducer, wearItem } from '../../modules/character';
+import { Character, VisibleBodyParts, CharacterState, characterReducer, wearItem } from '../../modules/character';
 import { DEFAULT_AMPUTATIONS, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
 
 function validateAmputations(itemData: ItemData, character: Character) {
@@ -35,7 +35,7 @@ function validateAmputations(itemData: ItemData, character: Character) {
 describe('Character', () => {
   test('Initializes to default data if empty constructor', () => {
     const newCharacter: Character = new Character();
-    expect(newCharacter.body).toEqual(DEFAULT_BODY);
+    expect(newCharacter.visibleParts).toEqual(DEFAULT_BODY);
     expect(newCharacter.clothes).toEqual(DEFAULT_CLOTHES);
     expect(newCharacter).toMatchSnapshot();
   });
@@ -76,7 +76,7 @@ describe('Character', () => {
 
   test('CHARACTER: wear() - success: replacing dress on character', () => {
     const character: Character = new Character();
-    const originalBody: Body = new Set(character.body);
+    const originalBody: VisibleBodyParts = new Set(character.visibleParts);
 
     // Wear a posed dress, validate that the limbs get amputated
     const dress1: ItemData = new ItemData(posedDress);
@@ -93,7 +93,7 @@ describe('Character', () => {
     expect(character.clothes[dress2.subType]).toEqual(dress2.id);
 
     // Assert body parts are made visible again when posed dress is removed
-    expect(character.body).toEqual(originalBody);
+    expect(character.visibleParts).toEqual(originalBody);
     validateAmputations(dress2, character);
     expect(character).toMatchSnapshot();
   });
@@ -126,7 +126,7 @@ describe('Character', () => {
 
     expect(character.clothes).toStrictEqual(copy.clothes);
     expect(character.amputations).toStrictEqual(copy.amputations);
-    expect(character.body).toStrictEqual(copy.body);
+    expect(character.visibleParts).toStrictEqual(copy.visibleParts);
   });
 
   test('CHARACTER: remove() - success: does nothing if removing nothing', () => {
@@ -144,7 +144,7 @@ describe('Character', () => {
     const copy: Character = new Character(character);
     expect(character.clothes).toStrictEqual(copy.clothes);
     expect(character.amputations).toStrictEqual(copy.amputations);
-    expect(character.body).toStrictEqual(copy.body);
+    expect(character.visibleParts).toStrictEqual(copy.visibleParts);
   });
 });
 
@@ -178,7 +178,7 @@ describe('CharacterState', () => {
     expect(characterState.step).toBe(0);
 
     const initialState : Character = characterState.history[0];
-    expect(initialState.body).toStrictEqual(DEFAULT_BODY);
+    expect(initialState.visibleParts).toStrictEqual(DEFAULT_BODY);
     expect(initialState.clothes).toStrictEqual(DEFAULT_CLOTHES);
     expect(initialState.amputations).toStrictEqual(DEFAULT_AMPUTATIONS);
     expect(characterState).toMatchSnapshot();

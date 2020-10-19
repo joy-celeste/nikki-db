@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
-import { ACTION_CONSTANTS, BODY, DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
+import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS, DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
 import { wearItem } from './character';
 import { RootState } from '.';
 
@@ -22,8 +22,8 @@ export class ItemData {
   position?: PositionData[];
   depths?: Depths;
 
-  constructor(init?: any) {
-    this.deserialize(init);
+  constructor(input?: any) {
+    this.deserialize(input);
   }
 
   deserialize(input: any): ItemData {
@@ -49,10 +49,9 @@ export class ItemData {
       };
     }
 
-    if (input.depth_type) {
+    if (input.depth_type || input.id === BODY_ITEM_ID) {
       this.depthType = input.depth_type;
-      const key = input.depth_type.toString();
-      const subtypeData = DEPTHTYPE_TO_SUBTYPES[key];
+      const subtypeData = input.id !== BODY_ITEM_ID ? DEPTHTYPE_TO_SUBTYPES[input.depth_type.toString()] : BODY_PARTS_DEPTHS;
       this.subType = subtypeData.sub_type;
       this.depths = subtypeData.depth;
     }
@@ -60,7 +59,7 @@ export class ItemData {
     if (input.position) {
       const position: PositionData[] = [];
       Object.entries(input.position).forEach(([key, value]) => {
-        position.push(new PositionData(parseInt(key, 10), value));
+        position.push(new PositionData(parseInt(key, 10), value, this.depths));
       });
       this.position = position;
     }
@@ -72,13 +71,14 @@ export class PositionData {
   depth: number;
   x: number;
   y: number;
+  z: number;
   scale?: number;
 
-  constructor(depth: number, input?: any) {
-    this.deserialize(depth, input);
+  constructor(depth: number, input: any, depths?: Depths) {
+    this.deserialize(depth, input, depths);
   }
 
-  deserialize(depth: number, input: any): PositionData {
+  deserialize(depth: number, input: any, depths?: Depths): PositionData {
     if (!depth || !input) {
       throw new DeserializeNullException('Cannot deserialize null input for PositionData');
     }
@@ -86,10 +86,13 @@ export class PositionData {
     this.depth = depth;
     this.x = input.posx;
     this.y = input.posy;
+    this.z = depths ? (depth < 100 ? depths[depth] : depths[Math.ceil(depth / 100)]) : null;
     this.scale = input.pot_scale || null;
     return this;
   }
 }
+
+export const bodyItemData = new ItemData(BODY_ITEM_DATA);
 
 export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {
@@ -98,8 +101,7 @@ export type DataState = {
 };
 
 const initialState: DataState = {
-  itemsData: {
-  },
+  itemsData: {},
   loading: false,
 };
 

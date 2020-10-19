@@ -52,36 +52,40 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 
     return (
       <div className="App">
-          <div className="canvas-form">
-            <form onSubmit={this.handleSubmit}>
-              <input value={inputValue} onChange={this.handleChange} />
-              <input type="submit" value="Submit" />
-            </form>
+        <div className="canvas-form">
+          <form onSubmit={this.handleSubmit}>
+            <input value={inputValue} onChange={this.handleChange} />
+            <input type="submit" value="Submit" />
+          </form>
 
-            <p>
-              <button type="button" onClick={() => { loadItem(22008); }}>
-                Sakura Dream (posed dress)
-              </button>
+          <p>
+            <button type="button" onClick={() => { loadItem(1); }}>
+              Body
+            </button>
 
-              <button type="button" onClick={() => { loadItem(30987); }}>
-                Rose Heart (posed coat)
-              </button>
+            <button type="button" onClick={() => { loadItem(22008); }}>
+              Sakura Dream (posed dress)
+            </button>
 
-              <button type="button" onClick={() => { loadItem(71927); }}>
-                Sparse Stars (posed shoes)
-              </button>
+            <button type="button" onClick={() => { loadItem(30987); }}>
+              Rose Heart (posed coat)
+            </button>
 
-              <button type="button" onClick={() => { loadItem(10007); }}>
-                Elegant Nobleman (simple hair)
-              </button>
-            </p>
-          </div>
+            <button type="button" onClick={() => { loadItem(71927); }}>
+              Sparse Stars (posed shoes)
+            </button>
 
-          <div className="canvas-figure">
-            <Draggable>
-              <Figure characterData={character} />
-            </Draggable>
-          </div>
+            <button type="button" onClick={() => { loadItem(10007); }}>
+              Elegant Nobleman (simple hair)
+            </button>
+          </p>
+        </div>
+
+        <div className="canvas-figure">
+          <Draggable>
+            <Figure characterData={character} />
+          </Draggable>
+        </div>
       </div>
     );
   }

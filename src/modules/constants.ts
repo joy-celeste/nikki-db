@@ -1,5 +1,7 @@
 import { AmputationParts, ItemId } from './data';
 
+export const BODY_ITEM_ID = 1;
+
 export const ACTION_CONSTANTS = {
   DATA_ADD_ITEMS: 'data/ADD_ITEMS',
   CHARACTER_ADD_TO_HISTORY: 'character/ADD_TO_HISTORY',
@@ -28,9 +30,7 @@ export const BODY = {
 };
 
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
-export const DEFAULT_CLOTHES = {
-  1: 10001,
-};
+export const DEFAULT_CLOTHES = { 1: 10001 };
 
 export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
 export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {
@@ -134,6 +134,42 @@ export const DEPTHTYPES = {
   WaistDeco: 30,
   Wing: 35,
   WingSpec: 42,
+};
+
+export const BODY_PARTS_DEPTHS = {
+  sub_type: null as number,
+  depth: {
+    1: 10000,
+    2: 10020,
+    3: 24000,
+    4: 10040,
+    5: 10030,
+    8: 10000,
+    9: 10000,
+    10: 10000,
+    11: 10000,
+    12: 10000,
+    13: 10400,
+    14: 10400,
+  },
+};
+
+export const BODY_ITEM_DATA = {
+  id: 1,
+  position: {
+    1: { posx: -22.5, posy: -29.5 },
+    2: { posy: 239.5, posx: -11.5 },
+    3: { posy: 128.5, posx: -21 },
+    4: { posy: 253.5, posx: -11.5 },
+    5: { posy: 56, posx: -9.5 },
+    8: { posx: -24, posy: 260 },
+    9: { posx: -22.5, posy: 146 },
+    10: { posx: -9.5, posy: -204.5 },
+    11: { posx: -21.5, posy: 417.5 },
+    12: { posy: 205.5, posx: -24 },
+    13: { posx: -11.5, posy: 253.5 },
+    14: { posy: 56, posx: -9.5 },
+  },
 };
 
 export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {

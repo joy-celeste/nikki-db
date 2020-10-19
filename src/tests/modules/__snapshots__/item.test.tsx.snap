@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item Returns an BODY when given visible parts data 1`] = `
+Body {
+  "itemId": 1,
+  "pieces": Array [
+    Piece {
+      "depth": 1,
+      "isVisible": false,
+      "x": -22.5,
+      "y": -29.5,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 2,
+      "isVisible": true,
+      "x": -11.5,
+      "y": 239.5,
+      "z": 10020,
+    },
+    Piece {
+      "depth": 3,
+      "isVisible": false,
+      "x": -21,
+      "y": 128.5,
+      "z": 24000,
+    },
+    Piece {
+      "depth": 4,
+      "isVisible": true,
+      "x": -11.5,
+      "y": 253.5,
+      "z": 10040,
+    },
+    Piece {
+      "depth": 5,
+      "isVisible": true,
+      "x": -9.5,
+      "y": 56,
+      "z": 10030,
+    },
+    Piece {
+      "depth": 8,
+      "isVisible": false,
+      "x": -24,
+      "y": 260,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 9,
+      "isVisible": true,
+      "x": -22.5,
+      "y": 146,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 10,
+      "isVisible": true,
+      "x": -9.5,
+      "y": -204.5,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 11,
+      "isVisible": true,
+      "x": -21.5,
+      "y": 417.5,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 12,
+      "isVisible": true,
+      "x": -24,
+      "y": 205.5,
+      "z": 10000,
+    },
+    Piece {
+      "depth": 13,
+      "isVisible": false,
+      "x": -11.5,
+      "y": 253.5,
+      "z": 10400,
+    },
+    Piece {
+      "depth": 14,
+      "isVisible": false,
+      "x": -9.5,
+      "y": 56,
+      "z": 10400,
+    },
+  ],
+}
+`;
+
+exports[`Item Returns an ITEM object with pieces if given ItemData 1`] = `
+Item {
+  "itemId": 30987,
+  "pieces": Array [
+    Piece {
+      "depth": 1,
+      "isVisible": true,
+      "x": -27,
+      "y": 200.5,
+      "z": 36700,
+    },
+    Piece {
+      "depth": 2,
+      "isVisible": true,
+      "x": -202,
+      "y": -130,
+      "z": 27000,
+    },
+    Piece {
+      "depth": 3,
+      "isVisible": true,
+      "x": 101,
+      "y": -119,
+      "z": 19000,
+    },
+    Piece {
+      "depth": 4,
+      "isVisible": true,
+      "x": -81,
+      "y": -153,
+      "z": 5000,
+    },
+    Piece {
+      "depth": 13,
+      "isVisible": true,
+      "x": -88.5,
+      "y": 245,
+      "z": 10160,
+    },
+    Piece {
+      "depth": 14,
+      "isVisible": true,
+      "x": 42.5,
+      "y": 234.5,
+      "z": 9880,
+    },
+    Piece {
+      "depth": 101,
+      "isVisible": true,
+      "x": -30.5,
+      "y": 242.5,
+      "z": 27000,
+    },
+    Piece {
+      "depth": 201,
+      "isVisible": true,
+      "x": -47.5,
+      "y": 262,
+      "z": 19000,
+    },
+    Piece {
+      "depth": 301,
+      "isVisible": true,
+      "x": 124.5,
+      "y": 139,
+      "z": 5000,
+    },
+  ],
+}
+`;

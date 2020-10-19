@@ -1,3 +1,145 @@
+export const bodyData = {
+  id: 1,
+  position: {
+    1: {
+      posx: -22.5,
+      posy: -29.5,
+    },
+    2: {
+      posy: 239.5,
+      posx: -11.5,
+    },
+    3: {
+      posy: 128.5,
+      posx: -21,
+    },
+    4: {
+      posy: 253.5,
+      posx: -11.5,
+    },
+    5: {
+      posy: 56,
+      posx: -9.5,
+    },
+    6: {
+      posy: 299.5,
+      posx: -23.5,
+    },
+    7: {
+      posy: 376,
+      posx: -30.5,
+    },
+    8: {
+      posx: -24,
+      posy: 260,
+    },
+    9: {
+      posx: -22.5,
+      posy: 146,
+    },
+    10: {
+      posx: -9.5,
+      posy: -204.5,
+    },
+    11: {
+      posx: -21.5,
+      posy: 417.5,
+    },
+    12: {
+      posy: 205.5,
+      posx: -24,
+    },
+    13: {
+      posx: -11.5,
+      posy: 253.5,
+    },
+    14: {
+      posy: 56,
+      posx: -9.5,
+    },
+    15: {
+      posx: -18,
+      pot_scale: 1,
+      posy: 257.5,
+    },
+    16: {
+      pot_scale: 1,
+      posy: 62,
+      posx: -9.5,
+    },
+    17: {
+      posx: -23,
+      pot_scale: 1,
+      posy: 254,
+    },
+    18: {
+      posx: -7,
+      pot_scale: 1,
+      posy: 73.5,
+    },
+    19: {
+      posx: -26,
+      posy: 238.5,
+      pot_scale: 1,
+    },
+    20: {
+      posy: 66.5,
+      pot_scale: 1,
+      posx: -11,
+    },
+    21: {
+      pot_scale: 1,
+      posx: -12.5,
+      posy: 258,
+    },
+    22: {
+      pot_scale: 1,
+      posy: 62,
+      posx: -7.5,
+    },
+    23: {
+      posx: -18,
+      pot_scale: 1,
+      posy: 257.5,
+    },
+    24: {
+      posx: -9.5,
+      posy: 62,
+      pot_scale: 1,
+    },
+    25: {
+      pot_scale: 1,
+      posy: 254,
+      posx: -23,
+    },
+    26: {
+      pot_scale: 1,
+      posx: -7,
+      posy: 73.5,
+    },
+    27: {
+      posy: 238.5,
+      pot_scale: 1,
+      posx: -26,
+    },
+    28: {
+      posy: 66.5,
+      posx: -11,
+      pot_scale: 1,
+    },
+    29: {
+      posx: -12.5,
+      pot_scale: 1,
+      posy: 258,
+    },
+    30: {
+      posx: -7.5,
+      pot_scale: 1,
+      posy: 62,
+    },
+  },
+};
+
 export const posedDress = {
   rare: 5,
   special2: 31,

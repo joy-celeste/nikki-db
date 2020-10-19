@@ -8,7 +8,10 @@ Character {
     "5": Array [],
     "9": Array [],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
@@ -16,9 +19,6 @@ Character {
     10,
     11,
     12,
-  },
-  "clothes": Object {
-    "1": 10001,
   },
 }
 `;
@@ -31,7 +31,10 @@ Character {
     "5": Array [],
     "9": Array [],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
@@ -39,9 +42,6 @@ Character {
     10,
     11,
     12,
-  },
-  "clothes": Object {
-    "1": 10001,
   },
 }
 `;
@@ -60,15 +60,15 @@ Character {
       22008,
     ],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
     11,
-  },
-  "clothes": Object {
-    "1": 10001,
-    "2": 22008,
   },
 }
 `;
@@ -81,7 +81,10 @@ Character {
     "5": Array [],
     "9": Array [],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10007,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
@@ -89,9 +92,6 @@ Character {
     10,
     11,
     12,
-  },
-  "clothes": Object {
-    "1": 10007,
   },
 }
 `;
@@ -110,15 +110,15 @@ Character {
       22008,
     ],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
     11,
-  },
-  "clothes": Object {
-    "1": 10001,
-    "2": 22008,
   },
 }
 `;
@@ -131,7 +131,11 @@ Character {
     "5": Array [],
     "9": Array [],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+    "2": 21305,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
@@ -139,10 +143,6 @@ Character {
     9,
     10,
     12,
-  },
-  "clothes": Object {
-    "1": 10001,
-    "2": 21305,
   },
 }
 `;
@@ -161,15 +161,15 @@ Character {
       22008,
     ],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
     11,
-  },
-  "clothes": Object {
-    "1": 10001,
-    "2": 22008,
   },
 }
 `;
@@ -189,16 +189,16 @@ Character {
       30987,
     ],
   },
-  "body": Set {
-    2,
-    4,
-    5,
-    11,
-  },
   "clothes": Object {
     "1": 10001,
     "2": 22008,
     "3": 30987,
+  },
+  "visibleParts": Set {
+    2,
+    4,
+    5,
+    11,
   },
 }
 `;
@@ -213,17 +213,17 @@ Character {
       30987,
     ],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+    "3": 30987,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
     11,
     10,
     12,
-  },
-  "clothes": Object {
-    "1": 10001,
-    "3": 30987,
   },
 }
 `;
@@ -236,7 +236,10 @@ Character {
     "5": Array [],
     "9": Array [],
   },
-  "body": Set {
+  "clothes": Object {
+    "1": 10001,
+  },
+  "visibleParts": Set {
     2,
     4,
     5,
@@ -244,9 +247,6 @@ Character {
     10,
     11,
     12,
-  },
-  "clothes": Object {
-    "1": 10001,
   },
 }
 `;
@@ -262,7 +262,10 @@ Object {
           "5": Array [],
           "9": Array [],
         },
-        "body": Set {
+        "clothes": Object {
+          "1": 10001,
+        },
+        "visibleParts": Set {
           2,
           4,
           5,
@@ -270,9 +273,6 @@ Object {
           10,
           11,
           12,
-        },
-        "clothes": Object {
-          "1": 10001,
         },
       },
       Character {
@@ -282,7 +282,10 @@ Object {
           "5": Array [],
           "9": Array [],
         },
-        "body": Set {
+        "clothes": Object {
+          "1": 10007,
+        },
+        "visibleParts": Set {
           2,
           4,
           5,
@@ -290,9 +293,6 @@ Object {
           10,
           11,
           12,
-        },
-        "clothes": Object {
-          "1": 10007,
         },
       },
       Character {
@@ -308,15 +308,15 @@ Object {
             22008,
           ],
         },
-        "body": Set {
+        "clothes": Object {
+          "1": 10007,
+          "2": 22008,
+        },
+        "visibleParts": Set {
           2,
           4,
           5,
           11,
-        },
-        "clothes": Object {
-          "1": 10007,
-          "2": 22008,
         },
       },
       Character {
@@ -325,29 +325,12 @@ Object {
           "12": Array [],
           "5": Array [],
           "9": Array [],
-        },
-        "body": Set {
-          2,
-          4,
-          5,
-          11,
-          9,
-          10,
-          12,
         },
         "clothes": Object {
           "1": 10007,
           "2": 21305,
         },
-      },
-      Character {
-        "amputations": Object {
-          "10": Array [],
-          "12": Array [],
-          "5": Array [],
-          "9": Array [],
-        },
-        "body": Set {
+        "visibleParts": Set {
           2,
           4,
           5,
@@ -356,8 +339,25 @@ Object {
           10,
           12,
         },
+      },
+      Character {
+        "amputations": Object {
+          "10": Array [],
+          "12": Array [],
+          "5": Array [],
+          "9": Array [],
+        },
         "clothes": Object {
           "1": 10007,
+        },
+        "visibleParts": Set {
+          2,
+          4,
+          5,
+          11,
+          9,
+          10,
+          12,
         },
       },
       Character {
@@ -369,17 +369,17 @@ Object {
             30987,
           ],
         },
-        "body": Set {
+        "clothes": Object {
+          "1": 10007,
+          "3": 30987,
+        },
+        "visibleParts": Set {
           2,
           4,
           5,
           11,
           10,
           12,
-        },
-        "clothes": Object {
-          "1": 10007,
-          "3": 30987,
         },
       },
     ],
@@ -406,6 +406,7 @@ Object {
             "scale": null,
             "x": -21.5,
             "y": 426,
+            "z": 33000,
           },
         ],
         "subType": 1,
@@ -428,6 +429,7 @@ Object {
             "scale": 1,
             "x": -7.5,
             "y": 120,
+            "z": 24000,
           },
         ],
         "subType": 2,
@@ -463,12 +465,14 @@ Object {
             "scale": 1,
             "x": -32.5,
             "y": -164.5,
+            "z": 24000,
           },
           PositionData {
             "depth": 901,
             "scale": 1,
             "x": -59.5,
             "y": 328,
+            "z": undefined,
           },
         ],
         "subType": 2,
@@ -500,54 +504,63 @@ Object {
             "scale": 1,
             "x": -27,
             "y": 200.5,
+            "z": 36700,
           },
           PositionData {
             "depth": 2,
             "scale": 1,
             "x": -202,
             "y": -130,
+            "z": 27000,
           },
           PositionData {
             "depth": 3,
             "scale": 1,
             "x": 101,
             "y": -119,
+            "z": 19000,
           },
           PositionData {
             "depth": 4,
             "scale": 1,
             "x": -81,
             "y": -153,
+            "z": 5000,
           },
           PositionData {
             "depth": 13,
             "scale": 1,
             "x": -88.5,
             "y": 245,
+            "z": 10160,
           },
           PositionData {
             "depth": 14,
             "scale": 1,
             "x": 42.5,
             "y": 234.5,
+            "z": 9880,
           },
           PositionData {
             "depth": 101,
             "scale": 1,
             "x": -30.5,
             "y": 242.5,
+            "z": 27000,
           },
           PositionData {
             "depth": 201,
             "scale": 1,
             "x": -47.5,
             "y": 262,
+            "z": 19000,
           },
           PositionData {
             "depth": 301,
             "scale": 1,
             "x": 124.5,
             "y": 139,
+            "z": 5000,
           },
         ],
         "subType": 3,
@@ -568,7 +581,10 @@ Object {
         "5": Array [],
         "9": Array [],
       },
-      "body": Set {
+      "clothes": Object {
+        "1": 10001,
+      },
+      "visibleParts": Set {
         2,
         4,
         5,
@@ -576,9 +592,6 @@ Object {
         10,
         11,
         12,
-      },
-      "clothes": Object {
-        "1": 10001,
       },
     },
   ],

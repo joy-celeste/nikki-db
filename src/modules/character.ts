@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 import { RootState } from '.';
-import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES } from './constants';
+import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES, BODY, DEPTHTYPES } from './constants';
 import { AmputationData, AmputationParts, ItemId, ItemsData, SubType } from './data';
 
 export type BodyPart = number;
@@ -45,9 +45,23 @@ export class Character {
       this.updateAmputations(itemId, amputationData);
       this.updateVisibleBodyParts();
     }
+
+    if (subtype === SUBTYPES.DRESS) {
+      this.remove(SUBTYPES.TOP);
+      this.remove(SUBTYPES.BOTTOM);
+      this.hide(BODY.BRA);
+      this.hide(BODY.PANTY);
+    } else if (subtype === SUBTYPES.TOP) {
+      this.remove(SUBTYPES.DRESS);
+      this.hide(BODY.BRA);
+      this.hide(BODY.VEST);
+    } else if (subtype === SUBTYPES.BOTTOM) {
+      this.remove(SUBTYPES.DRESS);
+      this.hide(BODY.PANTY);
+    }
   }
 
-  remove(subtype: SubType): SubType {
+  remove(subtype: SubType): void {
     if (this.clothes[subtype]) {
       const foundItem : ItemId = this.clothes[subtype];
       delete this.clothes[subtype];
@@ -59,9 +73,16 @@ export class Character {
           this.show(bodyPart);
         }
       });
-      return foundItem as SubType;
     }
-    return null;
+
+    if (subtype === SUBTYPES.DRESS) {
+      this.show(BODY.BRA);
+      this.show(BODY.PANTY);
+    } else if (subtype === SUBTYPES.TOP) {
+      this.show(BODY.BRA);
+    } else if (subtype === SUBTYPES.BOTTOM) {
+      this.show(BODY.PANTY);
+    }
   }
 
   updateAmputations(itemId: ItemId, amputationData: AmputationData): void {
@@ -82,6 +103,20 @@ export class Character {
         this.hide(bodyPart); // have to cast as int as Object.keys turns keys into string
       } else {
         this.show(bodyPart);
+      }
+    });
+
+    Object.keys(this.clothes).forEach((subtypeStr) => {
+      const subtype = parseInt(subtypeStr, 10) as SubType;
+
+      if (subtype === SUBTYPES.DRESS) {
+        this.hide(BODY.BRA);
+        this.hide(BODY.PANTY);
+      } else if (subtype === SUBTYPES.TOP) {
+        this.hide(BODY.BRA);
+        this.hide(BODY.VEST);
+      } else if (subtype === SUBTYPES.BOTTOM) {
+        this.hide(BODY.PANTY);
       }
     });
   }

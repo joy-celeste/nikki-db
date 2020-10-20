@@ -3,7 +3,7 @@ import { posedDress, posedCoat, simpleDress, simpleHair } from '../test_data/dat
 import { RootState } from '../../modules';
 import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { Character, VisibleBodyParts, CharacterState, characterReducer, wearItem } from '../../modules/character';
+import { Character, CharacterState, characterReducer, wearItem, BodyParts } from '../../modules/character';
 import { DEFAULT_AMPUTATIONS, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
 
 function validateAmputations(itemData: ItemData, character: Character) {
@@ -76,9 +76,11 @@ describe('Character', () => {
 
   test('CHARACTER: wear() - success: replacing dress on character', () => {
     const character: Character = new Character();
-    const originalBody: VisibleBodyParts = new Set(character.visibleParts);
+    const dress2: ItemData = new ItemData(simpleDress);
+    character.wear(dress2.subType, dress2.id, dress2.amputationData); 
+    const originalBodyWithDress: BodyParts = new Set(character.visibleParts); // regular body minus underwear
 
-    // Wear a posed dress, validate that the limbs get amputated
+    // Wear a posed dress, validate that the arms/legs/torso get removed
     const dress1: ItemData = new ItemData(posedDress);
     character.wear(dress1.subType, dress1.id, dress1.amputationData);
     expect(Object.keys(character.clothes)).toHaveLength(2);
@@ -87,13 +89,12 @@ describe('Character', () => {
     expect(character).toMatchSnapshot();
 
     // Assert amputation data gets removed because we're replacing posed dress with simple dress
-    const dress2: ItemData = new ItemData(simpleDress);
     character.wear(dress2.subType, dress2.id, dress2.amputationData);
     expect(Object.keys(character.clothes)).toHaveLength(2);
     expect(character.clothes[dress2.subType]).toEqual(dress2.id);
 
-    // Assert body parts are made visible again when posed dress is removed
-    expect(character.visibleParts).toEqual(originalBody);
+    // Assert torso, arms, and legs are made visible again when posed dress is removed
+    expect(character.visibleParts).toEqual(originalBodyWithDress);
     validateAmputations(dress2, character);
     expect(character).toMatchSnapshot();
   });

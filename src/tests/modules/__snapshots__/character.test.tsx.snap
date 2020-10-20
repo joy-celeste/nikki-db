@@ -66,8 +66,6 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
   },
 }
@@ -116,8 +114,6 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
   },
 }
@@ -137,8 +133,6 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
     9,
     10,
@@ -167,8 +161,6 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
   },
 }
@@ -196,8 +188,6 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
   },
 }
@@ -219,11 +209,11 @@ Character {
   },
   "visibleParts": Set {
     2,
-    4,
-    5,
     11,
+    5,
     10,
     12,
+    4,
   },
 }
 `;
@@ -314,8 +304,6 @@ Object {
         },
         "visibleParts": Set {
           2,
-          4,
-          5,
           11,
         },
       },
@@ -332,8 +320,6 @@ Object {
         },
         "visibleParts": Set {
           2,
-          4,
-          5,
           11,
           9,
           10,
@@ -352,12 +338,12 @@ Object {
         },
         "visibleParts": Set {
           2,
-          4,
-          5,
           11,
           9,
           10,
           12,
+          5,
+          4,
         },
       },
       Character {
@@ -375,11 +361,11 @@ Object {
         },
         "visibleParts": Set {
           2,
-          4,
-          5,
           11,
           10,
           12,
+          5,
+          4,
         },
       },
     ],

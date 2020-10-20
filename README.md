@@ -24,7 +24,7 @@
 - - [x] Load assets
 - - [ ] Debug: when screen is too narrow, big items are displaced
 - [ ] Display currently-worn items
-- [ ] Make Nikki draggable
+- [ ] Make Nikki draggable on all browsers
 - [ ] Load backgrounds
 - [ ] Save items on reload (`localStorage`)
 

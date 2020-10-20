@@ -39,7 +39,7 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
   }
 
   return (
-    <div style={divStyle} className="canvas">
+    <div style={divStyle}>
       {renderPieces(new Body(characterData.visibleParts))}
       {Object.values(characterData.clothes).map((itemId: ItemId) => {
         const itemData: ItemData = itemsData[itemId];

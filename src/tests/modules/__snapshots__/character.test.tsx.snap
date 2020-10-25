@@ -5,6 +5,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -13,6 +14,12 @@ Character {
     "1": 10001,
   },
   "visibleParts": Set {
+=======
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+>>>>>>> master
     2,
     4,
     5,
@@ -21,6 +28,12 @@ Character {
     11,
     12,
   },
+<<<<<<< HEAD
+=======
+  "clothes": Object {
+    "1": 10001,
+  },
+>>>>>>> master
 }
 `;
 
@@ -29,6 +42,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -37,6 +51,12 @@ Character {
     "1": 10001,
   },
   "visibleParts": Set {
+=======
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+>>>>>>> master
     2,
     4,
     5,
@@ -45,6 +65,12 @@ Character {
     11,
     12,
   },
+<<<<<<< HEAD
+=======
+  "clothes": Object {
+    "1": 10001,
+  },
+>>>>>>> master
 }
 `;
 
@@ -57,24 +83,40 @@ Character {
     "12": Array [
       22008,
     ],
+<<<<<<< HEAD
     "4": Array [
       22008,
     ],
     "5": Array [
       22008,
     ],
+=======
+    "5": Array [],
+>>>>>>> master
     "9": Array [
       22008,
     ],
   },
+<<<<<<< HEAD
+=======
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+>>>>>>> master
   "clothes": Object {
     "1": 10001,
     "2": 22008,
   },
+<<<<<<< HEAD
   "visibleParts": Set {
     2,
     11,
   },
+=======
+>>>>>>> master
 }
 `;
 
@@ -83,6 +125,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -91,6 +134,12 @@ Character {
     "1": 10007,
   },
   "visibleParts": Set {
+=======
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+>>>>>>> master
     2,
     4,
     5,
@@ -99,6 +148,12 @@ Character {
     11,
     12,
   },
+<<<<<<< HEAD
+=======
+  "clothes": Object {
+    "1": 10007,
+  },
+>>>>>>> master
 }
 `;
 
@@ -111,24 +166,40 @@ Character {
     "12": Array [
       22008,
     ],
+<<<<<<< HEAD
     "4": Array [
       22008,
     ],
     "5": Array [
       22008,
     ],
+=======
+    "5": Array [],
+>>>>>>> master
     "9": Array [
       22008,
     ],
   },
+<<<<<<< HEAD
+=======
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+>>>>>>> master
   "clothes": Object {
     "1": 10001,
     "2": 22008,
   },
+<<<<<<< HEAD
   "visibleParts": Set {
     2,
     11,
   },
+=======
+>>>>>>> master
 }
 `;
 
@@ -137,6 +208,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [
       21305,
     ],
@@ -151,11 +223,21 @@ Character {
   },
   "visibleParts": Set {
     2,
+=======
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+    2,
+    4,
+    5,
+>>>>>>> master
     11,
     9,
     10,
     12,
   },
+<<<<<<< HEAD
 }
 `;
 
@@ -212,11 +294,20 @@ Character {
     5,
     10,
     12,
+=======
+  "clothes": Object {
+    "1": 10001,
+    "2": 21305,
+>>>>>>> master
   },
 }
 `;
 
+<<<<<<< HEAD
 exports[`Character CHARACTER: wear() - success: wearing a top/bottom over the dress removes the dress 3`] = `
+=======
+exports[`Character CHARACTER: wear() - success: wearing multiple items that amputate the same body parts 1`] = `
+>>>>>>> master
 Character {
   "amputations": Object {
     "10": Array [
@@ -225,16 +316,21 @@ Character {
     "12": Array [
       22008,
     ],
+<<<<<<< HEAD
     "4": Array [
       22008,
     ],
     "5": Array [
       22008,
     ],
+=======
+    "5": Array [],
+>>>>>>> master
     "9": Array [
       22008,
     ],
   },
+<<<<<<< HEAD
   "clothes": Object {
     "1": 10001,
     "2": 22008,
@@ -291,15 +387,25 @@ Character {
     "9": Array [
       22008,
     ],
+=======
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+>>>>>>> master
   },
   "clothes": Object {
     "1": 10001,
     "2": 22008,
   },
+<<<<<<< HEAD
   "visibleParts": Set {
     2,
     11,
   },
+=======
+>>>>>>> master
 }
 `;
 
@@ -312,26 +418,42 @@ Character {
     "12": Array [
       22008,
     ],
+<<<<<<< HEAD
     "4": Array [
       22008,
     ],
     "5": Array [
       22008,
     ],
+=======
+    "5": Array [],
+>>>>>>> master
     "9": Array [
       22008,
       30987,
     ],
   },
+<<<<<<< HEAD
+=======
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+  },
+>>>>>>> master
   "clothes": Object {
     "1": 10001,
     "2": 22008,
     "3": 30987,
   },
+<<<<<<< HEAD
   "visibleParts": Set {
     2,
     11,
   },
+=======
+>>>>>>> master
 }
 `;
 
@@ -340,12 +462,16 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [],
+=======
+>>>>>>> master
     "5": Array [],
     "9": Array [
       30987,
     ],
   },
+<<<<<<< HEAD
   "clothes": Object {
     "1": 10001,
     "3": 30987,
@@ -358,6 +484,20 @@ Character {
     10,
     12,
   },
+=======
+  "body": Set {
+    2,
+    4,
+    5,
+    11,
+    10,
+    12,
+  },
+  "clothes": Object {
+    "1": 10001,
+    "3": 30987,
+  },
+>>>>>>> master
 }
 `;
 
@@ -366,6 +506,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+<<<<<<< HEAD
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -374,6 +515,12 @@ Character {
     "1": 10001,
   },
   "visibleParts": Set {
+=======
+    "5": Array [],
+    "9": Array [],
+  },
+  "body": Set {
+>>>>>>> master
     2,
     4,
     5,
@@ -382,6 +529,12 @@ Character {
     11,
     12,
   },
+<<<<<<< HEAD
+=======
+  "clothes": Object {
+    "1": 10001,
+  },
+>>>>>>> master
 }
 `;
 
@@ -393,6 +546,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+<<<<<<< HEAD
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -401,6 +555,12 @@ Object {
           "1": 10001,
         },
         "visibleParts": Set {
+=======
+          "5": Array [],
+          "9": Array [],
+        },
+        "body": Set {
+>>>>>>> master
           2,
           4,
           5,
@@ -409,11 +569,18 @@ Object {
           11,
           12,
         },
+<<<<<<< HEAD
+=======
+        "clothes": Object {
+          "1": 10001,
+        },
+>>>>>>> master
       },
       Character {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+<<<<<<< HEAD
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -422,6 +589,12 @@ Object {
           "1": 10007,
         },
         "visibleParts": Set {
+=======
+          "5": Array [],
+          "9": Array [],
+        },
+        "body": Set {
+>>>>>>> master
           2,
           4,
           5,
@@ -430,6 +603,12 @@ Object {
           11,
           12,
         },
+<<<<<<< HEAD
+=======
+        "clothes": Object {
+          "1": 10007,
+        },
+>>>>>>> master
       },
       Character {
         "amputations": Object {
@@ -439,29 +618,46 @@ Object {
           "12": Array [
             22008,
           ],
+<<<<<<< HEAD
           "4": Array [
             22008,
           ],
           "5": Array [
             22008,
           ],
+=======
+          "5": Array [],
+>>>>>>> master
           "9": Array [
             22008,
           ],
         },
+<<<<<<< HEAD
+=======
+        "body": Set {
+          2,
+          4,
+          5,
+          11,
+        },
+>>>>>>> master
         "clothes": Object {
           "1": 10007,
           "2": 22008,
         },
+<<<<<<< HEAD
         "visibleParts": Set {
           2,
           11,
         },
+=======
+>>>>>>> master
       },
       Character {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+<<<<<<< HEAD
           "4": Array [
             21305,
           ],
@@ -476,16 +672,33 @@ Object {
         },
         "visibleParts": Set {
           2,
+=======
+          "5": Array [],
+          "9": Array [],
+        },
+        "body": Set {
+          2,
+          4,
+          5,
+>>>>>>> master
           11,
           9,
           10,
           12,
         },
+<<<<<<< HEAD
+=======
+        "clothes": Object {
+          "1": 10007,
+          "2": 21305,
+        },
+>>>>>>> master
       },
       Character {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+<<<<<<< HEAD
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -495,24 +708,43 @@ Object {
         },
         "visibleParts": Set {
           2,
+=======
+          "5": Array [],
+          "9": Array [],
+        },
+        "body": Set {
+          2,
+          4,
+          5,
+>>>>>>> master
           11,
           9,
           10,
           12,
+<<<<<<< HEAD
           4,
           5,
+=======
+        },
+        "clothes": Object {
+          "1": 10007,
+>>>>>>> master
         },
       },
       Character {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+<<<<<<< HEAD
           "4": Array [],
+=======
+>>>>>>> master
           "5": Array [],
           "9": Array [
             30987,
           ],
         },
+<<<<<<< HEAD
         "clothes": Object {
           "1": 10007,
           "3": 30987,
@@ -524,6 +756,19 @@ Object {
           12,
           4,
           5,
+=======
+        "body": Set {
+          2,
+          4,
+          5,
+          11,
+          10,
+          12,
+        },
+        "clothes": Object {
+          "1": 10007,
+          "3": 30987,
+>>>>>>> master
         },
       },
     ],
@@ -550,7 +795,10 @@ Object {
             "scale": null,
             "x": -21.5,
             "y": 426,
+<<<<<<< HEAD
             "z": 33000,
+=======
+>>>>>>> master
           },
         ],
         "subType": 1,
@@ -573,7 +821,10 @@ Object {
             "scale": 1,
             "x": -7.5,
             "y": 120,
+<<<<<<< HEAD
             "z": 24000,
+=======
+>>>>>>> master
           },
         ],
         "subType": 2,
@@ -609,14 +860,20 @@ Object {
             "scale": 1,
             "x": -32.5,
             "y": -164.5,
+<<<<<<< HEAD
             "z": 24000,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 901,
             "scale": 1,
             "x": -59.5,
             "y": 328,
+<<<<<<< HEAD
             "z": 10215,
+=======
+>>>>>>> master
           },
         ],
         "subType": 2,
@@ -648,63 +905,90 @@ Object {
             "scale": 1,
             "x": -27,
             "y": 200.5,
+<<<<<<< HEAD
             "z": 36700,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 2,
             "scale": 1,
             "x": -202,
             "y": -130,
+<<<<<<< HEAD
             "z": 27000,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 3,
             "scale": 1,
             "x": 101,
             "y": -119,
+<<<<<<< HEAD
             "z": 19000,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 4,
             "scale": 1,
             "x": -81,
             "y": -153,
+<<<<<<< HEAD
             "z": 5000,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 13,
             "scale": 1,
             "x": -88.5,
             "y": 245,
+<<<<<<< HEAD
             "z": 10160,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 14,
             "scale": 1,
             "x": 42.5,
             "y": 234.5,
+<<<<<<< HEAD
             "z": 9880,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 101,
             "scale": 1,
             "x": -30.5,
             "y": 242.5,
+<<<<<<< HEAD
             "z": 36695,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 201,
             "scale": 1,
             "x": -47.5,
             "y": 262,
+<<<<<<< HEAD
             "z": 26995,
+=======
+>>>>>>> master
           },
           PositionData {
             "depth": 301,
             "scale": 1,
             "x": 124.5,
             "y": 139,
+<<<<<<< HEAD
             "z": 18995,
+=======
+>>>>>>> master
           },
         ],
         "subType": 3,
@@ -722,6 +1006,7 @@ Object {
       "amputations": Object {
         "10": Array [],
         "12": Array [],
+<<<<<<< HEAD
         "4": Array [],
         "5": Array [],
         "9": Array [],
@@ -730,6 +1015,12 @@ Object {
         "1": 10001,
       },
       "visibleParts": Set {
+=======
+        "5": Array [],
+        "9": Array [],
+      },
+      "body": Set {
+>>>>>>> master
         2,
         4,
         5,
@@ -738,6 +1029,12 @@ Object {
         11,
         12,
       },
+<<<<<<< HEAD
+=======
+      "clothes": Object {
+        "1": 10001,
+      },
+>>>>>>> master
     },
   ],
   "step": 0,

@@ -18,11 +18,18 @@
 - - - [x] Update amputation data
 - - [x] Enforce wearing one item at a time
 - - [x] Enforce unable to remove hair when selecting the hair again
+<<<<<<< HEAD
 - [x] Load in clothes on top of Nikki (locally)
 - - [x] Figure out item's depth
 - - [x] Figure out item's displacement
 - - [x] Load assets
 - - [ ] Debug: when screen is too narrow, big items are displaced
+=======
+- [ ] Load in clothes on top of Nikki (locally)
+- - [ ] Figure out item's depth
+- - [ ] Figure out item's displacement
+- - [ ] Load assets
+>>>>>>> master
 - [ ] Display currently-worn items
 - [ ] Make Nikki draggable on all browsers
 - [ ] Load backgrounds

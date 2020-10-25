@@ -10,7 +10,7 @@ export const fetchItemData = async (itemId: number): Promise<any> =>
         console.log('No such document!');
         return null;
       }
-      console.log('Retrieved data from database.', response.data());
+      console.log('Retrieved data from database.');
       return response.data();
     })
     .catch((error) => {

@@ -563,6 +563,9 @@ PositionData {
   "scale": null,
   "x": undefined,
   "y": undefined,
+<<<<<<< HEAD
   "z": null,
+=======
+>>>>>>> master
 }
 `;

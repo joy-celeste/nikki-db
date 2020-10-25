@@ -1,10 +1,7 @@
 import { AmputationParts, ItemId } from './data';
 
-<<<<<<< HEAD
 export const BODY_ITEM_ID = 1;
 
-=======
->>>>>>> master
 export const ACTION_CONSTANTS = {
   DATA_ADD_ITEMS: 'data/ADD_ITEMS',
   CHARACTER_ADD_TO_HISTORY: 'character/ADD_TO_HISTORY',
@@ -15,7 +12,6 @@ export const API_CONSTANTS = {
   CLOTHES: 'clothes',
 };
 
-<<<<<<< HEAD
 export const UNDERWEAR: Record<number, Record<string, number>> = {
   1: { bra: 4, panty: 5 },
   2: { bra: 15, panty: 16 },
@@ -28,26 +24,16 @@ export const UNDERWEAR: Record<number, Record<string, number>> = {
 // const randomUnderwear = UNDERWEAR[Math.floor(Math.random() * (5) + 1)]
 const randomUnderwear = UNDERWEAR[1];
 
-=======
->>>>>>> master
 export const BODY = {
   ARM: 9,
   BODY: 1,
   TORSO: 12,
-<<<<<<< HEAD
   BRA: randomUnderwear.bra,
-=======
-  BRA: 4,
->>>>>>> master
   BRASKIN: 13,
   BREAST: 2,
   HEAD: 11,
   LEG: 10,
-<<<<<<< HEAD
   PANTY: randomUnderwear.panty,
-=======
-  PANTY: 5,
->>>>>>> master
   PANTY_SKIN: 14,
   VEST: 3,
   HAIR_TOP: 6,
@@ -56,7 +42,6 @@ export const BODY = {
 };
 
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
-<<<<<<< HEAD
 export const DEFAULT_CLOTHES = { 1: 10001 };
 
 export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
@@ -64,14 +49,6 @@ export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {};
 DEFAULT_AMPUTATIONS_LIST.forEach((bodyPart) => {
   DEFAULT_AMPUTATIONS[bodyPart] = [];
 });
-=======
-export const DEFAULT_CLOTHES = {
-  1: 10001,
-};
-export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {
-  12: [], 5: [], 9: [], 10: [],
-};
->>>>>>> master
 
 export const SUBTYPES = {
   ACCESSORY: 8,
@@ -98,7 +75,6 @@ export const SUBTYPES = {
   WAIST_DECO: 15,
 };
 
-<<<<<<< HEAD
 export const SUBTYPES_LIST = Object.values(SUBTYPES);
 
 export const DEPTHTYPES = {
@@ -231,78 +207,6 @@ export const BODY_ITEM_DATA = {
     29: { posx: -12.5, posy: 258, pot_scale: 1 },
     30: { pot_scale: 1, posx: -7.5, posy: 62 },
   },
-=======
-export const DEPTHTYPES = {
-  Badge: 33,
-  Body: 59,
-  Boots: 17,
-  Bottom: 11,
-  BottomEffect: 38,
-  BottomEffectSpec: 55,
-  BottomHighWaist: 12,
-  BottomInBoots: 13,
-  BottomSpec: 57,
-  Bracelet1: 25,
-  Bracelet1UnderClothes: 39,
-  Bracelet2: 26,
-  Bracelet2UnderClothes: 40,
-  Coat: 6,
-  CoatAC: 7,
-  CoatACSpec: 52,
-  CoatSpec: 48,
-  CompositeDress: 62,
-  Compositecoat: 63,
-  Count: 68,
-  Dress: 3,
-  DressAC: 4,
-  DressACSpec: 54,
-  DressSpec: 41,
-  DressWithHat: 56,
-  Ear: 44,
-  Earring: 21,
-  FaceCover: 32,
-  FloatingBall: 61,
-  FootEffect: 51,
-  Gloves: 27,
-  GlovesAoveCoat: 53,
-  GlovesSpec: 45,
-  GlovesSpec2: 46,
-  GlovesSpec3: 67,
-  GlovesSpec4: 68,
-  Hair: 1,
-  HairCover: 2,
-  Hairwear: 43,
-  Handheld1: 28,
-  Handheld2: 29,
-  HandsProps: 58,
-  HeadCover: 31,
-  HeadHat: 20,
-  Headwear: 19,
-  Hoodedcoat: 65,
-  Jumpsuit: 5,
-  Leglet: 14,
-  Makeup: 18,
-  Necklace: 23,
-  NecklaceUnderClothes: 24,
-  Scarf: 22,
-  Shoes: 16,
-  Socks: 15,
-  SpecialCoat: 64,
-  String: 49,
-  Tail: 36,
-  Tail2: 47,
-  Tattoo: 34,
-  TattooSpec: 50,
-  Top: 8,
-  TopAC: 9,
-  TopEffect: 37,
-  TopWithHat: 10,
-  Umbrella: 66,
-  Voice: 60,
-  WaistDeco: 30,
-  Wing: 35,
-  WingSpec: 42,
->>>>>>> master
 };
 
 export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {

@@ -21,3 +21,13 @@ export class HttpRequestException extends Error {
     this.errorCode = errorCode;
   }
 }
+
+export class NoDataException extends Error {
+  message: string;
+
+  constructor(message: string) {
+    super();
+    this.message = message;
+    this.name = 'NoDataException';
+  }
+}

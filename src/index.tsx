@@ -9,6 +9,8 @@ import { rootReducer } from './modules';
 import * as serviceWorker from './serviceWorker';
 import App from './pages/App';
 
+require('set.prototype.tojson');
+
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

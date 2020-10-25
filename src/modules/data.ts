@@ -1,16 +1,17 @@
 import { AnyAction } from 'redux';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
-import { ACTION_CONSTANTS, DEPTHTYPE_TO_SUBTYPES } from './constants';
+import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
+  DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
 import { wearItem } from './character';
 import { RootState } from '.';
 
-export type AmputationParts = 12 | 5 | 9 | 10; // body, panty, arm, leg
+export type SubType = typeof SUBTYPES_LIST[number];
+export type AmputationParts = typeof DEFAULT_AMPUTATIONS_LIST[number];
 export type AmputationData = Record<AmputationParts, boolean>;
 export type Depths = Record<number, number>;
 export type ItemId = number;
 export type DepthType = number;
-export type SubType = 8 | 17 | 10 | 5 | 13 | 3 | 2 | 11 | 1 | 14 | 9 | 88 | 12 | 7 | 6 | 16 | 4 | 15;
 
 export class ItemData {
   id?: ItemId;
@@ -22,8 +23,8 @@ export class ItemData {
   position?: PositionData[];
   depths?: Depths;
 
-  constructor(init?: any) {
-    this.deserialize(init);
+  constructor(input?: any) {
+    this.deserialize(input);
   }
 
   deserialize(input: any): ItemData {
@@ -42,17 +43,18 @@ export class ItemData {
 
     if (input.amputation_data) {
       this.amputationData = {
-        9: !!input.amputation_data.arm,
-        12: !!input.amputation_data.body,
-        10: !!input.amputation_data.leg,
-        5: !!input.amputation_data.panty,
+        [BODY.ARM]: !!input.amputation_data.arm,
+        [BODY.TORSO]: !!input.amputation_data.body,
+        [BODY.LEG]: !!input.amputation_data.leg,
+        [BODY.PANTY]: !!input.amputation_data.panty,
       };
     }
 
-    if (input.depth_type) {
+    if (input.depth_type || input.id === BODY_ITEM_ID) {
       this.depthType = input.depth_type;
-      const key = input.depth_type.toString();
-      const subtypeData = DEPTHTYPE_TO_SUBTYPES[key];
+      const subtypeData = input.id !== BODY_ITEM_ID
+        ? DEPTHTYPE_TO_SUBTYPES[input.depth_type.toString()]
+        : BODY_PARTS_DEPTHS;
       this.subType = subtypeData.sub_type;
       this.depths = subtypeData.depth;
     }
@@ -60,7 +62,7 @@ export class ItemData {
     if (input.position) {
       const position: PositionData[] = [];
       Object.entries(input.position).forEach(([key, value]) => {
-        position.push(new PositionData(parseInt(key, 10), value));
+        position.push(new PositionData(parseInt(key, 10), value, this.depths));
       });
       this.position = position;
     }
@@ -72,13 +74,14 @@ export class PositionData {
   depth: number;
   x: number;
   y: number;
+  z: number;
   scale?: number;
 
-  constructor(depth: number, input?: any) {
-    this.deserialize(depth, input);
+  constructor(depth: number, input: any, depths?: Depths) {
+    this.deserialize(depth, input, depths);
   }
 
-  deserialize(depth: number, input: any): PositionData {
+  deserialize(depth: number, input: any, depths?: Depths): PositionData {
     if (!depth || !input) {
       throw new DeserializeNullException('Cannot deserialize null input for PositionData');
     }
@@ -86,10 +89,32 @@ export class PositionData {
     this.depth = depth;
     this.x = input.posx;
     this.y = input.posy;
+    this.z = null;
     this.scale = input.pot_scale || null;
+
+    if (depths) {
+      this.calculateDepth(depth, depths);
+    }
     return this;
   }
+
+  // Don't ask me about this logic... I'm just copying this straight from the original devs
+  calculateDepth(depth: number, depths: Depths): void {
+    if (depth < 100) {
+      this.z = depths[depth];
+    } else {
+      const key: number = depth / 100;
+      const ceil: number = Math.ceil(key);
+      /* istanbul ignore next */ 
+      if (key <= 0 || ceil === key) { // These are for animated effects.
+        this.z = depths[ceil] - 5; 
+      }
+      this.z = depths[ceil - 1] - 5;
+    }
+  }
 }
+
+export const bodyItemData = new ItemData(BODY_ITEM_DATA);
 
 export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {

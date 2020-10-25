@@ -1,8 +1,9 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 import { RootState } from '.';
-import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES, BODY, DEPTHTYPES } from './constants';
-import { AmputationData, AmputationParts, ItemId, ItemsData, SubType } from './data';
+import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES, BODY } from './constants';
+import { AmputationData, AmputationParts, ItemData, ItemId, ItemsData, SubType } from './data';
+import { Item } from './item';
 
 export type BodyPart = number;
 export type BodyParts = Set<BodyPart>;
@@ -30,35 +31,30 @@ export class Character {
     this.visibleParts.add(bodyPart);
   }
 
-  wear(subtype: SubType, itemId: ItemId, amputationData: AmputationData): void {
-    if (this.clothes[subtype] && this.clothes[subtype] === itemId && subtype !== SUBTYPES.HAIR) {
-      this.remove(subtype);
+  wear(itemData: ItemData): void {
+    const { subType, id, amputationData} = itemData;
+
+    if (this.clothes[subType] && this.clothes[subType] === id && subType !== SUBTYPES.HAIR) {
+      this.remove(subType);
       return;
     }
 
-    if (this.clothes[subtype] && this.clothes[subtype] !== itemId) {
-      this.remove(subtype);
+    if (this.clothes[subType] && this.clothes[subType] !== id) {
+      this.remove(subType);
     }
 
-    this.clothes[subtype] = itemId;
-    if (amputationData) {
-      this.updateAmputations(itemId, amputationData);
-      this.updateVisibleBodyParts();
-    }
-
-    if (subtype === SUBTYPES.DRESS) {
+    if (subType === SUBTYPES.DRESS) {
       this.remove(SUBTYPES.TOP);
       this.remove(SUBTYPES.BOTTOM);
-      this.hide(BODY.BRA);
-      this.hide(BODY.PANTY);
-    } else if (subtype === SUBTYPES.TOP) {
+    } else if (subType === SUBTYPES.TOP) {
       this.remove(SUBTYPES.DRESS);
-      this.hide(BODY.BRA);
-      this.hide(BODY.VEST);
-    } else if (subtype === SUBTYPES.BOTTOM) {
+    } else if (subType === SUBTYPES.BOTTOM) {
       this.remove(SUBTYPES.DRESS);
-      this.hide(BODY.PANTY);
     }
+
+    this.clothes[subType] = id;
+    this.updateAmputations(id, amputationData, subType);
+    this.updateVisibleBodyParts();
   }
 
   remove(subtype: SubType): void {
@@ -85,14 +81,32 @@ export class Character {
     }
   }
 
-  updateAmputations(itemId: ItemId, amputationData: AmputationData): void {
-    Object.entries(amputationData).forEach(([bodyPartStr, visibility]) => {
-      if (visibility) {
-        const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
+  updateAmputations(itemId: ItemId, amputationData: AmputationData, subtype: SubType): void {
+    Object.keys(this.amputations).forEach((bodyPartStr) => {
+      const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
+      if (this.shouldHideBodyPart(bodyPart, amputationData, subtype)) {
         this.amputations[bodyPart] = [...this.amputations[bodyPart], itemId];
       }
     });
   }
+
+  shouldHideBodyPart(bodyPart: BodyPart, amputationData: AmputationData, subtype: SubType): boolean {
+    if (amputationData && amputationData[bodyPart]) {
+      return true;
+    }
+
+    if ((bodyPart === BODY.BRA || bodyPart === BODY.VEST) && (subtype === SUBTYPES.TOP || subtype === SUBTYPES.DRESS)) {
+      return true;
+    }
+
+    if (bodyPart === BODY.PANTY && (subtype === SUBTYPES.BOTTOM || subtype === SUBTYPES.DRESS)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // also refactor wear to only take in itemdata instead of having to use 3 params
 
   updateVisibleBodyParts(): void {
     // If any amputation data is associated with an amputation location, hide the limb
@@ -103,20 +117,6 @@ export class Character {
         this.hide(bodyPart); // have to cast as int as Object.keys turns keys into string
       } else {
         this.show(bodyPart);
-      }
-    });
-
-    Object.keys(this.clothes).forEach((subtypeStr) => {
-      const subtype = parseInt(subtypeStr, 10) as SubType;
-
-      if (subtype === SUBTYPES.DRESS) {
-        this.hide(BODY.BRA);
-        this.hide(BODY.PANTY);
-      } else if (subtype === SUBTYPES.TOP) {
-        this.hide(BODY.BRA);
-        this.hide(BODY.VEST);
-      } else if (subtype === SUBTYPES.BOTTOM) {
-        this.hide(BODY.PANTY);
       }
     });
   }
@@ -150,7 +150,7 @@ export const wearItem = (itemId: ItemId) =>
       const charState: CharacterState = getState().character;
       const oldChar: Character = charState.history[charState.step];
       const newChar: Character = new Character(oldChar);
-      newChar.wear(itemData.subType, itemId, itemData.amputationData);
+      newChar.wear(itemData);
       dispatch(addToHistory(newChar, charState.step + 1));
     }
   };

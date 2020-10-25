@@ -105,8 +105,9 @@ export class PositionData {
     } else {
       const key: number = depth / 100;
       const ceil: number = Math.ceil(key);
-      if (key <= 0 || ceil === key) {
-        this.z = depths[ceil] - 5;
+      /* istanbul ignore next */ 
+      if (key <= 0 || ceil === key) { // These are for animated effects.
+        this.z = depths[ceil] - 5; 
       }
       this.z = depths[ceil - 1] - 5;
     }

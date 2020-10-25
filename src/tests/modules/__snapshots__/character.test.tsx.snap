@@ -5,6 +5,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "4": Array [],
     "5": Array [],
     "9": Array [],
   },
@@ -28,6 +29,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "4": Array [],
     "5": Array [],
     "9": Array [],
   },
@@ -55,7 +57,12 @@ Character {
     "12": Array [
       22008,
     ],
-    "5": Array [],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
     "9": Array [
       22008,
     ],
@@ -76,6 +83,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "4": Array [],
     "5": Array [],
     "9": Array [],
   },
@@ -103,7 +111,12 @@ Character {
     "12": Array [
       22008,
     ],
-    "5": Array [],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
     "9": Array [
       22008,
     ],
@@ -124,7 +137,12 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
-    "5": Array [],
+    "4": Array [
+      21305,
+    ],
+    "5": Array [
+      21305,
+    ],
     "9": Array [],
   },
   "clothes": Object {
@@ -141,6 +159,120 @@ Character {
 }
 `;
 
+exports[`Character CHARACTER: wear() - success: wearing a top/bottom over the dress removes the dress 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
+    "9": Array [
+      22008,
+    ],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+  },
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing a top/bottom over the dress removes the dress 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "4": Array [
+      40644,
+    ],
+    "5": Array [],
+    "9": Array [
+      40644,
+    ],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "4": 40644,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+    5,
+    10,
+    12,
+  },
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing a top/bottom over the dress removes the dress 3`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
+    "9": Array [
+      22008,
+    ],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+  },
+}
+`;
+
+exports[`Character CHARACTER: wear() - success: wearing a top/bottom over the dress removes the dress 4`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      50532,
+    ],
+    "12": Array [],
+    "4": Array [],
+    "5": Array [
+      50532,
+    ],
+    "9": Array [],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "5": 50532,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+    4,
+    9,
+    12,
+  },
+}
+`;
+
 exports[`Character CHARACTER: wear() - success: wearing multiple items that amputate the same body parts 1`] = `
 Character {
   "amputations": Object {
@@ -150,7 +282,12 @@ Character {
     "12": Array [
       22008,
     ],
-    "5": Array [],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
     "9": Array [
       22008,
     ],
@@ -175,7 +312,12 @@ Character {
     "12": Array [
       22008,
     ],
-    "5": Array [],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+    ],
     "9": Array [
       22008,
       30987,
@@ -198,6 +340,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "4": Array [],
     "5": Array [],
     "9": Array [
       30987,
@@ -210,10 +353,10 @@ Character {
   "visibleParts": Set {
     2,
     11,
+    4,
     5,
     10,
     12,
-    4,
   },
 }
 `;
@@ -223,6 +366,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "4": Array [],
     "5": Array [],
     "9": Array [],
   },
@@ -249,6 +393,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "4": Array [],
           "5": Array [],
           "9": Array [],
         },
@@ -269,6 +414,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "4": Array [],
           "5": Array [],
           "9": Array [],
         },
@@ -293,7 +439,12 @@ Object {
           "12": Array [
             22008,
           ],
-          "5": Array [],
+          "4": Array [
+            22008,
+          ],
+          "5": Array [
+            22008,
+          ],
           "9": Array [
             22008,
           ],
@@ -311,7 +462,12 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
-          "5": Array [],
+          "4": Array [
+            21305,
+          ],
+          "5": Array [
+            21305,
+          ],
           "9": Array [],
         },
         "clothes": Object {
@@ -330,6 +486,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "4": Array [],
           "5": Array [],
           "9": Array [],
         },
@@ -342,14 +499,15 @@ Object {
           9,
           10,
           12,
-          5,
           4,
+          5,
         },
       },
       Character {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "4": Array [],
           "5": Array [],
           "9": Array [
             30987,
@@ -364,8 +522,8 @@ Object {
           11,
           10,
           12,
-          5,
           4,
+          5,
         },
       },
     ],
@@ -564,6 +722,7 @@ Object {
       "amputations": Object {
         "10": Array [],
         "12": Array [],
+        "4": Array [],
         "5": Array [],
         "9": Array [],
       },

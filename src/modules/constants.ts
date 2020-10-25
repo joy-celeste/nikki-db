@@ -12,16 +12,28 @@ export const API_CONSTANTS = {
   CLOTHES: 'clothes',
 };
 
+export const UNDERWEAR: Record<number, Record<string, number>> = {
+  1: { bra: 4, panty: 5 },
+  2: { bra: 15, panty: 16 },
+  3: { bra: 17, panty: 18 },
+  4: { bra: 19, panty: 20 },
+  5: { bra: 21, panty: 22 },
+};
+
+// random value between 1-5 inc
+// const randomUnderwear = UNDERWEAR[Math.floor(Math.random() * (5) + 1)]
+const randomUnderwear = UNDERWEAR[1];
+
 export const BODY = {
   ARM: 9,
   BODY: 1,
   TORSO: 12,
-  BRA: 4,
+  BRA: randomUnderwear.bra,
   BRASKIN: 13,
   BREAST: 2,
   HEAD: 11,
   LEG: 10,
-  PANTY: 5,
+  PANTY: randomUnderwear.panty,
   PANTY_SKIN: 14,
   VEST: 3,
   HAIR_TOP: 6,
@@ -32,10 +44,11 @@ export const BODY = {
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
 export const DEFAULT_CLOTHES = { 1: 10001 };
 
-export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
-export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {
-  [BODY.TORSO]: [], [BODY.PANTY]: [], [BODY.ARM]: [], [BODY.LEG]: [],
-};
+export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
+export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {};
+DEFAULT_AMPUTATIONS_LIST.forEach((bodyPart) => {
+  DEFAULT_AMPUTATIONS[bodyPart] = [];
+});
 
 export const SUBTYPES = {
   ACCESSORY: 8,
@@ -151,6 +164,14 @@ export const BODY_PARTS_DEPTHS = {
     12: 10000,
     13: 10400,
     14: 10400,
+    15: 10040,
+    16: 10030,
+    17: 10040,
+    18: 10030,
+    19: 10040,
+    20: 10030,
+    21: 10040,
+    22: 10030,
   },
 };
 
@@ -169,6 +190,22 @@ export const BODY_ITEM_DATA = {
     12: { posy: 205.5, posx: -24 },
     13: { posx: -11.5, posy: 253.5 },
     14: { posy: 56, posx: -9.5 },
+    15: { posy: 257.5, posx: -18, pot_scale: 1 },
+    16: { pot_scale: 1, posx: -9.5, posy: 62 },
+    17: { posx: -23, pot_scale: 1, posy: 254 },
+    18: { pot_scale: 1, posx: -7, posy: 73.5 },
+    19: { posx: -26, posy: 238.5, pot_scale: 1 },
+    20: { pot_scale: 1, posx: -11, posy: 66.5 },
+    21: { pot_scale: 1, posy: 258, posx: -12.5 },
+    22: { posx: -7.5, posy: 62, pot_scale: 1 },
+    23: { posx: -18, pot_scale: 1, posy: 257.5 },
+    24: { posx: -9.5, posy: 62, pot_scale: 1 },
+    25: { posy: 254, posx: -23, pot_scale: 1 },
+    26: { pot_scale: 1, posx: -7, posy: 73.5 },
+    27: { posy: 238.5, posx: -26, pot_scale: 1 },
+    28: { posy: 66.5, pot_scale: 1, posx: -11 },
+    29: { posx: -12.5, posy: 258, pot_scale: 1 },
+    30: { pot_scale: 1, posx: -7.5, posy: 62 },
   },
 };
 

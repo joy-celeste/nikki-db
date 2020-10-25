@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export const bodyData = {
   id: 1,
   position: {
@@ -141,8 +140,6 @@ export const bodyData = {
   },
 };
 
-=======
->>>>>>> master
 export const posedDress = {
   rare: 5,
   special2: 31,

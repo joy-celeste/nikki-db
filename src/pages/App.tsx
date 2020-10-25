@@ -4,16 +4,10 @@ import { connect } from 'react-redux';
 import { RootState } from '../modules';
 import { ItemData, ItemId, loadItem } from '../modules/data';
 import { Character, wearItem } from '../modules/character';
-<<<<<<< HEAD
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 
 export interface AppOwnState {
-=======
-
-export interface AppOwnState {
-  initialString: string,
->>>>>>> master
   inputValue: string,
 }
 
@@ -34,23 +28,16 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-=======
-      initialString: 'string',
->>>>>>> master
       inputValue: '',
     };
   }
 
-<<<<<<< HEAD
   componentDidMount() {
     const { loadItem } = this.props;
 
     loadItem(10001);
   }
 
-=======
->>>>>>> master
   handleSubmit = (event: any) => {
     const { inputValue } = this.state;
     const { loadItem } = this.props;
@@ -66,27 +53,17 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   };
 
   render() {
-<<<<<<< HEAD
     const { loadItem, character, itemsData } = this.props;
     const { inputValue } = this.state;
 
     return (
       <div className="App">
         <div className="canvas-form">
-=======
-    const { character, itemsData, loadItem } = this.props;
-    const { inputValue, initialString } = this.state;
-
-    return (
-      <div className="App">
-        <header className="App-header">
->>>>>>> master
           <form onSubmit={this.handleSubmit}>
             <input value={inputValue} onChange={this.handleChange} />
             <input type="submit" value="Submit" />
           </form>
 
-<<<<<<< HEAD
           <p>
             <button type="button" onClick={() => { loadItem(1); }}>
               Body
@@ -107,38 +84,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
             <button type="button" onClick={() => { loadItem(10007); }}>
               Elegant Nobleman (simple hair)
             </button>
-=======
-          <p>Here are the items I have loaded:</p>
-          <p>{character.body}</p>
-          <p>{JSON.stringify(character)}</p>
-
-          <p>
-            <button type="button" onClick={() => { loadItem(22008); }}>
-              Sakura Dream (posed dress)
-            </button>
-
-            <button type="button" onClick={() => { loadItem(30987); }}>
-              Rose Heart (posed coat)
-            </button>
-
-            <button type="button" onClick={() => { loadItem(71927); }}>
-              Sparse Stars (posed shoes)
-            </button>
-
-            <button type="button" onClick={() => { loadItem(10007); }}>
-              Elegant Nobleman (simple hair)
-            </button>
-          </p>
-
-          <p>
-            {Object.entries(itemsData).map(([key, value]) =>
-              `Key: ${key} - Name: ${value.name} - Value: ${JSON.stringify(value)}`)}
-          </p>
-
-          <p>
-            And here is my state&lsquo;s initialString:
-            {initialString}
->>>>>>> master
           </p>
         </div>
 

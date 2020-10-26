@@ -51,6 +51,12 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     });
   };
 
+  renderEquippedIcons = (clothesIds: number[]) => {
+    return clothesIds.map(clothesId => {
+      return <div className={`icon${clothesId}`}></div>
+    });
+  }
+
   render() {
     const { loadItem, character, itemsData } = this.props;
     const { inputValue } = this.state;
@@ -84,6 +90,10 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
               Elegant Nobleman (simple hair)
             </button>
           </p>
+        </div>
+
+        <div className="equipped">
+          {this.renderEquippedIcons(Object.values(character.clothes))}
         </div>
 
         <div className="canvas-figure">

@@ -15,7 +15,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
       style: {
         position: 'absolute',
         width: '100%',
-        top: '20%',
+        top: '50%',
       },
       isDown: false,
       offset: [0, 0],

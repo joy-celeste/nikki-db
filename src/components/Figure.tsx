@@ -13,23 +13,18 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
   let isVisible: boolean;
   let imageName: string;
   let imageStyle: CSSProperties;
-
-  const divStyle = {
-    width: '100%',
-    height: '100%',
-  };
-
   const { itemsData, characterData } = props;
 
   function renderPieces(item: Item) {
     return item.pieces.map((piece) => {
       isVisible = piece.isVisible;
       imageName = `${item.itemId}-${piece.depth}`;
+
       imageStyle = {
         top: -piece.y,
-        right: -piece.x,
+        right: piece.width ? -piece.x - Math.max((piece.width - window.innerWidth), 0) : -piece.x,
         bottom: piece.y,
-        left: piece.x,
+        left: piece.width ? piece.x - Math.max((piece.width - window.innerWidth), 0) : piece.x,
         zIndex: piece.z,
         margin: 'auto',
         position: 'absolute',
@@ -39,7 +34,7 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
   }
 
   return (
-    <div style={divStyle}>
+    <div>
       {renderPieces(new Body(characterData.visibleParts))}
       {Object.values(characterData.clothes).map((itemId: ItemId) => {
         const itemData: ItemData = itemsData[itemId];

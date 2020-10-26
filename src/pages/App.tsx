@@ -54,7 +54,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   render() {
     const { loadItem, character, itemsData } = this.props;
     const { inputValue } = this.state;
-
+    
     return (
       <div className="App">
         <div className="canvas-form">

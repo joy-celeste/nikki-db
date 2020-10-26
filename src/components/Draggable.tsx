@@ -33,6 +33,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
   };
 
   mouseDown = (event: MouseEvent): void => {
+    event.preventDefault();
     this.setState({
       isDown: true,
       offset: [this.div.offsetLeft - event.clientX, this.div.offsetTop - event.clientY],

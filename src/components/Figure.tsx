@@ -28,6 +28,10 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
         zIndex: piece.z,
         margin: 'auto',
         position: 'absolute',
+        userSelect: 'none',
+        MozUserSelect: 'none',
+        WebkitUserSelect: 'none',
+        msUserSelect: 'none',
       };
       return <Image key={imageName} visible={isVisible} imageName={imageName} style={imageStyle} />;
     });

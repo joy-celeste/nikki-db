@@ -78,6 +78,8 @@ export class Character {
     } else if (subtype === SUBTYPES.BOTTOM) {
       this.show(BODY.PANTY);
     }
+    
+    this.updateVisibleBodyParts();
   }
 
   updateAmputations(itemId: ItemId, amputationData: AmputationData, subtype: SubType): void {

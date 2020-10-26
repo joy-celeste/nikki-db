@@ -1,5 +1,5 @@
 import { combineReducers, Store } from 'redux';
-import { posedDress, posedCoat, simpleDress, simpleHair, posedTop, posedBottom } from '../test_data/data';
+import { posedDress, posedCoat, simpleDress, simpleHair, posedTop, posedBottom, posedShoes } from '../test_data/data';
 import { RootState } from '../../modules';
 import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
@@ -153,6 +153,27 @@ describe('Character', () => {
     expect(character.clothes).toStrictEqual(copy.clothes);
     expect(character.amputations).toStrictEqual(copy.amputations);
     expect(character.visibleParts).toStrictEqual(copy.visibleParts);
+  });
+
+  test('CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes', () => {
+    const character: Character = new Character();
+    const copy: Character = new Character(character);
+
+    const dress: ItemData = new ItemData(posedDress);
+    character.wear(dress);
+    expect(character.amputations[BODY.PANTY].includes(dress.id)).toBe(true);
+
+    const shoes: ItemData = new ItemData(posedShoes);
+    character.wear(shoes);
+    expect(character.amputations[BODY.PANTY].includes(shoes.id)).toBe(true);
+    validateAmputations(shoes, character);
+    expect(character).toMatchSnapshot();
+
+    character.remove(dress.subType);
+    expect(character.amputations[BODY.PANTY].includes(dress.id)).toBe(false);
+    expect(character.amputations[BODY.PANTY].includes(shoes.id)).toBe(true);
+    validateAmputations(shoes, character);
+    expect(character).toMatchSnapshot();
   });
 
   test('CHARACTER: remove() - success: does nothing if removing nothing', () => {

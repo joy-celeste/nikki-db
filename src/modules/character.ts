@@ -78,7 +78,7 @@ export class Character {
     } else if (subtype === SUBTYPES.BOTTOM) {
       this.show(BODY.PANTY);
     }
-    
+
     this.updateVisibleBodyParts();
   }
 

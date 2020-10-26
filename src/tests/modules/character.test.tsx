@@ -155,9 +155,9 @@ describe('Character', () => {
     expect(character.visibleParts).toStrictEqual(copy.visibleParts);
   });
 
-  test('CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes', () => {
+  test('CHARACTER: remove() - success: wear and unwear a part that removes'
+    + 'underwear, underwear should still remain off if wearing posed shoes', () => {
     const character: Character = new Character();
-    const copy: Character = new Character(character);
 
     const dress: ItemData = new ItemData(posedDress);
     character.wear(dress);

@@ -51,7 +51,12 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     });
   };
 
-  renderEquippedIcons = (clothesIds: number[]) => clothesIds.map((clothesId) => <div className={`icon${clothesId}`} />)
+  handleClickBackground = (backgroundImageName: string) => {
+    document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
+  };
+
+  renderEquippedIcons = (clothesIds: number[]) => clothesIds.map((clothesId) =>
+    <div key={clothesId} className={`icon${clothesId}`} />)
 
   render() {
     const { loadItem, character, itemsData } = this.props;
@@ -66,10 +71,27 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </form>
 
           <p>
-            <button type="button" onClick={() => { loadItem(1); }}>
-              Body
+            <button type="button" onClick={() => { this.handleClickBackground('light'); }}>
+              Light
             </button>
 
+            <button type="button" onClick={() => { this.handleClickBackground('light2'); }}>
+              Light2
+            </button>
+
+            <button type="button" onClick={() => { this.handleClickBackground('medium'); }}>
+              Medium
+            </button>
+
+            <button type="button" onClick={() => { this.handleClickBackground('dark'); }}>
+              Dark
+            </button>
+
+            <button type="button" onClick={() => { this.handleClickBackground('dark2'); }}>
+              Dark2
+            </button>
+
+            <p />
             <button type="button" onClick={() => { loadItem(22008); }}>
               Sakura Dream (posed dress)
             </button>

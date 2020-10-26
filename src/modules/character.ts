@@ -31,7 +31,7 @@ export class Character {
   }
 
   wear(itemData: ItemData): void {
-    const { subType, id, amputationData} = itemData;
+    const { subType, id, amputationData } = itemData;
 
     if (this.clothes[subType] && this.clothes[subType] === id && subType !== SUBTYPES.HAIR) {
       this.remove(subType);

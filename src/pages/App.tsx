@@ -51,16 +51,12 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     });
   };
 
-  renderEquippedIcons = (clothesIds: number[]) => {
-    return clothesIds.map(clothesId => {
-      return <div className={`icon${clothesId}`}></div>
-    });
-  }
+  renderEquippedIcons = (clothesIds: number[]) => clothesIds.map((clothesId) => <div className={`icon${clothesId}`} />)
 
   render() {
     const { loadItem, character, itemsData } = this.props;
     const { inputValue } = this.state;
-    
+
     return (
       <div className="App">
         <div className="canvas-form">

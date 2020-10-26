@@ -26,7 +26,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
     this.div.addEventListener('mousedown', this.mouseDown, true);
     window.addEventListener('mouseup', this.mouseUp, true);
     window.addEventListener('mousemove', this.mouseMove, true);
-    //window.addEventListener('contextmenu', (e) => e.preventDefault(), false); // right click
+    // window.addEventListener('contextmenu', (e) => e.preventDefault(), false); // right click
   }
 
   mouseUp = (): void => {

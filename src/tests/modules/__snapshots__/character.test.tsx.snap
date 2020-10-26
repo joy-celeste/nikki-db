@@ -48,6 +48,66 @@ Character {
 }
 `;
 
+exports[`Character CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+      71927,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+      71927,
+    ],
+    "9": Array [
+      22008,
+    ],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+    "8": 71927,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+  },
+}
+`;
+
+exports[`Character CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      71927,
+    ],
+    "12": Array [],
+    "4": Array [],
+    "5": Array [
+      71927,
+    ],
+    "9": Array [],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "8": 71927,
+  },
+  "visibleParts": Set {
+    2,
+    11,
+    4,
+    9,
+    12,
+  },
+}
+`;
+
 exports[`Character CHARACTER: wear() - success case: dress on new character 1`] = `
 Character {
   "amputations": Object {
@@ -547,7 +607,9 @@ Object {
         "position": Array [
           PositionData {
             "depth": 1,
+            "height": null,
             "scale": null,
+            "width": null,
             "x": -21.5,
             "y": 426,
             "z": 33000,
@@ -570,7 +632,9 @@ Object {
         "position": Array [
           PositionData {
             "depth": 1,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -7.5,
             "y": 120,
             "z": 24000,
@@ -606,14 +670,18 @@ Object {
         "position": Array [
           PositionData {
             "depth": 2,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -32.5,
             "y": -164.5,
             "z": 24000,
           },
           PositionData {
             "depth": 901,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -59.5,
             "y": 328,
             "z": 10215,
@@ -645,63 +713,81 @@ Object {
         "position": Array [
           PositionData {
             "depth": 1,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -27,
             "y": 200.5,
             "z": 36700,
           },
           PositionData {
             "depth": 2,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -202,
             "y": -130,
             "z": 27000,
           },
           PositionData {
             "depth": 3,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": 101,
             "y": -119,
             "z": 19000,
           },
           PositionData {
             "depth": 4,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -81,
             "y": -153,
             "z": 5000,
           },
           PositionData {
             "depth": 13,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -88.5,
             "y": 245,
             "z": 10160,
           },
           PositionData {
             "depth": 14,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": 42.5,
             "y": 234.5,
             "z": 9880,
           },
           PositionData {
             "depth": 101,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -30.5,
             "y": 242.5,
             "z": 36695,
           },
           PositionData {
             "depth": 201,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": -47.5,
             "y": 262,
             "z": 26995,
           },
           PositionData {
             "depth": 301,
+            "height": null,
             "scale": 1,
+            "width": null,
             "x": 124.5,
             "y": 139,
             "z": 18995,

@@ -75,8 +75,8 @@ export class PositionData {
   x: number;
   y: number;
   z: number;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
   scale?: number;
 
   constructor(depth: number, input: any, depths?: Depths) {
@@ -92,8 +92,8 @@ export class PositionData {
     this.x = input.posx;
     this.y = input.posy;
     this.z = null;
-    this.height = input.height;
-    this.width = input.width;
+    this.height = input.height || null;
+    this.width = input.width || null;
     this.scale = input.pot_scale || null;
 
     if (depths) {

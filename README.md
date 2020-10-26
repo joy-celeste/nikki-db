@@ -23,10 +23,11 @@
 - - [x] Figure out item's displacement
 - - [x] Load assets
 - - [x] Debug: when screen is too narrow, big items are displaced
-- [ ] Display currently-worn items
+- [x] Display currently-worn items
 - [x] Make Nikki draggable on all browsers
 - [ ] Load backgrounds
 - [ ] Save items on reload (`localStorage`)
+- [ ] Update snapshots with height/width info
 
 ### Milestone 1: Beta of newest suits
 - [ ] Create clothes selection panel - select items by category

@@ -7,6 +7,8 @@ export class Piece {
   depth: number;
   x: number;
   y: number;
+  width: number;
+  height: number;
   z?: number;
 
   constructor(position: PositionData, body?: BodyParts) {
@@ -14,6 +16,8 @@ export class Piece {
     this.y = position.y;
     this.z = position.z;
     this.depth = position.depth;
+    this.width = position.width;
+    this.height = position.height;
     this.isVisible = body ? body.has(position.depth) : true;
   }
 }

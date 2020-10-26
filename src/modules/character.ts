@@ -3,7 +3,6 @@ import { AnyAction } from 'redux';
 import { RootState } from '.';
 import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES, BODY } from './constants';
 import { AmputationData, AmputationParts, ItemData, ItemId, ItemsData, SubType } from './data';
-import { Item } from './item';
 
 export type BodyPart = number;
 export type BodyParts = Set<BodyPart>;
@@ -105,8 +104,6 @@ export class Character {
 
     return false;
   }
-
-  // also refactor wear to only take in itemdata instead of having to use 3 params
 
   updateVisibleBodyParts(): void {
     // If any amputation data is associated with an amputation location, hide the limb

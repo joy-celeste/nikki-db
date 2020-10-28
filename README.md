@@ -26,16 +26,22 @@
 - [x] Display currently-worn items
 - [x] Make Nikki draggable on all browsers
 - [x] Load backgrounds
-- [ ] Save items on reload (`localStorage`)
+- [x] Create icon stylesheet, scripts for creating it
 - [ ] Update snapshots with height/width info
 
+### Milestone 0.5: Getting this running online
+- [x] Shop for options
+- [ ] Webhosting
+- [ ] Backend - API
+- [ ] Database
+- [ ] Cloudflare
+
 ### Milestone 1: Beta of newest suits
+- [ ] Save items on reload (`localStorage`)
+- [ ] When resizing screen smaller, update the x coordinates of images
 - [ ] Create clothes selection panel - select items by category
-- [ ] Create icon stylesheet, scripts for creating it
 - [ ] Undo / Redo
 - [ ] Hide / delete worn items from the items panel
-- [ ] Selectable background base color (#fff, #000, etc)
-- [ ] Host images (assets/icons/backgrounds) on Cloudflare
 - [ ] Create beautiful UI: https://www.figma.com/proto/i9XDb7wiSGCd7lIuxlcs8q/Site?node-id=6%3A6
 - [ ] Find out how to only upload changed files to API
 

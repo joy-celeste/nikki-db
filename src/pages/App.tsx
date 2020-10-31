@@ -71,27 +71,13 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </form>
 
           <p>
-            <button type="button" onClick={() => { this.handleClickBackground('light'); }}>
-              Light
-            </button>
+            <button type="button" onClick={() => { this.handleClickBackground('light'); }}> Light </button>
+            <button type="button" onClick={() => { this.handleClickBackground('light2'); }}> Light2 </button>
+            <button type="button" onClick={() => { this.handleClickBackground('medium'); }}> Medium </button>
+            <button type="button" onClick={() => { this.handleClickBackground('dark'); }}> Dark </button>
+            <button type="button" onClick={() => { this.handleClickBackground('dark2'); }}>Dark2</button>
+          <p />
 
-            <button type="button" onClick={() => { this.handleClickBackground('light2'); }}>
-              Light2
-            </button>
-
-            <button type="button" onClick={() => { this.handleClickBackground('medium'); }}>
-              Medium
-            </button>
-
-            <button type="button" onClick={() => { this.handleClickBackground('dark'); }}>
-              Dark
-            </button>
-
-            <button type="button" onClick={() => { this.handleClickBackground('dark2'); }}>
-              Dark2
-            </button>
-
-            <p />
             <button type="button" onClick={() => { loadItem(12212); }}>Lucid Song (hair)</button>
             <button type="button" onClick={() => { loadItem(21032); }}>Cosmos Tide (dress)</button>
             <button type="button" onClick={() => { loadItem(82284); }}>Glittering Veil (posed gloves)</button>
@@ -104,7 +90,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
             <button type="button" onClick={() => { loadItem(86777); }}>Dancing Flower (head?)</button>
             <button type="button" onClick={() => { loadItem(90449); }}>Priceless (makeup)</button>
             <button type="button" onClick={() => { loadItem(880048); }}>Deer and Cliff</button>
-            
           </p>
         </div>
 

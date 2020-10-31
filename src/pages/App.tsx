@@ -35,6 +35,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   componentDidMount() {
     const { loadItem } = this.props;
     loadItem(10001);
+    this.handleClickBackground('medium')
   }
 
   handleSubmit = (event: any) => {

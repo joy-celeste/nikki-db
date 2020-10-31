@@ -45,6 +45,7 @@ export class ItemData {
       this.amputationData = {
         [BODY.ARM]: !!input.amputation_data.arm,
         [BODY.TORSO]: !!input.amputation_data.body,
+        [BODY.BREAST]: !!input.amputation_data.body,
         [BODY.LEG]: !!input.amputation_data.leg,
         [BODY.PANTY]: !!input.amputation_data.panty,
       };

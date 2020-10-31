@@ -44,7 +44,7 @@ export const BODY = {
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
 export const DEFAULT_CLOTHES = { 1: 10001 };
 
-export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
+export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
 export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {};
 DEFAULT_AMPUTATIONS_LIST.forEach((bodyPart) => {
   DEFAULT_AMPUTATIONS[bodyPart] = [];

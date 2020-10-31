@@ -46,7 +46,7 @@
 - [ ] Find out how to only upload changed files to API
 
 ### Milestone 2: Beta of newest suits + current wardrobe
-- [ ] Shrink images hosted on CloudFlare? Invest in ways to lower bandwidth use - perhaps slices of images to prevent theft
+- [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
 - [ ] Create search function - lazy load on stop typing
 - [ ] Search by ID (with category prefix)

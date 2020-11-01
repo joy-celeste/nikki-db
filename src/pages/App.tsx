@@ -39,7 +39,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
       searchValue: '',
       searchResults: [],
     };
-    this.index = new Search();
   }
 
   componentDidMount() {
@@ -47,6 +46,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     loadItem(10001);
     this.handleClickBackground('medium');
     this.refToName = JSON.parse(JSON.stringify(index_ref_to_name))
+    this.index = new Search();
   }
 
   handleLookupSubmit = (event: any) => {
@@ -80,13 +80,17 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   };
 
   renderIcon = (clothesId: number) => {
-    return <div key={clothesId} className={`icon${clothesId}`} />
+    return (
+      <div className={`icon-wrapper`}>
+        <div key={clothesId} className={`icon icon${clothesId}`} />
+      </div>
+    )
   }
   renderEquippedIcons = (clothesIds: number[]) => clothesIds.map((clothesId) => this.renderIcon(clothesId));
 
   renderSelectionIcon(clothesId: number, itemName: string) {
     const { loadItem } = this.props;
-    return <button type="button" onClick={() => { loadItem(clothesId); }}>
+    return <button key={itemName} type="button" onClick={() => { loadItem(clothesId); }}>
       {this.renderIcon(clothesId)}{itemName}
     </button>
   }
@@ -94,7 +98,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   renderSearchResult = (ref: string) => {
     if (ref[0] === "I") {
       const itemID = parseInt(ref.substring(1), 10) as ItemId;
-      console.log(ref, itemID, this.refToName[ref]);
       return this.renderSelectionIcon(itemID, this.refToName[ref]);
     }
   }

@@ -34,10 +34,13 @@ export default class Search extends Error {
    * Prefers SUITS over ITEMs.
    * @param searchTerm The search input.
    */
-  searchName(searchTerm: string): string[] {
+  searchName(searchTerm: string, maxResults: number = 10): string[] {
     const output: string[] = []
+    let results = this.index.search(`+name:${searchTerm} type:suit`).slice(0, maxResults);
 
-    this.index.search(`+name:${searchTerm} type:suit`).forEach((result) => {
+    console.log(results.length)
+
+    results.forEach((result) => {
       output.push(result.ref);
     })
 

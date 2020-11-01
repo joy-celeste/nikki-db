@@ -10,7 +10,7 @@
 	user-select: none;
 }
 
-.equipped {
+.equipped, .searchResults {
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -50,7 +50,7 @@
     "no-console": "warn",
     "react/jsx-filename-extension": "off",
     "max-classes-per-file": "off",
-    "max-len": ["warn", 120, 2],
+    "max-len": ["warn", 90, 2],
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "array-callback-return": "off",

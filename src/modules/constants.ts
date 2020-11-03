@@ -6,11 +6,18 @@ export const ACTION_CONSTANTS = {
   DATA_ADD_ITEMS: 'data/ADD_ITEMS',
   CHARACTER_ADD_TO_HISTORY: 'character/ADD_TO_HISTORY',
   CHARACTER_REMOVE_FROM_HISTORY: 'character/REMOVE_FROM_HISTORY',
+  SEARCH_UPDATE_RESULTS: 'search/UPDATE_RESULTS',
 };
 
 export const API_CONSTANTS = {
   CLOTHES: 'clothes',
+  SUITS: 'suits',
 };
+
+export const SEARCH_RESULT_TYPES = {
+  ITEM: 'Item',
+  SUIT: 'Suit',
+}
 
 export const UNDERWEAR: Record<number, Record<string, number>> = {
   1: { bra: 4, panty: 5 },

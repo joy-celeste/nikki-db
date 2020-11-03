@@ -6,24 +6,25 @@ import { ItemData, ItemId, loadItem } from '../modules/data';
 import { Character, wearItem } from '../modules/character';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
-import Search from '../modules/search';
+import { searchName, SearchResult } from '../modules/search';
 import index_ref_to_name from '../index_ref_to_name.json';
+import Icon from '../components/Icon';
 
 export interface AppOwnState {
   itemLookupValue: string,
   searchValue: string,
-  searchResults: string[],
 }
 
 export interface AppStateProps {
   itemsData: Record<ItemId, ItemData>,
   character: Character,
+  searchResults: SearchResult[],
 }
 
 export interface AppDispatchProps {
   dispatch: any;
   loadItem(itemId: ItemId): void,
-  wearItem(itemId: ItemId): void,
+  searchName(searchName: string): void,
 }
 
 export type AppProps = AppDispatchProps & AppStateProps;
@@ -37,16 +38,15 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     this.state = {
       itemLookupValue: '',
       searchValue: '',
-      searchResults: [],
     };
   }
 
   componentDidMount() {
-    const { loadItem } = this.props;
+    const { loadItem, searchResults } = this.props;
     loadItem(10001);
     this.handleClickBackground('medium');
-    this.refToName = JSON.parse(JSON.stringify(index_ref_to_name))
-    this.index = new Search();
+    this.refToName = JSON.parse(JSON.stringify(index_ref_to_name));
+    console.log(searchResults)
   }
 
   handleLookupSubmit = (event: any) => {
@@ -59,8 +59,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   handleSearchSubmit = (event: any) => {
     const { searchValue } = this.state;
     event.preventDefault();
-
-    this.setState({searchResults: this.index.searchName(searchValue)})
+    this.props.searchName(searchValue);
   };
 
   handleLookupChange = (event: any) => {
@@ -79,35 +78,22 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderIcon = (clothesId: number) => {
-    return (
-      <div className={`icon-wrapper`}>
-        <div key={clothesId} className={`icon icon${clothesId}`} />
-      </div>
-    )
-  }
-  renderEquippedIcons = (clothesIds: number[]) => clothesIds.map((clothesId) => this.renderIcon(clothesId));
-
   renderSelectionIcon(clothesId: number, itemName: string) {
     const { loadItem } = this.props;
-    return <button key={itemName} type="button" onClick={() => { loadItem(clothesId); }}>
-      {this.renderIcon(clothesId)}{itemName}
-    </button>
+    return (
+      <button key={itemName} type="button" onClick={() => { loadItem(clothesId); }}>
+        <Icon clothesId={clothesId} />
+        {itemName}
+      </button>
+    );
   }
 
-  renderSearchResult = (ref: string) => {
-    if (ref[0] === "I") {
-      const itemID = parseInt(ref.substring(1), 10) as ItemId;
-      return this.renderSelectionIcon(itemID, this.refToName[ref]);
-    }
-  }
-
-  renderSearchResults = (results: string[]) => results.map((result: string) => {
-    return this.renderSearchResult(result);
+  renderSearchResults = (results: SearchResult[]) => results.map((result: SearchResult) => {
+    return this.renderSelectionIcon(result.iconId, result.itemName);
   });
 
   render() {
-    const { loadItem, character, itemsData } = this.props;
+    const { loadItem, character, itemsData, searchResults } = this.props;
     const { itemLookupValue, searchValue } = this.state;
 
     return (
@@ -124,12 +110,12 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </form>
 
           <div className="searchResults">
-            {this.renderSearchResults(this.state.searchResults)}
+            {searchResults ? this.renderSearchResults(searchResults) : null}
           </div>
 
           <p>
             <button type="button" onClick={() => { this.handleClickBackground('light'); }}> Light </button>
-            <button type="button" onClick={() => { this.handleClickBackground('light2'); }}> Light2 </button>
+            <button type="button" onClick={() => { this.handleClickBackground('alight2'); }}> Light2 </button>
             <button type="button" onClick={() => { this.handleClickBackground('medium'); }}> Medium </button>
             <button type="button" onClick={() => { this.handleClickBackground('dark'); }}> Dark </button>
             <button type="button" onClick={() => { this.handleClickBackground('dark2'); }}>Dark2</button>
@@ -152,7 +138,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
         </div>
 
         <div className="equipped">
-          {this.renderEquippedIcons(Object.values(character.clothes))}
+          {Object.values(character.clothes).map((clothesId) => <Icon key={clothesId} clothesId={clothesId} />)}
         </div>
 
         <div className="canvas-figure">
@@ -168,12 +154,13 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 const mapStateToProps = (state: RootState): AppStateProps => ({
   itemsData: state.data.itemsData,
   character: state.character.history[state.character.step],
+  searchResults: state.search.results,
 });
 
 const mapDispatchToProps = (dispatch: any): AppDispatchProps => ({
   dispatch,
   loadItem: (itemId: ItemId) => dispatch(loadItem(itemId)),
-  wearItem: (itemId: ItemId) => dispatch(wearItem(itemId)),
+  searchName: (searchTerm: string) => dispatch(searchName(searchTerm)),
 });
 
 const App = connect(mapStateToProps, mapDispatchToProps)(UnconnectedApp);

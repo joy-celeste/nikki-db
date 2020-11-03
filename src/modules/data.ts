@@ -128,8 +128,7 @@ export type DataState = {
 };
 
 const initialState: DataState = {
-  itemsData: {
-  },
+  itemsData: {},
   loading: false,
 };
 

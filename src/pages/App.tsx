@@ -3,7 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
 import { ItemData, ItemId, loadItem } from '../modules/data';
-import { Character, wearItem } from '../modules/character';
+import { Character } from '../modules/character';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
@@ -46,7 +46,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     loadItem(10001);
     this.handleClickBackground('medium');
     this.refToName = JSON.parse(JSON.stringify(index_ref_to_name));
-    console.log(searchResults)
+    console.log(searchResults);
   }
 
   handleLookupSubmit = (event: any) => {
@@ -78,19 +78,16 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderSelectionIcon(clothesId: number, itemName: string) {
-    const { loadItem } = this.props;
-    return (
-      <button key={itemName} type="button" onClick={() => { loadItem(clothesId); }}>
-        <Icon clothesId={clothesId} />
-        {itemName}
-      </button>
-    );
+  renderSearchResults = (results: SearchResult[]) => {
+    return results ? results.map((result: SearchResult) => {
+      return (
+        <button key={`${result.itemName}-${result.iconId}`} type="button" onClick={() => { this.props.loadItem(result.iconId); }}>
+          <Icon clothesId={result.iconId} />
+          {result.itemName}
+        </button>
+      );
+    }) : null;
   }
-
-  renderSearchResults = (results: SearchResult[]) => results.map((result: SearchResult) => {
-    return this.renderSelectionIcon(result.iconId, result.itemName);
-  });
 
   render() {
     const { loadItem, character, itemsData, searchResults } = this.props;
@@ -110,7 +107,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </form>
 
           <div className="searchResults">
-            {searchResults ? this.renderSearchResults(searchResults) : null}
+            {this.renderSearchResults(searchResults)}
           </div>
 
           <p>

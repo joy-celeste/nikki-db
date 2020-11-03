@@ -8,6 +8,7 @@ import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
 import Icon from '../components/Icon';
+import { Item } from '../modules/item';
 
 export interface AppOwnState {
   itemLookupValue: string,
@@ -71,12 +72,18 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderSearchResults = (results: SearchResult[]) => (results ? results.map((result: SearchResult) => (
-    <button key={`${result.itemName}-${result.iconId}`} type="button" onClick={() => { this.props.loadItem(result.iconId); }}>
+  renderItems(items: ItemId[]) {
+    items.forEach(item => this.props.loadItem(item));
+  }
+
+  renderSearchResults(results: SearchResult[]) { 
+    return results ? results.map((result: SearchResult) => (
+    <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.renderItems(result.contents); }}>
       <Icon clothesId={result.iconId} />
-      {result.itemName}
-    </button>
-  )) : null)
+      {result.name}
+      </button>
+    )) : null;
+  }
 
   render() {
     const { loadItem, character, itemsData, searchResults } = this.props;

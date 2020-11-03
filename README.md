@@ -5,7 +5,7 @@
 - [X] Set up basic redux functionality
 - [x] Set up linter, unit testing
 - [ ] Install custom console
-- [ ] Update amputation deserialization portion to not hardcode body parts
+- [x] Update amputation deserialization portion to not hardcode body parts
 - [ ] Broader tests - cross-module
 
 ### Milestone 0: Post publically a preview video - proof of concept, stripped MVP
@@ -27,14 +27,15 @@
 - [x] Make Nikki draggable on all browsers
 - [x] Load backgrounds
 - [x] Create icon stylesheet, scripts for creating it
-- [ ] Update snapshots with height/width info
 
 ### Milestone 0.5: Getting this running online
 - [x] Shop for options
-- [ ] Webhosting
-- [ ] Backend - API
+- [x] Webhosting
+- [x] Cloudflare
 - [ ] Database
-- [ ] Cloudflare
+- [ ] Create search function - wear suit on searching up suit
+- [ ] Download render button
+- [ ] Update snapshots with height/width info
 
 ### Milestone 1: Beta of newest suits
 - [ ] Save items on reload (`localStorage`)
@@ -48,7 +49,7 @@
 ### Milestone 2: Beta of newest suits + current wardrobe
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
-- [ ] Create search function - lazy load on stop typing
+- [ ] Search function - lazy load on stop typing
 - [ ] Search by ID (with category prefix)
 - [ ] Search by ID (without category prefix)
 - [ ] Search by item name
@@ -56,7 +57,6 @@
 - [ ] Undo / Redo
 - [ ] Hide / delete worn items from the items panel
 - [ ] Hide / delete backgrounds/characters from the layers panel
-- [ ] Download button
 - [ ] Remove all button
 
 ### Milestone 3: Beta of full simulator functionality - make all clothes available

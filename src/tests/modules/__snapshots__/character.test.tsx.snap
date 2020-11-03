@@ -108,6 +108,69 @@ Character {
 }
 `;
 
+exports[`Character CHARACTER: remove() - success: wear and unwear a part that removesunderwear, underwear should still remain off if wearing posed shoes 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      22008,
+      71927,
+    ],
+    "12": Array [
+      22008,
+    ],
+    "2": Array [
+      22008,
+    ],
+    "4": Array [
+      22008,
+    ],
+    "5": Array [
+      22008,
+      71927,
+    ],
+    "9": Array [
+      22008,
+    ],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "2": 22008,
+    "8": 71927,
+  },
+  "visibleParts": Set {
+    11,
+  },
+}
+`;
+
+exports[`Character CHARACTER: remove() - success: wear and unwear a part that removesunderwear, underwear should still remain off if wearing posed shoes 2`] = `
+Character {
+  "amputations": Object {
+    "10": Array [
+      71927,
+    ],
+    "12": Array [],
+    "2": Array [],
+    "4": Array [],
+    "5": Array [
+      71927,
+    ],
+    "9": Array [],
+  },
+  "clothes": Object {
+    "1": 10001,
+    "8": 71927,
+  },
+  "visibleParts": Set {
+    11,
+    2,
+    4,
+    9,
+    12,
+  },
+}
+`;
+
 exports[`Character CHARACTER: wear() - success case: dress on new character 1`] = `
 Character {
   "amputations": Object {

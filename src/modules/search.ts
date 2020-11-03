@@ -5,6 +5,7 @@ import suits_data from '../suits_data.json';
 import index_ref_to_name from '../index_ref_to_name.json';
 import { ACTION_CONSTANTS, SEARCH_RESULT_TYPES } from './constants';
 import { RootState } from '.';
+import { ItemId } from './data';
 
 const MAX_RESULTS = 5;
 
@@ -53,9 +54,10 @@ export default class SearchIndex {
 export type SearchType = 'Item' | 'Suit';
 
 export type SearchResult = {
-  itemName: string;
+  name: string;
   type: SearchType;
-  iconId?: number;
+  iconId?: ItemId;
+  contents: ItemId[];
 };
 
 export type SearchState = {
@@ -87,19 +89,21 @@ export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
     const parsedResults: SearchResult[] = initialResults.flatMap((result: string) => {
       const type = (result[0] === 'I' ? SEARCH_RESULT_TYPES.ITEM : SEARCH_RESULT_TYPES.SUIT) as SearchType;
       const id = parseInt(result.substring(1), 10) as number;
-
       if (type === SEARCH_RESULT_TYPES.SUIT) {
         const suitData = searchState.suitData[id];
+        console.log(`Suit data for ${id}`, suitData)
         return Object.keys(suitData?.variations).map((variation) => ({
           type,
-          itemName: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
+          name: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
           iconId: suitData?.variations[variation]?.icon_id,
+          contents: suitData?.variations[variation]?.clothes ? Object.values(suitData?.variations[variation]?.clothes) as ItemId[] : []
         }));
       } else {
         return {
           type,
-          itemName: searchState?.refToName?.[result],
+          name: searchState?.refToName?.[result],
           iconId: id,
+          contents: [id]
         };
       }
     });

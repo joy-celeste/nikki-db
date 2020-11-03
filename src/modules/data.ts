@@ -158,18 +158,20 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<any> => {
     const items: ItemsData = getState().data.itemsData;
     const charState: CharacterState = getState().character;
-    const oldChar: Character = charState.history[charState.step];
-    const newChar: Character = new Character(oldChar);
+    const newChar: Character = new Character();
+    let itemData: ItemData;
 
-    await Promise.all(itemIds.map(async itemId => {
+    await Promise.all(itemIds.map(async (itemId) => {
       if (!(itemId in items)) {
         const response = await fetchItemData(itemId);
         if (response) {
-          const itemData = new ItemData(response);
+          itemData = new ItemData(response);
           dispatch(addItemData(itemId, itemData));
-          newChar.wear(itemData);
         }
+      } else {
+        itemData = items[itemId];
       }
+      newChar.wear(itemData);
     })).then(() => dispatch(addToHistory(newChar, charState.step + 1)));
   };
 

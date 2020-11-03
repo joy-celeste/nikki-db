@@ -1,12 +1,12 @@
 import lunr, { Index } from 'lunr';
+import { AnyAction } from 'redux';
 import data from '../search_index.json';
 import index_ref_to_name from '../index_ref_to_name.json';
 import { ACTION_CONSTANTS, SEARCH_RESULT_TYPES } from './constants';
-import { AnyAction } from 'redux';
-import { ItemId } from './data';
-import { fetchSuitData } from './api';
 import suits_data from '../suits_data.json';
 import { RootState } from '.';
+
+const MAX_RESULTS = 5;
 
 export default class SearchIndex {
   index: Index;
@@ -40,9 +40,9 @@ export default class SearchIndex {
    * @param searchTerm The search input.
    * @param maxResults The max number of results to return.
    */
-  search(searchTerm: string, maxResults = 10): string[] {
+  search(searchTerm: string, maxResults = MAX_RESULTS): string[] {
     const output: string[] = [];
-    for (let result of this.index.search(searchTerm)) {
+    for (const result of this.index.search(searchTerm)) {
       if (output.length === maxResults) break;
       output.push(result.ref);
     }
@@ -50,7 +50,7 @@ export default class SearchIndex {
   }
 }
 
-export type SearchType = "Item" | "Suit";
+export type SearchType = 'Item' | 'Suit';
 
 export type SearchResult = {
   itemName: string;
@@ -75,35 +75,34 @@ const initialState: SearchState = {
 // ACTIONS
 const updateSearchResults = (searchResults: SearchResult[]): AnyAction => ({
   type: ACTION_CONSTANTS.SEARCH_UPDATE_RESULTS,
-  payload: searchResults
+  payload: searchResults,
 });
 
 // USE-CASE
-export const searchName = (searchTerm: string, maxResults: number = 10) =>
+export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
   async(dispatch: Function, getState: () => RootState): Promise<any> => {
     const searchState = getState().search;
     const initialResults = searchState.index.search(`+name:${searchTerm} type:suit`, maxResults);
-    
+
     const parsedResults: SearchResult[] = initialResults.flatMap((result: string) => {
-      let type = (result[0] == "I" ? SEARCH_RESULT_TYPES.ITEM : SEARCH_RESULT_TYPES.SUIT) as SearchType;
+      const type = (result[0] === 'I' ? SEARCH_RESULT_TYPES.ITEM : SEARCH_RESULT_TYPES.SUIT) as SearchType;
       const id = parseInt(result.substring(1), 10) as number;
 
       if (type === SEARCH_RESULT_TYPES.SUIT) {
+        console.log(result, "should I be here?")
         const suitData = searchState.suitData[id];
-        return Object.keys(suitData?.variations).map(variation => {
-          return {
-            type: type,
-            itemName: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
-            iconId: suitData?.variations[variation]?.icon_id,
-          }
-        });
-
-      } else if (type === SEARCH_RESULT_TYPES.ITEM) {
+        return Object.keys(suitData?.variations).map((variation) => ({
+          type,
+          itemName: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
+          iconId: suitData?.variations[variation]?.icon_id,
+        }));
+      } if (type === SEARCH_RESULT_TYPES.ITEM) {
+        console.log(result, "or here?")
         return {
-          type: type,
-          itemName: searchState?.refToName?.result,
-          iconId: id
-        }
+          type,
+          itemName: searchState?.refToName?.[result],
+          iconId: id,
+        };
       }
     });
     dispatch(updateSearchResults(parsedResults));

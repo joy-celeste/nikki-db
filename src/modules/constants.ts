@@ -17,7 +17,7 @@ export const API_CONSTANTS = {
 export const SEARCH_RESULT_TYPES = {
   ITEM: 'Item',
   SUIT: 'Suit',
-}
+};
 
 export const UNDERWEAR: Record<number, Record<string, number>> = {
   1: { bra: 4, panty: 5 },

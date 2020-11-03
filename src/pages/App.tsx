@@ -7,7 +7,6 @@ import { Character } from '../modules/character';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
-import index_ref_to_name from '../index_ref_to_name.json';
 import Icon from '../components/Icon';
 
 export interface AppOwnState {
@@ -42,23 +41,18 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   }
 
   componentDidMount() {
-    const { loadItem, searchResults } = this.props;
-    loadItem(10001);
-    this.handleClickBackground('medium');
-    this.refToName = JSON.parse(JSON.stringify(index_ref_to_name));
+    this.props.loadItem(10001);
+    this.updateBackground('medium');
   }
 
   handleLookupSubmit = (event: any) => {
-    const { itemLookupValue } = this.state;
-    const { loadItem } = this.props;
     event.preventDefault();
-    loadItem(parseInt(itemLookupValue, 10));
+    this.props.loadItem(parseInt(this.state.itemLookupValue, 10));
   };
 
   handleSearchSubmit = (event: any) => {
-    const { searchValue } = this.state;
     event.preventDefault();
-    this.props.searchName(searchValue);
+    this.props.searchName(this.state.searchValue);
   };
 
   handleLookupChange = (event: any) => {
@@ -73,20 +67,16 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     });
   };
 
-  handleClickBackground = (backgroundImageName: string) => {
+  updateBackground = (backgroundImageName: string) => {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderSearchResults = (results: SearchResult[]) => {
-    return results ? results.map((result: SearchResult) => {
-      return (
-        <button key={`${result.itemName}-${result.iconId}`} type="button" onClick={() => { this.props.loadItem(result.iconId); }}>
-          <Icon clothesId={result.iconId} />
-          {result.itemName}
-        </button>
-      );
-    }) : null;
-  }
+  renderSearchResults = (results: SearchResult[]) => (results ? results.map((result: SearchResult) => (
+    <button key={`${result.itemName}-${result.iconId}`} type="button" onClick={() => { this.props.loadItem(result.iconId); }}>
+      <Icon clothesId={result.iconId} />
+      {result.itemName}
+    </button>
+  )) : null)
 
   render() {
     const { loadItem, character, itemsData, searchResults } = this.props;
@@ -110,11 +100,11 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </div>
 
           <p>
-            <button type="button" onClick={() => { this.handleClickBackground('light'); }}> Light </button>
-            <button type="button" onClick={() => { this.handleClickBackground('alight2'); }}> Light2 </button>
-            <button type="button" onClick={() => { this.handleClickBackground('medium'); }}> Medium </button>
-            <button type="button" onClick={() => { this.handleClickBackground('dark'); }}> Dark </button>
-            <button type="button" onClick={() => { this.handleClickBackground('dark2'); }}>Dark2</button>
+            <button type="button" onClick={() => { this.updateBackground('light'); }}> Light </button>
+            <button type="button" onClick={() => { this.updateBackground('light2'); }}> Light2 </button>
+            <button type="button" onClick={() => { this.updateBackground('medium'); }}> Medium </button>
+            <button type="button" onClick={() => { this.updateBackground('dark'); }}> Dark </button>
+            <button type="button" onClick={() => { this.updateBackground('dark2'); }}>Dark2</button>
           </p>
 
           <p>

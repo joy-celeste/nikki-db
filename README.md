@@ -36,6 +36,8 @@
 - [ ] Create search function - wear suit on searching up suit
 - [ ] Download render button
 - [ ] Update snapshots with height/width info
+- [ ] Update search/itemID selection to not use onChange() - onSubmit() is enough
+- [ ] Refactor to initialize everything in its own usecase instead of in App.tsx
 
 ### Milestone 1: Beta of newest suits
 - [ ] Save items on reload (`localStorage`)

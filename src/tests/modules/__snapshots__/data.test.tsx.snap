@@ -6,6 +6,7 @@ Object {
     "amputationData": Object {
       "10": false,
       "12": false,
+      "2": false,
       "5": false,
       "9": true,
     },
@@ -117,6 +118,7 @@ Object {
     "amputationData": Object {
       "10": false,
       "12": false,
+      "2": false,
       "5": false,
       "9": true,
     },
@@ -223,6 +225,7 @@ Object {
     "amputationData": Object {
       "10": true,
       "12": false,
+      "2": false,
       "5": true,
       "9": false,
     },
@@ -363,6 +366,7 @@ ItemData {
   "amputationData": Object {
     "10": false,
     "12": false,
+    "2": false,
     "5": false,
     "9": true,
   },
@@ -472,6 +476,7 @@ ItemData {
   "amputationData": Object {
     "10": true,
     "12": true,
+    "2": true,
     "5": false,
     "9": true,
   },
@@ -522,6 +527,7 @@ ItemData {
   "amputationData": Object {
     "10": true,
     "12": false,
+    "2": false,
     "5": true,
     "9": false,
   },

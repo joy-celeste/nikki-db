@@ -1,9 +1,9 @@
 import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
 import data from '../search_index.json';
+import suits_data from '../suits_data.json';
 import index_ref_to_name from '../index_ref_to_name.json';
 import { ACTION_CONSTANTS, SEARCH_RESULT_TYPES } from './constants';
-import suits_data from '../suits_data.json';
 import { RootState } from '.';
 
 const MAX_RESULTS = 5;
@@ -95,7 +95,7 @@ export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
           itemName: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
           iconId: suitData?.variations[variation]?.icon_id,
         }));
-      } if (type === SEARCH_RESULT_TYPES.ITEM) {
+      } else {
         return {
           type,
           itemName: searchState?.refToName?.[result],

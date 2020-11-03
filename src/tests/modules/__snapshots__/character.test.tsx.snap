@@ -5,6 +5,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -29,6 +30,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -43,66 +45,6 @@ Character {
     9,
     10,
     11,
-    12,
-  },
-}
-`;
-
-exports[`Character CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes 1`] = `
-Character {
-  "amputations": Object {
-    "10": Array [
-      22008,
-      71927,
-    ],
-    "12": Array [
-      22008,
-    ],
-    "4": Array [
-      22008,
-    ],
-    "5": Array [
-      22008,
-      71927,
-    ],
-    "9": Array [
-      22008,
-    ],
-  },
-  "clothes": Object {
-    "1": 10001,
-    "2": 22008,
-    "8": 71927,
-  },
-  "visibleParts": Set {
-    2,
-    11,
-  },
-}
-`;
-
-exports[`Character CHARACTER: remove() - success: wear and unwear a part that removes underwear, underwear should still remain off if wearing posed shoes 2`] = `
-Character {
-  "amputations": Object {
-    "10": Array [
-      71927,
-    ],
-    "12": Array [],
-    "4": Array [],
-    "5": Array [
-      71927,
-    ],
-    "9": Array [],
-  },
-  "clothes": Object {
-    "1": 10001,
-    "8": 71927,
-  },
-  "visibleParts": Set {
-    2,
-    11,
-    4,
-    9,
     12,
   },
 }
@@ -180,6 +122,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -195,7 +140,6 @@ Character {
     "2": 22008,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -206,6 +150,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -234,6 +179,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -249,7 +197,6 @@ Character {
     "2": 22008,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -260,6 +207,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [
       21305,
     ],
@@ -273,8 +221,8 @@ Character {
     "2": 21305,
   },
   "visibleParts": Set {
-    2,
     11,
+    2,
     9,
     10,
     12,
@@ -291,6 +239,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -306,7 +257,6 @@ Character {
     "2": 22008,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -317,6 +267,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [
       40644,
     ],
@@ -330,8 +281,8 @@ Character {
     "4": 40644,
   },
   "visibleParts": Set {
-    2,
     11,
+    2,
     5,
     10,
     12,
@@ -348,6 +299,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -363,7 +317,6 @@ Character {
     "2": 22008,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -376,6 +329,7 @@ Character {
       50532,
     ],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [
       50532,
@@ -387,8 +341,8 @@ Character {
     "5": 50532,
   },
   "visibleParts": Set {
-    2,
     11,
+    2,
     4,
     9,
     12,
@@ -405,6 +359,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -420,7 +377,6 @@ Character {
     "2": 22008,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -435,6 +391,9 @@ Character {
     "12": Array [
       22008,
     ],
+    "2": Array [
+      22008,
+    ],
     "4": Array [
       22008,
     ],
@@ -452,7 +411,6 @@ Character {
     "3": 30987,
   },
   "visibleParts": Set {
-    2,
     11,
   },
 }
@@ -463,6 +421,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [],
     "9": Array [
@@ -474,8 +433,8 @@ Character {
     "3": 30987,
   },
   "visibleParts": Set {
-    2,
     11,
+    2,
     4,
     5,
     10,
@@ -489,6 +448,7 @@ Character {
   "amputations": Object {
     "10": Array [],
     "12": Array [],
+    "2": Array [],
     "4": Array [],
     "5": Array [],
     "9": Array [],
@@ -516,6 +476,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "2": Array [],
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -537,6 +498,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "2": Array [],
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -562,6 +524,9 @@ Object {
           "12": Array [
             22008,
           ],
+          "2": Array [
+            22008,
+          ],
           "4": Array [
             22008,
           ],
@@ -577,7 +542,6 @@ Object {
           "2": 22008,
         },
         "visibleParts": Set {
-          2,
           11,
         },
       },
@@ -585,6 +549,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "2": Array [],
           "4": Array [
             21305,
           ],
@@ -598,8 +563,8 @@ Object {
           "2": 21305,
         },
         "visibleParts": Set {
-          2,
           11,
+          2,
           9,
           10,
           12,
@@ -609,6 +574,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "2": Array [],
           "4": Array [],
           "5": Array [],
           "9": Array [],
@@ -617,8 +583,8 @@ Object {
           "1": 10007,
         },
         "visibleParts": Set {
-          2,
           11,
+          2,
           9,
           10,
           12,
@@ -630,6 +596,7 @@ Object {
         "amputations": Object {
           "10": Array [],
           "12": Array [],
+          "2": Array [],
           "4": Array [],
           "5": Array [],
           "9": Array [
@@ -641,8 +608,8 @@ Object {
           "3": 30987,
         },
         "visibleParts": Set {
-          2,
           11,
+          2,
           10,
           12,
           4,
@@ -709,6 +676,7 @@ Object {
         "amputationData": Object {
           "10": true,
           "12": true,
+          "2": true,
           "5": false,
           "9": true,
         },
@@ -756,6 +724,7 @@ Object {
         "amputationData": Object {
           "10": false,
           "12": false,
+          "2": false,
           "5": false,
           "9": true,
         },
@@ -871,6 +840,7 @@ Object {
       "amputations": Object {
         "10": Array [],
         "12": Array [],
+        "2": Array [],
         "4": Array [],
         "5": Array [],
         "9": Array [],

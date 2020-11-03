@@ -37,7 +37,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     super(props);
     this.state = {
       itemLookupValue: '',
-      searchValue: '',
+      searchValue: 'abyssal creeper',
     };
   }
 
@@ -72,17 +72,17 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderSearchResults(results: SearchResult[]) { 
+  renderSearchResults(results: SearchResult[]) {
     return results ? results.map((result: SearchResult) => (
-    <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.props.loadMultipleItems(result.contents); }}>
-      <Icon clothesId={result.iconId} />
-      {result.name}
+      <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.props.loadMultipleItems(result.contents); }}>
+        <Icon clothesId={result.iconId} />
+        {result.name}
       </button>
     )) : null;
   }
 
   render() {
-    const {character, itemsData, searchResults } = this.props;
+    const { character, itemsData, searchResults } = this.props;
     const { itemLookupValue, searchValue } = this.state;
 
     return (

@@ -3,7 +3,7 @@ import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
-import { wearItem } from './character';
+import { Character, CharacterState, wearItem, addToHistory } from './character';
 import { RootState } from '.';
 
 export type SubType = typeof SUBTYPES_LIST[number];
@@ -152,6 +152,25 @@ export const loadItem = (itemId: ItemId) =>
       }
     }
     dispatch(wearItem(itemId));
+  };
+
+export const loadMultipleItems = (itemIds: ItemId[]) =>
+  async(dispatch: Function, getState: () => RootState): Promise<any> => {
+    const items: ItemsData = getState().data.itemsData;
+    const charState: CharacterState = getState().character;
+    const oldChar: Character = charState.history[charState.step];
+    const newChar: Character = new Character(oldChar);
+
+    await Promise.all(itemIds.map(async itemId => {
+      if (!(itemId in items)) {
+        const response = await fetchItemData(itemId);
+        if (response) {
+          const itemData = new ItemData(response);
+          dispatch(addItemData(itemId, itemData));
+          newChar.wear(itemData);
+        }
+      }
+    })).then(() => dispatch(addToHistory(newChar, charState.step + 1)));
   };
 
 // REDUCER

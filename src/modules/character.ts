@@ -132,7 +132,7 @@ const initialState: CharacterState = {
 };
 
 // ACTIONS
-const addToHistory = (character: Character, step: number): AnyAction => ({
+export const addToHistory = (character: Character, step: number): AnyAction => ({
   type: ACTION_CONSTANTS.CHARACTER_ADD_TO_HISTORY,
   payload: {
     character, step,

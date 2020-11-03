@@ -1,9 +1,8 @@
 import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
-import data from '../search_index.json';
-import suits_data from '../suits_data.json';
-import index_ref_to_name from '../index_ref_to_name.json';
-import { ACTION_CONSTANTS, SEARCH_RESULT_TYPES } from './constants';
+import search_index_data from '../search_index.json';
+import ref_to_search_result from '../ref_to_search_result.json';
+import { ACTION_CONSTANTS } from './constants';
 import { RootState } from '.';
 import { ItemId } from './data';
 
@@ -29,7 +28,7 @@ export default class SearchIndex {
       this.field('name');
       this.field('type');
 
-      data.forEach((doc) => {
+      search_index_data.forEach((doc) => {
         this.add(doc);
       }, this);
     });
@@ -51,11 +50,8 @@ export default class SearchIndex {
   }
 }
 
-export type SearchType = 'Item' | 'Suit';
-
 export type SearchResult = {
   name: string;
-  type: SearchType;
   iconId?: ItemId;
   contents: ItemId[];
 };
@@ -63,15 +59,13 @@ export type SearchResult = {
 export type SearchState = {
   index: SearchIndex;
   results: SearchResult[];
-  readonly refToName: any;
-  readonly suitData: any;
+  readonly refToData: any;
 };
 
 const initialState: SearchState = {
   index: new SearchIndex(),
   results: null,
-  refToName: JSON.parse(JSON.stringify(index_ref_to_name)),
-  suitData: JSON.parse(JSON.stringify(suits_data)),
+  refToData: JSON.parse(JSON.stringify(ref_to_search_result)),
 };
 
 // ACTIONS
@@ -85,27 +79,13 @@ export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
   async(dispatch: Function, getState: () => RootState): Promise<any> => {
     const searchState = getState().search;
     const initialResults = searchState.index.search(`+name:${searchTerm} type:suit`, maxResults);
-
-    const parsedResults: SearchResult[] = initialResults.flatMap((result: string) => {
-      const type = (result[0] === 'I' ? SEARCH_RESULT_TYPES.ITEM : SEARCH_RESULT_TYPES.SUIT) as SearchType;
-      const id = parseInt(result.substring(1), 10) as number;
-      if (type === SEARCH_RESULT_TYPES.SUIT) {
-        const suitData = searchState.suitData[id];
-        console.log(`Suit data for ${id}`, suitData)
-        return Object.keys(suitData?.variations).map((variation) => ({
-          type,
-          name: `${suitData?.name}${variation === '0' ? ' (Suit)' : ' (Posed Suit)'}`,
-          iconId: suitData?.variations[variation]?.icon_id,
-          contents: suitData?.variations[variation]?.clothes ? Object.values(suitData?.variations[variation]?.clothes) as ItemId[] : []
-        }));
-      } else {
-        return {
-          type,
-          name: searchState?.refToName?.[result],
-          iconId: id,
-          contents: [id]
-        };
-      }
+    const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
+      const suitData = searchState.refToData[key];
+      return {
+        name: suitData?.name,
+        iconId: suitData?.iconId,
+        contents: suitData?.contents,
+      };
     });
     dispatch(updateSearchResults(parsedResults));
   };

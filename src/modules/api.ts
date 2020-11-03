@@ -10,26 +10,9 @@ export const fetchItemData = async (itemId: number): Promise<any> =>
         console.log('No such document!');
         return null;
       }
-      console.log('Retrieved data from database.', response.data());
+      // console.log('Retrieved data from database.', response.data());
       return response.data();
     })
     .catch((error) => {
       console.log(new HttpRequestException(error, 'Error getting response.'));
     });
-
-export const fetchSuitData = async (suitId: number): Promise<any> =>
-  database.collection(API_CONSTANTS.SUITS).doc(suitId.toString())
-    .get()
-    .then((response) => {
-      if (!response) {
-        console.log('No such document!');
-        return null;
-      }
-      console.log('Retrieved data from database.', response.data());
-      return response.data();
-    })
-    .catch((error) => {
-      console.log(new HttpRequestException(error, 'Error getting response.'));
-    });
-
-export {};

@@ -2,13 +2,12 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
-import { ItemData, ItemId, loadItem } from '../modules/data';
+import { ItemData, ItemId, loadItem, loadMultipleItems } from '../modules/data';
 import { Character } from '../modules/character';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
 import Icon from '../components/Icon';
-import { Item } from '../modules/item';
 
 export interface AppOwnState {
   itemLookupValue: string,
@@ -24,6 +23,7 @@ export interface AppStateProps {
 export interface AppDispatchProps {
   dispatch: any;
   loadItem(itemId: ItemId): void,
+  loadMultipleItems(itemIds: ItemId[]): void,
   searchName(searchName: string): void,
 }
 
@@ -72,13 +72,9 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
   };
 
-  renderItems(items: ItemId[]) {
-    items.forEach(item => this.props.loadItem(item));
-  }
-
   renderSearchResults(results: SearchResult[]) { 
     return results ? results.map((result: SearchResult) => (
-    <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.renderItems(result.contents); }}>
+    <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.props.loadMultipleItems(result.contents); }}>
       <Icon clothesId={result.iconId} />
       {result.name}
       </button>
@@ -86,7 +82,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   }
 
   render() {
-    const { loadItem, character, itemsData, searchResults } = this.props;
+    const {character, itemsData, searchResults } = this.props;
     const { itemLookupValue, searchValue } = this.state;
 
     return (
@@ -113,21 +109,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
             <button type="button" onClick={() => { this.updateBackground('dark'); }}> Dark </button>
             <button type="button" onClick={() => { this.updateBackground('dark2'); }}>Dark2</button>
           </p>
-
-          <p>
-            <button type="button" onClick={() => { loadItem(12212); }}>Lucid Song (hair)</button>
-            <button type="button" onClick={() => { loadItem(21032); }}>Cosmos Tide (dress)</button>
-            <button type="button" onClick={() => { loadItem(82284); }}>Glittering Veil (posed gloves)</button>
-            <button type="button" onClick={() => { loadItem(31006); }}>Star Sea Echo (posed coat)</button>
-            <button type="button" onClick={() => { loadItem(71784); }}>Treasure Collection (posed shoes)</button>
-            <button type="button" onClick={() => { loadItem(83696); }}>Moon Frost</button>
-            <button type="button" onClick={() => { loadItem(85217); }}>Novice Witch (hat)</button>
-            <button type="button" onClick={() => { loadItem(86099); }}>Galaxy Poem (earrings)</button>
-            <button type="button" onClick={() => { loadItem(86115); }}>Reflection on Water (ground)</button>
-            <button type="button" onClick={() => { loadItem(86777); }}>Dancing Flower (head?)</button>
-            <button type="button" onClick={() => { loadItem(90449); }}>Priceless (makeup)</button>
-            <button type="button" onClick={() => { loadItem(880048); }}>Deer and Cliff</button>
-          </p>
         </div>
 
         <div className="equipped">
@@ -153,6 +134,7 @@ const mapStateToProps = (state: RootState): AppStateProps => ({
 const mapDispatchToProps = (dispatch: any): AppDispatchProps => ({
   dispatch,
   loadItem: (itemId: ItemId) => dispatch(loadItem(itemId)),
+  loadMultipleItems: (itemIds: ItemId[]) => dispatch(loadMultipleItems(itemIds)),
   searchName: (searchTerm: string) => dispatch(searchName(searchTerm)),
 });
 

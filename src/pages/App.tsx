@@ -46,7 +46,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     loadItem(10001);
     this.handleClickBackground('medium');
     this.refToName = JSON.parse(JSON.stringify(index_ref_to_name));
-    console.log(searchResults);
   }
 
   handleLookupSubmit = (event: any) => {

@@ -89,7 +89,6 @@ export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
       const id = parseInt(result.substring(1), 10) as number;
 
       if (type === SEARCH_RESULT_TYPES.SUIT) {
-        console.log(result, "should I be here?")
         const suitData = searchState.suitData[id];
         return Object.keys(suitData?.variations).map((variation) => ({
           type,
@@ -97,7 +96,6 @@ export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
           iconId: suitData?.variations[variation]?.icon_id,
         }));
       } if (type === SEARCH_RESULT_TYPES.ITEM) {
-        console.log(result, "or here?")
         return {
           type,
           itemName: searchState?.refToName?.[result],

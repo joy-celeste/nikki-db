@@ -10,8 +10,10 @@ import { searchName, SearchResult } from '../modules/search';
 import Icon from '../components/Icon';
 import Result from '../components/Result';
 
+const DEFAULT_SEARCH_VALUE = 'abyssal creeper';
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
 const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
+const getAssetImg = (assetName: string): string => `url(/assets/${assetName}.jpg)`
 
 export interface AppOwnState {
   searchValue: string,
@@ -41,7 +43,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      searchValue: 'abyssal creeper',
+      searchValue: DEFAULT_SEARCH_VALUE,
       backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
     };
   }
@@ -49,13 +51,13 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   componentDidMount() {
     const { loadItem } = this.props;
     loadItem(10001);
-    document.body.style.backgroundImage = `url(/assets/${DEFAULT_BACKGROUND_IMAGE_NAME}.jpg)`;
+    document.body.style.backgroundImage = getAssetImg(DEFAULT_BACKGROUND_IMAGE_NAME);
   }
 
   componentDidUpdate(_: AppProps, prevState: AppOwnState) {
     const { backgroundImageName } = this.state;
     if (prevState.backgroundImageName !== backgroundImageName) {
-      document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
+      document.body.style.backgroundImage = getAssetImg(backgroundImageName);
     }
   }
 

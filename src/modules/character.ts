@@ -14,7 +14,7 @@ export class Character {
   clothes: Clothes;
   amputations: Amputations;
 
-  constructor(input?: any) {
+  constructor(input?: Character) {
     this.visibleParts = input && input.visibleParts ? new Set(input.visibleParts) : new Set(DEFAULT_BODY);
     this.clothes = input && input.clothes ? { ...input.clothes } : { ...DEFAULT_CLOTHES };
     this.amputations = input && input.amputations ? { ...input.amputations } : { ...DEFAULT_AMPUTATIONS };
@@ -129,7 +129,7 @@ export const addToHistory = (character: Character, step: number): AnyAction => (
 
 // USE-CASE
 export const wearItem = (itemId: ItemId) =>
-  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<any> => {
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
     const itemDataState: ItemsData = getState().data.itemsData;
     const itemData = itemDataState[itemId];
 

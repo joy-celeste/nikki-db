@@ -59,13 +59,21 @@ export type SearchResult = {
 export type SearchState = {
   index: SearchIndex;
   results: SearchResult[];
-  readonly refToData: any;
+  readonly refToData: RefToSearchData;
 };
+
+export type RefToSearchData = Record<string, SearchData>;
+
+interface SearchData {
+  name: string,
+  iconId: ItemId,
+  contents: ItemId[]
+}
 
 const initialState: SearchState = {
   index: new SearchIndex(),
   results: null,
-  refToData: JSON.parse(JSON.stringify(refToSearchResult)),
+  refToData: JSON.parse(JSON.stringify(refToSearchResult)) as RefToSearchData,
 };
 
 // ACTIONS
@@ -76,7 +84,7 @@ const updateSearchResults = (searchResults: SearchResult[]): AnyAction => ({
 
 // USE-CASE
 export const searchName = (searchTerm: string, maxResults = MAX_RESULTS) =>
-  async(dispatch: Function, getState: () => RootState): Promise<any> => {
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
     const initialResults = searchState.index.search(`+name:${searchTerm} type:suit`, maxResults);
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {

@@ -57,6 +57,7 @@
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": "off",
     "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/no-explicit-any": "error",
     "object-curly-newline": ["error", {
       "ObjectPattern": { "multiline": true },
       "ImportDeclaration": "never",

@@ -157,7 +157,7 @@ export const DEPTHTYPES = {
 };
 
 export const BODY_PARTS_DEPTHS = {
-  sub_type: null as number,
+  subtype: null as number,
   depth: {
     1: 10000,
     2: 10020,
@@ -216,9 +216,14 @@ export const BODY_ITEM_DATA = {
   },
 };
 
-export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
+interface SubtypeInfo {
+  subtype: number,
+  depth: Record<number, number>
+}
+
+export const DEPTHTYPE_TO_SUBTYPES: Record<string, SubtypeInfo> = {
   1: {
-    sub_type: 1,
+    subtype: 1,
     depth: {
       1: 33000,
       2: 3500,
@@ -228,14 +233,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   2: {
-    sub_type: 1,
+    subtype: 1,
     depth: {
       1: 36000,
       2: 1000,
     },
   },
   3: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 24000,
       2: 17000,
@@ -244,21 +249,21 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   4: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 23500,
       2: 6000,
     },
   },
   5: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 13000,
       2: 7000,
     },
   },
   6: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 27000,
       2: 19000,
@@ -266,14 +271,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   7: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 27000,
       2: 5000,
     },
   },
   8: {
-    sub_type: 4,
+    subtype: 4,
     depth: {
       1: 24000,
       2: 18000,
@@ -281,14 +286,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   9: {
-    sub_type: 4,
+    subtype: 4,
     depth: {
       1: 24000,
       2: 6000,
     },
   },
   10: {
-    sub_type: 4,
+    subtype: 4,
     depth: {
       1: 34500,
       2: 24000,
@@ -297,21 +302,21 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   11: {
-    sub_type: 5,
+    subtype: 5,
     depth: {
       1: 21000,
       2: 7000,
     },
   },
   12: {
-    sub_type: 5,
+    subtype: 5,
     depth: {
       1: 24500,
       2: 7000,
     },
   },
   13: {
-    sub_type: 5,
+    subtype: 5,
     depth: {
       1: 13800,
       2: 13550,
@@ -319,7 +324,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   14: {
-    sub_type: 6,
+    subtype: 6,
     depth: {
       1: 14000,
       2: 13600,
@@ -330,14 +335,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   15: {
-    sub_type: 7,
+    subtype: 7,
     depth: {
       1: 13700,
       2: 13200,
     },
   },
   16: {
-    sub_type: 8,
+    subtype: 8,
     depth: {
       1: 13750,
       2: 13500,
@@ -346,7 +351,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   17: {
-    sub_type: 8,
+    subtype: 8,
     depth: {
       1: 15000,
       2: 13650,
@@ -354,13 +359,13 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   18: {
-    sub_type: 9,
+    subtype: 9,
     depth: {
       1: 11000,
     },
   },
   19: {
-    sub_type: 10,
+    subtype: 10,
     depth: {
       1: 36000,
       2: 3000,
@@ -370,7 +375,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   20: {
-    sub_type: 20,
+    subtype: 20,
     depth: {
       1: 34700,
       2: 27500,
@@ -378,7 +383,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   21: {
-    sub_type: 11,
+    subtype: 11,
     depth: {
       1: 34000,
       2: 31000,
@@ -387,7 +392,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   22: {
-    sub_type: 12,
+    subtype: 12,
     depth: {
       1: 30000,
       2: 4000,
@@ -395,7 +400,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   23: {
-    sub_type: 13,
+    subtype: 13,
     depth: {
       1: 26000,
       2: 4050,
@@ -404,26 +409,26 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   24: {
-    sub_type: 13,
+    subtype: 13,
     depth: {
       1: 23000,
     },
   },
   25: {
-    sub_type: 14,
+    subtype: 14,
     depth: {
       1: 25500,
       2: 18000,
     },
   },
   26: {
-    sub_type: 15,
+    subtype: 15,
     depth: {
       1: 18000,
     },
   },
   27: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 22000,
       2: 16000,
@@ -433,21 +438,21 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   28: {
-    sub_type: 17,
+    subtype: 17,
     depth: {
       1: 28000,
       2: 2800,
     },
   },
   29: {
-    sub_type: 18,
+    subtype: 18,
     depth: {
       1: 20000,
       2: 1500,
     },
   },
   30: {
-    sub_type: 19,
+    subtype: 19,
     depth: {
       1: 25000,
       2: 5500,
@@ -456,14 +461,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   31: {
-    sub_type: 20,
+    subtype: 20,
     depth: {
       1: 37000,
       2: 900,
     },
   },
   32: {
-    sub_type: 21,
+    subtype: 21,
     depth: {
       1: 35000,
       2: 32000,
@@ -473,7 +478,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   33: {
-    sub_type: 22,
+    subtype: 22,
     depth: {
       1: 29000,
       2: 3850,
@@ -483,26 +488,26 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   34: {
-    sub_type: 23,
+    subtype: 23,
     depth: {
       1: 12000,
     },
   },
   35: {
-    sub_type: 24,
+    subtype: 24,
     depth: {
       1: 2500,
       6: 3600,
     },
   },
   36: {
-    sub_type: 25,
+    subtype: 25,
     depth: {
       1: 2000,
     },
   },
   37: {
-    sub_type: 26,
+    subtype: 26,
     depth: {
       1: 39000,
       2: 810,
@@ -514,7 +519,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   38: {
-    sub_type: 27,
+    subtype: 27,
     depth: {
       1: 800,
       2: 790,
@@ -524,20 +529,20 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   39: {
-    sub_type: 14,
+    subtype: 14,
     depth: {
       1: 22500,
       2: 18800,
     },
   },
   40: {
-    sub_type: 15,
+    subtype: 15,
     depth: {
       1: 16500,
     },
   },
   41: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 36600,
       2: 24000,
@@ -554,7 +559,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   42: {
-    sub_type: 24,
+    subtype: 24,
     depth: {
       1: 38000,
       2: 850,
@@ -562,7 +567,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   43: {
-    sub_type: 28,
+    subtype: 28,
     depth: {
       1: 35250,
       2: 3300,
@@ -571,7 +576,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   44: {
-    sub_type: 29,
+    subtype: 29,
     depth: {
       1: 35750,
       2: 3050,
@@ -579,7 +584,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   45: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 28500,
       2: 16000,
@@ -589,7 +594,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   46: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 25800,
       2: 18800,
@@ -601,14 +606,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   47: {
-    sub_type: 25,
+    subtype: 25,
     depth: {
       1: 3750,
       7: 29500,
     },
   },
   48: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 36700,
       2: 27000,
@@ -621,7 +626,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   49: {
-    sub_type: 30,
+    subtype: 30,
     depth: {
       1: 38500,
       2: 12200,
@@ -629,14 +634,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   50: {
-    sub_type: 32,
+    subtype: 32,
     depth: {
       1: 10310,
       2: 10300,
     },
   },
   51: {
-    sub_type: 31,
+    subtype: 31,
     depth: {
       1: 37500,
       2: 820,
@@ -648,7 +653,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   52: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 36700,
       2: 27000,
@@ -657,14 +662,14 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   53: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 27250,
       2: 19500,
     },
   },
   54: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 36600,
       2: 23500,
@@ -672,7 +677,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   55: {
-    sub_type: 27,
+    subtype: 27,
     depth: {
       1: 35650,
       2: 800,
@@ -681,7 +686,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   56: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 36500,
       2: 24000,
@@ -690,7 +695,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   57: {
-    sub_type: 5,
+    subtype: 5,
     depth: {
       1: 21000,
       2: 16750,
@@ -698,7 +703,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   58: {
-    sub_type: 33,
+    subtype: 33,
     depth: {
       1: 28000,
       2: 20000,
@@ -706,7 +711,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   59: {
-    sub_type: 0,
+    subtype: 0,
     depth: {
       1: 10000,
       2: 10020,
@@ -723,19 +728,19 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   60: {
-    sub_type: 0,
+    subtype: 0,
     depth: {
       1: 99990,
     },
   },
   61: {
-    sub_type: 34,
+    subtype: 34,
     depth: {
       1: 60000,
     },
   },
   62: {
-    sub_type: 2,
+    subtype: 2,
     depth: {
       1: 24050,
       2: 24000,
@@ -744,7 +749,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   63: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 27050,
       2: 27000,
@@ -753,7 +758,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   64: {
-    sub_type: 4,
+    subtype: 4,
     depth: {
       1: 36600,
       2: 24000,
@@ -766,7 +771,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   65: {
-    sub_type: 3,
+    subtype: 3,
     depth: {
       1: 36600,
       2: 27000,
@@ -775,7 +780,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   66: {
-    sub_type: 33,
+    subtype: 33,
     depth: {
       1: 32100,
       2: 830,
@@ -783,7 +788,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   67: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 37000,
       2: 19500,
@@ -794,7 +799,7 @@ export const DEPTHTYPE_TO_SUBTYPES: Record<string, any> = {
     },
   },
   68: {
-    sub_type: 16,
+    subtype: 16,
     depth: {
       1: 22000,
       2: 16000,

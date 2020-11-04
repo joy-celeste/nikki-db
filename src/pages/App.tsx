@@ -27,7 +27,6 @@ export interface AppStateProps {
 }
 
 export interface AppDispatchProps {
-  dispatch: any;
   loadItem(itemId: ItemId): void,
   loadMultipleItems(itemIds: ItemId[]): void,
   searchName(searchName: string): void,
@@ -36,10 +35,6 @@ export interface AppDispatchProps {
 export type AppProps = AppDispatchProps & AppStateProps;
 
 class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
-  index: any;
-  refToName: any;
-  document: any;
-
   constructor(props: AppProps) {
     super(props);
     this.state = {
@@ -61,7 +56,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     }
   }
 
-  handleSearchSubmit = (event: any): void => {
+  handleSearchSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     const { searchName, loadItem } = this.props;
     const { searchValue } = this.state;
@@ -73,7 +68,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     }
   };
 
-  handleSearchChange = (event: any): void => {
+  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ searchValue: event.target.value });
   };
 
@@ -131,12 +126,11 @@ const mapStateToProps = (state: RootState): AppStateProps => ({
   searchResults: state.search.results,
 });
 
-const mapDispatchToProps = (dispatch: any): AppDispatchProps => ({
-  dispatch,
-  loadItem: (itemId: ItemId) => dispatch(loadItem(itemId)),
-  loadMultipleItems: (itemIds: ItemId[]) => dispatch(loadMultipleItems(itemIds)),
-  searchName: (searchTerm: string) => dispatch(searchName(searchTerm)),
-});
+const mapDispatchToProps: AppDispatchProps = {
+  loadItem: (itemId: ItemId) => loadItem(itemId),
+  loadMultipleItems: (itemIds: ItemId[]) => loadMultipleItems(itemIds),
+  searchName: (searchTerm: string) => searchName(searchTerm),
+};
 
 const App = connect(mapStateToProps, mapDispatchToProps)(UnconnectedApp);
 export default App;

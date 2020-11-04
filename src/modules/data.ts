@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux';
+import { DocumentData } from '@firebase/firestore-types';
 import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
@@ -23,11 +24,11 @@ export class ItemData {
   position?: PositionData[];
   depths?: Depths;
 
-  constructor(input?: any) {
+  constructor(input?: DocumentData) {
     this.deserialize(input);
   }
 
-  deserialize(input: any): ItemData {
+  deserialize(input: DocumentData): ItemData {
     if (!input) {
       throw new DeserializeNullException('Cannot deserialize null input for ItemData');
     }
@@ -56,7 +57,7 @@ export class ItemData {
       const subtypeData = input.id !== BODY_ITEM_ID
         ? DEPTHTYPE_TO_SUBTYPES[input.depth_type.toString()]
         : BODY_PARTS_DEPTHS;
-      this.subType = subtypeData.sub_type;
+      this.subType = subtypeData.subtype;
       this.depths = subtypeData.depth;
     }
 
@@ -80,11 +81,11 @@ export class PositionData {
   width?: number;
   scale?: number;
 
-  constructor(depth: number, input: any, depths?: Depths) {
+  constructor(depth: number, input: DocumentData, depths?: Depths) {
     this.deserialize(depth, input, depths);
   }
 
-  deserialize(depth: number, input: any, depths?: Depths): PositionData {
+  deserialize(depth: number, input: DocumentData, depths?: Depths): PositionData {
     if (!depth || !input) {
       throw new DeserializeNullException('Cannot deserialize null input for PositionData');
     }
@@ -142,7 +143,7 @@ const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
 
 // USE-CASE
 export const loadItem = (itemId: ItemId) =>
-  async(dispatch: Function, getState: () => RootState): Promise<any> => {
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const items: ItemsData = getState().data.itemsData;
     if (!(itemId in items)) {
       const response = await fetchItemData(itemId);
@@ -155,7 +156,7 @@ export const loadItem = (itemId: ItemId) =>
   };
 
 export const loadMultipleItems = (itemIds: ItemId[]) =>
-  async(dispatch: Function, getState: () => RootState): Promise<any> => {
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const items: ItemsData = getState().data.itemsData;
     const charState: CharacterState = getState().character;
     const newChar: Character = new Character();

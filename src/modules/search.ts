@@ -1,7 +1,7 @@
 import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
-import search_index_data from '../search_index.json';
-import ref_to_search_result from '../ref_to_search_result.json';
+import searchIndexData from '../search_index.json';
+import refToSearchResult from '../ref_to_search_result.json';
 import { ACTION_CONSTANTS } from './constants';
 import { RootState } from '.';
 import { ItemId } from './data';
@@ -19,8 +19,8 @@ export default class SearchIndex {
    * Process the data and create a search index.
    * NOTE: Stemming is disabled :)
    */
-  createIndex() {
-    this.index = lunr(function() {
+  createIndex(): SearchIndex {
+    this.index = lunr(function options() {
       this.pipeline.remove(lunr.stemmer);
       this.searchPipeline.remove(lunr.stemmer);
 
@@ -28,7 +28,7 @@ export default class SearchIndex {
       this.field('name');
       this.field('type');
 
-      search_index_data.forEach((doc) => {
+      searchIndexData.forEach((doc) => {
         this.add(doc);
       }, this);
     });
@@ -42,10 +42,10 @@ export default class SearchIndex {
    */
   search(searchTerm: string, maxResults = MAX_RESULTS): string[] {
     const output: string[] = [];
-    for (const result of this.index.search(searchTerm)) {
-      if (output.length === maxResults) break;
+    this.index.search(searchTerm).some((result) => {
       output.push(result.ref);
-    }
+      return output.length === maxResults;
+    });
     return output;
   }
 }
@@ -65,7 +65,7 @@ export type SearchState = {
 const initialState: SearchState = {
   index: new SearchIndex(),
   results: null,
-  refToData: JSON.parse(JSON.stringify(ref_to_search_result)),
+  refToData: JSON.parse(JSON.stringify(refToSearchResult)),
 };
 
 // ACTIONS

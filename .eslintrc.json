@@ -50,10 +50,11 @@
     "no-console": "warn",
     "react/jsx-filename-extension": "off",
     "max-classes-per-file": "off",
-    "max-len": ["warn", 90, 2],
+    "max-len": ["warn", 120, 2],
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "array-callback-return": "off",
+    "arrow-body-style": ["error", "as-needed"],
     "object-curly-newline": ["error", {
       "ObjectPattern": { "multiline": true },
       "ImportDeclaration": "never",

@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { DocumentData } from '@firebase/firestore-types';
-import { DeserializeNullException } from './errors';
+import { DeserializeNullException, NoDataException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
@@ -162,18 +162,28 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
     const newChar: Character = new Character();
     let itemData: ItemData;
 
-    await Promise.all(itemIds.map(async (itemId) => {
+    await Promise.allSettled(itemIds.map(async (itemId) => {
       if (!(itemId in items)) {
         const response = await fetchItemData(itemId);
         if (response) {
           itemData = new ItemData(response);
           dispatch(addItemData(itemId, itemData));
+        } else {
+          throw new NoDataException(`Successful API call, but no item data was received from db for ItemId ${itemId}`)
         }
       } else {
         itemData = items[itemId];
       }
       newChar.wear(itemData);
-    })).then(() => dispatch(addToHistory(newChar, charState.step + 1)));
+    })).then((results) => {
+      const rejected = results.filter((result) => (result.status === 'rejected'));
+      if (rejected.length >= 1) {
+        console.log(`We rejected ${rejected.length} promise(s) for these reasons:
+        ${JSON.parse(JSON.stringify(rejected)).map((rejectedPromise: any) => JSON.stringify(rejectedPromise.reason))}
+        Original list loaded was: ${itemIds}.`)
+      } 
+      dispatch(addToHistory(newChar, charState.step + 1));
+    });
   };
 
 // REDUCER

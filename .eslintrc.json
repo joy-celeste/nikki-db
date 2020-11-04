@@ -55,6 +55,8 @@
     "import/prefer-default-export": "off",
     "array-callback-return": "off",
     "arrow-body-style": ["error", "as-needed"],
+    "class-methods-use-this": "off",
+    "react/jsx-one-expression-per-line": "off",
     "object-curly-newline": ["error", {
       "ObjectPattern": { "multiline": true },
       "ImportDeclaration": "never",

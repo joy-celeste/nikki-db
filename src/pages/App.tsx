@@ -13,7 +13,7 @@ import Result from '../components/Result';
 const DEFAULT_SEARCH_VALUE = 'abyssal creeper';
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
 const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
-const getAssetImg = (assetName: string): string => `url(/assets/${assetName}.jpg)`
+const getAssetImg = (assetName: string): string => `url(/assets/${assetName}.jpg)`;
 
 export interface AppOwnState {
   searchValue: string,
@@ -48,20 +48,20 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     const { loadItem } = this.props;
     loadItem(10001);
     document.body.style.backgroundImage = getAssetImg(DEFAULT_BACKGROUND_IMAGE_NAME);
   }
 
-  componentDidUpdate(_: AppProps, prevState: AppOwnState) {
+  componentDidUpdate(_: AppProps, prevState: AppOwnState): void {
     const { backgroundImageName } = this.state;
     if (prevState.backgroundImageName !== backgroundImageName) {
       document.body.style.backgroundImage = getAssetImg(backgroundImageName);
     }
   }
 
-  handleSearchSubmit = (event: any) => {
+  handleSearchSubmit = (event: any): void => {
     event.preventDefault();
     const { searchName, loadItem } = this.props;
     const { searchValue } = this.state;
@@ -73,15 +73,14 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     }
   };
 
-  handleSearchChange = (event: any) => {
+  handleSearchChange = (event: any): void => {
     this.setState({ searchValue: event.target.value });
   };
 
-  renderSearchResults(results: SearchResult[]) {
+  renderSearchResults(results: SearchResult[]): React.ReactNode {
     const { loadItem, loadMultipleItems } = this.props;
-    return results ? results.map(result => 
-      <Result loadItem={loadItem} loadMultipleItems={loadMultipleItems} result={result} />
-    ) : null;
+    return results ? results.map((result) =>
+      <Result loadItem={loadItem} loadMultipleItems={loadMultipleItems} result={result} />) : null;
   }
 
   renderBackgroundOptions(backgroundOptions: string[]): React.ReactNode {
@@ -95,9 +94,9 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     ));
   }
 
-  renderEquippedItems(clothes: Clothes) {
-    return Object.values(clothes).map(clothesId => <Icon key={clothesId} clothesId={clothesId}/>);
-  };
+  renderEquippedItems(clothes: Clothes): React.ReactNode {
+    return Object.values(clothes).map((clothesId) => <Icon key={clothesId} clothesId={clothesId} />);
+  }
 
   render() {
     const { character, itemsData, searchResults } = this.props;
@@ -112,8 +111,8 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
           </form>
 
           <div className="backgroundOptions"> {this.renderBackgroundOptions(DEFAULT_BACKGROUND_OPTIONS)} </div>
-          <div className="searchResults"> {this.renderSearchResults(searchResults)}</div>
-          <div className="equipped"> {this.renderEquippedItems(character.clothes)}</div>
+          <div className="searchResults"> {this.renderSearchResults(searchResults)} </div>
+          <div className="equipped"> {this.renderEquippedItems(character.clothes)} </div>
         </div>
 
         <div className="figure">

@@ -9,9 +9,12 @@ import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
 import Icon from '../components/Icon';
 
+const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
+const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
+
 export interface AppOwnState {
-  itemLookupValue: string,
   searchValue: string,
+  backgroundImageName: string,
 }
 
 export interface AppStateProps {
@@ -32,83 +35,92 @@ export type AppProps = AppDispatchProps & AppStateProps;
 class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   index: any;
   refToName: any;
+  document: any;
 
   constructor(props: AppProps) {
     super(props);
     this.state = {
-      itemLookupValue: '',
       searchValue: 'abyssal creeper',
+      backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
     };
   }
 
   componentDidMount() {
-    this.props.loadItem(10001);
-    this.updateBackground('medium');
+    const { loadItem } = this.props;
+    loadItem(10001);
+    document.body.style.backgroundImage = `url(/assets/${DEFAULT_BACKGROUND_IMAGE_NAME}.jpg)`;
   }
 
-  handleLookupSubmit = (event: any) => {
-    event.preventDefault();
-    this.props.loadItem(parseInt(this.state.itemLookupValue, 10));
-  };
+  componentDidUpdate(_: AppProps, prevState: AppOwnState) {
+    const { backgroundImageName } = this.state;
+    if (prevState.backgroundImageName !== backgroundImageName) {
+      document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
+    }
+  }
 
   handleSearchSubmit = (event: any) => {
     event.preventDefault();
-    this.props.searchName(this.state.searchValue);
-  };
+    const { searchName, loadItem } = this.props;
+    const { searchValue } = this.state;
 
-  handleLookupChange = (event: any) => {
-    this.setState({
-      itemLookupValue: event.target.value,
-    });
+    if (Number.isNaN(+searchValue)) {
+      searchName(searchValue);
+    } else {
+      loadItem(parseInt(searchValue, 10));
+    }
   };
 
   handleSearchChange = (event: any) => {
-    this.setState({
-      searchValue: event.target.value,
-    });
-  };
-
-  updateBackground = (backgroundImageName: string) => {
-    document.body.style.backgroundImage = `url(/assets/${backgroundImageName}.jpg)`;
+    this.setState({ searchValue: event.target.value });
   };
 
   renderSearchResults(results: SearchResult[]) {
+    const { loadItem, loadMultipleItems } = this.props;
+
     return results ? results.map((result: SearchResult) => (
-      <button key={`${result.name}-${result.iconId}`} type="button" onClick={() => { this.props.loadMultipleItems(result.contents); }}>
+      <button
+        key={`${result.name}-${result.iconId}`}
+        type="button"
+        onClick={() => (result.contents.length === 1
+          ? loadItem(result.contents[0])
+          : loadMultipleItems(result.contents))}
+      >
         <Icon clothesId={result.iconId} />
         {result.name}
       </button>
     )) : null;
   }
 
+  renderBackgroundOptions(backgroundOptions: string[]): React.ReactNode {
+    const updateState = (backgroundName: string) => {
+      this.setState({ backgroundImageName: backgroundName });
+    };
+    return backgroundOptions.map((backgroundName) => (
+      <button type="button" onClick={() => { updateState(backgroundName); }}>
+        {backgroundName}
+      </button>
+    ));
+  }
+
   render() {
     const { character, itemsData, searchResults } = this.props;
-    const { itemLookupValue, searchValue } = this.state;
+    const { searchValue } = this.state;
 
     return (
       <div className="App">
         <div className="canvas-form">
-          <form onSubmit={this.handleLookupSubmit} onChange={this.handleLookupChange}>
-            <input value={itemLookupValue} onChange={this.handleLookupChange} />
-            <input type="submit" value="Submit Item Id" />
-          </form>
-
           <form onSubmit={this.handleSearchSubmit}>
             <input value={searchValue} onChange={this.handleSearchChange} />
             <input type="submit" value="Search" />
           </form>
 
+          <p>
+            {this.renderBackgroundOptions(DEFAULT_BACKGROUND_OPTIONS)}
+          </p>
+
           <div className="searchResults">
             {this.renderSearchResults(searchResults)}
           </div>
-
-          <p>
-            <button type="button" onClick={() => { this.updateBackground('light'); }}> Light </button>
-            <button type="button" onClick={() => { this.updateBackground('light2'); }}> Light2 </button>
-            <button type="button" onClick={() => { this.updateBackground('medium'); }}> Medium </button>
-            <button type="button" onClick={() => { this.updateBackground('dark'); }}> Dark </button>
-            <button type="button" onClick={() => { this.updateBackground('dark2'); }}>Dark2</button>
-          </p>
         </div>
 
         <div className="equipped">

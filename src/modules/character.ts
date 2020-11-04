@@ -85,26 +85,14 @@ export class Character {
   updateAmputations(itemId: ItemId, amputationData: AmputationData, subtype: SubType): void {
     Object.keys(this.amputations).forEach((bodyPartStr) => {
       const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
-      if (this.shouldHideBodyPart(bodyPart, amputationData, subtype)) {
+      if ((amputationData && amputationData[bodyPart])
+         || ((bodyPart === BODY.BRA || bodyPart === BODY.VEST)
+              && (subtype === SUBTYPES.TOP || subtype === SUBTYPES.DRESS))
+         || (bodyPart === BODY.PANTY
+             && (subtype === SUBTYPES.BOTTOM || subtype === SUBTYPES.DRESS))) {
         this.amputations[bodyPart] = [...this.amputations[bodyPart], itemId];
       }
     });
-  }
-
-  shouldHideBodyPart(bodyPart: BodyPart, amputationData: AmputationData, subtype: SubType): boolean {
-    if (amputationData && amputationData[bodyPart]) {
-      return true;
-    }
-
-    if ((bodyPart === BODY.BRA || bodyPart === BODY.VEST) && (subtype === SUBTYPES.TOP || subtype === SUBTYPES.DRESS)) {
-      return true;
-    }
-
-    if (bodyPart === BODY.PANTY && (subtype === SUBTYPES.BOTTOM || subtype === SUBTYPES.DRESS)) {
-      return true;
-    }
-
-    return false;
   }
 
   updateVisibleBodyParts(): void {

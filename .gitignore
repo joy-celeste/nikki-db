@@ -1,7 +1,7 @@
 # local assets
 /public/assets/
 /public/clothes/
-/public/sprites/
+/src/sprites/
 
 # firebase
 .firebase

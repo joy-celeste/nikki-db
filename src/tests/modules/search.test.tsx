@@ -34,12 +34,12 @@ describe('SearchIndex', () => {
     state = store.getState();
     expect(state.search.results.length).toBe(numResults);
 
-    state.search.results.forEach((result) => {
+    state.search.results.forEach((result: any) => {
       expect(result.name.includes('love') || result.name.includes('Love')).toBe(true);
       expect(() => result.iconId as ItemId).not.toThrowError();
-      result.contents.forEach((itemId) =>
+      result.contents.forEach((itemId: any) =>
         expect(() => itemId as ItemId).not.toThrowError());
     });
-    expect(state).toMatchSnapshot();
+    expect(state.search.results).toMatchSnapshot();
   });
 });

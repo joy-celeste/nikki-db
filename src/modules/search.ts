@@ -59,10 +59,11 @@ export type SearchResult = {
 export type SearchState = {
   index: SearchIndex;
   results: SearchResult[];
-  readonly refToData: RefToSearchData;
 };
 
 export type RefToSearchData = Record<string, SearchData>;
+
+const refToData: RefToSearchData = JSON.parse(JSON.stringify(refToSearchResult));
 
 interface SearchData {
   name: string,
@@ -73,7 +74,6 @@ interface SearchData {
 const initialState: SearchState = {
   index: new SearchIndex(),
   results: null,
-  refToData: JSON.parse(JSON.stringify(refToSearchResult)) as RefToSearchData,
 };
 
 // ACTIONS
@@ -89,7 +89,7 @@ export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS)
     const searchState = getState().search;
     const initialResults = searchState.index.search(`+name:${searchTerm}`, maxResults);
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
-      const suitData = searchState.refToData[key];
+      const suitData = refToData[key];
       return {
         name: suitData?.name,
         iconId: suitData?.iconId,

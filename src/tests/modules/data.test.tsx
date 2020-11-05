@@ -129,7 +129,7 @@ describe('DataState', () => {
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => posedDress);
-    
+
     state = store.getState();
     expect(state.character.history.length).toEqual(1);
     expect(state.character.step).toEqual(0);
@@ -155,7 +155,7 @@ describe('DataState', () => {
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => simpleHair);
-    
+
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, simpleHair.id]));
     state = store.getState();
     expect(apiMock).toBeCalledTimes(2);
@@ -178,7 +178,7 @@ describe('DataState', () => {
       .mockImplementationOnce(() => simpleHair)
       .mockImplementationOnce(() => simpleDress)
       .mockImplementationOnce(() => complexHair);
-    
+
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id, simpleHair.id]));
     state = store.getState();
     expect(apiMock).toBeCalledTimes(3);
@@ -224,8 +224,8 @@ describe('DataState', () => {
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => posedDress)
-      .mockImplementationOnce(() => Promise.reject("oops"));
-    
+      .mockImplementationOnce(() => Promise.reject('oops'));
+
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id, posedShoes.id]));
     state = store.getState();
     expect(apiMock).toBeCalledTimes(3);

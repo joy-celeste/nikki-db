@@ -169,7 +169,7 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
           itemData = new ItemData(response);
           dispatch(addItemData(itemId, itemData));
         } else {
-          throw new NoDataException(`Successful API call, but no item data was received from db for ItemId ${itemId}`)
+          throw new NoDataException(`Successful API call, but no item data was received from db for ItemId ${itemId}`);
         }
       } else {
         itemData = items[itemId];
@@ -179,9 +179,9 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
       const rejected = results.filter((result) => (result.status === 'rejected'));
       if (rejected.length >= 1) {
         console.log(`We rejected ${rejected.length} promise(s) for these reasons:
-        ${JSON.parse(JSON.stringify(rejected)).map((rejectedPromise: any) => JSON.stringify(rejectedPromise.reason))}
-        Original list loaded was: ${itemIds}.`)
-      } 
+        ${JSON.parse(JSON.stringify(rejected)).map((rejectedPromise: PromiseRejectionEvent) => JSON.stringify(rejectedPromise.reason))}
+        Original list loaded was: ${itemIds}.`);
+      }
       dispatch(addToHistory(newChar, charState.step + 1));
     });
   };

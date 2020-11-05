@@ -901,7 +901,7 @@
 .icon30393,
 .icon31022,
 .icon31021 {
-            background-image: url('/sprites/coat.png');
+            background-image: url('./sprites/coat.png');
             background-repeat: no-repeat;
         }
         
@@ -7220,7 +7220,7 @@
     .icon30393,
     .icon31022,
     .icon31021 {
-                background-image: url('/sprites/coat.png');
+                background-image: url('./sprites/coat.png');
                 -webkit-background-size: 2819px 2761px;
                 -moz-background-size: 2819px 2761px;
                 background-size: 2819px 2761px;
@@ -9077,7 +9077,7 @@
 .icon21634,
 .icon21562,
 .icon21257 {
-            background-image: url('/sprites/dress.png');
+            background-image: url('./sprites/dress.png');
             background-repeat: no-repeat;
         }
         
@@ -22032,7 +22032,7 @@
     .icon21634,
     .icon21562,
     .icon21257 {
-                background-image: url('/sprites/dress.png');
+                background-image: url('./sprites/dress.png');
                 -webkit-background-size: 4227px 4105px;
                 -moz-background-size: 4227px 4105px;
                 background-size: 4227px 4105px;
@@ -24044,7 +24044,7 @@
 .icon11637,
 .icon10661,
 .icon10196 {
-            background-image: url('/sprites/hair.png');
+            background-image: url('./sprites/hair.png');
             background-repeat: no-repeat;
         }
         
@@ -38084,7 +38084,7 @@
     .icon11637,
     .icon10661,
     .icon10196 {
-                background-image: url('/sprites/hair.png');
+                background-image: url('./sprites/hair.png');
                 -webkit-background-size: 4222px 4204px;
                 -moz-background-size: 4222px 4204px;
                 background-size: 4222px 4204px;
@@ -39023,7 +39023,7 @@
 .icon60921,
 .icon60282,
 .icon60490 {
-            background-image: url('/sprites/hosiery.png');
+            background-image: url('./sprites/hosiery.png');
             background-repeat: no-repeat;
         }
         
@@ -45552,7 +45552,7 @@
     .icon60921,
     .icon60282,
     .icon60490 {
-                background-image: url('/sprites/hosiery.png');
+                background-image: url('./sprites/hosiery.png');
                 -webkit-background-size: 1943px 1922px;
                 -moz-background-size: 1943px 1922px;
                 background-size: 1943px 1922px;
@@ -46000,7 +46000,7 @@
 .icon90203,
 .icon90155,
 .icon90027 {
-            background-image: url('/sprites/makeup.png');
+            background-image: url('./sprites/makeup.png');
             background-repeat: no-repeat;
         }
         
@@ -49092,7 +49092,7 @@
     .icon90203,
     .icon90155,
     .icon90027 {
-                background-image: url('/sprites/makeup.png');
+                background-image: url('./sprites/makeup.png');
                 -webkit-background-size: 1519px 1411px;
                 -moz-background-size: 1519px 1411px;
                 background-size: 1519px 1411px;
@@ -50817,7 +50817,7 @@
 .icon71095,
 .icon70703,
 .icon70066 {
-            background-image: url('/sprites/shoes.png');
+            background-image: url('./sprites/shoes.png');
             background-repeat: no-repeat;
         }
         
@@ -62848,7 +62848,7 @@
     .icon71095,
     .icon70703,
     .icon70066 {
-                background-image: url('/sprites/shoes.png');
+                background-image: url('./sprites/shoes.png');
                 -webkit-background-size: 2692px 2687px;
                 -moz-background-size: 2692px 2687px;
                 background-size: 2692px 2687px;
@@ -69640,7 +69640,7 @@
 .icon83232,
 .icon82345,
 .icon81879 {
-            background-image: url('/sprites/special.png');
+            background-image: url('./sprites/special.png');
             background-repeat: no-repeat;
         }
         
@@ -117140,7 +117140,7 @@
     .icon83232,
     .icon82345,
     .icon81879 {
-                background-image: url('/sprites/special.png');
+                background-image: url('./sprites/special.png');
                 -webkit-background-size: 6208px 6141px;
                 -moz-background-size: 6208px 6141px;
                 background-size: 6208px 6141px;
@@ -117273,7 +117273,7 @@
 .icon880114,
 .icon880142,
 .icon880158 {
-            background-image: url('/sprites/spirit.png');
+            background-image: url('./sprites/spirit.png');
             background-repeat: no-repeat;
         }
         
@@ -118160,7 +118160,7 @@
     .icon880114,
     .icon880142,
     .icon880158 {
-                background-image: url('/sprites/spirit.png');
+                background-image: url('./sprites/spirit.png');
                 -webkit-background-size: 852px 819px;
                 -moz-background-size: 852px 819px;
                 background-size: 852px 819px;
@@ -118881,7 +118881,7 @@
 .icon40396,
 .icon40395,
 .icon40469 {
-            background-image: url('/sprites/top.png');
+            background-image: url('./sprites/top.png');
             background-repeat: no-repeat;
         }
         
@@ -123884,7 +123884,7 @@
     .icon40396,
     .icon40395,
     .icon40469 {
-                background-image: url('/sprites/top.png');
+                background-image: url('./sprites/top.png');
                 -webkit-background-size: 2232px 2166px;
                 -moz-background-size: 2232px 2166px;
                 background-size: 2232px 2166px;

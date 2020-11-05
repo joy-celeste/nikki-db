@@ -175,13 +175,7 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
         itemData = items[itemId];
       }
       newChar.wear(itemData);
-    })).then((results) => {
-      const rejected = results.filter((result) => (result.status === 'rejected'));
-      if (rejected.length >= 1) {
-        console.log(`We rejected ${rejected.length} promise(s) for these reasons:
-        ${JSON.parse(JSON.stringify(rejected)).map((rejectedPromise: PromiseRejectionEvent) => JSON.stringify(rejectedPromise.reason))}
-        Original list loaded was: ${itemIds}.`);
-      }
+    })).then(() => {
       dispatch(addToHistory(newChar, charState.step + 1));
     });
   };

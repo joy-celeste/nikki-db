@@ -1,12 +1,8 @@
-import SearchIndex, { searchName, searchReducer } from '../../modules/search';
 import { combineReducers, Store } from 'redux';
-import { posedDress, posedCoat, simpleDress, simpleHair, posedTop, posedBottom, posedShoes } from '../test_data/data';
+import SearchIndex, { searchName, searchReducer, MAX_RESULTS } from '../../modules/search';
 import { RootState } from '../../modules';
-import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
+import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { Character, CharacterState, characterReducer, wearItem, BodyParts } from '../../modules/character';
-import { BODY, DEFAULT_AMPUTATIONS, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
-import { Index } from 'lunr';
 
 describe('SearchIndex', () => {
   let store: Store<any>;
@@ -27,18 +23,23 @@ describe('SearchIndex', () => {
 
   test(`Action: SEARCH_UPDATE_RESULTS / Use-case: searchName -- successfully search
         up a term, get results, and put it in the state`, async () => {
+    let state: RootState;
+
+    await store.dispatch<any>(searchName('love'));
+    state = store.getState();
+    expect(state.search.results.length).toBe(MAX_RESULTS);
+
     const numResults = 13;
     await store.dispatch<any>(searchName('love', numResults));
-    const state: RootState = store.getState();
+    state = store.getState();
     expect(state.search.results.length).toBe(numResults);
 
-    state.search.results.forEach(result => {
+    state.search.results.forEach((result) => {
       expect(result.name.includes('love') || result.name.includes('Love')).toBe(true);
       expect(() => result.iconId as ItemId).not.toThrowError();
-      result.contents.forEach(itemId => 
-        expect(() => itemId as ItemId).not.toThrowError()
-      )}
-    );
+      result.contents.forEach((itemId) =>
+        expect(() => itemId as ItemId).not.toThrowError());
+    });
     expect(state).toMatchSnapshot();
   });
 });

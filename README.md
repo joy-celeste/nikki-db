@@ -42,7 +42,7 @@
 
 ### Milestone 1: Beta of newest suits
 - [ ] Save items on reload (`localStorage`)
-- [ ] When resizing screen smaller, update the x coordinates of images
+- [x] When resizing screen smaller, update the x coordinates of images
 - [ ] Create clothes selection panel - select items by category
 - [ ] Undo / Redo
 - [ ] Hide / delete worn items from the items panel

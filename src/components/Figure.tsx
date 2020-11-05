@@ -22,9 +22,9 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
 
       imageStyle = {
         top: -piece.y,
-        right: piece.width ? -piece.x - Math.max((piece.width - window.innerWidth), 0) : -piece.x,
+        right: piece.width ? -piece.x - Math.max((piece.width - window.innerWidth), piece.width) : -piece.x,
         bottom: piece.y,
-        left: piece.width ? piece.x - Math.max((piece.width - window.innerWidth), 0) : piece.x,
+        left: piece.width ? piece.x - Math.max((piece.width - window.innerWidth), piece.width) : piece.x,
         zIndex: piece.z,
         margin: 'auto',
         position: 'absolute',

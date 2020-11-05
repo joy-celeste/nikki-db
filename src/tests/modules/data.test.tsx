@@ -123,7 +123,8 @@ describe('DataState', () => {
     expect(state.data.itemsData).toMatchSnapshot();
   });
 
-  test('Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (no conflicts)', async () => {
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - 
+        load multiple items successfully (no conflicts)`, async () => {
     let state: RootState;
 
     apiMock
@@ -149,15 +150,14 @@ describe('DataState', () => {
     expect(state.data.itemsData).toMatchSnapshot();
   });
 
-  test('Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (one conflict)', async () => {
-    let state: RootState;
-
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems -
+        load multiple items successfully (one conflict)`, async () => {
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => simpleHair);
 
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, simpleHair.id]));
-    state = store.getState();
+    const state: RootState = store.getState();
     expect(apiMock).toBeCalledTimes(2);
     expect(state.character.history.length).toEqual(2);
     expect(state.character.step).toEqual(1);
@@ -202,13 +202,12 @@ describe('DataState', () => {
 
   test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - 
         handle API call returning blank data`, async () => {
-    let state: RootState;
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => {});
 
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id]));
-    state = store.getState();
+    const state: RootState = store.getState();
     expect(apiMock).toBeCalledTimes(2);
     expect(state.character.history.length).toEqual(2);
     expect(state.character.step).toEqual(1);
@@ -220,14 +219,13 @@ describe('DataState', () => {
 
   test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - 
         handle rejections in API calls - load as many items as possible`, async () => {
-    let state: RootState;
     apiMock
       .mockImplementationOnce(() => posedCoat)
       .mockImplementationOnce(() => posedDress)
-      .mockImplementationOnce(() => Promise.reject('oops'));
+      .mockImplementationOnce(() => Promise.reject(new Error('oops')));
 
     await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id, posedShoes.id]));
-    state = store.getState();
+    const state: RootState = store.getState();
     expect(apiMock).toBeCalledTimes(3);
     expect(state.character.history.length).toEqual(2);
     expect(state.character.step).toEqual(1);

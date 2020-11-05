@@ -264,6 +264,145 @@ Object {
 }
 `;
 
+exports[`DataState Action: ADD_ITEMS / Use-case: loadMultipleItems -
+        load multiple items successfully (one conflict) 1`] = `
+Object {
+  "10007": ItemData {
+    "amputationData": null,
+    "depthType": 1,
+    "depths": Object {
+      "1": 33000,
+      "2": 3500,
+      "7": 38000,
+      "8": 37200,
+      "9": 3510,
+    },
+    "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
+    "id": 10007,
+    "name": "Elegant Nobleman",
+    "position": Array [
+      PositionData {
+        "depth": 1,
+        "height": null,
+        "scale": null,
+        "width": null,
+        "x": -21.5,
+        "y": 426,
+        "z": 33000,
+      },
+    ],
+    "subType": 1,
+  },
+  "30987": ItemData {
+    "amputationData": Object {
+      "10": false,
+      "12": false,
+      "2": false,
+      "5": false,
+      "9": true,
+    },
+    "depthType": 48,
+    "depths": Object {
+      "1": 36700,
+      "12": 10190,
+      "13": 10160,
+      "14": 9880,
+      "2": 27000,
+      "3": 19000,
+      "4": 5000,
+      "5": 840,
+    },
+    "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
+    "id": 30987,
+    "name": "Rose Heart",
+    "position": Array [
+      PositionData {
+        "depth": 1,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -27,
+        "y": 200.5,
+        "z": 36700,
+      },
+      PositionData {
+        "depth": 2,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -202,
+        "y": -130,
+        "z": 27000,
+      },
+      PositionData {
+        "depth": 3,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": 101,
+        "y": -119,
+        "z": 19000,
+      },
+      PositionData {
+        "depth": 4,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -81,
+        "y": -153,
+        "z": 5000,
+      },
+      PositionData {
+        "depth": 13,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -88.5,
+        "y": 245,
+        "z": 10160,
+      },
+      PositionData {
+        "depth": 14,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": 42.5,
+        "y": 234.5,
+        "z": 9880,
+      },
+      PositionData {
+        "depth": 101,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -30.5,
+        "y": 242.5,
+        "z": 36695,
+      },
+      PositionData {
+        "depth": 201,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -47.5,
+        "y": 262,
+        "z": 26995,
+      },
+      PositionData {
+        "depth": 301,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": 124.5,
+        "y": 139,
+        "z": 18995,
+      },
+    ],
+    "subType": 3,
+  },
+}
+`;
+
 exports[`DataState Action: ADD_ITEMS / Use-case: loadMultipleItems - 
         handle API call returning blank data 1`] = `
 Object {
@@ -661,7 +800,8 @@ Object {
 }
 `;
 
-exports[`DataState Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (no conflicts) 1`] = `
+exports[`DataState Action: ADD_ITEMS / Use-case: loadMultipleItems - 
+        load multiple items successfully (no conflicts) 1`] = `
 Object {
   "22008": ItemData {
     "amputationData": Object {
@@ -710,144 +850,6 @@ Object {
       },
     ],
     "subType": 2,
-  },
-  "30987": ItemData {
-    "amputationData": Object {
-      "10": false,
-      "12": false,
-      "2": false,
-      "5": false,
-      "9": true,
-    },
-    "depthType": 48,
-    "depths": Object {
-      "1": 36700,
-      "12": 10190,
-      "13": 10160,
-      "14": 9880,
-      "2": 27000,
-      "3": 19000,
-      "4": 5000,
-      "5": 840,
-    },
-    "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
-    "id": 30987,
-    "name": "Rose Heart",
-    "position": Array [
-      PositionData {
-        "depth": 1,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -27,
-        "y": 200.5,
-        "z": 36700,
-      },
-      PositionData {
-        "depth": 2,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -202,
-        "y": -130,
-        "z": 27000,
-      },
-      PositionData {
-        "depth": 3,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": 101,
-        "y": -119,
-        "z": 19000,
-      },
-      PositionData {
-        "depth": 4,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -81,
-        "y": -153,
-        "z": 5000,
-      },
-      PositionData {
-        "depth": 13,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -88.5,
-        "y": 245,
-        "z": 10160,
-      },
-      PositionData {
-        "depth": 14,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": 42.5,
-        "y": 234.5,
-        "z": 9880,
-      },
-      PositionData {
-        "depth": 101,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -30.5,
-        "y": 242.5,
-        "z": 36695,
-      },
-      PositionData {
-        "depth": 201,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": -47.5,
-        "y": 262,
-        "z": 26995,
-      },
-      PositionData {
-        "depth": 301,
-        "height": null,
-        "scale": 1,
-        "width": null,
-        "x": 124.5,
-        "y": 139,
-        "z": 18995,
-      },
-    ],
-    "subType": 3,
-  },
-}
-`;
-
-exports[`DataState Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (one conflict) 1`] = `
-Object {
-  "10007": ItemData {
-    "amputationData": null,
-    "depthType": 1,
-    "depths": Object {
-      "1": 33000,
-      "2": 3500,
-      "7": 38000,
-      "8": 37200,
-      "9": 3510,
-    },
-    "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
-    "id": 10007,
-    "name": "Elegant Nobleman",
-    "position": Array [
-      PositionData {
-        "depth": 1,
-        "height": null,
-        "scale": null,
-        "width": null,
-        "x": -21.5,
-        "y": 426,
-        "z": 33000,
-      },
-    ],
-    "subType": 1,
   },
   "30987": ItemData {
     "amputationData": Object {

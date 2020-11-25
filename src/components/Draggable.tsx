@@ -7,7 +7,7 @@ interface DraggableState {
 }
 
 class Draggable extends React.PureComponent<ReactNode, DraggableState> {
-  div: HTMLDivElement;
+  div!: HTMLDivElement;
 
   constructor(props: ReactNode) {
     super(props);

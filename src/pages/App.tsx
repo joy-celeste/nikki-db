@@ -3,13 +3,13 @@ import './App.css';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
 import { ItemData, ItemId, loadItem, loadMultipleItems } from '../modules/data';
-import { Character, Clothes } from '../modules/character';
+import { Character } from '../modules/character';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
-import Icon from '../components/Icon';
 import Result from '../components/Result';
 import Menu from '../components/Menu';
+import Equipped from '../components/Equipped';
 
 const DEFAULT_SEARCH_VALUE = 'abyssal creeper';
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
@@ -90,10 +90,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
     ));
   }
 
-  renderEquippedItems(clothes: Clothes): React.ReactNode {
-    return Object.values(clothes).map((clothesId) => <Icon key={clothesId} clothesId={clothesId} />);
-  }
-
   render() {
     const { character, itemsData, searchResults } = this.props;
     const { searchValue } = this.state;
@@ -123,7 +119,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
             top={30}
             right={30}
           >
-            {this.renderEquippedItems(character.clothes)}
+            <Equipped />
           </Menu>
         </div>
       </div>

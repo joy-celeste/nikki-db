@@ -17,7 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "strictNullChecks" : false,
+    "strictNullChecks" : true,
     "jsx": "react",
     "noFallthroughCasesInSwitch": true,
   },

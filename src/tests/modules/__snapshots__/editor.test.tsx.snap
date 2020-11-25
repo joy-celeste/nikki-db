@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 1`] = `
+Object {
+  "editor": Object {
+    "hiddenItems": Set {
+      10007,
+    },
+  },
+}
+`;
+
+exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 2`] = `
+Object {
+  "editor": Object {
+    "hiddenItems": Set {
+      10007,
+      21305,
+    },
+  },
+}
+`;
+
+exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 3`] = `
+Object {
+  "editor": Object {
+    "hiddenItems": Set {
+      21305,
+    },
+  },
+}
+`;

@@ -9,6 +9,7 @@ import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
 import Icon from '../components/Icon';
 import Result from '../components/Result';
+import Menu from '../components/Menu';
 
 const DEFAULT_SEARCH_VALUE = 'abyssal creeper';
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
@@ -107,7 +108,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 
           <div className="backgroundOptions"> {this.renderBackgroundOptions(DEFAULT_BACKGROUND_OPTIONS)} </div>
           <div className="searchResults"> {this.renderSearchResults(searchResults)} </div>
-          <div className="equipped"> {this.renderEquippedItems(character.clothes)} </div>
         </div>
 
         <div className="figure">
@@ -115,7 +115,19 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
             <Figure itemsData={itemsData} characterData={character} />
           </Draggable>
         </div>
+
+        <div className="menu">
+          <Menu
+            minimized={false}
+            active={false}
+            top={30}
+            right={30}
+          >
+            {this.renderEquippedItems(character.clothes)}
+          </Menu>
+        </div>
       </div>
+
     );
   }
 }

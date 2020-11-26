@@ -113,12 +113,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
         </div>
 
         <div className="menu">
-          <Menu
-            minimized={false}
-            active={false}
-            top={30}
-            right={30}
-          >
+          <Menu minimized={false} active={false} top={30} right={30}>
             <Equipped />
           </Menu>
         </div>

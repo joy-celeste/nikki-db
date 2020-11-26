@@ -4,14 +4,15 @@ import './Icon.css';
 
 export interface IconProps {
   clothesId: ItemId;
+  disabled?: boolean
 }
 
 export const Icon: React.FC<IconProps> = (props: IconProps) => {
-  const { clothesId } = props;
+  const { clothesId, disabled } = props;
 
   return (
     <div className="icon-wrapper">
-      <div className={`icon icon${clothesId}`} />
+      <div className={`${disabled ? 'disabled' : ''} icon${clothesId}`} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { ACTION_CONSTANTS } from './constants';
 import { RootState } from '.';
 import { ItemId } from './data';
 
-export const MAX_RESULTS = 5;
+export const MAX_RESULTS = 150;
 
 export default class SearchIndex {
   index: Index;
@@ -26,7 +26,13 @@ export default class SearchIndex {
 
       this.ref('id');
       this.field('name');
-      this.field('type');
+      this.field('spec');
+      this.field('rare');
+      this.field('posed');
+      this.field('tag1');
+      this.field('tag2');
+      this.field('depth');
+      this.field('genre');
 
       searchIndexData.forEach((doc) => {
         this.add(doc);
@@ -87,7 +93,7 @@ const updateSearchResults = (searchResults: SearchResult[]): AnyAction => ({
 export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
-    const initialResults = searchState.index.search(`+name:${searchTerm}`, maxResults);
+    const initialResults = searchState.index.search(searchTerm, maxResults);
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
       return {

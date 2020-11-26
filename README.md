@@ -35,11 +35,10 @@
 - [x] Create search function - wear suit on searching up suit
 - [x] When resizing screen smaller, update the x coordinates of images
 - [x] Hide / delete worn items from the items panel
+- [x] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [ ] Create clothes selection panel - select items by category
 - [ ] Download render button
 - [ ] Update snapshots with height/width info
-- [ ] Update search/itemID selection to not use onChange() - onSubmit() is enough
-- [ ] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [ ] Refactor loadMultipleItems() for better separation of concerns
 - [ ] Save items on reload (`localStorage`)
 - [ ] Undo / Redo
@@ -52,6 +51,7 @@
 - [ ] Obfuscate filenames
 - [ ] Script for allowing only certain items to be shown
 - [ ] Script for automatically creating suit breakdowns
+- [ ] Bug: DST skin goes above underwear
 
 ### Milestone 2: Beta of newest suits + current wardrobe
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)

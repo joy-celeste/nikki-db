@@ -1,26 +1,19 @@
 import React, { CSSProperties } from 'react';
-import { Character } from '../modules/character';
-import { ItemData, ItemId, ItemsData } from '../modules/data';
+import { useSelector } from 'react-redux';
+import { RootState } from '../modules';
+import { ItemData, ItemId } from '../modules/data';
 import { Body, Item } from '../modules/item';
 import { Image } from './Image';
 
-export interface FigureProps {
-  itemsData: ItemsData;
-  characterData: Character;
-}
-
-export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
-  let isVisible: boolean;
-  let imageName: string;
-  let imageStyle: CSSProperties;
-  const { itemsData, characterData } = props;
+export const Figure = (): JSX.Element => {
+  const itemsData = useSelector((state: RootState) => state.data.itemsData);
+  const characterData = useSelector((state: RootState) => state.character.history[state.character.step]);
 
   function renderPieces(item: Item) {
     return item.pieces.map((piece) => {
-      isVisible = piece.isVisible;
-      imageName = `${item.itemId}-${piece.depth}`;
-
-      imageStyle = {
+      const isVisible = piece.isVisible;
+      const imageName = `${item.itemId}-${piece.depth}`;
+      const imageStyle: CSSProperties = {
         top: -piece.y,
         right: piece.width ? -piece.x - Math.max((piece.width - window.innerWidth), piece.width) : -piece.x,
         bottom: piece.y,
@@ -29,6 +22,7 @@ export const Figure: React.FC<FigureProps> = (props: FigureProps) => {
         margin: 'auto',
         position: 'absolute',
       };
+
       return <Image key={imageName} visible={isVisible} imageName={imageName} style={imageStyle} />;
     });
   }

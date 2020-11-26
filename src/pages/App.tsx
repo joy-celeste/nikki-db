@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { RootState } from '../modules';
-import { ItemData, ItemId, loadItem, loadMultipleItems } from '../modules/data';
-import { Character } from '../modules/character';
+import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import { searchName, SearchResult } from '../modules/search';
@@ -22,8 +21,6 @@ export interface AppOwnState {
 }
 
 export interface AppStateProps {
-  itemsData: Record<ItemId, ItemData>,
-  character: Character,
   searchResults: SearchResult[],
 }
 
@@ -91,7 +88,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
   }
 
   render() {
-    const { character, itemsData, searchResults } = this.props;
+    const { searchResults } = this.props;
     const { searchValue } = this.state;
 
     return (
@@ -108,7 +105,7 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 
         <div className="figure">
           <Draggable>
-            <Figure itemsData={itemsData} characterData={character} />
+            <Figure />
           </Draggable>
         </div>
 
@@ -124,8 +121,6 @@ class UnconnectedApp extends PureComponent<AppProps, AppOwnState> {
 }
 
 const mapStateToProps = (state: RootState): AppStateProps => ({
-  itemsData: state.data.itemsData,
-  character: state.character.history[state.character.step],
   searchResults: state.search.results,
 });
 

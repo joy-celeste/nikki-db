@@ -28,26 +28,30 @@
 - [x] Load backgrounds
 - [x] Create icon stylesheet, scripts for creating it
 
-### Milestone 0.5: Getting this running online
+### Milestone 1: Beta of newest suits
 - [x] Shop for options
 - [x] Webhosting
 - [x] Cloudflare
-- [ ] Database
 - [x] Create search function - wear suit on searching up suit
+- [x] When resizing screen smaller, update the x coordinates of images
+- [x] Hide / delete worn items from the items panel
+- [ ] Create clothes selection panel - select items by category
 - [ ] Download render button
 - [ ] Update snapshots with height/width info
 - [ ] Update search/itemID selection to not use onChange() - onSubmit() is enough
 - [ ] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [ ] Refactor loadMultipleItems() for better separation of concerns
-
-### Milestone 1: Beta of newest suits
 - [ ] Save items on reload (`localStorage`)
-- [x] When resizing screen smaller, update the x coordinates of images
-- [ ] Create clothes selection panel - select items by category
 - [ ] Undo / Redo
-- [ ] Hide / delete worn items from the items panel
-- [ ] Create beautiful UI: https://www.figma.com/proto/i9XDb7wiSGCd7lIuxlcs8q/Site?node-id=6%3A6
 - [ ] Find out how to only upload changed files to API
+- [ ] Update equipped menu for better UX
+- - [ ] Adding items shows it up in the equipped panel
+- - [ ] Update equipped panel to show 3 items per row
+- - [ ] Add in red check icon to show visible items
+- - [ ] Small menu to delete an item
+- [ ] Obfuscate filenames
+- [ ] Script for allowing only certain items to be shown
+- [ ] Script for automatically creating suit breakdowns
 
 ### Milestone 2: Beta of newest suits + current wardrobe
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)

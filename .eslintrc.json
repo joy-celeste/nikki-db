@@ -59,7 +59,6 @@
     "class-methods-use-this": "off",
     "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/no-explicit-any": "error",
-    "strictPropertyInitialization": "false",
     "object-curly-newline": ["error", {
       "ObjectPattern": { "multiline": true },
       "ImportDeclaration": "never",

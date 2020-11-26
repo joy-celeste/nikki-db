@@ -20,7 +20,7 @@ export class Character {
     this.amputations = input && input.amputations ? { ...input.amputations } : { ...DEFAULT_AMPUTATIONS };
   }
 
-  hide(bodyPart: BodyPart): void {
+  public hide(bodyPart: BodyPart): void {
     if (this.visibleParts.has(bodyPart)) {
       this.visibleParts.delete(bodyPart);
     }

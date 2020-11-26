@@ -1,13 +1,16 @@
 import React, { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { ItemData, ItemId } from '../modules/data';
+import { BodyPart, Character } from '../modules/character';
+import { ItemData, ItemId, SubType } from '../modules/data';
 import { Body, Item } from '../modules/item';
 import { Image } from './Image';
 
 export const Figure = (): JSX.Element => {
   const itemsData = useSelector((state: RootState) => state.data.itemsData);
   const characterData = useSelector((state: RootState) => state.character.history[state.character.step]);
+  const hiddenList = useSelector((state: RootState) => state.editor.hiddenItems);
+  let character = new Character(characterData);
 
   function renderPieces(item: Item) {
     return item.pieces.map((piece) => {
@@ -29,12 +32,17 @@ export const Figure = (): JSX.Element => {
 
   return (
     <div>
-      {renderPieces(new Body(characterData.visibleParts))}
-      {Object.values(characterData.clothes).map((itemId: ItemId) => {
-        const itemData: ItemData = itemsData[itemId];
-        const item: Item = itemData ? new Item(itemData) : null;
-        return item ? renderPieces(item) : null;
+      {Object.entries(characterData.clothes).map(([subType, itemId]) => {
+        console.log(subType, itemId)
+        if (!hiddenList.has(itemId)) {
+          const itemData: ItemData = itemsData[itemId];
+          const item: Item = itemData ? new Item(itemData) : null;
+          return item ? renderPieces(item) : null;
+        } else {
+          character.remove(parseInt(subType) as SubType);
+        }
       })}
+      {renderPieces(new Body(character.visibleParts))}
     </div>
   );
 };

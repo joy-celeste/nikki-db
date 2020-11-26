@@ -4,7 +4,7 @@
 	max-width: 550px;
 }
 
-.searchbar {
+.searchbar, .backgroundOptions {
 	width: 100%;
 	flex-basis: 100%;
 }

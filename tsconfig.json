@@ -17,13 +17,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "strictNullChecks" : false,
+    "strictNullChecks": false,
     "noFallthroughCasesInSwitch": true,
+    "jsx": "react"
   },
   "include": [
     "src"
   ],
   "globals": {
     "JSX": true
-  }
+  },
+  "jsx": "react"
 }

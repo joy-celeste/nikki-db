@@ -11,13 +11,11 @@ export interface MenuProps {
 }
 
 export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
-  const { minimized, active, children, top, right } = props;
-  const style = {
-    top,
-    right,
-  };
+  const { minimized, active, children, top, left, right } = props;
+  const leftStyle = { top, left };
+  const rightStyle = { top, right };
 
-  return <div style={style} className="window"> {minimized} {active} {children} </div>;
+  return <div style={left ? leftStyle : rightStyle} className="window"> {minimized} {active} {children} </div>;
 };
 
 export default Menu;

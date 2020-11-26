@@ -4,12 +4,17 @@ import { RootState } from '.';
 import { ACTION_CONSTANTS } from './constants';
 import { ItemId } from './data';
 
+const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
+// const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
+
 export type EditorState = {
-  hiddenItems: Set<ItemId>
+  hiddenItems: Set<ItemId>,
+  backgroundImageName: string
 };
 
 const initialState: EditorState = {
   hiddenItems: new Set(),
+  backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
 };
 
 // ACTIONS

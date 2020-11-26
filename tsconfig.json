@@ -18,10 +18,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "strictNullChecks" : false,
-    "jsx": "react",
     "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src"
-  ]
+  ],
+  "globals": {
+    "JSX": true
+  }
 }

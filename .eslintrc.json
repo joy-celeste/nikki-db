@@ -3,6 +3,9 @@
     "browser": true,
     "jest": true
   },
+  "globals": {
+    "JSX": true
+  },
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",

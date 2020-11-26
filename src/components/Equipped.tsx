@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
+import { wearItem } from '../modules/character';
 import { toggleItemVisibility } from '../modules/editor';
 import Icon from './Icon';
 import './Icon.css';
@@ -19,7 +20,7 @@ export const Equipped = (): JSX.Element => {
             <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
           </div>
           <div className="equipped-text">{itemsData[clothesId]?.name}</div>
-          <div className="equipped-trash">Vis</div>
+          <div className="equipped-trash" onClick={() => dispatch(wearItem(clothesId))}>Del</div>
         </div>
       ))}
     </div>

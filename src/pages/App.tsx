@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import './App.css';
+import { useDispatch } from 'react-redux';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import Menu from '../components/Menu';
 import Equipped from '../components/Equipped';
 import Inventory from '../components/Inventory';
 import { loadItem } from '../modules/data';
-import { useDispatch } from 'react-redux';
 
 const App = (): JSX.Element => {
   const canvasRef = useRef();
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(loadItem(10001))}, []);
+  useEffect(() => { dispatch(loadItem(10001)); }, [dispatch]);
 
   return (
     <div className="App">
@@ -32,6 +32,6 @@ const App = (): JSX.Element => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

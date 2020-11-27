@@ -1,7 +1,7 @@
 import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
-import searchIndexData from '../search_index.json';
-import refToSearchResult from '../ref_to_search_result.json';
+import searchIndexData from '../data/search_index.json';
+import refToSearchResult from '../data/ref_to_search_result.json';
 import { ACTION_CONSTANTS } from './constants';
 import { RootState } from '.';
 import { ItemId } from './data';

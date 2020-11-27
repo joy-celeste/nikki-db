@@ -8,7 +8,7 @@ import Downloader from './Downloader';
 export const Inventory = (): JSX.Element => (
   <div className="wrapper">
     <div className="searchbar"><SearchBar /></div>
-    <div className="backgroundOptions"><BackgroundOptions/> <Downloader /></div>
+    <div className="backgroundOptions"><BackgroundOptions /> <Downloader /></div>
     <div className="categories">
       <ul>
         <li>Hair</li>

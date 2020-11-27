@@ -14,6 +14,11 @@ export type Depths = Record<number, number>;
 export type ItemId = number;
 export type DepthType = number;
 
+export interface SubtypeInfo {
+  subtype: number,
+  depth: Record<number, number>
+}
+
 export class ItemData {
   id?: ItemId;
   name?: string;

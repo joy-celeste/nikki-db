@@ -1,13 +1,17 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 import { RootState } from '.';
-import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS, SUBTYPES, BODY } from './constants';
+import { ACTION_CONSTANTS, DEFAULT_BODY, DEFAULT_CLOTHES, DEFAULT_AMPUTATIONS_LIST, SUBTYPES, BODY } from './constants';
 import { AmputationData, AmputationParts, ItemData, ItemId, ItemsData, SubType } from './data';
 
 export type BodyPart = number;
 export type BodyParts = Set<BodyPart>;
 export type Clothes = Record<SubType, ItemId>;
 export type Amputations = Record<AmputationParts, ItemId[]>;
+export const DEFAULT_AMPUTATIONS: Record<AmputationParts, ItemId[]> = {};
+DEFAULT_AMPUTATIONS_LIST.forEach((bodyPart) => {
+  DEFAULT_AMPUTATIONS[bodyPart] = [];
+});
 
 export class Character {
   visibleParts: BodyParts;

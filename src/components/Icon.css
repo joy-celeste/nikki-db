@@ -11,22 +11,3 @@
 	-webkit-filter: grayscale(1);
 	filter: grayscale(1);
 }
-
-.equipped-wrapper {
-	display: flex;
-	height: 110px;
-	align-items: center;
-	text-align: left;
-}
-
-.equipped-trash {
-	margin: 0px 15px 0px 15px;
-}
-
-.equipped-icon {
-	margin-right: 15px;
-}
-
-.equipped-text {
-	width: 100%;
-}

@@ -3,7 +3,7 @@ import { DocumentData } from '@firebase/firestore-types';
 import { DeserializeNullException, NoDataException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
-  DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST } from './constants';
+  DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST, CLOTHES_DATA } from './constants';
 import { Character, CharacterState, wearItem, addToHistory } from './character';
 import { RootState } from '.';
 
@@ -169,13 +169,8 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
 
     await Promise.allSettled(itemIds.map(async (itemId) => {
       if (!(itemId in items)) {
-        const response = await fetchItemData(itemId);
-        if (response) {
-          itemData = new ItemData(response);
-          dispatch(addItemData(itemId, itemData));
-        } else {
-          throw new NoDataException(`Successful API call, but no item data was received from db for ItemId ${itemId}`);
-        }
+        itemData = new ItemData(CLOTHES_DATA[itemId]);
+        dispatch(addItemData(itemId, itemData));
       } else {
         itemData = items[itemId];
       }

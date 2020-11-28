@@ -1,18 +1,18 @@
-.wrapper {
+.equipped-wrapper {
 	display: flex;
 	height: 110px;
 	align-items: center;
 	text-align: left;
 }
 
-.trash {
+.equipped-trash {
 	margin: 0px 15px 0px 15px;
 }
 
-.icon {
+.equipped-icon {
 	margin-right: 15px;
 }
 
-.text {
+.equipped-text {
 	width: 100%;
 }

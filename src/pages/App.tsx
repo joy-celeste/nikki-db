@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { useDispatch } from 'react-redux';
 import Draggable from '../components/Draggable';
@@ -9,13 +9,12 @@ import Inventory from '../components/Inventory';
 import { loadItem } from '../modules/data';
 
 const App = (): JSX.Element => {
-  const canvasRef = useRef();
   const dispatch = useDispatch();
   useEffect(() => { dispatch(loadItem(10001)); }, [dispatch]);
 
   return (
     <div className="App">
-      <div ref={canvasRef} className="figure">
+      <div className="figure">
         <Draggable>
           <Figure />
         </Draggable>

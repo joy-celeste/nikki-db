@@ -39,6 +39,7 @@ export const Figure = (): JSX.Element => {
           return item ? renderPieces(item) : null;
         }
         character.remove(parseInt(subType, 10) as SubType);
+        return null;
       })}
       {renderPieces(new Body(character.visibleParts))}
     </div>

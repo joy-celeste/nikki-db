@@ -12,20 +12,24 @@ export const Results = (): JSX.Element => {
   return results ? (
     <div>
       <ul>
-        {Object.values(results).map((result) => (
-          <li><div className="item">
-            <div
-              key={`${result.name}-${result.iconId}`}
-              onClick={() => (result.contents.length === 1
-                ? dispatch(loadItem(result.contents[0]))
-                : dispatch(loadMultipleItems(result.contents)))}
-            >
-              <Icon clothesId={result.iconId} />
-              <div className="text">{result.name}</div>
+        {Object.values(results).map((result) => {
+          const key = `${result.name}-${result.iconId}`;
+
+          return (
+            <li key={key}><div className="item" key={result.name}>
+              <div
+                key={`${key}_result_container`}
+                onClick={() => (result.contents.length === 1
+                  ? dispatch(loadItem(result.contents[0]))
+                  : dispatch(loadMultipleItems(result.contents)))}
+              >
+                <Icon key={`${key}_icon`} clothesId={result.iconId} />
+                <div key={`${key}_text`} className="text">{result.name}</div>
+              </div>
             </div>
-          </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   ) : null;

@@ -15,12 +15,12 @@ export const Equipped = (): JSX.Element => {
   return (
     <div>
       {Object.values(clothes).map((clothesId) => (
-        <div className="wrapper" key={`${clothesId}_wrapper`}>
-          <div className="icon" key={`${clothesId}_icon`} onClick={() => dispatch(toggleItemVisibility(clothesId))}>
+        <div className="equipped-wrapper" key={`${clothesId}_wrapper`}>
+          <div className="equipped-icon" key={`${clothesId}_icon`} onClick={() => dispatch(toggleItemVisibility(clothesId))}>
             <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
           </div>
-          <div className="text" key={`${clothesId}_text`}>{itemsData[clothesId]?.name}</div>
-          <div className="trash" key={`${clothesId}_trash`} onClick={() => dispatch(wearItem(clothesId))}>Del</div>
+          <div className="equipped-text" key={`${clothesId}_text`}>{itemsData[clothesId]?.name}</div>
+          <div className="equipped-trash" key={`${clothesId}_trash`} onClick={() => dispatch(wearItem(clothesId))}>Del</div>
         </div>
       ))}
     </div>

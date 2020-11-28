@@ -28,7 +28,7 @@
 - [x] Load backgrounds
 - [x] Create icon stylesheet, scripts for creating it
 
-### Milestone 1: Beta of newest suits
+### Milestone 1: Automate creating image suit breakdowns
 - [x] Shop for options
 - [x] Webhosting
 - [x] Cloudflare
@@ -37,27 +37,36 @@
 - [x] Hide / delete worn items from the items panel
 - [x] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [x] Download render button
+- [ ] Script for automatically creating suit breakdowns
+
+### Milestone 2: Browse clothes, and edit a single character; initial closed beta of only newest suits
 - [ ] Create clothes selection panel - select items by category
 - [ ] Update snapshots with height/width info
-- [ ] Refactor loadMultipleItems() for better separation of concerns
-- [ ] Save items on reload (`localStorage`)
-- [ ] Undo / Redo
-- [ ] Find out how to only upload changed files to API
+- [ ] PNG compression
+- [ ] Obfuscate filenames
 - [ ] Update equipped menu for better UX
 - - [ ] Adding items shows it up in the equipped panel
 - - [ ] Update equipped panel to show 3 items per row
 - - [ ] Add in red check icon to show visible items
 - - [ ] Small menu to delete an item
-- [ ] Obfuscate filenames
-- [ ] Script for allowing only certain items to be shown
-- [ ] Script for automatically creating suit breakdowns
+- - [ ] Button to delete all unworn items
 - [ ] Bug: DST skin goes above underwear
-- [ ] Bug: Downloaded image fails if the top of the character is above the top of the viewport.
 - [ ] When loading multiple items, unhide everything
-- [ ] Copy list of items to clipboard
-- [ ] Load sessions by URL
+- [ ] Load sessions by URL (list of items or a suit id)
+- [ ] Obfuscate JSON
+- [ ] Create a subset of clothes data
+- [ ] Script for creating web with limited number of suits, and can hide search bar
 
-### Milestone 2: Beta of newest suits + current wardrobe
+### Milestone 3: Performance increases, address initial feedback
+- [ ] Refactor loadMultipleItems() for better separation of concerns
+- [ ] Find out how to only upload changed files to API
+- [ ] Script for allowing only certain items to be shown
+- [ ] Bug: Downloaded image fails if the top of the character is above the top of the viewport.
+- [ ] Copy list of items to clipboard
+- [ ] Bug: Some suits are marked as posed when they are just alts of unposed suits (example: Pegasus's Dream)
+- [ ] Display only suits that are visible in Achievements section
+
+### Milestone 4: Beta of newest suits + current wardrobe
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
 - [ ] Search function - lazy load on stop typing
@@ -70,7 +79,7 @@
 - [ ] Hide / delete backgrounds/characters from the layers panel
 - [ ] Remove all button
 
-### Milestone 3: Beta of full simulator functionality - make all clothes available
+### Milestone 5: Beta of full simulator functionality - make all clothes available
 - [ ] Figure out how to provide this public service without screwing over Paper's artists/developers revenue
 - [ ] Filters
 - - [ ] Sort by new
@@ -82,22 +91,22 @@
 - [ ] Auto update when the game uupdates
 - [ ] Animations
 
-### Milestone 3.5: Assets from other versions
+### Milestone 6: Assets from other versions
 - [ ] Localize UI
 - [ ] Update presenters/etc to handle new languages
 - [ ] Upload assets
 
-### Milestone 4: Public beta of mobile functionality / Nikki DB Lite (API v2)
+### Milestone 7: Public beta of mobile functionality / Nikki DB Lite (API v2)
 - [ ] Design API to build images without having to load all assets locally
 - [ ] Design mobile site
 
-### Milestone 5: Advanced account features - saving, favorites, social
+### Milestone 8: Advanced account features - saving, favorites, social
 - [ ] Save designed suits to account
 - [ ] Favorite items
 - [ ] Publicized most favorited items
-- [ ] Social: allow people to post their creations for likes/views?
+- [ ] Social: give users ability to upload styling
 
-### Milestone 6: Advanced simulator
+### Milestone 9: Advanced simulator
 - [ ] Upload custom clothes
 - - [ ] Allow custom clothes to be shared on site / users can favorite, save, etc
 - [ ] Edit hue/saturation/color of clothes

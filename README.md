@@ -51,6 +51,7 @@
 - - [ ] Small menu to delete an item
 - - [ ] Button to delete all unworn items
 - [ ] Bug: DST skin goes above underwear
+- [ ] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
 - [ ] When loading multiple items, unhide everything
 - [ ] Load sessions by URL (list of items or a suit id)
 - [ ] Obfuscate JSON

@@ -1,20 +1,90 @@
 import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 import { RootState } from '.';
-import { ACTION_CONSTANTS } from './constants';
-import { ItemId } from './data';
+import { ACTION_CONSTANTS, MENU_DATA } from './constants';
+import { ItemId, SubType } from './data';
 
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
 // const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
 
+export interface MenuItem {
+  subtype: SubType | ReadonlyArray<MenuItem>,
+  displayName: string,
+}
+
+export class Menu {
+  menuData: ReadonlyArray<MenuItem>;
+  menuLocation: [number, number];
+  menuStrings: string[];
+
+  constructor(inputMenuData?: ReadonlyArray<MenuItem>) {
+    this.menuData = inputMenuData;
+    this.menuLocation = [null, null];
+    this.menuStrings = this.getStrings();
+  }
+
+  getLayer(): ReadonlyArray<MenuItem> {
+    if (this.menuLocation[0]) {
+      const firstLayer = this.menuData;
+      const firstLayerNext = firstLayer[this.menuLocation[0]] as MenuItem;
+      if (!this.menuLocation[1] && this.menuLocation[1] !== 0) {
+        return firstLayerNext.subtype as ReadonlyArray<MenuItem>;
+      }
+      const secondLayer = firstLayerNext.subtype as ReadonlyArray<MenuItem>;
+      const secondLayerNext = secondLayer[this.menuLocation[1]] as MenuItem;
+      return secondLayerNext.subtype as ReadonlyArray<MenuItem>;
+    }
+    return this.menuData;
+  }
+
+  getStrings(): string[] {
+    return this.getLayer().map((item: MenuItem) => item.displayName);
+  }
+
+  goDown(index: number): void {
+    if (typeof (this.getLayer()[index].subtype) === 'number') {
+      return;
+    }
+
+    if (!this.menuLocation[0]) {
+      this.menuLocation = [index, null];
+    } else if (!this.menuLocation[1]) {
+      this.menuLocation[1] = index;
+    }
+
+    this.menuStrings = this.getStrings();
+  }
+
+  goUp(): void {
+    if (this.menuLocation[1]) {
+      this.menuLocation[1] = null;
+    } else if (this.menuLocation[0]) {
+      this.menuLocation = [null, null];
+    }
+    this.menuStrings = this.getStrings();
+  }
+
+  getSubtypeAt(index: number): SubType {
+    const result = this.getLayer()[index].subtype;
+    if (typeof (result) === 'number') {
+      return result;
+    }
+    return null;
+  }
+}
+
 export type EditorState = {
   hiddenItems: Set<ItemId>,
-  backgroundImageName: string
+  backgroundImageName: string,
+  menu: Menu,
+  currentSelection: SubType,
 };
 
 const initialState: EditorState = {
   hiddenItems: new Set(),
   backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
+  menu: new Menu(MENU_DATA),
+  currentSelection: null,
 };
 
 // ACTIONS

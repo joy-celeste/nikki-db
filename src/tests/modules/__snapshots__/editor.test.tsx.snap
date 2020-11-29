@@ -1,32 +1,2901 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 1`] = `
+exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 1`] = `
 Object {
   "editor": Object {
+    "backgroundImageName": "medium",
+    "currentSelection": null,
     "hiddenItems": Set {
       10007,
+    },
+    "menu": Menu {
+      "menuData": Array [
+        Object {
+          "displayName": "Hair",
+          "subtype": 1,
+        },
+        Object {
+          "displayName": "Dress",
+          "subtype": 2,
+        },
+        Object {
+          "displayName": "Coat",
+          "subtype": 3,
+        },
+        Object {
+          "displayName": "Top",
+          "subtype": 4,
+        },
+        Object {
+          "displayName": "Bottom",
+          "subtype": 5,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": Array [
+            Object {
+              "displayName": "Leglet",
+              "subtype": 6,
+            },
+            Object {
+              "displayName": "Hosiery",
+              "subtype": 7,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Shoes",
+          "subtype": 8,
+        },
+        Object {
+          "displayName": "Accessory",
+          "subtype": Array [
+            Object {
+              "displayName": "Headwear",
+              "subtype": Array [
+                Object {
+                  "displayName": "Hair_Ornament",
+                  "subtype": 10,
+                },
+                Object {
+                  "displayName": "Veil",
+                  "subtype": 20,
+                },
+                Object {
+                  "displayName": "Hairpin",
+                  "subtype": 28,
+                },
+                Object {
+                  "displayName": "Ear",
+                  "subtype": 29,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Earrings",
+              "subtype": 11,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": Array [
+                Object {
+                  "displayName": "Scarf",
+                  "subtype": 12,
+                },
+                Object {
+                  "displayName": "Necklace",
+                  "subtype": 13,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Bracelet",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Ornament",
+                  "subtype": 14,
+                },
+                Object {
+                  "displayName": "Left_Hand_Ornament",
+                  "subtype": 15,
+                },
+                Object {
+                  "displayName": "Gloves",
+                  "subtype": 16,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Handheld",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Holding",
+                  "subtype": 17,
+                },
+                Object {
+                  "displayName": "Left_Hand_Holding",
+                  "subtype": 18,
+                },
+                Object {
+                  "displayName": "Both_Hand_Holding",
+                  "subtype": 33,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Waist",
+              "subtype": 19,
+            },
+            Object {
+              "displayName": "Special",
+              "subtype": Array [
+                Object {
+                  "displayName": "Face",
+                  "subtype": 21,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 22,
+                },
+                Object {
+                  "displayName": "Tattoo",
+                  "subtype": 23,
+                },
+                Object {
+                  "displayName": "Wing",
+                  "subtype": 24,
+                },
+                Object {
+                  "displayName": "Tail",
+                  "subtype": 25,
+                },
+                Object {
+                  "displayName": "Foreground",
+                  "subtype": 26,
+                },
+                Object {
+                  "displayName": "Background",
+                  "subtype": 27,
+                },
+                Object {
+                  "displayName": "Head_Ornament",
+                  "subtype": 30,
+                },
+                Object {
+                  "displayName": "Ground",
+                  "subtype": 31,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Skin",
+              "subtype": 32,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Makeup",
+          "subtype": 9,
+        },
+        Object {
+          "displayName": "Spirit",
+          "subtype": 34,
+        },
+      ],
+      "menuLocation": Array [
+        null,
+        null,
+      ],
+      "menuStrings": Array [
+        "Hair",
+        "Dress",
+        "Coat",
+        "Top",
+        "Bottom",
+        "Hosiery",
+        "Shoes",
+        "Accessory",
+        "Makeup",
+        "Spirit",
+      ],
     },
   },
 }
 `;
 
-exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 2`] = `
+exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 2`] = `
 Object {
   "editor": Object {
+    "backgroundImageName": "medium",
+    "currentSelection": null,
     "hiddenItems": Set {
       10007,
       21305,
+    },
+    "menu": Menu {
+      "menuData": Array [
+        Object {
+          "displayName": "Hair",
+          "subtype": 1,
+        },
+        Object {
+          "displayName": "Dress",
+          "subtype": 2,
+        },
+        Object {
+          "displayName": "Coat",
+          "subtype": 3,
+        },
+        Object {
+          "displayName": "Top",
+          "subtype": 4,
+        },
+        Object {
+          "displayName": "Bottom",
+          "subtype": 5,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": Array [
+            Object {
+              "displayName": "Leglet",
+              "subtype": 6,
+            },
+            Object {
+              "displayName": "Hosiery",
+              "subtype": 7,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Shoes",
+          "subtype": 8,
+        },
+        Object {
+          "displayName": "Accessory",
+          "subtype": Array [
+            Object {
+              "displayName": "Headwear",
+              "subtype": Array [
+                Object {
+                  "displayName": "Hair_Ornament",
+                  "subtype": 10,
+                },
+                Object {
+                  "displayName": "Veil",
+                  "subtype": 20,
+                },
+                Object {
+                  "displayName": "Hairpin",
+                  "subtype": 28,
+                },
+                Object {
+                  "displayName": "Ear",
+                  "subtype": 29,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Earrings",
+              "subtype": 11,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": Array [
+                Object {
+                  "displayName": "Scarf",
+                  "subtype": 12,
+                },
+                Object {
+                  "displayName": "Necklace",
+                  "subtype": 13,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Bracelet",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Ornament",
+                  "subtype": 14,
+                },
+                Object {
+                  "displayName": "Left_Hand_Ornament",
+                  "subtype": 15,
+                },
+                Object {
+                  "displayName": "Gloves",
+                  "subtype": 16,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Handheld",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Holding",
+                  "subtype": 17,
+                },
+                Object {
+                  "displayName": "Left_Hand_Holding",
+                  "subtype": 18,
+                },
+                Object {
+                  "displayName": "Both_Hand_Holding",
+                  "subtype": 33,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Waist",
+              "subtype": 19,
+            },
+            Object {
+              "displayName": "Special",
+              "subtype": Array [
+                Object {
+                  "displayName": "Face",
+                  "subtype": 21,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 22,
+                },
+                Object {
+                  "displayName": "Tattoo",
+                  "subtype": 23,
+                },
+                Object {
+                  "displayName": "Wing",
+                  "subtype": 24,
+                },
+                Object {
+                  "displayName": "Tail",
+                  "subtype": 25,
+                },
+                Object {
+                  "displayName": "Foreground",
+                  "subtype": 26,
+                },
+                Object {
+                  "displayName": "Background",
+                  "subtype": 27,
+                },
+                Object {
+                  "displayName": "Head_Ornament",
+                  "subtype": 30,
+                },
+                Object {
+                  "displayName": "Ground",
+                  "subtype": 31,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Skin",
+              "subtype": 32,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Makeup",
+          "subtype": 9,
+        },
+        Object {
+          "displayName": "Spirit",
+          "subtype": 34,
+        },
+      ],
+      "menuLocation": Array [
+        null,
+        null,
+      ],
+      "menuStrings": Array [
+        "Hair",
+        "Dress",
+        "Coat",
+        "Top",
+        "Bottom",
+        "Hosiery",
+        "Shoes",
+        "Accessory",
+        "Makeup",
+        "Spirit",
+      ],
     },
   },
 }
 `;
 
-exports[`CharacterState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 3`] = `
+exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 3`] = `
 Object {
   "editor": Object {
+    "backgroundImageName": "medium",
+    "currentSelection": null,
     "hiddenItems": Set {
       21305,
     },
+    "menu": Menu {
+      "menuData": Array [
+        Object {
+          "displayName": "Hair",
+          "subtype": 1,
+        },
+        Object {
+          "displayName": "Dress",
+          "subtype": 2,
+        },
+        Object {
+          "displayName": "Coat",
+          "subtype": 3,
+        },
+        Object {
+          "displayName": "Top",
+          "subtype": 4,
+        },
+        Object {
+          "displayName": "Bottom",
+          "subtype": 5,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": Array [
+            Object {
+              "displayName": "Leglet",
+              "subtype": 6,
+            },
+            Object {
+              "displayName": "Hosiery",
+              "subtype": 7,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Shoes",
+          "subtype": 8,
+        },
+        Object {
+          "displayName": "Accessory",
+          "subtype": Array [
+            Object {
+              "displayName": "Headwear",
+              "subtype": Array [
+                Object {
+                  "displayName": "Hair_Ornament",
+                  "subtype": 10,
+                },
+                Object {
+                  "displayName": "Veil",
+                  "subtype": 20,
+                },
+                Object {
+                  "displayName": "Hairpin",
+                  "subtype": 28,
+                },
+                Object {
+                  "displayName": "Ear",
+                  "subtype": 29,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Earrings",
+              "subtype": 11,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": Array [
+                Object {
+                  "displayName": "Scarf",
+                  "subtype": 12,
+                },
+                Object {
+                  "displayName": "Necklace",
+                  "subtype": 13,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Bracelet",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Ornament",
+                  "subtype": 14,
+                },
+                Object {
+                  "displayName": "Left_Hand_Ornament",
+                  "subtype": 15,
+                },
+                Object {
+                  "displayName": "Gloves",
+                  "subtype": 16,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Handheld",
+              "subtype": Array [
+                Object {
+                  "displayName": "Right_Hand_Holding",
+                  "subtype": 17,
+                },
+                Object {
+                  "displayName": "Left_Hand_Holding",
+                  "subtype": 18,
+                },
+                Object {
+                  "displayName": "Both_Hand_Holding",
+                  "subtype": 33,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Waist",
+              "subtype": 19,
+            },
+            Object {
+              "displayName": "Special",
+              "subtype": Array [
+                Object {
+                  "displayName": "Face",
+                  "subtype": 21,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 22,
+                },
+                Object {
+                  "displayName": "Tattoo",
+                  "subtype": 23,
+                },
+                Object {
+                  "displayName": "Wing",
+                  "subtype": 24,
+                },
+                Object {
+                  "displayName": "Tail",
+                  "subtype": 25,
+                },
+                Object {
+                  "displayName": "Foreground",
+                  "subtype": 26,
+                },
+                Object {
+                  "displayName": "Background",
+                  "subtype": 27,
+                },
+                Object {
+                  "displayName": "Head_Ornament",
+                  "subtype": 30,
+                },
+                Object {
+                  "displayName": "Ground",
+                  "subtype": 31,
+                },
+              ],
+            },
+            Object {
+              "displayName": "Skin",
+              "subtype": 32,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Makeup",
+          "subtype": 9,
+        },
+        Object {
+          "displayName": "Spirit",
+          "subtype": 34,
+        },
+      ],
+      "menuLocation": Array [
+        null,
+        null,
+      ],
+      "menuStrings": Array [
+        "Hair",
+        "Dress",
+        "Coat",
+        "Top",
+        "Bottom",
+        "Hosiery",
+        "Shoes",
+        "Accessory",
+        "Makeup",
+        "Spirit",
+      ],
+    },
   },
+}
+`;
+
+exports[`Menu Doesnt do anything if trying to go down on an invalid index 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    null,
+    null,
+  ],
+  "menuStrings": Array [
+    "Hair",
+    "Dress",
+    "Coat",
+    "Top",
+    "Bottom",
+    "Hosiery",
+    "Shoes",
+    "Accessory",
+    "Makeup",
+    "Spirit",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 1 layer 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    5,
+    null,
+  ],
+  "menuStrings": Array [
+    "Leglet",
+    "Hosiery",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 1 layer 2`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    5,
+    null,
+  ],
+  "menuStrings": Array [
+    "Leglet",
+    "Hosiery",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 2 layers 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    null,
+  ],
+  "menuStrings": Array [
+    "Headwear",
+    "Earrings",
+    "Necklace",
+    "Bracelet",
+    "Handheld",
+    "Waist",
+    "Special",
+    "Skin",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 2 layers 2`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    null,
+  ],
+  "menuStrings": Array [
+    "Headwear",
+    "Earrings",
+    "Necklace",
+    "Bracelet",
+    "Handheld",
+    "Waist",
+    "Special",
+    "Skin",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 2 layers 3`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    0,
+  ],
+  "menuStrings": Array [
+    "Hair_Ornament",
+    "Veil",
+    "Hairpin",
+    "Ear",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 2 layers v2 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    null,
+  ],
+  "menuStrings": Array [
+    "Headwear",
+    "Earrings",
+    "Necklace",
+    "Bracelet",
+    "Handheld",
+    "Waist",
+    "Special",
+    "Skin",
+  ],
+}
+`;
+
+exports[`Menu Goes down the menu correctly and returns the correct menuStrings - 2 layers v2 2`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    2,
+  ],
+  "menuStrings": Array [
+    "Scarf",
+    "Necklace",
+  ],
+}
+`;
+
+exports[`Menu Goes up correctly after having gone down - 1 layer 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    null,
+    null,
+  ],
+  "menuStrings": Array [
+    "Hair",
+    "Dress",
+    "Coat",
+    "Top",
+    "Bottom",
+    "Hosiery",
+    "Shoes",
+    "Accessory",
+    "Makeup",
+    "Spirit",
+  ],
+}
+`;
+
+exports[`Menu Goes up correctly after having gone down - 2 layers 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    7,
+    null,
+  ],
+  "menuStrings": Array [
+    "Headwear",
+    "Earrings",
+    "Necklace",
+    "Bracelet",
+    "Handheld",
+    "Waist",
+    "Special",
+    "Skin",
+  ],
+}
+`;
+
+exports[`Menu Goes up correctly after having gone down - 2 layers 2`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    null,
+    null,
+  ],
+  "menuStrings": Array [
+    "Hair",
+    "Dress",
+    "Coat",
+    "Top",
+    "Bottom",
+    "Hosiery",
+    "Shoes",
+    "Accessory",
+    "Makeup",
+    "Spirit",
+  ],
+}
+`;
+
+exports[`Menu Initializes to with correct default data 1`] = `
+Menu {
+  "menuData": Array [
+    Object {
+      "displayName": "Hair",
+      "subtype": 1,
+    },
+    Object {
+      "displayName": "Dress",
+      "subtype": 2,
+    },
+    Object {
+      "displayName": "Coat",
+      "subtype": 3,
+    },
+    Object {
+      "displayName": "Top",
+      "subtype": 4,
+    },
+    Object {
+      "displayName": "Bottom",
+      "subtype": 5,
+    },
+    Object {
+      "displayName": "Hosiery",
+      "subtype": Array [
+        Object {
+          "displayName": "Leglet",
+          "subtype": 6,
+        },
+        Object {
+          "displayName": "Hosiery",
+          "subtype": 7,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Shoes",
+      "subtype": 8,
+    },
+    Object {
+      "displayName": "Accessory",
+      "subtype": Array [
+        Object {
+          "displayName": "Headwear",
+          "subtype": Array [
+            Object {
+              "displayName": "Hair_Ornament",
+              "subtype": 10,
+            },
+            Object {
+              "displayName": "Veil",
+              "subtype": 20,
+            },
+            Object {
+              "displayName": "Hairpin",
+              "subtype": 28,
+            },
+            Object {
+              "displayName": "Ear",
+              "subtype": 29,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Earrings",
+          "subtype": 11,
+        },
+        Object {
+          "displayName": "Necklace",
+          "subtype": Array [
+            Object {
+              "displayName": "Scarf",
+              "subtype": 12,
+            },
+            Object {
+              "displayName": "Necklace",
+              "subtype": 13,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Bracelet",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Ornament",
+              "subtype": 14,
+            },
+            Object {
+              "displayName": "Left_Hand_Ornament",
+              "subtype": 15,
+            },
+            Object {
+              "displayName": "Gloves",
+              "subtype": 16,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Handheld",
+          "subtype": Array [
+            Object {
+              "displayName": "Right_Hand_Holding",
+              "subtype": 17,
+            },
+            Object {
+              "displayName": "Left_Hand_Holding",
+              "subtype": 18,
+            },
+            Object {
+              "displayName": "Both_Hand_Holding",
+              "subtype": 33,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Waist",
+          "subtype": 19,
+        },
+        Object {
+          "displayName": "Special",
+          "subtype": Array [
+            Object {
+              "displayName": "Face",
+              "subtype": 21,
+            },
+            Object {
+              "displayName": "Brooch",
+              "subtype": 22,
+            },
+            Object {
+              "displayName": "Tattoo",
+              "subtype": 23,
+            },
+            Object {
+              "displayName": "Wing",
+              "subtype": 24,
+            },
+            Object {
+              "displayName": "Tail",
+              "subtype": 25,
+            },
+            Object {
+              "displayName": "Foreground",
+              "subtype": 26,
+            },
+            Object {
+              "displayName": "Background",
+              "subtype": 27,
+            },
+            Object {
+              "displayName": "Head_Ornament",
+              "subtype": 30,
+            },
+            Object {
+              "displayName": "Ground",
+              "subtype": 31,
+            },
+          ],
+        },
+        Object {
+          "displayName": "Skin",
+          "subtype": 32,
+        },
+      ],
+    },
+    Object {
+      "displayName": "Makeup",
+      "subtype": 9,
+    },
+    Object {
+      "displayName": "Spirit",
+      "subtype": 34,
+    },
+  ],
+  "menuLocation": Array [
+    null,
+    null,
+  ],
+  "menuStrings": Array [
+    "Hair",
+    "Dress",
+    "Coat",
+    "Top",
+    "Bottom",
+    "Hosiery",
+    "Shoes",
+    "Accessory",
+    "Makeup",
+    "Spirit",
+  ],
 }
 `;

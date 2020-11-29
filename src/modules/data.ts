@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { DocumentData } from '@firebase/firestore-types';
-import { DeserializeNullException, NoDataException } from './errors';
+import { DeserializeNullException } from './errors';
 import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST, CLOTHES_DATA } from './constants';

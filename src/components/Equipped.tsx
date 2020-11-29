@@ -20,7 +20,7 @@ export const Equipped = (): JSX.Element => {
             <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
           </div>
           <div className="equipped-text" key={`${clothesId}_text`}>{itemsData[clothesId]?.name}</div>
-          <div className="equipped-trash" key={`${clothesId}_trash`} onClick={() => dispatch(wearItem(clothesId))}>Del</div>
+          <div className="equipped-trash" key={`${clothesId}_trash`} onClick={() => dispatch(wearItem(clothesId))}>🗑️</div>
         </div>
       ))}
     </div>

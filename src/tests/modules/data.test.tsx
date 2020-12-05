@@ -3,9 +3,13 @@ import { posedDress, posedCoat, posedShoes, simpleHair,
   simpleHat, complexHair, deerSpirit, motorcycleSpirit, simpleDress } from '../test_data/data';
 import { DeserializeNullException } from '../../modules/errors';
 import { RootState } from '../../modules';
-import { ItemData, loadItem, loadMultipleItems, PositionData } from '../../modules/data';
+import { ItemData, loadItem, loadMultipleItems, PositionData, initialState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
 import * as api from '../../modules/api';
+
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.01;
+global.Math = mockMath;
 
 describe('ItemData', () => {
   test('Errors if given empty data', () => {
@@ -64,7 +68,116 @@ describe('ItemData', () => {
   });
 });
 
-describe('DataState', () => {
+describe('DataState - with local clothesData', () => {
+  let store: Store<any>;
+
+  beforeEach(() => {
+    store = createStoreWithMiddleware();
+  });
+
+  test('Action: ADD_ITEMS / Use-case: loadItem -- document does not exist', async () => {
+    await store.dispatch<any>(loadItem(999999));
+    const state: RootState = store.getState();
+    expect(state.data.itemsData).toStrictEqual(initialState.itemsData);
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(undefined);
+  });
+
+  test('Action: ADD_ITEMS / Use-case: loadItem -- successfully calls looks up item and adds it to the store', async () => {
+    await store.dispatch<any>(loadItem(posedDress.id));
+    const state: RootState = store.getState();
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
+  });
+
+  test('Action: ADD_ITEMS / Use-case: loadItem -- successfully adds multiple items to the store', async () => {
+    await store.dispatch<any>(loadItem(posedCoat.id));
+    await store.dispatch<any>(loadItem(posedShoes.id));
+    const state: RootState = store.getState();
+    expect(Object.keys(state.data.itemsData)).toHaveLength(3); // nikki's pinky, coat, shoes
+    expect(state.data.itemsData[posedCoat.id]).toStrictEqual(new ItemData(posedCoat));
+    expect(state.data.itemsData[posedShoes.id]).toStrictEqual(new ItemData(posedShoes));
+    expect(state.data.itemsData).toMatchSnapshot();
+  });
+
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - 
+        load multiple items successfully (no conflicts)`, async () => {
+    let state: RootState;
+    state = store.getState();
+    expect(state.character.history.length).toEqual(1);
+    expect(state.character.step).toEqual(0);
+    expect(Object.keys(state.character.history[0].clothes).length).toEqual(1);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(1); // nikki's pinky
+
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id]));
+    state = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(3);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(3); // nikki's pinky, coat, dress
+
+    expect(state.data.itemsData[posedCoat.id]).toStrictEqual(new ItemData(posedCoat));
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
+    expect(state.data.itemsData).toMatchSnapshot();
+  });
+
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (one conflict)`, async () => {
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, simpleHair.id]));
+    const state: RootState = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(2);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(3); // nikki's pinky, coat, hair
+    expect(state.data.itemsData[posedCoat.id]).toStrictEqual(new ItemData(posedCoat));
+    expect(state.data.itemsData[simpleHair.id]).toStrictEqual(new ItemData(simpleHair));
+    expect(state.data.itemsData).toMatchSnapshot();
+  });
+
+  test('Action: ADD_ITEMS / Use-case: loadMultipleItems - use item data if already loaded', async () => {
+    let state: RootState;
+
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id, simpleHair.id]));
+    state = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(3); // nikki's pinky, hair, dress, coat
+    expect(Object.keys(state.data.itemsData)).toHaveLength(4);
+    expect(state.data).toMatchSnapshot();
+    expect(state.character).toMatchSnapshot();
+
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, simpleDress.id, complexHair.id]));
+    state = store.getState();
+    expect(state.character.history.length).toEqual(3);
+    expect(state.character.step).toEqual(2);
+    expect(Object.keys(state.character.history[2].clothes).length).toEqual(3);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(6);
+    expect(state.data).toMatchSnapshot();
+    expect(state.character).toMatchSnapshot();
+  });
+
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - handle API call returning blank data`, async () => {
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id]));
+    const state: RootState = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(3);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(3);
+    expect(state.data).toMatchSnapshot();
+    expect(state.character).toMatchSnapshot();
+  });
+
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - 
+        handle rejections in API calls - load as many items as possible`, async () => {
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, posedDress.id, `invalidId`]));
+    const state: RootState = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(3);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(3);
+    expect(state.data).toMatchSnapshot();
+    expect(state.character).toMatchSnapshot();
+  });
+});
+
+describe.skip('DataState - with API', () => {
   let store: Store<any>;
   let apiMock: any;
 
@@ -234,4 +347,6 @@ describe('DataState', () => {
     expect(state.data).toMatchSnapshot();
     expect(state.character).toMatchSnapshot();
   });
+
+  
 });

@@ -17,10 +17,10 @@ export class Menu {
   menuLocation: [number, number];
   menuStrings: string[];
 
-  constructor(inputMenuData?: ReadonlyArray<MenuItem>) {
-    this.menuData = inputMenuData;
-    this.menuLocation = [null, null];
-    this.menuStrings = this.getStrings();
+  constructor(input?: any) {
+    this.menuData = input.menuData ?? input;
+    this.menuLocation = input.menuLocation ?? [null, null];
+    this.menuStrings = input.menuStrings ?? this.getStrings();
   }
 
   getLayer(): ReadonlyArray<MenuItem> {
@@ -28,21 +28,21 @@ export class Menu {
       const firstLayer = this.menuData;
       const firstLayerNext = firstLayer[this.menuLocation[0]] as MenuItem;
       if (!this.menuLocation[1] && this.menuLocation[1] !== 0) {
-        return firstLayerNext.subtype as ReadonlyArray<MenuItem>;
+        return firstLayerNext?.subtype as ReadonlyArray<MenuItem>;
       }
       const secondLayer = firstLayerNext.subtype as ReadonlyArray<MenuItem>;
       const secondLayerNext = secondLayer[this.menuLocation[1]] as MenuItem;
-      return secondLayerNext.subtype as ReadonlyArray<MenuItem>;
+      return secondLayerNext?.subtype as ReadonlyArray<MenuItem>;
     }
     return this.menuData;
   }
 
-  getStrings(): string[] {
-    return this.getLayer().map((item: MenuItem) => item.displayName);
+  public getStrings(): string[] {
+    return this.getLayer()?.map((item: MenuItem) => item.displayName) ?? null;
   }
 
   goDown(index: number): void {
-    if (typeof (this.getLayer()[index].subtype) === 'number') {
+    if (typeof (this.getLayer()[index]?.subtype) === 'number') {
       return;
     }
 
@@ -64,7 +64,7 @@ export class Menu {
     this.menuStrings = this.getStrings();
   }
 
-  getSubtypeAt(index: number): SubType {
+  public getSubtypeAt(index: number): SubType {
     const result = this.getLayer()[index].subtype;
     if (typeof (result) === 'number') {
       return result;
@@ -76,21 +76,24 @@ export class Menu {
 export type EditorState = {
   hiddenItems: Set<ItemId>,
   backgroundImageName: string,
-  menu: Menu,
-  currentSelection: SubType,
+  menu: Menu
 };
 
 const initialState: EditorState = {
   hiddenItems: new Set(),
   backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
   menu: new Menu(MENU_DATA),
-  currentSelection: null,
 };
 
 // ACTIONS
 export const changeHiddenItemList = (hiddenItemList: Set<ItemId>): AnyAction => ({
   type: ACTION_CONSTANTS.EDITOR_CHANGE_HIDDEN_ITEM_LIST,
   payload: hiddenItemList,
+});
+
+export const updateMenu = (menu: Menu): AnyAction => ({
+  type: ACTION_CONSTANTS.EDITOR_UPDATE_MENU,
+  payload: menu,
 });
 
 // USE-CASE
@@ -107,6 +110,22 @@ export const toggleItemVisibility = (itemId: ItemId) =>
     dispatch(changeHiddenItemList(newHiddenItems));
   };
 
+export const goUpMenu = () =>
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
+    const oldMenu: Menu = getState().editor.menu;
+    const newMenu: Menu = new Menu(oldMenu);
+    newMenu.goUp();
+    dispatch(updateMenu(newMenu));
+  };
+
+export const goDownMenu = (index: number) =>
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
+    const oldMenu: Menu = getState().editor.menu;
+    const newMenu: Menu = new Menu(oldMenu);
+    newMenu.goDown(index);
+    dispatch(updateMenu(newMenu));
+  };
+
 // REDUCER
 export function editorReducer(
   state = initialState,
@@ -117,6 +136,11 @@ export function editorReducer(
       return {
         ...state,
         hiddenItems: action.payload,
+      };
+    case ACTION_CONSTANTS.EDITOR_UPDATE_MENU:
+      return {
+        ...state,
+        menu: action.payload,
       };
     default:
       return state;

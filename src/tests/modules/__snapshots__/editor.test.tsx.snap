@@ -4,7 +4,6 @@ exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleIt
 Object {
   "editor": Object {
     "backgroundImageName": "medium",
-    "currentSelection": null,
     "hiddenItems": Set {
       10007,
     },
@@ -207,7 +206,6 @@ exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleIt
 Object {
   "editor": Object {
     "backgroundImageName": "medium",
-    "currentSelection": null,
     "hiddenItems": Set {
       10007,
       21305,
@@ -411,7 +409,6 @@ exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleIt
 Object {
   "editor": Object {
     "backgroundImageName": "medium",
-    "currentSelection": null,
     "hiddenItems": Set {
       21305,
     },

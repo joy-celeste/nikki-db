@@ -3,8 +3,12 @@ import { posedDress, posedCoat, simpleDress, simpleHair, posedTop, posedBottom, 
 import { RootState } from '../../modules';
 import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { Character, CharacterState, characterReducer, wearItem, BodyParts } from '../../modules/character';
-import { BODY, DEFAULT_AMPUTATIONS, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
+import { Character, CharacterState, characterReducer, wearItem, BodyParts, DEFAULT_AMPUTATIONS } from '../../modules/character';
+import { BODY, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
+
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.01;
+global.Math = mockMath;
 
 function validateAmputations(itemData: ItemData, character: Character) {
   const { amputations } = character;

@@ -15,6 +15,7 @@ export const ACTION_CONSTANTS = {
   CHARACTER_REMOVE_FROM_HISTORY: 'character/REMOVE_FROM_HISTORY',
   SEARCH_UPDATE_RESULTS: 'search/UPDATE_RESULTS',
   EDITOR_CHANGE_HIDDEN_ITEM_LIST: 'editor/CHANGE_HIDDEN_ITEM_LIST',
+  EDITOR_UPDATE_MENU: 'editor/UPDATE_MENU',
 };
 
 export const API_CONSTANTS = {
@@ -28,7 +29,8 @@ export const SEARCH_RESULT_TYPES = {
 };
 
 export const UNDERWEAR: ReadonlyArray<Record<string, number>> = Object.freeze(underwearDataJSON);
-const randomUnderwear = UNDERWEAR[Math.floor(Math.random() * UNDERWEAR.length)]; // picks random value from UNDERWEAR
+// const randomUnderwear = UNDERWEAR[Math.floor(Math.random() * UNDERWEAR.length)]; // picks random value from UNDERWEAR
+const randomUnderwear = UNDERWEAR[0];
 
 export const BODY = {
   ARM: 9,

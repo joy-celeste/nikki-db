@@ -5,13 +5,6 @@ exports[`SearchIndex Action: SEARCH_UPDATE_RESULTS / Use-case: searchName -- suc
 Array [
   Object {
     "contents": Array [
-      "80760",
-    ],
-    "iconId": "80760",
-    "name": "My Only Love",
-  },
-  Object {
-    "contents": Array [
       "87908",
     ],
     "iconId": "87908",
@@ -19,17 +12,24 @@ Array [
   },
   Object {
     "contents": Array [
-      "83139",
+      "82532",
     ],
-    "iconId": "83139",
-    "name": "Love And Hate",
+    "iconId": "82532",
+    "name": "Only Love",
   },
   Object {
     "contents": Array [
-      "83779",
+      "80760",
     ],
-    "iconId": "83779",
-    "name": "Summer Love",
+    "iconId": "80760",
+    "name": "My Only Love",
+  },
+  Object {
+    "contents": Array [
+      "86634",
+    ],
+    "iconId": "86634",
+    "name": "Love Trip",
   },
   Object {
     "contents": Array [
@@ -40,59 +40,59 @@ Array [
   },
   Object {
     "contents": Array [
-      "71277",
+      "70581",
     ],
-    "iconId": "71277",
-    "name": "Love of Hermes",
+    "iconId": "70581",
+    "name": "Innocent Love",
   },
   Object {
     "contents": Array [
-      "10771",
+      "83232",
     ],
-    "iconId": "10771",
-    "name": "Love Guide",
+    "iconId": "83232",
+    "name": "Love Words",
   },
   Object {
     "contents": Array [
-      "50608",
+      "90130",
     ],
-    "iconId": "50608",
-    "name": "Unrequited Love",
+    "iconId": "90130",
+    "name": "Superpower of Love",
   },
   Object {
     "contents": Array [
-      "81653",
+      "86015",
     ],
-    "iconId": "81653",
-    "name": "Summer Love",
+    "iconId": "86015",
+    "name": "Spell of Love",
   },
   Object {
     "contents": Array [
-      "81146",
+      "21969",
     ],
-    "iconId": "81146",
-    "name": "Love Guide·Headwear",
+    "iconId": "21969",
+    "name": "Love for Pegasus",
   },
   Object {
     "contents": Array [
-      "83938",
+      "40562",
     ],
-    "iconId": "83938",
-    "name": "Heart of Love",
+    "iconId": "40562",
+    "name": "Schoolmates Love",
   },
   Object {
     "contents": Array [
-      "71524",
+      "83139",
     ],
-    "iconId": "71524",
-    "name": "Future with Love",
+    "iconId": "83139",
+    "name": "Love And Hate",
   },
   Object {
     "contents": Array [
-      "82059",
+      "10721",
     ],
-    "iconId": "82059",
-    "name": "Hidden Love",
+    "iconId": "10721",
+    "name": "The Girl In Love",
   },
 ]
 `;

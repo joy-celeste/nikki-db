@@ -25,12 +25,12 @@ describe('SearchIndex', () => {
         up a term, get results, and put it in the state`, async () => {
     let state: RootState;
 
-    await store.dispatch<any>(searchName('love'));
+    await store.dispatch<any>(searchName('my only love'));
     state = store.getState();
     expect(state.search.results.length).toBe(MAX_RESULTS);
 
     const numResults = 13;
-    await store.dispatch<any>(searchName('love', numResults));
+    await store.dispatch<any>(searchName('my only love', numResults));
     state = store.getState();
     expect(state.search.results.length).toBe(numResults);
 

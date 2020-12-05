@@ -35,7 +35,7 @@ export const Figure = (): JSX.Element => {
       {Object.entries(characterData.clothes).map(([subType, itemId]) => {
         if (!hiddenList.has(itemId)) {
           const itemData: ItemData = itemsData[itemId];
-          const item: Item = itemData ? new Item(itemData) : null;
+          const item: Item = (itemData?.id && itemData?.position && new Item(itemData)) ?? null;
           return item ? renderPieces(item) : null;
         }
         character.remove(parseInt(subType, 10) as SubType);

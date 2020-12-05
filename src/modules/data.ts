@@ -1,7 +1,6 @@
 import { AnyAction } from 'redux';
 import { DocumentData } from '@firebase/firestore-types';
 import { DeserializeNullException } from './errors';
-import { fetchItemData } from './api';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST, CLOTHES_DATA } from './constants';
 import { Character, CharacterState, wearItem, addToHistory } from './character';
@@ -133,13 +132,13 @@ export type DataState = {
   loading: boolean;
 };
 
-const initialState: DataState = {
-  itemsData: {},
+export const initialState: DataState = {
+  itemsData: { 10001: new ItemData(CLOTHES_DATA[10001]) },
   loading: false,
 };
 
 // ACTIONS
-const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
+export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   type: ACTION_CONSTANTS.DATA_ADD_ITEMS,
   payload: {
     itemId, itemData,
@@ -150,14 +149,12 @@ const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
 export const loadItem = (itemId: ItemId) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const items: ItemsData = getState().data.itemsData;
-    if (!(itemId in items)) {
-      const response = await fetchItemData(itemId);
-      if (response) {
-        const itemData = new ItemData(response);
-        dispatch(addItemData(itemId, itemData));
-      }
+    if (!(itemId in items) && CLOTHES_DATA[itemId]) {
+      dispatch(addItemData(itemId, new ItemData(CLOTHES_DATA[itemId])));
+      dispatch(wearItem(itemId));
+    } else if (itemId in items) {
+      dispatch(wearItem(itemId));
     }
-    dispatch(wearItem(itemId));
   };
 
 export const loadMultipleItems = (itemIds: ItemId[]) =>

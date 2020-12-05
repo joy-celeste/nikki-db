@@ -3,7 +3,7 @@ import { fetchItemData } from '../../modules/api';
 import { API_CONSTANTS } from '../../modules/constants';
 import { posedDress } from '../test_data/data';
 
-describe('API: fetchItemData', () => {
+describe.skip('API: fetchItemData', () => {
   let collection: any;
   let get: any;
   let doc: any;

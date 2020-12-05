@@ -28,7 +28,7 @@ export class Item {
 
   constructor(itemData: ItemData) {
     if (!itemData || !itemData.id || !itemData.position) {
-      throw new NoDataException('Cannot construct new Item from no itemData!');
+      throw new NoDataException('Cannot construct new Item without itemData!');
     }
 
     this.itemId = itemData.id;

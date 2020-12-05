@@ -16,11 +16,22 @@ export const Equipped = (): JSX.Element => {
     <div>
       {Object.values(clothes).map((clothesId) => (
         <div className="equipped-wrapper" key={`${clothesId}_wrapper`}>
-          <div className="equipped-icon" key={`${clothesId}_icon`} onClick={() => dispatch(toggleItemVisibility(clothesId))}>
+          <button
+            type="button"
+            className="equipped-icon"
+            key={`${clothesId}_icon`}
+            onClick={() => dispatch(toggleItemVisibility(clothesId))}
+          >
             <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
-          </div>
+          </button>
           <div className="equipped-text" key={`${clothesId}_text`}>{itemsData[clothesId]?.name}</div>
-          <div className="equipped-trash" key={`${clothesId}_trash`} onClick={() => dispatch(wearItem(clothesId))}>🗑️</div>
+          <button
+            type="button"
+            className="equipped-trash"
+            key={`${clothesId}_trash`}
+            onClick={() => dispatch(wearItem(clothesId))}
+          >🗑️
+          </button>
         </div>
       ))}
     </div>

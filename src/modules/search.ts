@@ -32,6 +32,7 @@ export default class SearchIndex {
       this.field('tag1');
       this.field('tag2');
       this.field('depth');
+      this.field('subtype');
       this.field('genre');
       this.field('isSuit');
 

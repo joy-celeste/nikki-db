@@ -118,12 +118,18 @@ export const goUpMenu = () =>
     dispatch(updateMenu(newMenu));
   };
 
-export const goDownMenu = (index: number) =>
+export const goDownMenu = (index: number, callback: Function) =>
   async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
     const oldMenu: Menu = getState().editor.menu;
-    const newMenu: Menu = new Menu(oldMenu);
-    newMenu.goDown(index);
-    dispatch(updateMenu(newMenu));
+    const subtype = oldMenu.getSubtypeAt(index);
+
+    if (subtype) {
+      callback(subtype);
+    } else {
+      const newMenu: Menu = new Menu(oldMenu);
+      newMenu.goDown(index);
+      dispatch(updateMenu(newMenu));
+    }
   };
 
 // REDUCER

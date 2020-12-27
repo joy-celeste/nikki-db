@@ -37,11 +37,14 @@
 - [x] Hide / delete worn items from the items panel
 - [x] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [x] Download render button
-- [ ] Script for automatically creating suit breakdowns
+- [ ] ~~Script for automatically creating suit breakdowns~~
+- [ ] Set the downloaded file name to be relevant to what is currently on Nikki; when Nikki puts on a new full suit, update the file name
+- - [ ] Add a small border to the compiled photo
+- - [ ] Script for adding in background
 
 ### Milestone 2: Browse clothes, and edit a single character; initial closed beta of only newest suits
-- [ ] Create clothes selection panel - select items by category
-- [ ] Update snapshots with height/width info
+- [x] Create clothes selection panel - select items by category
+- [x] Update snapshots with height/width info
 - [ ] PNG compression
 - [ ] Obfuscate filenames
 - [ ] Update equipped menu for better UX
@@ -56,7 +59,7 @@
 - [ ] Load sessions by URL (list of items or a suit id)
 - [ ] Obfuscate JSON
 - [ ] Create a subset of clothes data
-- [ ] Script for creating web with limited number of suits, and can hide search bar
+- [ ] Script for creating version with limited number of suits, and can hide search bar
 
 ### Milestone 3: Performance increases, address initial feedback
 - [ ] Refactor loadMultipleItems() for better separation of concerns

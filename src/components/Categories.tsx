@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
+import { SubType } from '../modules/data';
 import { goDownMenu, goUpMenu, Menu } from '../modules/editor';
+import { searchName } from '../modules/search';
 import './Categories.css';
 
 export const Categories = (): JSX.Element => {
@@ -20,8 +22,9 @@ export const Categories = (): JSX.Element => {
         ) : null}
         {menu.getStrings().map((item: string, index: number) => (
           <li
-            onKeyPress={() => dispatch(goDownMenu(index))}
-            onClick={() => dispatch(goDownMenu(index))}
+            key={`${item}_${index}`}
+            onKeyPress={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`posed:true subtype:${subtype}`))))}
+            onClick={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`posed:true subtype:${subtype}`))))}
           >{item}
           </li>
         ))}

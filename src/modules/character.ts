@@ -86,6 +86,10 @@ export class Character {
     this.updateVisibleBodyParts();
   }
 
+  removeAll() {
+    Object.keys(this.clothes).forEach((subtype) => this.remove(parseInt(subtype, 10) as SubType));
+  }
+
   updateAmputations(itemId: ItemId, amputationData: AmputationData, subtype: SubType): void {
     Object.keys(this.amputations).forEach((bodyPartStr) => {
       const bodyPart = parseInt(bodyPartStr, 10) as AmputationParts;
@@ -144,6 +148,15 @@ export const wearItem = (itemId: ItemId) =>
       newChar.wear(itemData);
       dispatch(addToHistory(newChar, charState.step + 1));
     }
+  };
+
+export const removeAll = () =>
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
+    const charState: CharacterState = getState().character;
+    const oldChar: Character = charState.history[charState.step];
+    const newChar: Character = new Character(oldChar);
+    newChar.removeAll();
+    dispatch(addToHistory(newChar, charState.step + 1));
   };
 
 // REDUCER

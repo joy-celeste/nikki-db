@@ -130,11 +130,13 @@ export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {
   itemsData: ItemsData;
   loading: boolean;
+  breakdownData: BreakdownData[];
 };
 
 export const initialState: DataState = {
   itemsData: { 10001: new ItemData(CLOTHES_DATA[10001]) },
   loading: false,
+  breakdownData: null,
 };
 
 // ACTIONS
@@ -143,6 +145,19 @@ export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   payload: {
     itemId, itemData,
   },
+});
+
+export type BreakdownData = {
+  variant: string;
+  itemId: ItemId;
+  prosthesis: boolean;
+  subtype: SubType;
+  name: string;
+};
+
+export const editBreakdownData = (breakdownData: BreakdownData[]): AnyAction => ({
+  type: ACTION_CONSTANTS.DATA_EDIT_BREAKDOWN_DATA,
+  payload: breakdownData,
 });
 
 // USE-CASE
@@ -190,6 +205,11 @@ export function dataReducer(
           ...state.itemsData,
           [action.payload.itemId]: action.payload.itemData,
         },
+      };
+    case ACTION_CONSTANTS.DATA_EDIT_BREAKDOWN_DATA:
+      return {
+        ...state,
+        breakdownData: action.payload,
       };
     default:
       return state;

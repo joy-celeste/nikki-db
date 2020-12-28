@@ -80,13 +80,13 @@ export class Character {
     } else if (subtype === SUBTYPES.TOP) {
       this.show(BODY.BRA);
     } else if (subtype === SUBTYPES.BOTTOM) {
-      this.show(BODY.PANTY);
+    this.show(BODY.PANTY);
     }
 
     this.updateVisibleBodyParts();
   }
 
-  removeAll() {
+  removeAll(): void {
     Object.keys(this.clothes).forEach((subtype) => this.remove(parseInt(subtype, 10) as SubType));
   }
 

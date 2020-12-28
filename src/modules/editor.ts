@@ -5,7 +5,6 @@ import { ACTION_CONSTANTS, MENU_DATA } from './constants';
 import { ItemId, SubType } from './data';
 
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
-// const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
 
 export interface MenuItem {
   subtype: SubType | ReadonlyArray<MenuItem>,

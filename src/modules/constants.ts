@@ -7,13 +7,15 @@ import bodyItemPositionDataJSON from '../data/body_item_position_data.json';
 import menuDataJSON from '../data/menu_data.json';
 import SuitNameToIDJSON from '../data/suit_name_to_suit_id.json';
 import SuitsDataJSON from '../data/suits_data.json';
+import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json';
 import { MenuItem } from './editor';
 
 export const BODY_ITEM_ID = 1;
 
 export const ACTION_CONSTANTS = {
   DATA_ADD_ITEMS: 'data/ADD_ITEMS',
-  DATA_EDIT_BREAKDOWN_DATA: 'data/EDIT_BREAKDOWN_DATA',
+  DATA_SET_DOWNLOAD_NAME: 'data/SET_DOWNLOAD_NAME',
+  DATA_SET_ALREADY_DOWNLOADED_ITEM: 'data/SET_ALREADY_DOWNLOADED_ITEM',
   CHARACTER_ADD_TO_HISTORY: 'character/ADD_TO_HISTORY',
   CHARACTER_REMOVE_FROM_HISTORY: 'character/REMOVE_FROM_HISTORY',
   SEARCH_UPDATE_RESULTS: 'search/UPDATE_RESULTS',
@@ -59,8 +61,9 @@ export const BODY_PARTS_DEPTHS = Object.freeze(DEPTHTYPE_TO_SUBTYPES[59]); // 59
 export const DEFAULT_CLOTHES = { [SUBTYPES.HAIR]: 10001 }; // 10001 = Nikki's Pinky
 export const CLOTHES_DATA: keyableString = clothesDataJSON;
 export const MENU_DATA: ReadonlyArray<MenuItem> = Object.freeze(menuDataJSON);
-export const SUIT_NAME_TO_ID: Record<string, any> = Object.freeze(SuitNameToIDJSON);
+export const SUIT_NAME_TO_ID: Record<string, string | string[]> = Object.freeze(SuitNameToIDJSON);
 export const SUITS_DATA: Record<number, any> = Object.freeze(SuitsDataJSON);
+export const SUBTYPES_MAP: Record<number, string> = Object.freeze(SubtypesNumberToNamesJSON);
 
 interface keyableString {
   [key: string]: any

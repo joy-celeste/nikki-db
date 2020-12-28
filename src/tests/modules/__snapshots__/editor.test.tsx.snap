@@ -133,10 +133,6 @@ Object {
                   "subtype": 21,
                 },
                 Object {
-                  "displayName": "Brooch",
-                  "subtype": 22,
-                },
-                Object {
                   "displayName": "Tattoo",
                   "subtype": 23,
                 },
@@ -163,6 +159,10 @@ Object {
                 Object {
                   "displayName": "Ground",
                   "subtype": 31,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 35,
                 },
               ],
             },
@@ -336,10 +336,6 @@ Object {
                   "subtype": 21,
                 },
                 Object {
-                  "displayName": "Brooch",
-                  "subtype": 22,
-                },
-                Object {
                   "displayName": "Tattoo",
                   "subtype": 23,
                 },
@@ -366,6 +362,10 @@ Object {
                 Object {
                   "displayName": "Ground",
                   "subtype": 31,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 35,
                 },
               ],
             },
@@ -538,10 +538,6 @@ Object {
                   "subtype": 21,
                 },
                 Object {
-                  "displayName": "Brooch",
-                  "subtype": 22,
-                },
-                Object {
                   "displayName": "Tattoo",
                   "subtype": 23,
                 },
@@ -568,6 +564,10 @@ Object {
                 Object {
                   "displayName": "Ground",
                   "subtype": 31,
+                },
+                Object {
+                  "displayName": "Brooch",
+                  "subtype": 35,
                 },
               ],
             },

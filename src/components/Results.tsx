@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from './Icon';
 import { SearchResult } from '../modules/search';
-import { loadItem, loadMultipleItems } from '../modules/data';
+import { ItemId, loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
+import { updateDownloadName } from '../modules/downloader';
 
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);
+  const hiddenList: Set<ItemId> = useSelector((state: RootState) => state.editor.hiddenItems);
+
+  const [result, setResult] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateDownloadName(result));
+  }, [result, hiddenList]);
 
   return results ? (
     <div>
       <ul>
         {Object.values(results).map((result) => {
-          const key = `${result.name}-${result.iconId}`;
+          const resultName = `${result.name}${result.isSuit ? (result.posed ? ' (Posed Suit)' : ' (Suit)') : ''}`;
+          const key = `${resultName}-${result.iconId}`;
           return (
             <li key={key}>
-              <div className="item" key={result.name}>
+              <div className="item" key={resultName}>
                 <button
                   type="button"
                   key={`${key}_result_container`}
-                  onClick={() => (result.contents.length === 1
-                    ? dispatch(loadItem(result.contents[0]))
-                    : dispatch(loadMultipleItems(result.contents)))}
+                  onClick={() => { setResult(result); dispatch(loadMultipleItems(result.contents)); }}
                 >
                   <Icon key={`${key}_icon`} clothesId={result.iconId} />
-                  <div key={`${key}_text`} className="text">{result.name}</div>
+                  <div key={`${key}_text`} className="text">{resultName}</div>
                 </button>
               </div>
             </li>

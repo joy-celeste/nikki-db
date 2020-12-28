@@ -62,6 +62,9 @@ export type SearchResult = {
   name: string;
   iconId?: ItemId;
   contents: ItemId[];
+  posed?: boolean;
+  variation?: string;
+  isSuit?: boolean
 };
 
 export type SearchState = {
@@ -76,7 +79,10 @@ const refToData: RefToSearchData = JSON.parse(JSON.stringify(refToSearchResult))
 interface SearchData {
   name: string,
   iconId: ItemId,
-  contents: ItemId[]
+  contents: ItemId[],
+  posed?: boolean,
+  variation?: string,
+  isSuit?: boolean
 }
 
 const initialState: SearchState = {
@@ -98,6 +104,16 @@ export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS)
     const initialResults = searchState.index.search(searchTerm, maxResults);
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
+      if (suitData?.variation) {
+        return {
+          name: suitData?.name,
+          iconId: suitData?.iconId,
+          contents: suitData?.contents,
+          posed: suitData?.posed,
+          variation: suitData?.variation,
+          isSuit: suitData?.isSuit,
+        };
+      }
       return {
         name: suitData?.name,
         iconId: suitData?.iconId,

@@ -5,6 +5,7 @@ import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST, CLOTHES_DATA } from './constants';
 import { Character, CharacterState, wearItem, addToHistory } from './character';
 import { RootState } from '.';
+import { changeHiddenItemList } from './editor';
 
 export type SubType = typeof SUBTYPES_LIST[number];
 export type AmputationParts = typeof DEFAULT_AMPUTATIONS_LIST[number];
@@ -130,13 +131,15 @@ export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {
   itemsData: ItemsData;
   loading: boolean;
-  breakdownData: BreakdownData[];
+  downloadName: string;
+  downloaded: Set<ItemId>;
 };
 
 export const initialState: DataState = {
   itemsData: { 10001: new ItemData(CLOTHES_DATA[10001]) },
   loading: false,
-  breakdownData: null,
+  downloadName: 'nikki',
+  downloaded: new Set<ItemId>(),
 };
 
 // ACTIONS
@@ -147,6 +150,16 @@ export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   },
 });
 
+export const setDownloadName = (downloadName: string): AnyAction => ({
+  type: ACTION_CONSTANTS.DATA_SET_DOWNLOAD_NAME,
+  payload: downloadName,
+});
+
+export const setDownloadedItems = (downloaded: Set<ItemId>): AnyAction => ({
+  type: ACTION_CONSTANTS.DATA_SET_ALREADY_DOWNLOADED_ITEM,
+  payload: downloaded,
+});
+
 export type BreakdownData = {
   variant: string;
   itemId: ItemId;
@@ -154,11 +167,6 @@ export type BreakdownData = {
   subtype: SubType;
   name: string;
 };
-
-export const editBreakdownData = (breakdownData: BreakdownData[]): AnyAction => ({
-  type: ACTION_CONSTANTS.DATA_EDIT_BREAKDOWN_DATA,
-  payload: breakdownData,
-});
 
 // USE-CASE
 export const loadItem = (itemId: ItemId) =>
@@ -174,6 +182,12 @@ export const loadItem = (itemId: ItemId) =>
 
 export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
+    dispatch(changeHiddenItemList(new Set<ItemId>()));
+    if (itemIds.length === 1) {
+      dispatch(loadItem(itemIds[0]));
+      return;
+    }
+
     const items: ItemsData = getState().data.itemsData;
     const charState: CharacterState = getState().character;
     const newChar: Character = new Character();
@@ -206,10 +220,15 @@ export function dataReducer(
           [action.payload.itemId]: action.payload.itemData,
         },
       };
-    case ACTION_CONSTANTS.DATA_EDIT_BREAKDOWN_DATA:
+    case ACTION_CONSTANTS.DATA_SET_DOWNLOAD_NAME:
       return {
         ...state,
-        breakdownData: action.payload,
+        downloadName: action.payload,
+      };
+    case ACTION_CONSTANTS.DATA_SET_ALREADY_DOWNLOADED_ITEM:
+      return {
+        ...state,
+        downloaded: action.payload,
       };
     default:
       return state;

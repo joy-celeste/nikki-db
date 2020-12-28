@@ -5,13 +5,13 @@ import { wearItem } from '../modules/character';
 import { toggleItemVisibility } from '../modules/editor';
 import Icon from './Icon';
 import './Equipped.css';
-import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json'
+import { SUBTYPES_MAP } from '../modules/constants';
 
 export const Equipped = (): JSX.Element => {
   const itemsData = useSelector((state: RootState) => state.data.itemsData);
   const clothes = useSelector((state: RootState) => state.character.history[state.character.step].clothes);
   const hiddenList = useSelector((state: RootState) => state.editor.hiddenItems);
-  const subtypesMap = Object.freeze(SubtypesNumberToNamesJSON);
+
   const dispatch = useDispatch();
 
   return (
@@ -27,9 +27,7 @@ export const Equipped = (): JSX.Element => {
             <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
           </button>
           <div className="equipped-text" key={`${clothesId}_text`}>
-            {itemsData[clothesId]?.name}
-            <br></br>
-            {itemsData[clothesId]?.subType < 34 ? subtypesMap[itemsData[clothesId]?.subType-1] : "Soul"}
+            {itemsData[clothesId]?.name}{` (${SUBTYPES_MAP[itemsData[clothesId]?.subType].replace(/_/g, ' ')})`}
           </div>
           <button
             type="button"

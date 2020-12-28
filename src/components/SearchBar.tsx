@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { searchName } from '../modules/search';
-import { ItemId, ItemsData, loadItem, loadMultipleItems } from '../modules/data';
-import { RootState } from '../modules';
+import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
 
 const DEFAULT_SEARCH_VALUE = 'Legend of Tulans';
 
 const SearchBar = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState(DEFAULT_SEARCH_VALUE);
-  const itemsData: ItemsData = useSelector((state: RootState) => state.data.itemsData);
   const dispatch = useDispatch();
 
   const handleSearchSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     if (searchValue[0] === '[') {
       const items: ItemId[] = JSON.parse(searchValue);
-      dispatch(loadMultipleItems(items))
+      dispatch(loadMultipleItems(items));
     } else if (Number.isNaN(+searchValue)) {
-      dispatch(searchName(searchValue));
+      dispatch(searchName(searchValue, 10));
     } else {
       dispatch(loadItem(parseInt(searchValue, 10)));
     }

@@ -14,7 +14,7 @@ export const trimCanvas = (() => {
     return true;
   }
 
-  return (canvas: any) => {
+  return (canvas: any, border = 0) => {
     const ctx = canvas.getContext('2d');
     const { width } = canvas;
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -29,9 +29,9 @@ export const trimCanvas = (() => {
     const trimmed = ctx.getImageData(left, top, right - left, bottom - top);
     const copy = canvas.ownerDocument.createElement('canvas');
     const copyCtx = copy.getContext('2d');
-    copy.width = trimmed.width;
-    copy.height = trimmed.height;
-    copyCtx.putImageData(trimmed, 0, 0);
+    copy.width = trimmed.width + 2 * border;
+    copy.height = trimmed.height + 2 * border;
+    copyCtx.putImageData(trimmed, border, border);
 
     return copy;
   };

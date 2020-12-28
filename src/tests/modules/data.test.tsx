@@ -347,6 +347,4 @@ describe.skip('DataState - with API', () => {
     expect(state.data).toMatchSnapshot();
     expect(state.character).toMatchSnapshot();
   });
-
-  
 });

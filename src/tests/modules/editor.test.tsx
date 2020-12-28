@@ -2,9 +2,10 @@ import { combineReducers, Store } from 'redux';
 import { simpleDress, simpleHair } from '../test_data/data';
 import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { EditorState, editorReducer, toggleItemVisibility, Menu, MenuItem } from '../../modules/editor';
+import { EditorState, editorReducer, toggleItemVisibility, Menu, MenuItem, goDownMenu, goUpMenu } from '../../modules/editor';
 import { RootState } from '../../modules';
 import menuDataJSON from '../test_data/menu_data.json';
+import { SUBTYPES } from '../../modules/constants';
 
 describe('Menu', () => {
   let newMenu: Menu;
@@ -108,12 +109,14 @@ describe('Menu', () => {
 describe('EditorState', () => {
   let store: Store<any>;
   let mockRootReducer: any;
-
+  let mockCallback: any;
+  
   beforeEach(() => {
     mockRootReducer = combineReducers({
       editor: editorReducer,
     });
     store = createStoreWithMiddleware(mockRootReducer);
+    mockCallback = jest.fn(input => input);
   });
 
   test('Assert initial state uses default values', async () => {
@@ -137,5 +140,38 @@ describe('EditorState', () => {
     expect(!state.editor.hiddenItems.has(simpleHair.id));
     state = store.getState();
     expect(state).toMatchSnapshot();
+  });
+
+  test('Action: EDITOR_UPDATE_MENU / Use-case: goDownMenu and goUpMenu', async () => {
+    let state: RootState = store.getState();
+    const hairIndex = 0; // Should be Hair, cannot go down menuLocation
+    expect(state.editor.menu.menuData[hairIndex].subtype).toBe(SUBTYPES.HAIR)
+    await store.dispatch<any>(goDownMenu(hairIndex, mockCallback)); // 0 is Hair, cannot go down
+
+    // Expect menu Location to be [null, null] - have not gone down
+    state.editor.menu.menuLocation.forEach(value => expect(value).toBe(null)); 
+    expect(mockCallback.mock.calls[0][0]).toBe(SUBTYPES.HAIR);
+
+    const accessoryIndex = 7; // Should be able to go down twice
+    await store.dispatch<any>(goDownMenu(accessoryIndex, mockCallback));
+    const headwearIndex = 0; // Should be able to go down once
+    await store.dispatch<any>(goDownMenu(headwearIndex, mockCallback));
+    const veilIndex = 1; // Should call calllback
+    await store.dispatch<any>(goDownMenu(veilIndex, mockCallback));
+    expect(store.getState().editor.menu.menuLocation[0]).toBe(accessoryIndex);
+    expect(store.getState().editor.menu.menuLocation[1]).toBe(headwearIndex);
+    expect(mockCallback.mock.calls[1][0]).toBe(SUBTYPES.VEIL);
+
+    // Go back up menu to make sure it works properly
+    await store.dispatch<any>(goUpMenu());
+    expect(store.getState().editor.menu.menuLocation[0]).toBe(accessoryIndex);
+    expect(store.getState().editor.menu.menuLocation[1]).toBe(null);
+    await store.dispatch<any>(goUpMenu());
+    expect(store.getState().editor.menu.menuLocation[0]).toBe(null);
+    expect(store.getState().editor.menu.menuLocation[1]).toBe(null);
+
+    const hosieryIndex = 5; // Should be able to go down only once
+    await store.dispatch<any>(goDownMenu(hosieryIndex, mockCallback));
+    await store.dispatch<any>(goDownMenu(0, mockCallback));
   });
 });

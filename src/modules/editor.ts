@@ -37,17 +37,17 @@ export class Menu {
   }
 
   public getStrings(): string[] {
-    return this.getLayer()?.map((item: MenuItem) => item.displayName) ?? null;
+    return this.getLayer()?.map((item: MenuItem) => item.displayName);
   }
 
   goDown(index: number): void {
-    if (typeof (this.getLayer()[index]?.subtype) === 'number') {
+    if (typeof (this.getLayer()[index]?.subtype) === 'number') { // Not a category we can go deeper
       return;
     }
 
-    if (!this.menuLocation[0]) {
+    if (this.menuLocation[0] == null) {
       this.menuLocation = [index, null];
-    } else if (!this.menuLocation[1]) {
+    } else {
       this.menuLocation[1] = index;
     }
 
@@ -55,9 +55,9 @@ export class Menu {
   }
 
   goUp(): void {
-    if (this.menuLocation[1]) {
+    if (this.menuLocation[1] !== null) {
       this.menuLocation[1] = null;
-    } else if (this.menuLocation[0]) {
+    } else {
       this.menuLocation = [null, null];
     }
     this.menuStrings = this.getStrings();

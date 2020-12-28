@@ -44,8 +44,10 @@
       "!src/**.d.ts",
       "!src/serviceWorker.ts",
       "!src/index.tsx",
-      "!src/modules/errors.ts",
       "!src/modules/database.ts",
+      "!src/modules/errors.ts",
+      "!src/modules/crop.ts",
+      "!src/modules/downloader.ts",
       "!src/tests/**"
     ]
   },

@@ -140,14 +140,11 @@ export const wearItem = (itemId: ItemId) =>
   async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
     const itemDataState: ItemsData = getState().data.itemsData;
     const itemData = itemDataState[itemId];
-
-    if (itemData && itemData.subType) {
-      const charState: CharacterState = getState().character;
-      const oldChar: Character = charState.history[charState.step];
-      const newChar: Character = new Character(oldChar);
-      newChar.wear(itemData);
-      dispatch(addToHistory(newChar, charState.step + 1));
-    }
+    const charState: CharacterState = getState().character;
+    const oldChar: Character = charState.history[charState.step];
+    const newChar: Character = new Character(oldChar);
+    newChar.wear(itemData);
+    dispatch(addToHistory(newChar, charState.step + 1));
   };
 
 export const removeAll = () =>

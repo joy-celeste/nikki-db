@@ -3,7 +3,8 @@ import FileSaver from 'file-saver';
 import { AnyAction, Dispatch } from 'redux';
 import trimCanvas from '../modules/crop';
 import { SearchResult } from './search';
-import { ItemId, ItemsData, setDownloadName, setDownloadedItems, SubType } from './data';
+import { ItemId, ItemsData, SubType } from './data';
+import { setDownloadName, setDownloadedItems } from './editor';
 import { SUBTYPES, SUBTYPES_MAP } from '../modules/constants';
 import { RootState } from '.';
 

@@ -200,8 +200,6 @@ Object {
 exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - 
         handle rejections in API calls - load as many items as possible 1`] = `
 Object {
-  "downloadName": "nikki",
-  "downloaded": Set {},
   "itemsData": Object {
     "10001": ItemData {
       "amputationData": null,
@@ -676,8 +674,6 @@ Object {
 
 exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - handle API call returning blank data 1`] = `
 Object {
-  "downloadName": "nikki",
-  "downloaded": Set {},
   "itemsData": Object {
     "10001": ItemData {
       "amputationData": null,
@@ -944,6 +940,103 @@ Object {
 }
 `;
 
+exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - if the input has just one item, load it anyway 1`] = `
+Object {
+  "10001": ItemData {
+    "amputationData": null,
+    "depthType": 1,
+    "depths": Object {
+      "1": 33000,
+      "2": 3500,
+      "7": 38000,
+      "8": 37200,
+      "9": 3510,
+    },
+    "description": "Nikki's favorite hairstyle. It shines wherever she goes!",
+    "id": 10001,
+    "name": "Nikki's Pinky",
+    "position": Array [
+      PositionData {
+        "depth": 1,
+        "height": null,
+        "scale": null,
+        "width": null,
+        "x": -14,
+        "y": 310,
+        "z": 33000,
+      },
+      PositionData {
+        "depth": 2,
+        "height": null,
+        "scale": null,
+        "width": null,
+        "x": -42.5,
+        "y": 245.5,
+        "z": 3500,
+      },
+      PositionData {
+        "depth": 9,
+        "height": null,
+        "scale": null,
+        "width": null,
+        "x": -25,
+        "y": 248.5,
+        "z": 3510,
+      },
+    ],
+    "subType": 1,
+  },
+  "22008": ItemData {
+    "amputationData": Object {
+      "10": true,
+      "12": true,
+      "2": true,
+      "5": false,
+      "9": true,
+    },
+    "depthType": 41,
+    "depths": Object {
+      "1": 36600,
+      "12": 10200,
+      "13": 10170,
+      "14": 9900,
+      "2": 24000,
+      "21": 24000,
+      "22": 24000,
+      "3": 18000,
+      "4": 6000,
+      "5": 850,
+      "8": 27150,
+      "9": 10220,
+    },
+    "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
+    "id": 22008,
+    "name": "Sakura Dream",
+    "position": Array [
+      PositionData {
+        "depth": 2,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -32.5,
+        "y": -164.5,
+        "z": 24000,
+      },
+      PositionData {
+        "depth": 901,
+        "height": null,
+        "scale": 1,
+        "width": null,
+        "x": -59.5,
+        "y": 328,
+        "z": 10215,
+      },
+    ],
+    "subType": 2,
+  },
+}
+`;
+
 exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - load multiple items successfully (one conflict) 1`] = `
 Object {
   "10001": ItemData {
@@ -1128,8 +1221,6 @@ Object {
 
 exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - use item data if already loaded 1`] = `
 Object {
-  "downloadName": "nikki",
-  "downloaded": Set {},
   "itemsData": Object {
     "10001": ItemData {
       "amputationData": null,
@@ -1424,8 +1515,6 @@ Object {
 
 exports[`DataState - with local clothesData Action: ADD_ITEMS / Use-case: loadMultipleItems - use item data if already loaded 3`] = `
 Object {
-  "downloadName": "nikki",
-  "downloaded": Set {},
   "itemsData": Object {
     "10001": ItemData {
       "amputationData": null,

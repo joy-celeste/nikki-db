@@ -75,13 +75,17 @@ export class Menu {
 export type EditorState = {
   hiddenItems: Set<ItemId>,
   backgroundImageName: string,
-  menu: Menu
+  menu: Menu;
+  downloadName: string;
+  downloaded: Set<ItemId>;
 };
 
 const initialState: EditorState = {
   hiddenItems: new Set(),
   backgroundImageName: DEFAULT_BACKGROUND_IMAGE_NAME,
   menu: new Menu(MENU_DATA),
+  downloadName: 'nikki',
+  downloaded: new Set<ItemId>(),
 };
 
 // ACTIONS
@@ -93,6 +97,16 @@ export const changeHiddenItemList = (hiddenItemList: Set<ItemId>): AnyAction => 
 export const updateMenu = (menu: Menu): AnyAction => ({
   type: ACTION_CONSTANTS.EDITOR_UPDATE_MENU,
   payload: menu,
+});
+
+export const setDownloadName = (downloadName: string): AnyAction => ({
+  type: ACTION_CONSTANTS.EDITOR_SET_DOWNLOAD_NAME,
+  payload: downloadName,
+});
+
+export const setDownloadedItems = (downloaded: Set<ItemId>): AnyAction => ({
+  type: ACTION_CONSTANTS.EDITOR_SET_ALREADY_DOWNLOADED_ITEM,
+  payload: downloaded,
 });
 
 // USE-CASE
@@ -146,6 +160,16 @@ export function editorReducer(
       return {
         ...state,
         menu: action.payload,
+      };
+    case ACTION_CONSTANTS.EDITOR_SET_DOWNLOAD_NAME:
+      return {
+        ...state,
+        downloadName: action.payload,
+      };
+    case ACTION_CONSTANTS.EDITOR_SET_ALREADY_DOWNLOADED_ITEM:
+      return {
+        ...state,
+        downloaded: action.payload,
       };
     default:
       return state;

@@ -131,15 +131,11 @@ export type ItemsData = Record<ItemId, ItemData>;
 export type DataState = {
   itemsData: ItemsData;
   loading: boolean;
-  downloadName: string;
-  downloaded: Set<ItemId>;
 };
 
 export const initialState: DataState = {
   itemsData: { 10001: new ItemData(CLOTHES_DATA[10001]) },
   loading: false,
-  downloadName: 'nikki',
-  downloaded: new Set<ItemId>(),
 };
 
 // ACTIONS
@@ -148,16 +144,6 @@ export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   payload: {
     itemId, itemData,
   },
-});
-
-export const setDownloadName = (downloadName: string): AnyAction => ({
-  type: ACTION_CONSTANTS.DATA_SET_DOWNLOAD_NAME,
-  payload: downloadName,
-});
-
-export const setDownloadedItems = (downloaded: Set<ItemId>): AnyAction => ({
-  type: ACTION_CONSTANTS.DATA_SET_ALREADY_DOWNLOADED_ITEM,
-  payload: downloaded,
 });
 
 export type BreakdownData = {
@@ -174,7 +160,6 @@ export const loadItem = (itemId: ItemId) =>
     const items: ItemsData = getState().data.itemsData;
     if (!(itemId in items) && CLOTHES_DATA[itemId]) {
       dispatch(addItemData(itemId, new ItemData(CLOTHES_DATA[itemId])));
-      dispatch(wearItem(itemId));
     } else if (itemId in items) {
       dispatch(wearItem(itemId));
     }
@@ -219,16 +204,6 @@ export function dataReducer(
           ...state.itemsData,
           [action.payload.itemId]: action.payload.itemData,
         },
-      };
-    case ACTION_CONSTANTS.DATA_SET_DOWNLOAD_NAME:
-      return {
-        ...state,
-        downloadName: action.payload,
-      };
-    case ACTION_CONSTANTS.DATA_SET_ALREADY_DOWNLOADED_ITEM:
-      return {
-        ...state,
-        downloaded: action.payload,
       };
     default:
       return state;

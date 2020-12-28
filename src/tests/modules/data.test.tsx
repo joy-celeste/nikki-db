@@ -88,6 +88,15 @@ describe('DataState - with local clothesData', () => {
     expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
   });
 
+  test('Action: ADD_ITEMS / Use-case: loadItem -- if the item is already loaded, reuse it', async () => {
+    await store.dispatch<any>(loadItem(posedDress.id));
+    let state: RootState = store.getState();
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
+    await store.dispatch<any>(loadItem(posedDress.id));
+    state = store.getState();
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
+  });
+
   test('Action: ADD_ITEMS / Use-case: loadItem -- successfully adds multiple items to the store', async () => {
     await store.dispatch<any>(loadItem(posedCoat.id));
     await store.dispatch<any>(loadItem(posedShoes.id));
@@ -95,6 +104,25 @@ describe('DataState - with local clothesData', () => {
     expect(Object.keys(state.data.itemsData)).toHaveLength(3); // nikki's pinky, coat, shoes
     expect(state.data.itemsData[posedCoat.id]).toStrictEqual(new ItemData(posedCoat));
     expect(state.data.itemsData[posedShoes.id]).toStrictEqual(new ItemData(posedShoes));
+    expect(state.data.itemsData).toMatchSnapshot();
+  });
+
+  test(`Action: ADD_ITEMS / Use-case: loadMultipleItems - if the input has just one item, load it anyway`, async () => {
+    let state: RootState;
+    state = store.getState();
+    expect(state.character.history.length).toEqual(1);
+    expect(state.character.step).toEqual(0);
+    expect(Object.keys(state.character.history[0].clothes).length).toEqual(1);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(1); // nikki's pinky
+
+    await store.dispatch<any>(loadMultipleItems([posedDress.id]));
+    state = store.getState();
+    expect(state.character.history.length).toEqual(2);
+    expect(state.character.step).toEqual(1);
+    expect(Object.keys(state.character.history[1].clothes).length).toEqual(2);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(2); // nikki's pinky, dress
+
+    expect(state.data.itemsData[posedDress.id]).toStrictEqual(new ItemData(posedDress));
     expect(state.data.itemsData).toMatchSnapshot();
   });
 

@@ -3,7 +3,7 @@ import { posedDress, posedCoat, simpleDress, simpleHair, posedTop, posedBottom, 
 import { RootState } from '../../modules';
 import { AmputationParts, ItemData, ItemId, SubType, DataState } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { Character, CharacterState, characterReducer, wearItem, BodyParts, DEFAULT_AMPUTATIONS } from '../../modules/character';
+import { Character, CharacterState, characterReducer, wearItem, BodyParts, DEFAULT_AMPUTATIONS, removeAll } from '../../modules/character';
 import { BODY, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/constants';
 
 const mockMath = Object.create(global.Math);
@@ -197,6 +197,18 @@ describe('Character', () => {
     expect(character.amputations).toStrictEqual(copy.amputations);
     expect(character.visibleParts).toStrictEqual(copy.visibleParts);
   });
+
+  test('CHARACTER: removeAll() - success: removes all clothes', () => {
+    const character: Character = new Character();
+    expect(character).toMatchSnapshot();
+    character.wear(new ItemData(posedDress));
+    character.wear(new ItemData(posedCoat));
+    character.wear(new ItemData(posedShoes));
+    character.wear(new ItemData(simpleHair));
+    expect(Object.keys(character.clothes).length).toEqual(4);
+    character.removeAll();
+    expect(Object.keys(character.clothes).length).toEqual(0);
+  });
 });
 
 describe('CharacterState', () => {
@@ -244,6 +256,18 @@ describe('CharacterState', () => {
     await store.dispatch<any>(wearItem(posedCoat.id));
     const state: RootState = store.getState();
     expect(Object.keys(state.character.history[state.character.step].clothes)).toHaveLength(2);
+    expect(state).toMatchSnapshot();
+  });
+
+  test('Action: CHARACTER_ADD_TO_HISTORY / Use-case: removeAll -- '
+  + 'successfully remove all clothes', async () => {
+    await store.dispatch<any>(wearItem(posedDress.id));
+    await store.dispatch<any>(wearItem(posedCoat.id));
+    let state: RootState = store.getState();
+    expect(Object.keys(state.character.history[state.character.step].clothes)).toHaveLength(3);
+    await store.dispatch<any>(removeAll());
+    state = store.getState();
+    expect(Object.keys(state.character.history[state.character.step].clothes)).toHaveLength(0);
     expect(state).toMatchSnapshot();
   });
 });

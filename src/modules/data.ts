@@ -160,6 +160,7 @@ export const loadItem = (itemId: ItemId) =>
     const items: ItemsData = getState().data.itemsData;
     if (!(itemId in items) && CLOTHES_DATA[itemId]) {
       dispatch(addItemData(itemId, new ItemData(CLOTHES_DATA[itemId])));
+      dispatch(wearItem(itemId));
     } else if (itemId in items) {
       dispatch(wearItem(itemId));
     }
@@ -169,8 +170,7 @@ export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     dispatch(changeHiddenItemList(new Set<ItemId>()));
     if (itemIds.length === 1) {
-      dispatch(loadItem(itemIds[0]));
-      return;
+      return dispatch(loadItem(itemIds[0]));
     }
 
     const items: ItemsData = getState().data.itemsData;

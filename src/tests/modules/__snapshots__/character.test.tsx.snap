@@ -113,6 +113,31 @@ Character {
 }
 `;
 
+exports[`Character CHARACTER: removeAll() - success: removes all clothes 1`] = `
+Character {
+  "amputations": Object {
+    "10": Array [],
+    "12": Array [],
+    "2": Array [],
+    "4": Array [],
+    "5": Array [],
+    "9": Array [],
+  },
+  "clothes": Object {
+    "1": 10001,
+  },
+  "visibleParts": Set {
+    2,
+    4,
+    5,
+    9,
+    10,
+    11,
+    12,
+  },
+}
+`;
+
 exports[`Character CHARACTER: wear() - success case: dress on new character 1`] = `
 Character {
   "amputations": Object {
@@ -464,6 +489,331 @@ Character {
     10,
     11,
     12,
+  },
+}
+`;
+
+exports[`CharacterState Action: CHARACTER_ADD_TO_HISTORY / Use-case: removeAll -- successfully remove all clothes 1`] = `
+Object {
+  "character": Object {
+    "history": Array [
+      Character {
+        "amputations": Object {
+          "10": Array [],
+          "12": Array [],
+          "2": Array [],
+          "4": Array [],
+          "5": Array [],
+          "9": Array [],
+        },
+        "clothes": Object {
+          "1": 10001,
+        },
+        "visibleParts": Set {
+          2,
+          4,
+          5,
+          9,
+          10,
+          11,
+          12,
+        },
+      },
+      Character {
+        "amputations": Object {
+          "10": Array [
+            22008,
+          ],
+          "12": Array [
+            22008,
+          ],
+          "2": Array [
+            22008,
+          ],
+          "4": Array [
+            22008,
+          ],
+          "5": Array [
+            22008,
+          ],
+          "9": Array [
+            22008,
+          ],
+        },
+        "clothes": Object {
+          "1": 10001,
+          "2": 22008,
+        },
+        "visibleParts": Set {
+          11,
+        },
+      },
+      Character {
+        "amputations": Object {
+          "10": Array [
+            22008,
+          ],
+          "12": Array [
+            22008,
+          ],
+          "2": Array [
+            22008,
+          ],
+          "4": Array [
+            22008,
+          ],
+          "5": Array [
+            22008,
+          ],
+          "9": Array [
+            22008,
+            30987,
+          ],
+        },
+        "clothes": Object {
+          "1": 10001,
+          "2": 22008,
+          "3": 30987,
+        },
+        "visibleParts": Set {
+          11,
+        },
+      },
+      Character {
+        "amputations": Object {
+          "10": Array [],
+          "12": Array [],
+          "2": Array [],
+          "4": Array [],
+          "5": Array [],
+          "9": Array [],
+        },
+        "clothes": Object {},
+        "visibleParts": Set {
+          11,
+          2,
+          4,
+          5,
+          10,
+          12,
+          9,
+        },
+      },
+    ],
+    "step": 3,
+  },
+  "data": Object {
+    "itemsData": Object {
+      "10007": ItemData {
+        "amputationData": null,
+        "depthType": 1,
+        "depths": Object {
+          "1": 33000,
+          "2": 3500,
+          "7": 38000,
+          "8": 37200,
+          "9": 3510,
+        },
+        "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
+        "id": 10007,
+        "name": "Elegant Nobleman",
+        "position": Array [
+          PositionData {
+            "depth": 1,
+            "height": null,
+            "scale": null,
+            "width": null,
+            "x": -21.5,
+            "y": 426,
+            "z": 33000,
+          },
+        ],
+        "subType": 1,
+      },
+      "21305": ItemData {
+        "amputationData": null,
+        "depthType": 3,
+        "depths": Object {
+          "1": 24000,
+          "2": 17000,
+          "3": 6000,
+          "4": 5070,
+          "6": 25600,
+          "9": 10220,
+        },
+        "description": "In the pseudonym of Zisang, Bai Jinjin handed in a special white and red Apple style dress this time.",
+        "id": 21305,
+        "name": "Hiding in the World·Red",
+        "position": Array [
+          PositionData {
+            "depth": 1,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -7.5,
+            "y": 120,
+            "z": 24000,
+          },
+        ],
+        "subType": 2,
+      },
+      "22008": ItemData {
+        "amputationData": Object {
+          "10": true,
+          "12": true,
+          "2": true,
+          "5": false,
+          "9": true,
+        },
+        "depthType": 41,
+        "depths": Object {
+          "1": 36600,
+          "12": 10200,
+          "13": 10170,
+          "14": 9900,
+          "2": 24000,
+          "21": 24000,
+          "22": 24000,
+          "3": 18000,
+          "4": 6000,
+          "5": 850,
+          "8": 27150,
+          "9": 10220,
+        },
+        "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
+        "id": 22008,
+        "name": "Sakura Dream",
+        "position": Array [
+          PositionData {
+            "depth": 2,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -32.5,
+            "y": -164.5,
+            "z": 24000,
+          },
+          PositionData {
+            "depth": 901,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -59.5,
+            "y": 328,
+            "z": 10215,
+          },
+        ],
+        "subType": 2,
+      },
+      "30987": ItemData {
+        "amputationData": Object {
+          "10": false,
+          "12": false,
+          "2": false,
+          "5": false,
+          "9": true,
+        },
+        "depthType": 48,
+        "depths": Object {
+          "1": 36700,
+          "12": 10190,
+          "13": 10160,
+          "14": 9880,
+          "2": 27000,
+          "3": 19000,
+          "4": 5000,
+          "5": 840,
+        },
+        "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
+        "id": 30987,
+        "name": "Rose Heart",
+        "position": Array [
+          PositionData {
+            "depth": 1,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -27,
+            "y": 200.5,
+            "z": 36700,
+          },
+          PositionData {
+            "depth": 2,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -202,
+            "y": -130,
+            "z": 27000,
+          },
+          PositionData {
+            "depth": 3,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": 101,
+            "y": -119,
+            "z": 19000,
+          },
+          PositionData {
+            "depth": 4,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -81,
+            "y": -153,
+            "z": 5000,
+          },
+          PositionData {
+            "depth": 13,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -88.5,
+            "y": 245,
+            "z": 10160,
+          },
+          PositionData {
+            "depth": 14,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": 42.5,
+            "y": 234.5,
+            "z": 9880,
+          },
+          PositionData {
+            "depth": 101,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -30.5,
+            "y": 242.5,
+            "z": 36695,
+          },
+          PositionData {
+            "depth": 201,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": -47.5,
+            "y": 262,
+            "z": 26995,
+          },
+          PositionData {
+            "depth": 301,
+            "height": null,
+            "scale": 1,
+            "width": null,
+            "x": 124.5,
+            "y": 139,
+            "z": 18995,
+          },
+        ],
+        "subType": 3,
+      },
+    },
+    "loading": false,
   },
 }
 `;

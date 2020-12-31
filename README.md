@@ -55,11 +55,12 @@
 - - [ ] Button to delete all unworn items
 - [ ] Bug: DST skin goes above underwear
 - [ ] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
-- [ ] When loading multiple items, unhide everything
+- [x] When loading multiple items, unhide everything
 - [ ] Load sessions by URL (list of items or a suit id)
 - [ ] Obfuscate JSON
-- [ ] Create a subset of clothes data
-- [ ] Script for creating version with limited number of suits, and can hide search bar
+- [x] Create script for version with current prod clothes
+- [ ] Create flag for version with certain suit names
+- [ ] Create flag for version without search bar
 
 ### Milestone 3: Performance increases, address initial feedback
 - [ ] Refactor loadMultipleItems() for better separation of concerns

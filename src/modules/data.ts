@@ -168,11 +168,11 @@ export const loadItem = (itemId: ItemId) =>
 
 export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
-    dispatch(changeHiddenItemList(new Set<ItemId>()));
     if (itemIds.length === 1) {
       return dispatch(loadItem(itemIds[0]));
     }
-
+    
+    dispatch(changeHiddenItemList(new Set<ItemId>()));
     const items: ItemsData = getState().data.itemsData;
     const charState: CharacterState = getState().character;
     const newChar: Character = new Character();

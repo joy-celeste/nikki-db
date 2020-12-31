@@ -25,7 +25,7 @@ export const Categories = (): JSX.Element => {
             key={`${item}_${index}`}
             onKeyPress={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
             onClick={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
-          >{item}
+          >{item.split('_').join(' ')}
           </li>
         ))}
       </ul>

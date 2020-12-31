@@ -27,7 +27,7 @@ export const updateDownloadName = (result: SearchResult) =>
 
     const hiddenList: Set<ItemId> = getState().editor.hiddenItems;
     const loadedItems: ItemsData = getState().data.itemsData;
-    const alreadyDownloaded: Set<ItemId> = getState().data.downloaded;
+    const alreadyDownloaded: Set<ItemId> = getState().editor.downloaded;
 
     const suitName = result.name.replace(/\s+/g, '-').toLowerCase(); // "Legend of Tulans" => "legend-of-tulans"
     const posed = result?.posed ? '_posed' : '_unposed';

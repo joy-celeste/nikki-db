@@ -38,9 +38,9 @@
 - [x] Refactor to initialize everything in its own usecase instead of in App.tsx
 - [x] Download render button
 - [ ] ~~Script for automatically creating suit breakdowns~~
-- [ ] Set the downloaded file name to be relevant to what is currently on Nikki; when Nikki puts on a new full suit, update the file name
-- - [ ] Add a small border to the compiled photo
-- - [ ] Script for adding in background
+- [x] Set the downloaded file name to be relevant to what is currently on Nikki; when Nikki puts on a new full suit, update the file name
+- - [x] Add a small border to the compiled photo
+- - [x] Script for adding in background
 
 ### Milestone 2: Browse clothes, and edit a single character; initial closed beta of only newest suits
 - [x] Create clothes selection panel - select items by category

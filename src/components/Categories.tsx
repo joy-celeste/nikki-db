@@ -23,8 +23,8 @@ export const Categories = (): JSX.Element => {
         {menu.getStrings().map((item: string, index: number) => (
           <li
             key={`${item}_${index}`}
-            onKeyPress={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`posed:true subtype:${subtype}`))))}
-            onClick={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`posed:true subtype:${subtype}`))))}
+            onKeyPress={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
+            onClick={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
           >{item}
           </li>
         ))}

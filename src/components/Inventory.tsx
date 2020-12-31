@@ -9,7 +9,7 @@ import { takeScreenshot } from '../modules/downloader';
 import { RootState } from '../modules';
 
 export const Inventory = (): JSX.Element => {
-  const downloadName: string = useSelector((state: RootState) => state.data.downloadName);
+  const downloadName: string = useSelector((state: RootState) => state.editor.downloadName);
 
   return (
     <div className="wrapper">

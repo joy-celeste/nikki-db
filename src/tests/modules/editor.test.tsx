@@ -2,7 +2,7 @@ import { combineReducers, Store } from 'redux';
 import { simpleDress, simpleHair } from '../test_data/data';
 import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { EditorState, editorReducer, toggleItemVisibility, Menu, MenuItem, goDownMenu, goUpMenu } from '../../modules/editor';
+import { EditorState, editorReducer, toggleItemVisibility, Menu, MenuItem, goDownMenu, goUpMenu, setDownloadName, setDownloadedItems } from '../../modules/editor';
 import { RootState } from '../../modules';
 import menuDataJSON from '../test_data/menu_data.json';
 import { SUBTYPES } from '../../modules/constants';
@@ -173,5 +173,18 @@ describe('EditorState', () => {
     const hosieryIndex = 5; // Should be able to go down only once
     await store.dispatch<any>(goDownMenu(hosieryIndex, mockCallback));
     await store.dispatch<any>(goDownMenu(0, mockCallback));
+  });
+
+  test('Action: EDITOR_SET_DOWNLOAD_NAME', async () => {
+    await store.dispatch<any>(setDownloadName("blah"));
+    let state: RootState = store.getState();
+    expect(state.editor.downloadName).toEqual("blah")
+  });
+
+  test('Action: EDITOR_SET_ALREADY_DOWNLOADED_ITEM', async () => {
+    const downloadedItems = new Set<ItemId>([1, 2]);
+    await store.dispatch<any>(setDownloadedItems(downloadedItems));
+    let state: RootState = store.getState();
+    expect(state.editor.downloaded).toEqual(downloadedItems)
   });
 });

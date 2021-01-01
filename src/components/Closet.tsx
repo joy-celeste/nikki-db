@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { wearItem } from '../modules/character';
 import { toggleItemVisibility } from '../modules/editor';
+import { ItemId, removeItemFromCloset } from '../modules/data';
+import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import './Closet.css';
 import { SUBTYPES_MAP } from '../modules/constants';
@@ -10,8 +11,9 @@ import { ItemsData } from '../modules/data';
 
 export const Closet = (): JSX.Element => {
   const itemsData: ItemsData = useSelector((state: RootState) => state.data.itemsData);
-  const hiddenList = useSelector((state: RootState) => state.editor.hiddenItems);
-
+  const clothes = useSelector((state: RootState) => state.character.history[state.character.step]).clothes;
+  const currentlyWorn = new Set<ItemId>(Object.values(clothes));
+  
   const dispatch = useDispatch();
   
   return (
@@ -26,18 +28,18 @@ export const Closet = (): JSX.Element => {
             <div className="closet-item">
                 <div className="closet-icon-container">
                   <button className="closet-trash" key={`${clothesId}_trash`}
-                    onClick={() => dispatch(wearItem(clothesId))}>🗑️</button>
+                    onClick={() => dispatch(removeItemFromCloset(clothesId))}>🗑️</button>
                   <button className="closet-info" key={`${clothesId}_info`}>🔎</button>
                   <button className="closet-icon" key={`${clothesId}_icon`}
-                    onClick={() => dispatch(toggleItemVisibility(clothesId))}>
-                    <Icon clothesId={clothesId} disabled={hiddenList.has(clothesId)} />
+                    onClick={() => dispatch(wearItem(clothesId))}>
+                    <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
                   </button>
                   <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
                 </div>
             </div>
           </li>
         )})}
-      </ul>
+      </ul> 
     </div>
   );
 };

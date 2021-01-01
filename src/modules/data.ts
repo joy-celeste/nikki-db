@@ -146,6 +146,11 @@ export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
   },
 });
 
+export const setItemData = (itemData: ItemsData): AnyAction => ({
+  type: ACTION_CONSTANTS.DATA_SET_ITEMDATA,
+  payload: itemData
+});
+
 export type BreakdownData = {
   variant: string;
   itemId: ItemId;
@@ -155,6 +160,23 @@ export type BreakdownData = {
 };
 
 // USE-CASE
+export const removeItemFromCloset = (itemId: ItemId) =>
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
+    const items: ItemsData = getState().data.itemsData;
+    if (itemId in items) {
+      const charState: CharacterState = getState().character;
+      const currentChar: Character = charState.history[charState.step];
+      
+      // if character is wearing the item, remove it first before deleting it from the state
+      if (currentChar.clothes[items[itemId].subType] === itemId) { 
+        currentChar.remove(items[itemId].subType);
+      }
+      const newItems = {...items}
+      delete newItems[itemId]
+      dispatch(setItemData(newItems));
+    }
+  };
+
 export const loadItem = (itemId: ItemId) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const items: ItemsData = getState().data.itemsData;
@@ -168,11 +190,11 @@ export const loadItem = (itemId: ItemId) =>
 
 export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
+    dispatch(changeHiddenItemList(new Set<ItemId>()));
     if (itemIds.length === 1) {
       return dispatch(loadItem(itemIds[0]));
     }
-    
-    dispatch(changeHiddenItemList(new Set<ItemId>()));
+
     const items: ItemsData = getState().data.itemsData;
     const charState: CharacterState = getState().character;
     const newChar: Character = new Character();
@@ -204,6 +226,11 @@ export function dataReducer(
           ...state.itemsData,
           [action.payload.itemId]: action.payload.itemData,
         },
+      };
+    case ACTION_CONSTANTS.DATA_SET_ITEMDATA:
+      return {
+        ...state,
+        itemsData: action.payload
       };
     default:
       return state;

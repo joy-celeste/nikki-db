@@ -53,6 +53,12 @@
 - - [ ] Add in red check icon to show visible items
 - - [ ] Small menu to delete an item
 - - [ ] Button to delete all unworn items
+- [ ] Update Equipped menu
+- - [x] Load all loaded items in Equipped menu
+- - [x] New items clicked get loaded, are visible, and are on the equipped menu
+- - [ ] Sort closet by addition time
+- - [ ] Toggle to sort by category and addition time
+- - [ ] Clicking on a suit explodes to the items in the suit
 - [ ] Bug: DST skin goes above underwear
 - [ ] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
 - [x] When loading multiple items, unhide everything
@@ -75,12 +81,12 @@
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
 - [ ] Search function - lazy load on stop typing
-- [ ] Search by ID (with category prefix)
+- [x] Search by ID (with category prefix)
 - [ ] Search by ID (without category prefix)
-- [ ] Search by item name
+- [x] Search by item name
 - [ ] Search by suit
 - [ ] Undo / Redo
-- [ ] Hide / delete worn items from the items panel
+- [x] Hide / delete worn items from the items panel
 - [ ] Hide / delete backgrounds/characters from the layers panel
 - [ ] Remove all button
 

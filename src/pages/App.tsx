@@ -3,7 +3,8 @@ import './App.css';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import Menu from '../components/Menu';
-import Equipped from '../components/Equipped';
+// import Equipped from '../components/Equipped';
+import Closet from '../components/Closet';
 import Inventory from '../components/Inventory';
 
 const App = (): JSX.Element => (
@@ -16,7 +17,7 @@ const App = (): JSX.Element => (
 
     <div className="menu">
       <Menu minimized={false} active={false} top={30} right={30}>
-        <Equipped />
+        <Closet />
       </Menu>
 
       <Menu minimized={false} active={false} top={30} left={30}>

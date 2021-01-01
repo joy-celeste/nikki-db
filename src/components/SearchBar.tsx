@@ -22,7 +22,7 @@ const SearchBar = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="searchbar">
       <form onSubmit={handleSearchSubmit}>
         <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
         <input type="submit" value="Search" />

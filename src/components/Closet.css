@@ -1,0 +1,62 @@
+.closet {
+	display: flex;
+	width: 450px;
+	overflow-x: hidden; 
+	overflow-y: auto; 
+	align-items: center;
+	margin-left: 15px;
+}
+
+.closet ul {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 0px;
+}
+
+.closet ul li {
+	list-style: none;
+	flex-basis: 33.333%;
+}
+
+.closet-item {
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+}
+
+.closet-text {
+	width: 100%;
+	max-width: 130px;
+}
+
+.closet-icon-container {
+	position: relative;
+	text-align: center;
+	align-items: center;
+}
+
+.closet-icon-container:hover .closet-trash,
+.closet-icon-container:hover .closet-info {
+	visibility: visible;
+}
+
+.closet-icon-container .closet-trash {
+	visibility: hidden;
+	position: absolute;
+	background-color: red;
+	top: 0;
+	left: 0;
+	width: 30px;
+	height: 30px;
+}
+
+.closet-icon-container .closet-info {
+	visibility: hidden;
+	position: absolute;
+	background-color: blue;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 30px;
+}

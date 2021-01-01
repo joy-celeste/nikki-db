@@ -5,7 +5,7 @@
   	height: 100%;
 }
 
-.equipped, .searchResults {
+.closet, .searchResults {
 	display: flex;
 	justify-content: center;
 	align-items: center;

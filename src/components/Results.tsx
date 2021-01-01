@@ -18,7 +18,7 @@ export const Results = (): JSX.Element => {
   }, [result, hiddenList]);
 
   return results ? (
-    <div>
+    <div className="items">
       <ul>
         {Object.values(results).map((result) => {
           const resultName = `${result.name}${result.isSuit ? (result.posed ? ' (Posed Suit)' : ' (Suit)') : ''}`;

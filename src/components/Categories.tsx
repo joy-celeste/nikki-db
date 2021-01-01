@@ -11,7 +11,7 @@ export const Categories = (): JSX.Element => {
   const dispatch = useDispatch();
 
   return menu.menuStrings ? (
-    <div>
+    <div className="categories">
       <ul>
         {menu.menuLocation[0] ? (
           <li

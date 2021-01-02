@@ -1,45 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { toggleItemVisibility } from '../modules/editor';
-import { ItemId, removeItemFromCloset } from '../modules/data';
+import { ItemId, removeItemFromCloset, ItemsData } from '../modules/data';
 import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import './Closet.css';
 import { SUBTYPES_MAP } from '../modules/constants';
-import { ItemsData } from '../modules/data';
 
 export const Closet = (): JSX.Element => {
+  const [useSubtypeSort, setToggle] = useState(false);
+  const handleClick = () => setToggle(!useSubtypeSort);
   const itemsData: ItemsData = useSelector((state: RootState) => state.data.itemsData);
-  const clothes = useSelector((state: RootState) => state.character.history[state.character.step]).clothes;
+  const { clothes } = useSelector((state: RootState) => state.character.history[state.character.step]);
   const currentlyWorn = new Set<ItemId>(Object.values(clothes));
-  
   const dispatch = useDispatch();
-  
+
+  const chronoSort = (a: string, b: string) => itemsData[parseInt(a, 10)].loadedTime - itemsData[parseInt(b, 10)].loadedTime;
+  const subtypeSort = (a: string, b: string) => itemsData[parseInt(a, 10)].subType - itemsData[parseInt(b, 10)].subType || chronoSort(a, b);
+
   return (
     <div className="closet">
-      <ul>
-        {(Object.keys(itemsData).sort((a, b) => itemsData[parseInt(a, 10)].subType - itemsData[parseInt(b, 10)].subType) as Array<string>).map((itemId) => {
-          const clothesId = parseInt(itemId, 10);
-          const itemName = `${itemsData[clothesId]?.name} (${SUBTYPES_MAP[itemsData[clothesId]?.subType].replace(/_/g, ' ')})`
-          
-          return (
-          <li key={`${clothesId}_wrapper`}>
-            <div className="closet-item">
-                <div className="closet-icon-container">
-                  <button className="closet-trash" key={`${clothesId}_trash`}
-                    onClick={() => dispatch(removeItemFromCloset(clothesId))}>🗑️</button>
-                  <button className="closet-info" key={`${clothesId}_info`}>🔎</button>
-                  <button className="closet-icon" key={`${clothesId}_icon`}
-                    onClick={() => dispatch(wearItem(clothesId))}>
-                    <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
-                  </button>
-                  <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
+      <div className="row closet-items">
+        <ul>
+          {(Object.keys(itemsData).sort(useSubtypeSort ? subtypeSort : chronoSort) as Array<string>).map((itemId) => {
+            const clothesId = parseInt(itemId, 10);
+            const itemName = `${itemsData[clothesId]?.name} (${SUBTYPES_MAP[itemsData[clothesId]?.subType].replace(/_/g, ' ')})`;
+
+            return (
+              <li key={`${clothesId}_wrapper`}>
+                <div className="closet-item">
+                  <div className="closet-icon-container">
+                    <button
+                      type="button"
+                      className="closet-trash"
+                      key={`${clothesId}_trash`}
+                      onClick={() => dispatch(removeItemFromCloset(clothesId))}
+                    >
+                      <span role="img" aria-label="trash">🗑️</span>
+                    </button>
+                    <button type="button" className="closet-info" key={`${clothesId}_info`}>
+                      <span role="img" aria-label="info">🔎</span>
+                    </button>
+                    <button
+                      type="button"
+                      className="closet-icon"
+                      key={`${clothesId}_icon`}
+                      onClick={() => dispatch(wearItem(clothesId))}
+                    >
+                      <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
+                    </button>
+                    <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
+                  </div>
                 </div>
-            </div>
-          </li>
-        )})}
-      </ul> 
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div className="row closet-toolbar">
+        <div>
+          <label className="switch" htmlFor="checkbox">
+            <input id="checkbox" type="checkbox" onClick={handleClick} checked={useSubtypeSort} readOnly />
+            <span className="slider round" />
+          </label>
+          {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}
+        </div>
+      </div>
     </div>
   );
 };

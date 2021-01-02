@@ -36,7 +36,11 @@ export const updateDownloadName = (result: SearchResult) =>
 
     let variant = '';
     if (result?.variation) {
-      if (result?.variation !== '0' && !result?.posed) { variant = `_recolor${result.variation}`; } else if (result?.variation !== '0') { variant = `${result.variation}`; }
+      if (result?.variation !== '0' && !result?.posed) {
+        variant = `_recolor${result.variation}`;
+      } else if (result?.variation !== '0') {
+        variant = `${result.variation}`;
+      }
     }
 
     let subtype = '';

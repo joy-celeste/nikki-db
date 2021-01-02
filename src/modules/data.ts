@@ -28,6 +28,7 @@ export class ItemData {
   amputationData?: AmputationData;
   position?: PositionData[];
   depths?: Depths;
+  loadedTime: number;
 
   constructor(input?: DocumentData) {
     this.deserialize(input);
@@ -46,6 +47,7 @@ export class ItemData {
     this.subType = null;
     this.depths = null;
     this.amputationData = null;
+    this.loadedTime = Date.now();
 
     if (input.amputation_data) {
       this.amputationData = {
@@ -148,7 +150,7 @@ export const addItemData = (itemId: number, itemData: ItemData): AnyAction => ({
 
 export const setItemData = (itemData: ItemsData): AnyAction => ({
   type: ACTION_CONSTANTS.DATA_SET_ITEMDATA,
-  payload: itemData
+  payload: itemData,
 });
 
 export type BreakdownData = {
@@ -166,13 +168,13 @@ export const removeItemFromCloset = (itemId: ItemId) =>
     if (itemId in items) {
       const charState: CharacterState = getState().character;
       const currentChar: Character = charState.history[charState.step];
-      
+
       // if character is wearing the item, remove it first before deleting it from the state
-      if (currentChar.clothes[items[itemId].subType] === itemId) { 
+      if (currentChar.clothes[items[itemId].subType] === itemId) {
         currentChar.remove(items[itemId].subType);
       }
-      const newItems = {...items}
-      delete newItems[itemId]
+      const newItems = { ...items };
+      delete newItems[itemId];
       dispatch(setItemData(newItems));
     }
   };
@@ -191,26 +193,26 @@ export const loadItem = (itemId: ItemId) =>
 export const loadMultipleItems = (itemIds: ItemId[]) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     dispatch(changeHiddenItemList(new Set<ItemId>()));
-    if (itemIds.length === 1) {
-      return dispatch(loadItem(itemIds[0]));
+    if (itemIds.length !== 1) {
+      const items: ItemsData = getState().data.itemsData;
+      const charState: CharacterState = getState().character;
+      const newChar: Character = new Character();
+      let itemData: ItemData;
+
+      await Promise.allSettled(itemIds.map(async (itemId) => {
+        if (!(itemId in items)) {
+          itemData = new ItemData(CLOTHES_DATA[itemId]);
+          dispatch(addItemData(itemId, itemData));
+        } else {
+          itemData = items[itemId];
+        }
+        newChar.wear(itemData);
+      })).then(() => {
+        dispatch(addToHistory(newChar, charState.step + 1));
+      });
+    } else {
+      dispatch(loadItem(itemIds[0]));
     }
-
-    const items: ItemsData = getState().data.itemsData;
-    const charState: CharacterState = getState().character;
-    const newChar: Character = new Character();
-    let itemData: ItemData;
-
-    await Promise.allSettled(itemIds.map(async (itemId) => {
-      if (!(itemId in items)) {
-        itemData = new ItemData(CLOTHES_DATA[itemId]);
-        dispatch(addItemData(itemId, itemData));
-      } else {
-        itemData = items[itemId];
-      }
-      newChar.wear(itemData);
-    })).then(() => {
-      dispatch(addToHistory(newChar, charState.step + 1));
-    });
   };
 
 // REDUCER
@@ -230,7 +232,7 @@ export function dataReducer(
     case ACTION_CONSTANTS.DATA_SET_ITEMDATA:
       return {
         ...state,
-        itemsData: action.payload
+        itemsData: action.payload,
       };
     default:
       return state;

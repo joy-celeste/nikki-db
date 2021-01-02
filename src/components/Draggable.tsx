@@ -13,6 +13,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
     super(props);
     this.state = {
       style: {
+        zoom: 0.75,
         position: 'absolute',
         width: '100%',
         top: '50%',
@@ -50,6 +51,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
         style: {
           position: 'absolute',
           width: '100%',
+          zoom: 0.75,
           left: `${event.clientX + offset[0]}px`,
           top: `${event.clientY + offset[1]}px`,
         },

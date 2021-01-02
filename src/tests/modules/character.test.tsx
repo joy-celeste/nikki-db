@@ -9,6 +9,7 @@ import { BODY, DEFAULT_BODY, DEFAULT_CLOTHES, SUBTYPES } from '../../modules/con
 const mockMath = Object.create(global.Math);
 mockMath.random = () => 0.01;
 global.Math = mockMath;
+Date.now = jest.fn(() => 1000);
 
 function validateAmputations(itemData: ItemData, character: Character) {
   const { amputations } = character;

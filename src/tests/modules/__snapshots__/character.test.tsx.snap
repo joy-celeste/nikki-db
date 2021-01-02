@@ -616,6 +616,7 @@ Object {
         },
         "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
         "id": 10007,
+        "loadedTime": 1000,
         "name": "Elegant Nobleman",
         "position": Array [
           PositionData {
@@ -643,6 +644,7 @@ Object {
         },
         "description": "In the pseudonym of Zisang, Bai Jinjin handed in a special white and red Apple style dress this time.",
         "id": 21305,
+        "loadedTime": 1000,
         "name": "Hiding in the World·Red",
         "position": Array [
           PositionData {
@@ -682,6 +684,7 @@ Object {
         },
         "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
         "id": 22008,
+        "loadedTime": 1000,
         "name": "Sakura Dream",
         "position": Array [
           PositionData {
@@ -726,6 +729,7 @@ Object {
         },
         "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
         "id": 30987,
+        "loadedTime": 1000,
         "name": "Rose Heart",
         "position": Array [
           PositionData {
@@ -983,6 +987,7 @@ Object {
         },
         "description": "A gentle, thoughtful nobleman is not supposed to be the silent background forever.",
         "id": 10007,
+        "loadedTime": 1000,
         "name": "Elegant Nobleman",
         "position": Array [
           PositionData {
@@ -1010,6 +1015,7 @@ Object {
         },
         "description": "In the pseudonym of Zisang, Bai Jinjin handed in a special white and red Apple style dress this time.",
         "id": 21305,
+        "loadedTime": 1000,
         "name": "Hiding in the World·Red",
         "position": Array [
           PositionData {
@@ -1049,6 +1055,7 @@ Object {
         },
         "description": "The sakura festival has come again. In the flower rain, she holds an umbrella, waiting for the one to come.",
         "id": 22008,
+        "loadedTime": 1000,
         "name": "Sakura Dream",
         "position": Array [
           PositionData {
@@ -1093,6 +1100,7 @@ Object {
         },
         "description": "He stands against the light and looks back at her. She saves the throb deeply into her heart.",
         "id": 30987,
+        "loadedTime": 1000,
         "name": "Rose Heart",
         "position": Array [
           PositionData {

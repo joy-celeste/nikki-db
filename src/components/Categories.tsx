@@ -10,22 +10,23 @@ export const Categories = (): JSX.Element => {
   const menu: Menu = useSelector((state: RootState) => state.editor.menu);
   const dispatch = useDispatch();
 
+  const onClickSubtype = (index: number) => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))));
+
   return menu.menuStrings ? (
     <div className="categories">
       <ul>
         {menu.menuLocation[0] ? (
-          <li
-            onKeyPress={() => dispatch(goUpMenu())}
-            onClick={() => dispatch(goUpMenu())}
-          > Go back
+          <li>
+            <button onClick={() => dispatch(goUpMenu())}>
+              Go back
+            </button>
           </li>
         ) : null}
         {menu.getStrings().map((item: string, index: number) => (
-          <li
-            key={`${item}_${index}`}
-            onKeyPress={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
-            onClick={() => dispatch(goDownMenu(index, (subtype: SubType) => dispatch(searchName(`subtype:${subtype}`))))}
-          >{item.split('_').join(' ')}
+          <li key={item}>
+            <button onClick={() => onClickSubtype(index)}>
+              {item.split('_').join(' ')}
+            </button>
           </li>
         ))}
       </ul>

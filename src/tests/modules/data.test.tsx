@@ -5,11 +5,11 @@ import { DeserializeNullException } from '../../modules/errors';
 import { RootState } from '../../modules';
 import { ItemData, loadItem, loadMultipleItems, PositionData, initialState, removeItemFromCloset } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import * as api from '../../modules/api';
 
 const mockMath = Object.create(global.Math);
 mockMath.random = () => 0.01;
 global.Math = mockMath;
+Date.now = jest.fn(() => 1000);
 
 describe('ItemData', () => {
   test('Errors if given empty data', () => {
@@ -18,11 +18,9 @@ describe('ItemData', () => {
   });
 
   test('Successfully deserializes for the null cases', () => {
-    const emptyItemData: ItemData = new ItemData({
-    });
+    const emptyItemData: ItemData = new ItemData({});
     expect(emptyItemData).toMatchSnapshot();
-    const emptyPositionData: PositionData = new PositionData(10, {
-    });
+    const emptyPositionData: PositionData = new PositionData(10, {});
     expect(emptyPositionData).toMatchSnapshot();
   });
 

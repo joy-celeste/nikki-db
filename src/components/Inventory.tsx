@@ -5,16 +5,13 @@ import SearchBar from './SearchBar';
 import './Inventory.css';
 import Categories from './Categories';
 
-export const Inventory = (): JSX.Element => {
-
-  return (
-    <div className="inventory-container">
-      <SearchBar />
-      <BackgroundOptions />
-      <Categories />
-      <Results />
-    </div>
-  );
-};
+export const Inventory = (): JSX.Element => (
+  <div className="inventory-container">
+    <SearchBar />
+    <BackgroundOptions />
+    <Categories />
+    <Results />
+  </div>
+);
 
 export default Inventory;

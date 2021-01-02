@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { takeScreenshot } from '../modules/downloader';
 import { RootState } from '../modules';
-import { useSelector } from 'react-redux';
 
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
 const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];

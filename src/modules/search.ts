@@ -2,7 +2,7 @@ import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
 import searchIndexData from '../data/search_index.json';
 import refToSearchResult from '../data/ref_to_search_result.json';
-import { ACTION_CONSTANTS } from './constants';
+import { ACTION_CONSTANTS, ITEM_SUFFIX } from './constants';
 import { RootState } from '.';
 import { ItemId } from './data';
 
@@ -104,9 +104,17 @@ export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS)
     const initialResults = searchState.index.search(searchTerm, maxResults);
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
+      let displayName = suitData?.name;
+
+      if (suitData?.isSuit && suitData?.posed) {
+        displayName += ITEM_SUFFIX.SUIT;
+      } else if (suitData?.isSuit) {
+        displayName += ITEM_SUFFIX.SUIT;
+      }
+
       if (suitData?.variation) {
         return {
-          name: suitData?.name,
+          name: displayName,
           iconId: suitData?.iconId,
           contents: suitData?.contents,
           posed: suitData?.posed,
@@ -115,7 +123,7 @@ export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS)
         };
       }
       return {
-        name: suitData?.name,
+        name: displayName,
         iconId: suitData?.iconId,
         contents: suitData?.contents,
       };

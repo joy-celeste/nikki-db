@@ -9,7 +9,7 @@ import { createStoreWithMiddleware } from '../helpers';
 const mockMath = Object.create(global.Math);
 mockMath.random = () => 0.01;
 global.Math = mockMath;
-Date.now = jest.fn(() => 1000);
+Date.now = jest.fn(() => 10000)
 
 describe('ItemData', () => {
   test('Errors if given empty data', () => {

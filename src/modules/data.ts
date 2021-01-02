@@ -47,7 +47,7 @@ export class ItemData {
     this.subType = null;
     this.depths = null;
     this.amputationData = null;
-    this.loadedTime = Date.now();
+    this.loadedTime = this.id === 10001 ? 0 : Date.now();
 
     if (input.amputation_data) {
       this.amputationData = {

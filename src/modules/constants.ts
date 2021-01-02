@@ -34,8 +34,8 @@ export const SEARCH_RESULT_TYPES = {
 };
 
 export const ITEM_SUFFIX = {
-  SUIT: '(Suit)',
-  POSED_SUIT: '(Posed Suit)',
+  SUIT: ' (Suit)',
+  POSED_SUIT: ' (Posed Suit)',
 };
 
 export const UNDERWEAR: ReadonlyArray<Record<string, number>> = Object.freeze(underwearDataJSON);

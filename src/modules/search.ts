@@ -106,10 +106,12 @@ export const searchName = (searchTerm: string, maxResults: number = MAX_RESULTS)
       const suitData = refToData[key];
       let displayName = suitData?.name;
 
-      if (suitData?.isSuit && suitData?.posed) {
+      if (suitData?.isSuit) {
+        if (suitData?.posed) {
+          displayName += ITEM_SUFFIX.POSED_SUIT;
+        } else {
         displayName += ITEM_SUFFIX.SUIT;
-      } else if (suitData?.isSuit) {
-        displayName += ITEM_SUFFIX.SUIT;
+        }
       }
 
       if (suitData?.variation) {

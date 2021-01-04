@@ -60,14 +60,20 @@
 - - [x] Sort closet by addition time
 - - [x] Toggle to sort by category and addition time
 - - [ ] Clicking on a suit explodes to the items in the suit
+- [ ] Make menus interactive
+- - [ ] Make windows draggable
+- - [ ] Make windows more transparent when not active
+- - [ ] Add icon to minimize windows to the bottom right
 - [ ] Bug: DST skin goes above underwear
-- [ ] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
+- [x] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
 - [x] When loading multiple items, unhide everything
 - [ ] Load sessions by URL (list of items or a suit id)
+- - [ ] Add URL Shortener
 - [x] Create script for version with current prod clothes
 - [ ] Create flag for version with only certain suit names
 - [ ] Create flag for version without search bar
 - [ ] Install logger for debugging
+- [ ] Add report menu
 
 ### Milestone 3: Performance increases, address initial feedback
 - [ ] PNG compression

@@ -47,7 +47,7 @@ export class ItemData {
     this.subType = null;
     this.depths = null;
     this.amputationData = null;
-    this.loadedTime = this.id === 10001 ? 0 : Date.now();
+    this.loadedTime = this.id === 10001 ? 0 :Date.now();
 
     if (input.amputation_data) {
       this.amputationData = {
@@ -177,6 +177,23 @@ export const removeItemFromCloset = (itemId: ItemId) =>
       delete newItems[itemId];
       dispatch(setItemData(newItems));
     }
+  };
+
+export const removeAllUnwornFromCloset = () =>
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
+    const items: ItemsData = getState().data.itemsData;
+    const charState: CharacterState = getState().character;
+    const currentChar: Character = charState.history[charState.step];
+    const loadedClothes = Object.keys(items).map(x => +x) as number[];
+    const currentClothes = new Set<ItemId>(Object.values(currentChar.clothes));
+    const newItems = { ...items };
+
+    await Promise.allSettled(loadedClothes.map(async (itemId: ItemId) => {
+      console.log(currentClothes.has(itemId), itemId)
+      if (!currentClothes.has(itemId)) {
+        delete newItems[itemId];
+      }
+    })).then(() => dispatch(setItemData(newItems)));
   };
 
 export const loadItem = (itemId: ItemId) =>

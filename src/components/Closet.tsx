@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { ItemId, removeItemFromCloset, ItemsData } from '../modules/data';
+import { ItemId, removeItemFromCloset, ItemsData, removeAllUnwornFromCloset } from '../modules/data';
 import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import './Closet.css';
@@ -41,6 +41,7 @@ export const Closet = (): JSX.Element => {
                     <button type="button" className="closet-info" key={`${clothesId}_info`}>
                       <span role="img" aria-label="info">🔎</span>
                     </button>
+                    {currentlyWorn.has(clothesId) ? <button type="button" className="closet-equipped" key={`${clothesId}_equipped`}></button> : null}
                     <button
                       type="button"
                       className="closet-icon"
@@ -49,8 +50,8 @@ export const Closet = (): JSX.Element => {
                     >
                       <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
                     </button>
-                    <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
                   </div>
+                  <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
                 </div>
               </li>
             );
@@ -64,6 +65,9 @@ export const Closet = (): JSX.Element => {
             <span className="slider round" />
           </label>
           {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}
+          <button type="button" className="closet-all-trash" key={`all_trash`} onClick={() => dispatch(removeAllUnwornFromCloset())}>
+            <span role="img" aria-label="trash">🗑️</span>
+          </button>
         </div>
       </div>
     </div>

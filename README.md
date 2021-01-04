@@ -26,6 +26,7 @@
 - [x] Display currently-worn items
 - [x] Make Nikki draggable on all browsers
 - [x] Load backgrounds
+- [x] Search by item name
 - [x] Create icon stylesheet, scripts for creating it
 
 ### Milestone 1: Automate creating image suit breakdowns
@@ -41,34 +42,37 @@
 - [x] Set the downloaded file name to be relevant to what is currently on Nikki; when Nikki puts on a new full suit, update the file name
 - - [x] Add a small border to the compiled photo
 - - [x] Script for adding in background
+- [x] Search by ID (with category prefix)
 
 ### Milestone 2: Browse clothes, and edit a single character; initial closed beta of only newest suits
 - [x] Create clothes selection panel - select items by category
 - [x] Update snapshots with height/width info
-- [ ] PNG compression
-- [ ] Obfuscate filenames
-- [ ] Update equipped menu for better UX
-- - [ ] Adding items shows it up in the equipped panel
-- - [ ] Update equipped panel to show 3 items per row
-- - [ ] Add in red check icon to show visible items
-- - [ ] Small menu to delete an item
-- - [ ] Button to delete all unworn items
+- [x] Update equipped menu for better UX
+- - [x] Adding items shows it up in the equipped panel
+- - [x] Update equipped panel to show 3 items per row
+- - [x] Add in red check icon to show visible items
+- - [x] Small ~~menu~~ button to delete an item
+- - [x] Hide / delete worn items from the items panel
+- - [x] Button to delete all unworn items
 - [ ] Update Equipped menu
 - - [x] Load all loaded items in Equipped menu
 - - [x] New items clicked get loaded, are visible, and are on the equipped menu
-- - [ ] Sort closet by addition time
-- - [ ] Toggle to sort by category and addition time
+- - [x] Sort closet by addition time
+- - [x] Toggle to sort by category and addition time
 - - [ ] Clicking on a suit explodes to the items in the suit
 - [ ] Bug: DST skin goes above underwear
 - [ ] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
 - [x] When loading multiple items, unhide everything
 - [ ] Load sessions by URL (list of items or a suit id)
-- [ ] Obfuscate JSON
 - [x] Create script for version with current prod clothes
-- [ ] Create flag for version with certain suit names
+- [ ] Create flag for version with only certain suit names
 - [ ] Create flag for version without search bar
+- [ ] Install logger for debugging
 
 ### Milestone 3: Performance increases, address initial feedback
+- [ ] PNG compression
+- [ ] Obfuscate filenames
+- [ ] Obfuscate JSON
 - [ ] Refactor loadMultipleItems() for better separation of concerns
 - [ ] Find out how to only upload changed files to API
 - [ ] Script for allowing only certain items to be shown
@@ -81,14 +85,10 @@
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
 - [ ] Search function - lazy load on stop typing
-- [x] Search by ID (with category prefix)
 - [ ] Search by ID (without category prefix)
-- [x] Search by item name
 - [ ] Search by suit
 - [ ] Undo / Redo
-- [x] Hide / delete worn items from the items panel
 - [ ] Hide / delete backgrounds/characters from the layers panel
-- [ ] Remove all button
 
 ### Milestone 5: Beta of full simulator functionality - make all clothes available
 - [ ] Figure out how to provide this public service without screwing over Paper's artists/developers revenue

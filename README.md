@@ -60,6 +60,16 @@
 - - [x] Sort closet by addition time
 - - [x] Toggle to sort by category and addition time
 - - [ ] Clicking on a suit explodes to the items in the suit
+- - [ ] Add subtype icons to menu
+- - [ ] Move background buttons to background section
+- - [ ] Move download button to bottom right
+- [ ] Update search
+- - [ ] Add filter for: posed items
+- - [ ] Add filter for: suits
+- - [ ] Add filter for: nation
+- - [ ] Add filter for: tag
+- - [ ] When clicking on other subtype, search with that search term with that subtype
+- - [ ] Dropdown for order by: ID, name
 - [ ] Make menus interactive
 - - [ ] Make windows draggable
 - - [ ] Make windows more transparent when not active
@@ -71,23 +81,24 @@
 - - [ ] Add URL Shortener
 - [x] Create script for version with current prod clothes
 - [ ] Create flag for version with only certain suit names
-- [ ] Create flag for version without search bar
 - [ ] Install logger for debugging
 - [ ] Add report menu
+- [ ] Create the beautiful UI
+- - [ ] Window
+- - [ ] Menu
+- - [ ] Equipped
+- [ ] Unit tests for UI
+- [x] Display only suits that are visible in Achievements section
 
-### Milestone 3: Performance increases, address initial feedback
+### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] PNG compression
 - [ ] Obfuscate filenames
 - [ ] Obfuscate JSON
 - [ ] Refactor loadMultipleItems() for better separation of concerns
 - [ ] Find out how to only upload changed files to API
-- [ ] Script for allowing only certain items to be shown
 - [ ] Bug: Downloaded image fails if the top of the character is above the top of the viewport.
 - [ ] Copy list of items to clipboard
 - [ ] Bug: Some suits are marked as posed when they are just alts of unposed suits (example: Pegasus's Dream)
-- [ ] Display only suits that are visible in Achievements section
-
-### Milestone 4: Beta of newest suits + current wardrobe
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
 - [ ] Search function - lazy load on stop typing
@@ -95,35 +106,30 @@
 - [ ] Search by suit
 - [ ] Undo / Redo
 - [ ] Hide / delete backgrounds/characters from the layers panel
-
-### Milestone 5: Beta of full simulator functionality - make all clothes available
 - [ ] Figure out how to provide this public service without screwing over Paper's artists/developers revenue
 - [ ] Filters
 - - [ ] Sort by new
 - - [ ] Sort by rare(? - by LN's sort)
 - - [ ] Sort by color
-- - [ ] Sort by nation
-- - [ ] Sort by tag (default Nikki tags for now)
-- - [ ] Sort by posed(?)
-- [ ] Auto update when the game uupdates
+- [ ] Auto update when the game updates
 - [ ] Animations
 
-### Milestone 6: Assets from other versions
+### Milestone 4: Assets from other versions
 - [ ] Localize UI
 - [ ] Update presenters/etc to handle new languages
 - [ ] Upload assets
 
-### Milestone 7: Public beta of mobile functionality / Nikki DB Lite (API v2)
+### Milestone 5: Public beta of mobile functionality / Nikki DB Lite (API v2)
 - [ ] Design API to build images without having to load all assets locally
 - [ ] Design mobile site
 
-### Milestone 8: Advanced account features - saving, favorites, social
+### Milestone 6: Advanced account features - saving, favorites, social
 - [ ] Save designed suits to account
 - [ ] Favorite items
 - [ ] Publicized most favorited items
 - [ ] Social: give users ability to upload styling
 
-### Milestone 9: Advanced simulator
+### Milestone 7: Advanced simulator
 - [ ] Upload custom clothes
 - - [ ] Allow custom clothes to be shared on site / users can favorite, save, etc
 - [ ] Edit hue/saturation/color of clothes

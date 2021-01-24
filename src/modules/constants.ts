@@ -68,3 +68,23 @@ export const CLOTHES_DATA: {[key: string]: any} = clothesDataJSON;
 export const MENU_DATA: ReadonlyArray<MenuItem> = Object.freeze(menuDataJSON);
 export const SUIT_NAME_TO_ID: Record<string, string | string[]> = Object.freeze(SuitNameToIDJSON);
 export const SUBTYPES_MAP: Record<number, string> = Object.freeze(SubtypesNumberToNamesJSON);
+
+export const sortOptions = [
+  { value: 'id', label: 'ID', color: '#00B8D9'},
+  { value: 'name', label: 'Name', color: '#0052CC' },
+  { value: 'release', label: 'Release', color: '#0052CC'},
+];
+
+export const generalOptions = [
+  { value: 'posed', label: 'Posed', color: '#00B8D9'},
+  { value: 'suit', label: 'Suit', color: '#0052CC' },
+  { value: 'unposed', label: 'Unposed', color: '#0052CC'},
+  { value: 'item', label: 'Item', color: '#5243AA' },
+];
+
+export const flavourOptions = [
+  { value: 'vanilla', label: 'Vanilla', color: 'grey'},
+  { value: 'chocolate', label: 'Chocolate', color: 'brown'},
+  { value: 'strawberry', label: 'Strawberry', color: 'pink'},
+  { value: 'salted-caramel', label: 'Salted Caramel', color: 'orange'},
+];

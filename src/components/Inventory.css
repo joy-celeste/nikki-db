@@ -4,9 +4,14 @@
 	max-width: 600px;
 }
 
-.searchbar, .backgroundOptions {
+.searchbar, .backgroundOptions, .searchOptions {
 	width: 100%;
 	flex-basis: 100%;
+}
+
+.searchOptions {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .categories {

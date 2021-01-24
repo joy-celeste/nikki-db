@@ -6,6 +6,7 @@ import { RootState } from '../modules';
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
 const DEFAULT_BACKGROUND_OPTIONS = ['light', 'light2', 'medium', 'dark', 'dark2'];
 const getAssetImg = (assetName: string): string => `url(/assets/${assetName}.jpg)`;
+const colorOptions = ['red', 'blue', 'yellow', 'green', 'orange', 'pink']
 
 export const SearchOptions = (): JSX.Element => {
   const [background, setBackground] = useState(DEFAULT_BACKGROUND_IMAGE_NAME);

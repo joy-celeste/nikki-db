@@ -16,6 +16,7 @@ export class Menu {
   menuLocation: [number, number];
   menuStrings: string[];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(input?: any) {
     this.menuData = input.menuData ?? input;
     this.menuLocation = input.menuLocation ?? [null, null];

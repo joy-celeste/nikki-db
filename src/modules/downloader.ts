@@ -29,7 +29,7 @@ export const updateDownloadName = (result: SearchResult) =>
     const loadedItems: ItemsData = getState().data.itemsData;
     const alreadyDownloaded: Set<ItemId> = getState().editor.downloaded;
 
-    const suitName = result.name.replace(/\s+/g, '-').toLowerCase(); // "Legend of Tulans" => "legend-of-tulans"
+    const suitName = result.displayName.replace(/\s+/g, '-').toLowerCase(); // "Legend of Tulans" => "legend-of-tulans"
     const posed = result?.posed ? '_posed' : '_unposed';
     let isSpecial = false;
     let isAlreadyDownloaded = false;
@@ -85,7 +85,7 @@ export const updateDownloadName = (result: SearchResult) =>
       subtype = '_partialsuit';
     }
 
-    const prefix = isAlreadyDownloaded ? 'AAHDUPLICATE_' : '';
+    const prefix = isAlreadyDownloaded ? 'AHH_DUPLICATE_' : '';
     const suffix = isSpecial ? '' : `${posed}${variant}`;
     dispatch(setDownloadName(`${prefix}${suitName}${subtype}${suffix}`));
   };
@@ -102,5 +102,6 @@ export const takeScreenshot = (filename: string = getCurrentDatetime()): void =>
     copy.toBlob((blob: Blob) => {
       FileSaver.saveAs(blob, `${filename}.png`);
     });
+  // eslint-disable-next-line no-console
   }).finally(() => console.log(`Saved ${filename}.png`));
 };

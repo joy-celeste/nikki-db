@@ -9,6 +9,7 @@ import { updateDownloadName } from '../modules/downloader';
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);
   const hiddenList: Set<ItemId> = useSelector((state: RootState) => state.editor.hiddenItems);
+  const hideCategories = useSelector((state: RootState) => state.search.hideCategories);
 
   const [result, setResult] = useState(null);
   const dispatch = useDispatch();
@@ -18,20 +19,20 @@ export const Results = (): JSX.Element => {
   }, [result, hiddenList, dispatch]);
 
   return results ? (
-    <div className="items">
+    <div className={hideCategories ? 'items hideCategories' : 'items'}>
       <ul>
         {Object.values(results).map((result) => {
-          const key = `${result.name}-${result.iconId}`;
+          const key = `${result.displayName}`;
           return (
             <li key={key}>
-              <div className="item" key={result.name}>
+              <div className="item" key={result.displayName}>
                 <button
                   type="button"
                   key={`${key}_result_container`}
                   onClick={() => { setResult(result); dispatch(loadMultipleItems(result.contents)); }}
                 >
                   <Icon key={`${key}_icon`} clothesId={result.iconId} />
-                  <div key={`${key}_text`} className="text">{result.name}</div>
+                  <div key={`${key}_text`} className="text">{result.displayName}</div>
                 </button>
               </div>
             </li>

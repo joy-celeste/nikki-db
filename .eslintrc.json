@@ -27,6 +27,7 @@
   "ignorePatterns": [
     "/src/serviceWorker.ts"
   ],
+
   "overrides": [
     {
       "files": ["*.test.tsx"],
@@ -47,6 +48,13 @@
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "no-plusplus": "off"
+      }
+    },
+    {
+      "files": ["src/components/Filters.tsx", "src/components/Sort.tsx"],
+      "rules": {
+        "no-nested-ternary": "off",
+        "@typescript-eslint/no-explicit-any": "off"
       }
     }
   ],

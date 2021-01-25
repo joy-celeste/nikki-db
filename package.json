@@ -47,6 +47,7 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**.d.ts",
       "!src/serviceWorker.ts",
+      "!src/config.ts",
       "!src/index.tsx",
       "!src/modules/database.ts",
       "!src/modules/errors.ts",

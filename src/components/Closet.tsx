@@ -41,7 +41,8 @@ export const Closet = (): JSX.Element => {
                     <button type="button" className="closet-info" key={`${clothesId}_info`}>
                       <span role="img" aria-label="info">🔎</span>
                     </button>
-                    {currentlyWorn.has(clothesId) ? <button type="button" className="closet-equipped" key={`${clothesId}_equipped`}></button> : null}
+                    {currentlyWorn.has(clothesId)
+                      ? <span className="closet-equipped" key={`${clothesId}_equipped`} /> : null}
                     <button
                       type="button"
                       className="closet-icon"
@@ -65,7 +66,7 @@ export const Closet = (): JSX.Element => {
             <span className="slider round" />
           </label>
           {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}
-          <button type="button" className="closet-all-trash" key={`all_trash`} onClick={() => dispatch(removeAllUnwornFromCloset())}>
+          <button type="button" className="closet-all-trash" key="all_trash" onClick={() => dispatch(removeAllUnwornFromCloset())}>
             <span role="img" aria-label="trash">🗑️</span>
           </button>
         </div>

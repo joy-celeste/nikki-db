@@ -1,9 +1,9 @@
 import { Store } from 'redux';
 import { posedDress, posedCoat, posedShoes, simpleHair,
-  simpleHat, complexHair, deerSpirit, motorcycleSpirit, simpleDress, posedBottom } from '../test_data/data';
+  simpleHat, complexHair, deerSpirit, motorcycleSpirit, simpleDress, posedBottom, simpleShoes, simpleBottom } from '../test_data/data';
 import { DeserializeNullException } from '../../modules/errors';
 import { RootState } from '../../modules';
-import { ItemData, loadItem, loadMultipleItems, PositionData, initialState, removeItemFromCloset } from '../../modules/data';
+import { ItemData, loadItem, loadMultipleItems, PositionData, initialState, removeItemFromCloset, removeAllUnwornFromCloset } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
 
 const mockMath = Object.create(global.Math);
@@ -228,6 +228,18 @@ describe('DataState - with local clothesData', () => {
     expect(state.character.history.length).toEqual(3);
     expect(Object.keys(state.data.itemsData)).toHaveLength(5);
     await store.dispatch<any>(removeItemFromCloset(posedDress.id));
+    state = store.getState();
+    expect(Object.keys(state.data.itemsData)).toHaveLength(4);
+    expect(state.character.history.length).toEqual(3);
+  });
+
+  test(`Action: SET_ITEMDATA / Use-case: removeAllUnwornFromCloset - successfully removes items that are not being worn, but are loaded inthe closet`, async () => {
+    await store.dispatch<any>(loadMultipleItems([posedCoat.id, simpleBottom.id, simpleShoes.id, posedDress.id, posedShoes.id]));
+    await store.dispatch<any>(loadItem(simpleDress.id));
+    let state: RootState = store.getState();
+    expect(state.character.history.length).toEqual(3);
+    expect(Object.keys(state.data.itemsData)).toHaveLength(7);
+    await store.dispatch<any>(removeAllUnwornFromCloset());
     state = store.getState();
     expect(Object.keys(state.data.itemsData)).toHaveLength(4);
     expect(state.character.history.length).toEqual(3);

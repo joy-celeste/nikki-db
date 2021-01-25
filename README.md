@@ -60,16 +60,16 @@
 - - [x] Sort closet by addition time
 - - [x] Toggle to sort by category and addition time
 - - [ ] Clicking on a suit explodes to the items in the suit
-- - [ ] Add subtype icons to menu
 - - [ ] Move background buttons to background section
 - - [ ] Move download button to bottom right
-- [ ] Update search
-- - [ ] Add filter for: posed items
-- - [ ] Add filter for: suits
-- - [ ] Add filter for: nation
-- - [ ] Add filter for: tag
-- - [ ] When clicking on other subtype, search with that search term with that subtype
-- - [ ] Dropdown for order by: ID, name
+- [x] Update search
+- - [x] Add filter for: posed items
+- - [x] Add filter for: suits
+- - [x] Add filter for: nation
+- - [x] Add filter for: tag
+- - [x] When clicking on other subtype, search with that search term with that subtype
+- - [x] Dropdown for order by: ID, name
+- - [x] Update data to include 'posed' tag for suits
 - [ ] Make menus interactive
 - - [ ] Make windows draggable
 - - [ ] Make windows more transparent when not active
@@ -87,10 +87,14 @@
 - - [ ] Window
 - - [ ] Menu
 - - [ ] Equipped
+- - [ ] Add subtype icons to menu
 - [ ] Unit tests for UI
 - [x] Display only suits that are visible in Achievements section
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
+- [ ] Add shadow support
+- [ ] Add tilt support
+- [ ] Add animations
 - [ ] PNG compression
 - [ ] Obfuscate filenames
 - [ ] Obfuscate JSON

@@ -1,41 +1,26 @@
 import React, { CSSProperties } from 'react';
-import Select, { GroupedOptionsType, OptionTypeBase } from 'react-select';
+import Select, { GroupedOptionsType, OptionTypeBase, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
-import { generalOptions, flavourOptions } from '../modules/constants';
+import { useDispatch } from 'react-redux';
+import { generalOptions, rarityOptions, genreOptions, specialOptions } from '../modules/constants';
+import { searchInventory, updateSearchFilters } from '../modules/search';
 
 export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
-  {
-    label: 'Colours',
-    options: generalOptions,
-  },
-  {
-    label: 'Flavours',
-    options: flavourOptions,
-  },
+  { label: 'Colours', options: generalOptions },
+  { label: 'Genre', options: genreOptions },
+  { label: 'Special', options: specialOptions },
+  { label: 'Rarity', options: rarityOptions },
 ];
 
-const colourStyles = {
-  control: (styles: any) => ({ ...styles, backgroundColor: 'white' }),
-  option: (styles: { [x: string]: any; }, { data, isDisabled, isFocused, isSelected }: any) => {
+const colourStyles: StylesConfig<any, boolean> = {
+  control: (styles: CSSProperties) => ({ ...styles, backgroundColor: 'white' }),
+  option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
     const color = chroma(data.color);
     return {
       ...styles,
-      backgroundColor: isDisabled
-        ? null
-        : isSelected
-        ? data.color
-        : isFocused
-        ? color.alpha(0.1).css()
-        : null,
-      color: isDisabled
-        ? '#ccc'
-        : isSelected
-        ? chroma.contrast(color, 'white') > 2
-          ? 'white'
-          : 'black'
-        : data.color,
+      backgroundColor: isDisabled ? null : isSelected ? data.color : isFocused ? color.alpha(0.1).css() : null,
+      color: isDisabled ? '#ccc' : isSelected ? chroma.contrast(color, 'white') > 2 ? 'white' : 'black' : data.color,
       cursor: isDisabled ? 'not-allowed' : 'default',
-
       ':active': {
         ...styles[':active'],
         backgroundColor:
@@ -43,18 +28,18 @@ const colourStyles = {
       },
     };
   },
-  multiValue: (styles: any, { data }: any) => {
+  multiValue: (styles: CSSProperties, { data }: any) => {
     const color = chroma(data.color);
     return {
       ...styles,
       backgroundColor: color.alpha(0.1).css(),
     };
   },
-  multiValueLabel: (styles: any, { data }: any) => ({
+  multiValueLabel: (styles: CSSProperties, { data }: any) => ({
     ...styles,
     color: data.color,
   }),
-  multiValueRemove: (styles: any, { data }: any) => ({
+  multiValueRemove: (styles: CSSProperties, { data }: any) => ({
     ...styles,
     color: data.color,
     ':hover': {
@@ -90,14 +75,22 @@ const formatGroupLabel = (data: any) => (
   </div>
 );
 
-export const Filters = (): JSX.Element => 
-	<Select
-		formatGroupLabel={formatGroupLabel}
-		isSearchable
-		closeMenuOnSelect={false}
-		isMulti
-		options={groupedOptions}
-		styles={colourStyles}
-	/>;
+export const Filters = (): JSX.Element => {
+  const dispatch = useDispatch();
+
+  return (
+    <Select
+      formatGroupLabel={formatGroupLabel}
+      options={groupedOptions}
+      styles={colourStyles}
+      onChange={(options: any) => {
+        dispatch(updateSearchFilters(options));
+        dispatch(searchInventory());
+      }}
+      isSearchable
+      isMulti
+    />
+  );
+};
 
 export default Filters;

@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { searchName } from '../modules/search';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchInventory, updateSearchString } from '../modules/search';
 import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
-
-const DEFAULT_SEARCH_VALUE = 'Legend of Tulans';
+import { RootState } from '../modules';
 
 const SearchBar = (): JSX.Element => {
-  const [searchValue, setSearchValue] = useState(DEFAULT_SEARCH_VALUE);
+  const searchValue = useSelector((state: RootState) => state.search.userInput);
   const dispatch = useDispatch();
 
   const handleSearchSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    if (searchValue[0] === '[') {
+    if (searchValue[0] === '[') { // Load multiple items
       const items: ItemId[] = JSON.parse(searchValue);
       dispatch(loadMultipleItems(items));
-    } else if (Number.isNaN(+searchValue)) {
-      dispatch(searchName(searchValue, 10));
+    } else if (Number.isNaN(+searchValue)) { // Search term
+      dispatch(searchInventory());
     } else {
-      dispatch(loadItem(parseInt(searchValue, 10)));
+      dispatch(loadItem(parseInt(searchValue, 10))); // Wear one item
     }
   };
 
   return (
     <div className="searchbar">
       <form onSubmit={handleSearchSubmit}>
-        <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+        <input value={searchValue} onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
         <input type="submit" value="Search" />
       </form>
     </div>

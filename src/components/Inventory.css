@@ -32,11 +32,15 @@
 }
 
 .items {
-	width: 430px;
+	width: 470px;
 	height: 430px;
 	padding-left: 30px;
 	overflow-x: hidden; 
 	overflow-y: auto; 
+}
+
+.items.hideCategories {
+	width: 800px;
 }
 
 .items ul {
@@ -48,6 +52,10 @@
 .items ul li {
 	list-style: none;
 	flex-basis: 33.333%;
+}
+
+.items.hideCategories ul li {
+	flex-basis: 25%;
 }
 
 .item  {

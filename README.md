@@ -90,6 +90,7 @@
 - - [ ] Add subtype icons to menu
 - [ ] Unit tests for UI
 - [x] Display only suits that are visible in Achievements section
+- [ ] Fix bug where sorting by ID crashes
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Add shadow support

@@ -16,9 +16,11 @@ const App = (): JSX.Element => (
     </div>
 
     <div className="menu">
+    <Draggable>
       <Menu minimized={false} active={false} top={30} right={30}>
         <Closet />
       </Menu>
+    </Draggable>
 
       <Menu minimized={false} active={false} top={30} left={30}>
         <Inventory />

@@ -6,7 +6,7 @@ import Menu from '../components/Menu';
 import Closet from '../components/Closet';
 import Inventory from '../components/Inventory';
 
-const MARGIN = 30;
+export const MARGIN: number = 30;
 
 const App = (): JSX.Element => (
   <div className="App">

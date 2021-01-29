@@ -1,8 +1,10 @@
 import React, { CSSProperties, ReactNode } from 'react';
+import { MARGIN } from '../pages/App';
 
 interface DraggableProps {
   top?: string;
   left?: string;
+  snapToGrid?: boolean;
 }
 
 interface DraggableState {
@@ -28,6 +30,11 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
     };
   }
 
+  roundNearest(value: number, multiplier: number = MARGIN): number {
+    const { snapToGrid } = this.props;
+    return snapToGrid ? multiplier * Math.round(value/multiplier) : value;
+  }
+
   componentDidMount(): void {
     this.div.addEventListener('mousedown', this.mouseDown, true);
     window.addEventListener('mouseup', this.mouseUp, true);
@@ -49,7 +56,10 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
     const { isDown, offset } = this.state;
     event.preventDefault();
     if (isDown) {
-      this.setState({ left: `${event.clientX + offset[0]}px`, top: `${event.clientY + offset[1]}px` });
+      this.setState({
+        left: `${this.roundNearest(event.clientX + offset[0])}px`,
+        top: `${this.roundNearest(event.clientY + offset[1])}px`
+      });
     }
   };
 
@@ -67,3 +77,4 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
 }
 
 export default Draggable;
+

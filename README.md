@@ -71,8 +71,8 @@
 - - [x] Dropdown for order by: ID, name
 - - [x] Update data to include 'posed' tag for suits
 - [ ] Make menus interactive
-- - [ ] Make windows draggable
-- - [ ] Make windows more transparent when not active
+- - [x] Make windows draggable
+- - [x] Make windows more transparent when not active
 - - [ ] Add icon to minimize windows to the bottom right
 - [x] Bug: DST skin goes above underwear
 - [x] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search

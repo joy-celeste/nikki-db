@@ -11,6 +11,11 @@ export interface MenuItem {
   displayName: string,
 }
 
+export interface MenuState {
+  closet: boolean,
+  inventory: boolean,
+}
+
 export class Menu {
   menuData: ReadonlyArray<MenuItem>;
   menuLocation: [number, number];
@@ -79,6 +84,8 @@ export type EditorState = {
   menu: Menu;
   downloadName: string;
   downloaded: Set<ItemId>;
+  minimizedMenus: MenuState;
+  activeMenus: MenuState;
 };
 
 const initialState: EditorState = {
@@ -87,9 +94,21 @@ const initialState: EditorState = {
   menu: new Menu(MENU_DATA),
   downloadName: 'nikki',
   downloaded: new Set<ItemId>(),
+  minimizedMenus: {closet: false, inventory: false},
+  activeMenus: {closet: false, inventory: true}
 };
 
 // ACTIONS
+export const setMinimized = (minimizedMenus: MenuState): AnyAction => ({
+  type: ACTION_CONSTANTS.EDITOR_CHANGE_MINIMIZED_MENUS,
+  payload: minimizedMenus,
+});
+
+export const setActive = (activeMenus: MenuState): AnyAction => ({
+  type: ACTION_CONSTANTS.EDITOR_CHANGE_ACTIVE_MENUS,
+  payload: activeMenus,
+});
+
 export const changeHiddenItemList = (hiddenItemList: Set<ItemId>): AnyAction => ({
   type: ACTION_CONSTANTS.EDITOR_CHANGE_HIDDEN_ITEM_LIST,
   payload: hiddenItemList,
@@ -171,6 +190,16 @@ export function editorReducer(
       return {
         ...state,
         downloaded: action.payload,
+      };
+    case ACTION_CONSTANTS.EDITOR_CHANGE_MINIMIZED_MENUS:
+      return {
+        ...state,
+        minimizedMenus: action.payload,
+      };
+    case ACTION_CONSTANTS.EDITOR_CHANGE_ACTIVE_MENUS:
+      return {
+        ...state,
+        activeMenus: action.payload,
       };
     default:
       return state;

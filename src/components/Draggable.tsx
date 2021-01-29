@@ -1,23 +1,28 @@
 import React, { CSSProperties, ReactNode } from 'react';
 
+interface DraggableProps {
+  top?: string;
+  left?: string;
+}
+
 interface DraggableState {
-  style: CSSProperties;
+  top: string;
+  left: string;
   isDown: boolean;
   offset: number[];
 }
 
-class Draggable extends React.PureComponent<ReactNode, DraggableState> {
-  div!: HTMLDivElement;
+const defaultStyle: CSSProperties = { position: 'absolute', width: '100%' };
 
-  constructor(props: ReactNode) {
+class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
+  div!: HTMLDivElement;
+  defaultStyle: CSSProperties;
+
+  constructor(props: DraggableProps) {
     super(props);
     this.state = {
-      style: {
-        zoom: 0.75,
-        position: 'absolute',
-        width: '100%',
-        top: '50%',
-      },
+      top: props.top || 'auto',
+      left: props.left || 'auto',
       isDown: false,
       offset: [0, 0],
     };
@@ -30,9 +35,7 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
     // window.addEventListener('contextmenu', (e) => e.preventDefault(), false); // right click
   }
 
-  mouseUp = (): void => {
-    this.setState({ isDown: false });
-  };
+  mouseUp = (): void => this.setState({ isDown: false });
 
   mouseDown = (event: MouseEvent): void => {
     event.preventDefault();
@@ -44,24 +47,16 @@ class Draggable extends React.PureComponent<ReactNode, DraggableState> {
 
   mouseMove = (event: MouseEvent): void => {
     const { isDown, offset } = this.state;
-
     event.preventDefault();
     if (isDown) {
-      this.setState({
-        style: {
-          position: 'absolute',
-          width: '100%',
-          zoom: 0.75,
-          left: `${event.clientX + offset[0]}px`,
-          top: `${event.clientY + offset[1]}px`,
-        },
-      });
+      this.setState({ left: `${event.clientX + offset[0]}px`, top: `${event.clientY + offset[1]}px` });
     }
   };
 
   render(): ReactNode {
     const { children } = this.props;
-    const { style } = this.state;
+    const { top, left } = this.state;
+    const style: CSSProperties = { ...defaultStyle, top, left };
 
     return (
       <div style={style} ref={(element) => { this.div = element; }}>

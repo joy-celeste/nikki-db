@@ -3,28 +3,33 @@ import './App.css';
 import Draggable from '../components/Draggable';
 import Figure from '../components/Figure';
 import Menu from '../components/Menu';
-// import Equipped from '../components/Equipped';
 import Closet from '../components/Closet';
 import Inventory from '../components/Inventory';
+
+const MARGIN = 30;
 
 const App = (): JSX.Element => (
   <div className="App">
     <div className="figure">
-      <Draggable>
+      <Draggable top="50%">
         <Figure />
       </Draggable>
     </div>
 
     <div className="menu">
-    <Draggable>
-      <Menu minimized={false} active={false} top={30} right={30}>
-        <Closet />
-      </Menu>
-    </Draggable>
+      <Draggable>
+        <Menu minimized={false} active={false} top={MARGIN} left={MARGIN}>
+          <Inventory />
+        </Menu>
+      </Draggable>
+    </div>
 
-      <Menu minimized={false} active={false} top={30} left={30}>
-        <Inventory />
-      </Menu>
+    <div className="menu">
+      <Draggable>
+        <Menu minimized={false} active={false} top={MARGIN} right={MARGIN}>
+          <Closet />
+        </Menu>
+      </Draggable>
     </div>
   </div>
 );

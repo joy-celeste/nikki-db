@@ -2,11 +2,12 @@ import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
 import searchIndexData from '../data/search_index.json';
 import refToSearchResult from '../data/ref_to_search_result.json';
-import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS } from './constants';
+import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS, SUBTYPES } from './constants';
 import { RootState } from '.';
 import { ItemId, SubType } from './data';
 
-export const MAX_RESULTS = 8000;
+export const DEFAULT_MAX_RESULTS_CATEGORY = 8000;
+export const DEFAULT_MAX_RESULTS_SEARCH = 150;
 export const DEFAULT_BOOST_FACTOR = 3;
 const DEFAULT_SEARCH_VALUE = '';
 
@@ -57,7 +58,7 @@ export default class SearchIndex {
    * @param searchTerm The search input.
    * @param maxResults The max number of results to return.
    */
-  searchWithTerm(searchTerm: string, maxResults?: number): string[] {
+  searchWithTerm(searchTerm: string, maxResults = DEFAULT_MAX_RESULTS_SEARCH): string[] {
     const output: string[] = [];
     if (maxResults) {
       this.index.search(searchTerm).some((result) => {
@@ -65,8 +66,6 @@ export default class SearchIndex {
         return output.length === maxResults;
       });
       return output;
-    } else {
-      return this.index.search(searchTerm).map((result) => result.ref);
     }
   }
 }
@@ -96,7 +95,7 @@ const initialState: SearchState = {
   userInput: DEFAULT_SEARCH_VALUE,
   filters: [],
   results: null,
-  subtype: null,
+  subtype: SUBTYPES.HAIR,
   hideCategories: false,
   sortOption: OPTIONS.RELEVANCE,
 };
@@ -151,7 +150,6 @@ export const generateSearchTerm = (searchState: SearchState, dispatch: Function)
     ? `+name:*${searchState.userInput.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}*`
     : '';
   const anySuitsTag = searchState.filters.some((searchOption) => searchOption.value === OPTIONS.IS_SUIT);
-  console.log(anySuitsTag)
   const suitsBoost = anySuitsTag ? '' : `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
   const subtype = searchState.subtype && !anySuitsTag ? `+subtype:${searchState.subtype}` : '';
   const filters = searchState.filters.map((searchOption: SearchOption) => {
@@ -166,12 +164,12 @@ export const generateSearchTerm = (searchState: SearchState, dispatch: Function)
 };
 
 /* istanbul ignore next */ /* branch not passing coverage check for MAX_RESULT? */
-export const searchInventory = () =>
+export const searchInventory = (maxResults?: number) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
     const { index, sortOption } = searchState;
     const searchTerm = generateSearchTerm(searchState, dispatch);
-    const initialResults = index.searchWithTerm(searchTerm);
+    const initialResults = index.searchWithTerm(searchTerm, maxResults);
 
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];

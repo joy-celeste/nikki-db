@@ -68,3 +68,13 @@
 	width: 100%;
 	max-width: 110px;
 }
+
+.empty-results {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 35px;
+	padding-left: 40px;
+	width: 450px;
+	height: 350px;
+}

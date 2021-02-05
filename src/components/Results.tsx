@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from './Icon';
 import { SearchResult } from '../modules/search';
-import { ItemId, loadMultipleItems } from '../modules/data';
+import { loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
 import { updateDownloadName } from '../modules/downloader';
+import EmptyResults from './EmptyResults';
 
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);
-  const hiddenList: Set<ItemId> = useSelector((state: RootState) => state.editor.hiddenItems);
   const hideCategories = useSelector((state: RootState) => state.search.hideCategories);
 
   const [result, setResult] = useState(null);
@@ -16,9 +16,9 @@ export const Results = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(updateDownloadName(result));
-  }, [result, hiddenList, dispatch]);
+  }, [result, dispatch]);
 
-  return results ? (
+  return results?.length > 0 ? (
     <div className={hideCategories ? 'items hideCategories' : 'items'}>
       <ul>
         {Object.values(results).map((result) => {
@@ -40,7 +40,7 @@ export const Results = (): JSX.Element => {
         })}
       </ul>
     </div>
-  ) : null;
+  ) : <EmptyResults/>;
 };
 
 export default Results;

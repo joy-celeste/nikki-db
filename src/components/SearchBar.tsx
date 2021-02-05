@@ -25,12 +25,16 @@ const SearchBar = (): JSX.Element => {
   return (
     <div className="searchbar">
       <form onSubmit={handleSearchSubmit}>
-        <input
-          value={searchValue}
-          onClick={() => textInput.focus()}
-          ref={(input) => textInput = input}
-          onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
-        <input type="submit" value="Search" />
+        <span className="searchbar-input">
+          <input
+            value={searchValue}
+            onClick={() => textInput.focus()}
+            ref={(input) => textInput = input}
+            onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
+        </span>
+        <span>
+          <input type="submit" value="Search" />
+        </span>
       </form>
     </div>
   );

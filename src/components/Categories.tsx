@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { SubType } from '../modules/data';
 import { goDownMenu, goUpMenu, Menu } from '../modules/editor';
-import { updateSearchSubtype, searchInventory } from '../modules/search';
+import { updateSearchSubtype, searchInventory, DEFAULT_MAX_RESULTS_CATEGORY } from '../modules/search';
 import './Categories.css';
 
 export const Categories = (): JSX.Element => {
@@ -13,7 +13,7 @@ export const Categories = (): JSX.Element => {
   const dispatch = useDispatch();
   const onClickSubtype = (index: number) => dispatch(goDownMenu(index, (subtype: SubType) => {
     dispatch(updateSearchSubtype(subtype));
-    dispatch(searchInventory());
+    dispatch(searchInventory(DEFAULT_MAX_RESULTS_CATEGORY));
   }));
 
   return menu.menuStrings && !hideCategories ? (

@@ -6,6 +6,7 @@ import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import './Closet.css';
 import { SUBTYPES_MAP } from '../modules/constants';
+import BackgroundOptions from './BackgroundOptions';
 
 export const Closet = (): JSX.Element => {
   const [useSubtypeSort, setToggle] = useState(false);
@@ -71,6 +72,7 @@ export const Closet = (): JSX.Element => {
           </button>
         </div>
       </div>
+      <BackgroundOptions />
     </div>
   );
 };

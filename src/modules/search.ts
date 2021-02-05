@@ -6,7 +6,7 @@ import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS } from './constants';
 import { RootState } from '.';
 import { ItemId, SubType } from './data';
 
-export const MAX_RESULTS = 150;
+export const MAX_RESULTS = 8000;
 export const DEFAULT_BOOST_FACTOR = 3;
 const DEFAULT_SEARCH_VALUE = '';
 
@@ -57,13 +57,17 @@ export default class SearchIndex {
    * @param searchTerm The search input.
    * @param maxResults The max number of results to return.
    */
-  searchWithTerm(searchTerm: string, maxResults = MAX_RESULTS): string[] {
+  searchWithTerm(searchTerm: string, maxResults?: number): string[] {
     const output: string[] = [];
-    this.index.search(searchTerm).some((result) => {
-      output.push(result.ref);
-      return output.length === maxResults;
-    });
-    return output;
+    if (maxResults) {
+      this.index.search(searchTerm).some((result) => {
+        output.push(result.ref);
+        return output.length === maxResults;
+      });
+      return output;
+    } else {
+      return this.index.search(searchTerm).map((result) => result.ref);
+    }
   }
 }
 
@@ -147,6 +151,7 @@ export const generateSearchTerm = (searchState: SearchState, dispatch: Function)
     ? `+name:*${searchState.userInput.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}*`
     : '';
   const anySuitsTag = searchState.filters.some((searchOption) => searchOption.value === OPTIONS.IS_SUIT);
+  console.log(anySuitsTag)
   const suitsBoost = anySuitsTag ? '' : `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
   const subtype = searchState.subtype && !anySuitsTag ? `+subtype:${searchState.subtype}` : '';
   const filters = searchState.filters.map((searchOption: SearchOption) => {
@@ -161,16 +166,13 @@ export const generateSearchTerm = (searchState: SearchState, dispatch: Function)
 };
 
 /* istanbul ignore next */ /* branch not passing coverage check for MAX_RESULT? */
-export const searchInventory = (maxResults: number = MAX_RESULTS) =>
+export const searchInventory = () =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
     const { index, sortOption } = searchState;
     const searchTerm = generateSearchTerm(searchState, dispatch);
-    const initialResults = index.searchWithTerm(searchTerm, maxResults);
+    const initialResults = index.searchWithTerm(searchTerm);
 
-    if (sortOption === OPTIONS.ID) {
-      initialResults.sort();
-    }
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
       let displayName = suitData?.name;
@@ -195,7 +197,8 @@ export const searchInventory = (maxResults: number = MAX_RESULTS) =>
         };
       }
       return {
-        displayName,
+        key: `${suitData?.iconId}-${displayName}`,
+        displayName: displayName,
         iconId: suitData?.iconId,
         contents: suitData?.contents,
       };
@@ -203,10 +206,10 @@ export const searchInventory = (maxResults: number = MAX_RESULTS) =>
 
     switch (sortOption) {
       case OPTIONS.NAME:
-        parsedResults.sort((a, b) => a.displayName.localeCompare(b.displayName));
+        parsedResults.sort((a, b) => a.displayName?.localeCompare(b.displayName));
         break;
       case OPTIONS.ID:
-        parsedResults.sort((a, b) => a.key.localeCompare(b.key));
+        parsedResults.sort((a, b) => a.iconId - b.iconId);
         break;
       case OPTIONS.RELEVANCE:
       default:

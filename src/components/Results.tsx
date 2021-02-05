@@ -22,10 +22,10 @@ export const Results = (): JSX.Element => {
     <div className={hideCategories ? 'items hideCategories' : 'items'}>
       <ul>
         {Object.values(results).map((result) => {
-          const key = `${result.displayName}`;
+          const key = `${result.key}`;
           return (
             <li key={key}>
-              <div className="item" key={result.displayName}>
+              <div className="item" key={result.key}>
                 <button
                   type="button"
                   key={`${key}_result_container`}

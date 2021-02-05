@@ -5,6 +5,8 @@ import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
 
 const SearchBar = (): JSX.Element => {
+  let textInput: HTMLInputElement = null;
+
   const searchValue = useSelector((state: RootState) => state.search.userInput);
   const dispatch = useDispatch();
 
@@ -23,7 +25,11 @@ const SearchBar = (): JSX.Element => {
   return (
     <div className="searchbar">
       <form onSubmit={handleSearchSubmit}>
-        <input value={searchValue} onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
+        <input
+          value={searchValue}
+          onClick={() => textInput.focus()}
+          ref={(input) => textInput = input}
+          onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
         <input type="submit" value="Search" />
       </form>
     </div>

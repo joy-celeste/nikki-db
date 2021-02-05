@@ -15,8 +15,6 @@ const App = (): JSX.Element => {
   const minimizedMenus: MenuState = useSelector((state: RootState) => state.editor.minimizedMenus);
   const activeMenus: MenuState = useSelector((state: RootState) => state.editor.activeMenus);
   const dispatch = useDispatch();
-
-  console.log(minimizedMenus, activeMenus);
   
   return (
     <div className="App">

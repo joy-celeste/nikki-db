@@ -15,8 +15,6 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps): JSX.Element => {
   const leftStyle = { top, left };
   const rightStyle = { top, right };
 
-  console.log( "???", minimized, active, "||||", `window${active ? ' active' : ''}${minimized ? ' minimized' : ''}`)
-
   return (
     <div
       style={left ? leftStyle : rightStyle}

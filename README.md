@@ -59,9 +59,9 @@
 - - [x] New items clicked get loaded, are visible, and are on the equipped menu
 - - [x] Sort closet by addition time
 - - [x] Toggle to sort by category and addition time
-- - [ ] Clicking on a suit explodes to the items in the suit
-- - [ ] Move background buttons to background section
-- - [ ] Move download button to bottom right
+- - [x] ~~Clicking on a suit explodes to the items in the suit~~
+- - [x] Move background buttons to background section
+- - [x] Move download button to bottom right
 - [x] Update search
 - - [x] Add filter for: posed items
 - - [x] Add filter for: suits
@@ -90,7 +90,7 @@
 - - [ ] Add subtype icons to menu
 - [ ] Unit tests for UI
 - [x] Display only suits that are visible in Achievements section
-- [ ] Fix bug where sorting by ID crashes
+- [x] Fix bug where sorting by ID crashes
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Add shadow support

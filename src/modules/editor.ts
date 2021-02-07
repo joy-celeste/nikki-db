@@ -94,8 +94,8 @@ const initialState: EditorState = {
   menu: new Menu(MENU_DATA),
   downloadName: 'nikki',
   downloaded: new Set<ItemId>(),
-  minimizedMenus: {closet: false, inventory: false},
-  activeMenus: {closet: false, inventory: true}
+  minimizedMenus: { closet: false, inventory: false },
+  activeMenus: { closet: false, inventory: true },
 };
 
 // ACTIONS

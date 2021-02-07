@@ -18,8 +18,9 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps): JSX.Element => {
   return (
     <div
       style={left ? leftStyle : rightStyle}
-      className={`window${active ? ' active' : ''}${minimized ? ' minimized' : ''}`}>
-        {children}
+      className={`window${active ? ' active' : ''}${minimized ? ' minimized' : ''}`}
+    >
+      {children}
     </div>
   );
 };

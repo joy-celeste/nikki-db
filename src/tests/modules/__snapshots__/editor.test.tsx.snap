@@ -3,6 +3,10 @@
 exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 1`] = `
 Object {
   "editor": Object {
+    "activeMenus": Object {
+      "closet": false,
+      "inventory": true,
+    },
     "backgroundImageName": "medium",
     "downloadName": "nikki",
     "downloaded": Set {},
@@ -199,6 +203,10 @@ Object {
         "Makeup",
         "Spirit",
       ],
+    },
+    "minimizedMenus": Object {
+      "closet": false,
+      "inventory": false,
     },
   },
 }
@@ -207,6 +215,10 @@ Object {
 exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 2`] = `
 Object {
   "editor": Object {
+    "activeMenus": Object {
+      "closet": false,
+      "inventory": true,
+    },
     "backgroundImageName": "medium",
     "downloadName": "nikki",
     "downloaded": Set {},
@@ -405,6 +417,10 @@ Object {
         "Spirit",
       ],
     },
+    "minimizedMenus": Object {
+      "closet": false,
+      "inventory": false,
+    },
   },
 }
 `;
@@ -412,6 +428,10 @@ Object {
 exports[`EditorState Action: EDITOR_CHANGE_HIDDEN_ITEM_LIST / Use-case: toggleItemVisibility -- successfully hide and unhide items 3`] = `
 Object {
   "editor": Object {
+    "activeMenus": Object {
+      "closet": false,
+      "inventory": true,
+    },
     "backgroundImageName": "medium",
     "downloadName": "nikki",
     "downloaded": Set {},
@@ -608,6 +628,10 @@ Object {
         "Makeup",
         "Spirit",
       ],
+    },
+    "minimizedMenus": Object {
+      "closet": false,
+      "inventory": false,
     },
   },
 }

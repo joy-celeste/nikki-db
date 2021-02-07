@@ -5,6 +5,7 @@ import refToSearchResult from '../data/ref_to_search_result.json';
 import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS, SUBTYPES } from './constants';
 import { RootState } from '.';
 import { ItemId, SubType } from './data';
+import { FilterSet } from './filters';
 
 export const DEFAULT_MAX_RESULTS_CATEGORY = 8000;
 export const DEFAULT_MAX_RESULTS_SEARCH = 150;
@@ -83,7 +84,7 @@ export type SearchResult = {
 export type SearchState = {
   index: SearchIndex;
   userInput: string;
-  filters: SearchOption[];
+  filterSet: FilterSet;
   results: SearchResult[];
   subtype: SubType;
   hideCategories: boolean;
@@ -93,16 +94,15 @@ export type SearchState = {
 const initialState: SearchState = {
   index: new SearchIndex(),
   userInput: DEFAULT_SEARCH_VALUE,
-  filters: [],
+  filterSet: new FilterSet(),
   results: null,
-  subtype: SUBTYPES.HAIR,
+  subtype: null,
   hideCategories: false,
   sortOption: OPTIONS.RELEVANCE,
 };
 
 export type RefToSearchData = Record<string, SearchData>;
-
-const refToData: RefToSearchData = JSON.parse(JSON.stringify(refToSearchResult));
+export const refToData: RefToSearchData = JSON.parse(JSON.stringify(refToSearchResult));
 
 interface SearchData {
   name: string,
@@ -114,14 +114,9 @@ interface SearchData {
 }
 
 // ACTIONS
-const updateSearchResults = (searchResults: SearchResult[]): AnyAction => ({
+export const updateSearchResults = (searchResults: SearchResult[]): AnyAction => ({
   type: ACTION_CONSTANTS.SEARCH_UPDATE_RESULTS,
   payload: searchResults,
-});
-
-export const updateSearchFilters = (searchTerms: SearchOption[]): AnyAction => ({
-  type: ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_FILTERS,
-  payload: searchTerms,
 });
 
 export const updateSearchString = (searchString: string): AnyAction => ({
@@ -134,14 +129,14 @@ export const updateSearchSubtype = (subtype: SubType): AnyAction => ({
   payload: subtype,
 });
 
-export const updateSuitsOnly = (suitsOnly: boolean): AnyAction => ({
-  type: ACTION_CONSTANTS.SEARCH_UPDATE_SUITS_ONLY,
-  payload: suitsOnly,
-});
-
 export const updateSortOption = (sortOption: string): AnyAction => ({
   type: ACTION_CONSTANTS.SEARCH_UPDATE_SORT_OPTION,
   payload: sortOption,
+});
+
+export const updateFilterSet = (filterSet: FilterSet): AnyAction => ({
+  type: ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_FILTERS,
+  payload: filterSet,
 });
 
 // USE-CASES
@@ -149,27 +144,30 @@ export const generateSearchTerm = (searchState: SearchState, dispatch: Function)
   const userInput = searchState.userInput
     ? `+name:*${searchState.userInput.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}*`
     : '';
-  const anySuitsTag = searchState.filters.some((searchOption) => searchOption.value === OPTIONS.IS_SUIT);
-  const suitsBoost = anySuitsTag ? '' : `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
-  const subtype = searchState.subtype && !anySuitsTag ? `+subtype:${searchState.subtype}` : '';
-  const filters = searchState.filters.map((searchOption: SearchOption) => {
-    if (searchOption.type === OPTIONS.TRUE || searchOption.type === OPTIONS.FALSE) {
-      return `+${searchOption.value}:${searchOption.type}`;
-    }
-    return `+${searchOption.type}:${searchOption.value}`;
-  }).join(' ');
-
-  dispatch(updateSuitsOnly(anySuitsTag));
-  return [filters, subtype, userInput, suitsBoost].filter((x) => x).join(' ');
+  const suitsBoost = `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
+  const subtype = searchState.subtype ? `+subtype:${searchState.subtype}` : '';
+  return [subtype, userInput, suitsBoost].filter((x) => x).join(' ');
 };
 
 /* istanbul ignore next */ /* branch not passing coverage check for MAX_RESULT? */
 export const searchInventory = (maxResults?: number) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
-    const { index, sortOption } = searchState;
-    const searchTerm = generateSearchTerm(searchState, dispatch);
-    const initialResults = index.searchWithTerm(searchTerm, maxResults);
+    const { index, filterSet, sortOption } = searchState;
+
+    let initialResults: any[];
+    if (filterSet.filters.length === 0) { // use simple search
+      const searchTerm = generateSearchTerm(searchState, dispatch); // suits prioritized
+      initialResults = index.searchWithTerm(searchTerm, maxResults);
+    } else if (filterSet.filters.length === 1 || filterSet.operator === 'and') {
+      const searchTerm = filterSet.toString();
+      initialResults = index.searchWithTerm(searchTerm, maxResults);
+    } else {
+      initialResults = [];
+      filterSet.filters.forEach((filter: any) => {
+        initialResults = initialResults.concat(index.searchWithTerm(filter.toString(), maxResults));
+      });
+    }
 
     const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
@@ -196,7 +194,7 @@ export const searchInventory = (maxResults?: number) =>
       }
       return {
         key: `${suitData?.iconId}-${displayName}`,
-        displayName: displayName,
+        displayName,
         iconId: suitData?.iconId,
         contents: suitData?.contents,
       };
@@ -231,7 +229,7 @@ export function searchReducer(
     case ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_FILTERS:
       return {
         ...state,
-        filters: action.payload,
+        filterSet: action.payload,
       };
     case ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_STRING:
       return {

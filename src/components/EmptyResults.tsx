@@ -9,7 +9,7 @@ export const EmptyResults = (): JSX.Element => {
   const filters = useSelector((state: RootState) => state.search.filters);
 
   return (
-    <div className={'empty-results'}>
+    <div className="empty-results">
       <p>We didn't find anything for your search query:
         {`${SUBTYPES_MAP[subtype]}`} - {`${userInput}`} - {filters.map((f) => `${f.type}: ${f.label} |`)}!
       </p>

@@ -40,7 +40,7 @@ export const Results = (): JSX.Element => {
         })}
       </ul>
     </div>
-  ) : <EmptyResults/>;
+  ) : <EmptyResults />;
 };
 
 export default Results;

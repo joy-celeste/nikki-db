@@ -1,16 +1,162 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchIndex Action: SEARCH_UPDATE_RESULTS / Use-case: searchName -- successfully search
-        up a term, get results, and put it in the state - DEFAULT SORT (RELEVANCE) 1`] = `
+exports[`Filter Initializes to with correct default data 1`] = `
+Filter {
+  "checkboxIsChecked": true,
+  "filterType": "userInput",
+  "filterValue": "name",
+  "id": "filter-obcft",
+  "selectType": "any",
+  "selections": Array [],
+  "userInputContains": true,
+  "userInputValue": "",
+}
+`;
+
+exports[`Filter Setters work correctly 1`] = `
+Filter {
+  "checkboxIsChecked": false,
+  "filterType": "select",
+  "filterValue": "genre",
+  "id": "filter-nhuz7j",
+  "selectType": "only",
+  "selections": Array [
+    "a",
+  ],
+  "userInputContains": false,
+  "userInputValue": "test-string",
+}
+`;
+
+exports[`FilterSet Correctly adds and removes filter 1`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-iadu8d",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "love",
+    },
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "checkbox",
+      "filterValue": "isPosed",
+      "id": "filter-avfwgg",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "",
+    },
+  ],
+  "id": "filterSet-n70q9av",
+  "operator": null,
+}
+`;
+
+exports[`FilterSet Correctly adds and removes filter 2`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "checkbox",
+      "filterValue": "isPosed",
+      "id": "filter-avfwgg",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "",
+    },
+  ],
+  "id": "filterSet-n70q9av",
+  "operator": null,
+}
+`;
+
+exports[`FilterSet Initializes to with correct default data 1`] = `
+FilterSet {
+  "filters": Array [],
+  "id": "filterSet-o0ij33",
+  "operator": null,
+}
+`;
+
+exports[`FilterState AND filter - 'little mermaid' OR 'legend of light 1`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-8ljo",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Legend of Light",
+    },
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-nhucun",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Little Mermaid",
+    },
+  ],
+  "id": "filterSet-7fpws",
+  "operator": "and",
+}
+`;
+
+exports[`FilterState AND filter - 'little mermaid' OR 'legend of light 2`] = `Array []`;
+
+exports[`FilterState AND filter - 'little mermaid' OR 'legend of light 3`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-oco3jo",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Legend of Light",
+    },
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-cv64p0g",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Little Mermaid",
+    },
+  ],
+  "id": "filterSet-mw6a3",
+  "operator": "and",
+}
+`;
+
+exports[`FilterState AND filter - 'little mermaid' OR 'legend of light 4`] = `Array []`;
+
+exports[`FilterState Action: SEARCH_UPDATE_RESULTS / Use-case: searchName -- successfully search
+  up a term, get results, and put it in the state - DEFAULT SORT (RELEVANCE) 1`] = `
 Array [
   Object {
     "contents": Array [
-      83980,
-      83981,
-      71431,
-      83979,
       11609,
+      71431,
       21398,
+      83980,
+      83979,
+      83981,
     ],
     "displayName": "Years of Love (Suit)",
     "iconId": 21398,
@@ -21,13 +167,13 @@ Array [
   },
   Object {
     "contents": Array [
-      81065,
-      81066,
-      60292,
-      70678,
       10743,
+      60292,
       20624,
+      81065,
+      70678,
       81067,
+      81066,
     ],
     "displayName": "Sweet Love (Suit)",
     "iconId": 20624,
@@ -38,31 +184,33 @@ Array [
   },
   Object {
     "contents": Array [
-      82744,
-      82745,
-      60517,
-      71160,
-      11295,
-      21097,
-      82746,
+      11313,
+      50531,
+      40575,
+      82799,
+      60524,
+      82801,
+      82800,
+      82803,
+      82802,
     ],
-    "displayName": "Murmuring Love (Suit)",
-    "iconId": 21097,
+    "displayName": "Shamala’s Love (Suit)",
+    "iconId": 40575,
     "isSuit": true,
-    "key": "21097-Murmuring Love (Suit)-0",
+    "key": "40575-Shamala’s Love (Suit)-0",
     "posed": false,
     "variation": "0",
   },
   Object {
     "contents": Array [
-      60618,
-      71345,
-      40637,
-      50589,
       11517,
+      40637,
       30655,
-      83648,
+      60618,
+      50589,
       83646,
+      71345,
+      83648,
       83647,
     ],
     "displayName": "Clover's Ceremony (Suit)",
@@ -74,13 +222,13 @@ Array [
   },
   Object {
     "contents": Array [
-      80992,
-      81145,
-      70701,
-      81143,
       10771,
+      70701,
       20644,
+      80992,
+      81143,
       81146,
+      81145,
     ],
     "displayName": "Rule of Love (Suit)",
     "iconId": 20644,
@@ -91,13 +239,13 @@ Array [
   },
   Object {
     "contents": Array [
-      80992,
-      80993,
-      70656,
-      80991,
       10721,
+      70656,
       20605,
+      80992,
+      80991,
       80994,
+      80993,
     ],
     "displayName": "Rule of Love (Suit)",
     "iconId": 20605,
@@ -108,12 +256,29 @@ Array [
   },
   Object {
     "contents": Array [
-      84190,
-      90244,
-      84187,
-      84188,
+      11295,
+      60517,
+      21097,
+      82744,
+      71160,
+      82746,
+      82745,
+    ],
+    "displayName": "Murmuring Love (Suit)",
+    "iconId": 21097,
+    "isSuit": true,
+    "key": "21097-Murmuring Love (Suit)-0",
+    "posed": false,
+    "variation": "0",
+  },
+  Object {
+    "contents": Array [
       11655,
+      84187,
       21442,
+      84190,
+      84188,
+      90244,
     ],
     "displayName": "Magic of Love (Posed Suit)",
     "iconId": 21442,
@@ -124,14 +289,14 @@ Array [
   },
   Object {
     "contents": Array [
-      84186,
-      84187,
-      60678,
-      71470,
       11655,
+      60678,
       21441,
-      90244,
+      84186,
+      71470,
       84188,
+      84187,
+      90244,
       84189,
     ],
     "displayName": "Magic of Love (Suit)",
@@ -143,11 +308,73 @@ Array [
   },
   Object {
     "contents": Array [
-      90127,
-      50505,
-      82379,
+      12086,
+      50735,
+      40796,
+      86082,
+      71829,
+      86084,
+      86083,
+      86089,
+      86088,
+      86090,
+    ],
+    "displayName": "Love Trap (Posed Suit)",
+    "iconId": 86088,
+    "isSuit": true,
+    "key": "86088-Love Trap (Posed Suit)-1",
+    "posed": true,
+    "variation": "1",
+  },
+  Object {
+    "contents": Array [
+      12086,
+      50734,
+      40796,
+      71828,
+      60874,
+      86083,
+      86082,
+      86085,
+      86084,
+      86087,
+      86086,
+    ],
+    "displayName": "Love Trap (Suit)",
+    "iconId": 40796,
+    "isSuit": true,
+    "key": "40796-Love Trap (Suit)-0",
+    "posed": false,
+    "variation": "0",
+  },
+  Object {
+    "contents": Array [
+      12144,
+      30921,
+      21906,
+      71869,
+      60896,
+      86356,
+      86355,
+      86358,
+      86357,
+      86360,
+      86359,
+    ],
+    "displayName": "Love Poem (Suit)",
+    "iconId": 30921,
+    "isSuit": true,
+    "key": "30921-Love Poem (Suit)-0",
+    "posed": false,
+    "variation": "0",
+  },
+  Object {
+    "contents": Array [
       11201,
+      50505,
       40548,
+      90127,
+      82379,
     ],
     "displayName": "Love Letters to the Sky (Posed Suit)",
     "iconId": 40548,
@@ -156,72 +383,415 @@ Array [
     "posed": true,
     "variation": "1",
   },
+]
+`;
+
+exports[`FilterState By default, if there are no filters, use simple search with name 1`] = `
+FilterSet {
+  "filters": Array [],
+  "id": "filterSet-bfghin",
+  "operator": null,
+}
+`;
+
+exports[`FilterState By default, if there are no filters, use simple search with name 2`] = `
+Array [
   Object {
     "contents": Array [
-      71073,
-      82378,
-      50504,
-      60472,
-      11200,
-      40547,
-      82379,
-      90127,
+      12278,
+      86910,
+      22026,
+      86912,
+      86911,
+      86917,
+      86916,
+      90429,
+      86918,
     ],
-    "displayName": "Love Letters to the Sky (Suit)",
-    "iconId": 40547,
+    "displayName": "The Legend of Light (Posed Suit)",
+    "iconId": 22026,
     "isSuit": true,
-    "key": "40547-Love Letters to the Sky (Suit)-0",
+    "key": "22026-The Legend of Light (Posed Suit)-1",
+    "posed": true,
+    "variation": "1",
+  },
+  Object {
+    "contents": Array [
+      12277,
+      90429,
+      30996,
+      22025,
+      71980,
+      60984,
+      86911,
+      86910,
+      86913,
+      86912,
+      86915,
+      86914,
+    ],
+    "displayName": "The Legend of Light (Suit)",
+    "iconId": 30996,
+    "isSuit": true,
+    "key": "30996-The Legend of Light (Suit)-0",
     "posed": false,
     "variation": "0",
   },
   Object {
     "contents": Array [
-      81177,
-      81182,
-      70715,
-      81176,
-      10786,
-      20652,
-      90049,
+      "22026",
     ],
-    "displayName": "For the vows of love (Suit)",
-    "iconId": 20652,
+    "displayName": "The Legend of Light",
+    "iconId": "22026",
+    "key": "22026-The Legend of Light",
+  },
+]
+`;
+
+exports[`FilterState Looking up items via the NAME filter - ONLY items with "Legend of Light" included 1`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-3efss9",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Legend of Light",
+    },
+  ],
+  "id": "filterSet-epk8pt",
+  "operator": null,
+}
+`;
+
+exports[`FilterState Looking up items via the NAME filter - ONLY items with "Legend of Light" included 2`] = `
+Array [
+  Object {
+    "contents": Array [
+      12278,
+      86910,
+      22026,
+      86912,
+      86911,
+      86917,
+      86916,
+      90429,
+      86918,
+    ],
+    "displayName": "The Legend of Light (Posed Suit)",
+    "iconId": 22026,
     "isSuit": true,
-    "key": "20652-For the vows of love (Suit)-0",
+    "key": "22026-The Legend of Light (Posed Suit)-1",
+    "posed": true,
+    "variation": "1",
+  },
+  Object {
+    "contents": Array [
+      12277,
+      90429,
+      30996,
+      22025,
+      71980,
+      60984,
+      86911,
+      86910,
+      86913,
+      86912,
+      86915,
+      86914,
+    ],
+    "displayName": "The Legend of Light (Suit)",
+    "iconId": 30996,
+    "isSuit": true,
+    "key": "30996-The Legend of Light (Suit)-0",
     "posed": false,
     "variation": "0",
   },
   Object {
     "contents": Array [
-      81071,
-      81072,
-      60294,
-      70680,
-      10745,
-      20626,
-      81073,
+      "22026",
     ],
-    "displayName": "Crown of Love (Suit)",
-    "iconId": 20626,
+    "displayName": "The Legend of Light",
+    "iconId": "22026",
+    "key": "22026-The Legend of Light",
+  },
+]
+`;
+
+exports[`FilterState Looking up items via the NAME filter - ONLY items with "ariel" included 1`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-u5ub5",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "ariel",
+    },
+  ],
+  "id": "filterSet-dgbpkr",
+  "operator": null,
+}
+`;
+
+exports[`FilterState Looking up items via the NAME filter - ONLY items with "ariel" included 2`] = `
+Array [
+  Object {
+    "contents": Array [
+      "90342",
+    ],
+    "displayName": "Yearning ♥ Ariel",
+    "iconId": "90342",
+    "key": "90342-Yearning ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85622",
+    ],
+    "displayName": "Treasure ♥ Ariel",
+    "iconId": "85622",
+    "key": "85622-Treasure ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "21771",
+    ],
+    "displayName": "Travel ♥ Ariel",
+    "iconId": "21771",
+    "key": "21771-Travel ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85627",
+    ],
+    "displayName": "Strong Soul ♥ Ariel",
+    "iconId": "85627",
+    "key": "85627-Strong Soul ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "40766",
+    ],
+    "displayName": "Slumber ♥ Ariel",
+    "iconId": "40766",
+    "key": "40766-Slumber ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "11990",
+    ],
+    "displayName": "Purity ♥ Ariel",
+    "iconId": "11990",
+    "key": "11990-Purity ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85619",
+    ],
+    "displayName": "Ocean Crown ♥ Ariel",
+    "iconId": "85619",
+    "key": "85619-Ocean Crown ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "71747",
+    ],
+    "displayName": "Light ♥ Ariel",
+    "iconId": "71747",
+    "key": "71747-Light ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85628",
+    ],
+    "displayName": "Innocent Heart ♥ Ariel",
+    "iconId": "85628",
+    "key": "85628-Innocent Heart ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85626",
+    ],
+    "displayName": "Ice Soul ♥ Ariel",
+    "iconId": "85626",
+    "key": "85626-Ice Soul ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "50707",
+    ],
+    "displayName": "Hope ♥ Ariel",
+    "iconId": "50707",
+    "key": "50707-Hope ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85624",
+    ],
+    "displayName": "Free ♥ Ariel",
+    "iconId": "85624",
+    "key": "85624-Free ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85623",
+    ],
+    "displayName": "Flower Stone ♥ Ariel",
+    "iconId": "85623",
+    "key": "85623-Flower Stone ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85625",
+    ],
+    "displayName": "Colorful ♥ Ariel",
+    "iconId": "85625",
+    "key": "85625-Colorful ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "85621",
+    ],
+    "displayName": "Carefree ♥ Ariel",
+    "iconId": "85621",
+    "key": "85621-Carefree ♥ Ariel",
+  },
+  Object {
+    "contents": Array [
+      "11989",
+    ],
+    "displayName": "Ardor ♥ Ariel",
+    "iconId": "11989",
+    "key": "11989-Ardor ♥ Ariel",
+  },
+]
+`;
+
+exports[`FilterState OR filter - 'little mermaid' OR 'legend of light 1`] = `
+FilterSet {
+  "filters": Array [
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-cny1qa",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Legend of Light",
+    },
+    Filter {
+      "checkboxIsChecked": true,
+      "filterType": "userInput",
+      "filterValue": "name",
+      "id": "filter-imgn4d",
+      "selectType": "any",
+      "selections": Array [],
+      "userInputContains": true,
+      "userInputValue": "Little Mermaid",
+    },
+  ],
+  "id": "filterSet-duy1h",
+  "operator": "or",
+}
+`;
+
+exports[`FilterState OR filter - 'little mermaid' OR 'legend of light 2`] = `
+Array [
+  Object {
+    "contents": Array [
+      12278,
+      86910,
+      22026,
+      86912,
+      86911,
+      86917,
+      86916,
+      90429,
+      86918,
+    ],
+    "displayName": "The Legend of Light (Posed Suit)",
+    "iconId": 22026,
     "isSuit": true,
-    "key": "20626-Crown of Love (Suit)-0",
+    "key": "22026-The Legend of Light (Posed Suit)-1",
+    "posed": true,
+    "variation": "1",
+  },
+  Object {
+    "contents": Array [
+      12277,
+      90429,
+      30996,
+      22025,
+      71980,
+      60984,
+      86911,
+      86910,
+      86913,
+      86912,
+      86915,
+      86914,
+    ],
+    "displayName": "The Legend of Light (Suit)",
+    "iconId": 30996,
+    "isSuit": true,
+    "key": "30996-The Legend of Light (Suit)-0",
     "posed": false,
     "variation": "0",
   },
   Object {
     "contents": Array [
-      80769,
-      80770,
-      70583,
-      80768,
-      10638,
-      20537,
-      60249,
+      "22026",
     ],
-    "displayName": "Childlike Love (Suit)",
-    "iconId": 20537,
+    "displayName": "The Legend of Light",
+    "iconId": "22026",
+    "key": "22026-The Legend of Light",
+  },
+  Object {
+    "contents": Array [
+      11990,
+      90342,
+      85619,
+      21771,
+      85625,
+      85623,
+      85627,
+      85626,
+    ],
+    "displayName": "The Little Mermaid (Posed Suit)",
+    "iconId": 21771,
     "isSuit": true,
-    "key": "20537-Childlike Love (Suit)-0",
+    "key": "21771-The Little Mermaid (Posed Suit)-1",
+    "posed": true,
+    "variation": "1",
+  },
+  Object {
+    "contents": Array [
+      11989,
+      85626,
+      50707,
+      40766,
+      85619,
+      71747,
+      85621,
+      85620,
+      85623,
+      85622,
+      90342,
+      85627,
+      85625,
+      85624,
+    ],
+    "displayName": "The Little Mermaid (Suit)",
+    "iconId": 40766,
+    "isSuit": true,
+    "key": "40766-The Little Mermaid (Suit)-0",
     "posed": false,
     "variation": "0",
   },

@@ -32,7 +32,7 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
 
   roundNearest(value: number, multiplier: number = MARGIN): number {
     const { snapToGrid } = this.props;
-    return snapToGrid ? multiplier * Math.round(value/multiplier) : value;
+    return snapToGrid ? multiplier * Math.round(value / multiplier) : value;
   }
 
   componentDidMount(): void {
@@ -58,7 +58,7 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
     if (isDown) {
       this.setState({
         left: `${this.roundNearest(event.clientX + offset[0])}px`,
-        top: `${this.roundNearest(event.clientY + offset[1])}px`
+        top: `${this.roundNearest(event.clientY + offset[1])}px`,
       });
     }
   };
@@ -77,4 +77,3 @@ class Draggable extends React.PureComponent<DraggableProps, DraggableState> {
 }
 
 export default Draggable;
-

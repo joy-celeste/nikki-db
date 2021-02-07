@@ -30,7 +30,8 @@ const SearchBar = (): JSX.Element => {
             value={searchValue}
             onClick={() => textInput.focus()}
             ref={(input) => textInput = input}
-            onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))} />
+            onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))}
+          />
         </span>
         <span>
           <input type="submit" value="Search" />

@@ -12,7 +12,7 @@ export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
   { label: 'Rarity', options: rarityOptions },
 ];
 
-const colourStyles: StylesConfig<any, boolean> = {
+export const colourStyles: StylesConfig<any, boolean> = {
   control: (styles: CSSProperties) => ({ ...styles, backgroundColor: 'white' }),
   option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
     const color = chroma(data.color);
@@ -49,13 +49,13 @@ const colourStyles: StylesConfig<any, boolean> = {
   }),
 };
 
-const groupStyles = {
+export const groupStyles = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
 };
 
-const groupBadgeStyles: CSSProperties = {
+export const groupBadgeStyles: CSSProperties = {
   backgroundColor: '#EBECF0',
   borderRadius: '2em',
   color: '#172B4D',

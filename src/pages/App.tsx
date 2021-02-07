@@ -33,11 +33,9 @@ const App = (): JSX.Element => {
       </div>
 
       <div className="menu" onClick={() => dispatch(setActive({closet: true, inventory: false}))}>
-        <Draggable>
           <Menu minimized={minimizedMenus.closet} active={activeMenus.closet} top={MARGIN} right={MARGIN}>
             <Closet />
           </Menu>
-        </Draggable>
       </div>
     </div>
 )};

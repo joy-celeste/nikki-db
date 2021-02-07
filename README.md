@@ -54,7 +54,7 @@
 - - [x] Small ~~menu~~ button to delete an item
 - - [x] Hide / delete worn items from the items panel
 - - [x] Button to delete all unworn items
-- [ ] Update Equipped menu
+- [x] Update Equipped menu
 - - [x] Load all loaded items in Equipped menu
 - - [x] New items clicked get loaded, are visible, and are on the equipped menu
 - - [x] Sort closet by addition time
@@ -78,21 +78,21 @@
 - [x] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
 - [x] When loading multiple items, unhide everything
 - [ ] Load sessions by URL (list of items or a suit id)
-- - [ ] Add URL Shortener
 - [x] Create script for version with current prod clothes
 - [ ] Create flag for version with only certain suit names
 - [ ] Install logger for debugging
 - [ ] Add report menu
+- [x] Display only suits that are visible in Achievements section
+- [x] Fix bug where sorting by ID crashes
+
+### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Create the beautiful UI
 - - [ ] Window
 - - [ ] Menu
 - - [ ] Equipped
 - - [ ] Add subtype icons to menu
 - [ ] Unit tests for UI
-- [x] Display only suits that are visible in Achievements section
-- [x] Fix bug where sorting by ID crashes
-
-### Milestone 3: Performance increases, additional features, address initial feedback
+- [ ] Add URL Shortener
 - [ ] Add shadow support
 - [ ] Add tilt support
 - [ ] Add animations
@@ -100,22 +100,14 @@
 - [ ] Obfuscate filenames
 - [ ] Obfuscate JSON
 - [ ] Refactor loadMultipleItems() for better separation of concerns
-- [ ] Find out how to only upload changed files to API
 - [ ] Bug: Downloaded image fails if the top of the character is above the top of the viewport.
 - [ ] Copy list of items to clipboard
-- [ ] Bug: Some suits are marked as posed when they are just alts of unposed suits (example: Pegasus's Dream)
 - [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
-- [ ] Search function - lazy load on stop typing
-- [ ] Search by ID (without category prefix)
-- [ ] Search by suit
 - [ ] Undo / Redo
 - [ ] Hide / delete backgrounds/characters from the layers panel
 - [ ] Figure out how to provide this public service without screwing over Paper's artists/developers revenue
-- [ ] Filters
-- - [ ] Sort by new
-- - [ ] Sort by rare(? - by LN's sort)
-- - [ ] Sort by color
+- [ ] Sort by color
 - [ ] Auto update when the game updates
 - [ ] Animations
 

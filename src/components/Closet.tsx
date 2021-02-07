@@ -4,7 +4,6 @@ import { RootState } from '../modules';
 import { ItemId, removeItemFromCloset, ItemsData, removeAllUnwornFromCloset } from '../modules/data';
 import { wearItem } from '../modules/character';
 import Icon from './Icon';
-import './Closet.css';
 import { SUBTYPES_MAP } from '../modules/constants';
 import BackgroundOptions from './BackgroundOptions';
 

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import './Menu.css';
+import './style.css';
 
 export interface MenuProps {
   children: ReactNode;

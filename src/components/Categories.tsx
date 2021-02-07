@@ -4,7 +4,6 @@ import { RootState } from '../modules';
 import { SubType } from '../modules/data';
 import { goDownMenu, goUpMenu, Menu } from '../modules/editor';
 import { updateSearchSubtype, searchInventory, DEFAULT_MAX_RESULTS_CATEGORY } from '../modules/search';
-import './Categories.css';
 
 export const Categories = (): JSX.Element => {
   const menu: Menu = useSelector((state: RootState) => state.editor.menu);

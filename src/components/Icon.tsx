@@ -1,6 +1,5 @@
 import React from 'react';
 import { ItemId } from '../modules/data';
-import './Icon.css';
 
 export interface IconProps {
   clothesId: ItemId;

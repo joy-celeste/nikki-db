@@ -1,3 +1,155 @@
+.equipped-wrapper {
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+.equipped-trash {
+	margin: 0px 15px 0px 15px;
+}
+
+.equipped-icon {
+	margin-right: 15px;
+}
+
+.equipped-text {
+	width: 100%;
+}
+
+.icon-wrapper {
+	width: 120px;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* background-color: rgba(255, 255, 255, .2); */
+}
+
+.disabled {
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+}
+
+.inventory-container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 600px;
+}
+
+.searchbar, .backgroundOptions, .searchOptions {
+	width: 100%;
+	flex-basis: 100%;
+}
+
+.searchOptions {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.categories {
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-border-radius: 30px;
+	border-radius: 30px;
+	max-height: 400px;
+}
+
+.categories li {
+	line-height: 180%;
+	list-style: none;
+}
+
+.categories ul {
+	padding-left: 0px;
+	width: 100px;
+}
+
+.items {
+	width: 470px;
+	height: 430px;
+	padding-left: 30px;
+	overflow-x: hidden; 
+	overflow-y: auto; 
+}
+
+.items.hideCategories {
+	width: 800px;
+}
+
+.items ul {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 0px;
+}
+
+.items ul li {
+	list-style: none;
+	flex-basis: 33.333%;
+}
+
+.items.hideCategories ul li {
+	flex-basis: 25%;
+}
+
+.item  {
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+}
+
+.text {
+	width: 100%;
+	max-width: 110px;
+}
+
+.empty-results {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 35px;
+	padding-left: 40px;
+	width: 450px;
+	height: 350px;
+}
+
+.window {
+    overflow: none;
+    background-color: rgba(255, 255, 255, 0.50);
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    z-index: 90000;
+    position: absolute;
+    padding: 20px;
+}
+
+.window.active{
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.window button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.searchbar input {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 15 px;
+    border: 1px solid #cdcdcd;
+}
+
+.searchbar-input input {
+    height: 17px;
+    width: 80%;
+    max-width: 100%;
+}
+
+.searchbar {
+    width: 100%;
+}
+
 .closet {
 	display: flex;
 	flex-direction: column;

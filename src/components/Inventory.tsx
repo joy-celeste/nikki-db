@@ -2,7 +2,6 @@ import React from 'react';
 import Results from './Results';
 import SearchBar from './SearchBar';
 import SearchOptions from './SearchOptions';
-import './Inventory.css';
 import Categories from './Categories';
 
 export const Inventory = (): JSX.Element => (

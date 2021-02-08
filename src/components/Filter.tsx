@@ -59,7 +59,6 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
   const index = filterSet.filters.findIndex((filter) => filter.id === props.id);
   filter = filterSet.filters[index];
 
-  console.log(index, props.id, filterSet);
   const [fourthValue, setFourthValue] = useState('');
   const [thirdValue, setThirdValue] = useState(containsOptions[0]);
   const [thirdOptions, setThirdOptions] = useState(containsOptions);
@@ -103,7 +102,6 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
   };
 
   const onChangeFourth = (input: any) => {
-    console.log(input);
     switch (filter.filterType) {
       case 'checkbox':
         filter.setCheckboxIsChecked(input.target.checked);
@@ -111,13 +109,11 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
       case 'userInput':
         filter.setUserInputValue(input.target.value);
         setFourthValue(input.target.value);
-        console.log(input.target.value);
         break;
       case 'select':
         if (filter.selectType === 'any') {
           const values: string[] = input.map((option: any) => option.value);
           filter.setSelection(values);
-          console.log(values);
         } else {
           filter.setSelection(input.value);
         }

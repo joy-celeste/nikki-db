@@ -3,12 +3,13 @@ import Results from './Results';
 import SearchBar from './SearchBar';
 import SearchOptions from './SearchOptions';
 import Categories from './Categories';
-import { NewFilters } from '../components/NewFilters';
+import NewFilters from './NewFilters';
+import Sort from './Sort';
 
 export const Inventory = (): JSX.Element => (
   <div className="inventory-container">
-    <SearchBar />
-    <SearchOptions />
+    <div style={{ width: '30%' }}><Sort /></div>
+    <div style={{ width: '70%' }}><SearchBar /></div>
     <NewFilters />
     <Categories />
     <Results />

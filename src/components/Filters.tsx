@@ -1,9 +1,7 @@
 import React, { CSSProperties } from 'react';
-import Select, { GroupedOptionsType, OptionTypeBase, StylesConfig } from 'react-select';
+import { GroupedOptionsType, OptionTypeBase, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
-import { useDispatch } from 'react-redux';
 import { generalOptions, rarityOptions, genreOptions, specialOptions } from '../modules/constants';
-import { searchInventory } from '../modules/search';
 
 export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
   { label: 'Colours', options: generalOptions },
@@ -74,23 +72,3 @@ const formatGroupLabel = (data: any) => (
     <span style={groupBadgeStyles}>{data.label === 'Colours' ? data.options.length / 2 : data.options.length}</span>
   </div>
 );
-
-export const Filters = (): JSX.Element => {
-  const dispatch = useDispatch();
-
-  return (
-    <Select
-      formatGroupLabel={formatGroupLabel}
-      options={groupedOptions}
-      styles={colourStyles}
-      onChange={(options: any) => {
-        // dispatch(updateSearchFilters(options));
-        dispatch(searchInventory());
-      }}
-      isSearchable
-      isMulti
-    />
-  );
-};
-
-export default Filters;

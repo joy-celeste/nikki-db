@@ -84,7 +84,6 @@ export class Filter {
 export const updateFilter = (id: string) =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const { filterSet } = getState().search;
-    console.log(id, filterSet);
     const newFilterSet = new FilterSet(filterSet);
     dispatch(updateFilterSet(newFilterSet));
   };

@@ -3,7 +3,7 @@ import Select, { GroupedOptionsType, OptionTypeBase, StylesConfig } from 'react-
 import chroma from 'chroma-js';
 import { useDispatch } from 'react-redux';
 import { generalOptions, rarityOptions, genreOptions, specialOptions } from '../modules/constants';
-import { searchInventory, updateSearchFilters } from '../modules/search';
+import { searchInventory } from '../modules/search';
 
 export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
   { label: 'Colours', options: generalOptions },
@@ -84,7 +84,7 @@ export const Filters = (): JSX.Element => {
       options={groupedOptions}
       styles={colourStyles}
       onChange={(options: any) => {
-        dispatch(updateSearchFilters(options));
+        // dispatch(updateSearchFilters(options));
         dispatch(searchInventory());
       }}
       isSearchable

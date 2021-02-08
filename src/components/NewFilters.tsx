@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
 import Select, { GroupedOptionsType, OptionTypeBase, StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { colourStyles, groupStyles, groupBadgeStyles } from './Filters';
 import { generalOptions, rarityOptions, genreOptions, specialOptions } from '../modules/constants';
+import { RootState } from '../modules';
+import { Filter } from '../modules/filters';
+import { Filter as FilterComponent } from '../components/Filter';
+import { searchInventory, updateFilterSet } from '../modules/search';
 
 export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
   { label: 'Colours', options: generalOptions },
@@ -34,23 +38,28 @@ const formatGroupLabel = (data: any) => (
 
 export const NewFilters = (): JSX.Element => {
   const dispatch = useDispatch();
+  const filterSet = useSelector((state: RootState) => state.search.filterSet);
 
   const addFilter = () => {
-    console.log('added filter');
-  };
-
-  const addFilterGroup = () => {
-    console.log('addFilterGroup');
+    filterSet.addFilter(new Filter());
+    dispatch(updateFilterSet(filterSet));
   };
 
   return (
     <div className="newSearchOptions">
-      <div className="filtersSection" />
+      <div className="filtersSection">
+        {filterSet.filters.map((f) => <FilterComponent id={f.id} />)}
+      </div>
 
       <div className="addFilterOptions">
         <div onClick={addFilter}>+ Add Filter</div>
-        <div onClick={addFilterGroup}>+ Add Filter Group</div>
       </div>
+
+      {/* <form onSubmit={() => dispatch(searchInventory())}>
+        <span>
+          <input type="submit" value="Search" />
+        </span>
+      </form> */}
     </div>
   );
 };

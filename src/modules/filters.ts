@@ -1,4 +1,7 @@
-type Operator = 'and' | 'or';
+import { RootState } from '.';
+import { updateFilterSet } from './search';
+
+export type Operator = 'and' | 'or';
 
 export class FilterSet {
   id: string;
@@ -8,7 +11,7 @@ export class FilterSet {
   constructor(input?: FilterSet) {
     this.id = `filterSet-${Math.random().toString(36).substring(7)}`;
     this.filters = input?.filters ?? [];
-    this.operator = input?.operator ?? null;
+    this.operator = input?.operator ?? 'and';
   }
 
   setOperator(operator: Operator) {
@@ -76,3 +79,12 @@ export class Filter {
     }
   }
 }
+
+// USE-CASE
+export const updateFilter = (id: string) =>
+  async(dispatch: Function, getState: () => RootState): Promise<void> => {
+    const { filterSet } = getState().search;
+    console.log(id, filterSet);
+    const newFilterSet = new FilterSet(filterSet);
+    dispatch(updateFilterSet(newFilterSet));
+  };

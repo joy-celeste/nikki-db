@@ -70,20 +70,23 @@
 - - [x] When clicking on other subtype, search with that search term with that subtype
 - - [x] Dropdown for order by: ID, name
 - - [x] Update data to include 'posed' tag for suits
+- [x] Bug: DST skin goes above underwear
+- [x] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
+- [x] When loading multiple items, unhide everything
+- [x] Create script for version with current prod clothes
+- [x] Display only suits that are visible in Achievements section
+- [x] Fix bug where sorting by ID crashes
+- [ ] New search UI: sort - category - toggle between simple/adv search
+- - [ ] Move search bars / add toggle
+- - [ ] Remove menu
+- - [ ] Tell user what they were searching, add search button
 - [ ] Make menus interactive
 - - [x] Make windows draggable
 - - [x] Make windows more transparent when not active
 - - [ ] Add icon to minimize windows to the bottom right
-- [x] Bug: DST skin goes above underwear
-- [x] Bug: Volley Lucia, Angelika's Dream amongst others don't have icons loading in search
-- [x] When loading multiple items, unhide everything
-- [ ] Load sessions by URL (list of items or a suit id)
-- [x] Create script for version with current prod clothes
 - [ ] Create flag for version with only certain suit names
-- [ ] Install logger for debugging
 - [ ] Add report menu
-- [x] Display only suits that are visible in Achievements section
-- [x] Fix bug where sorting by ID crashes
+- [ ] Load sessions by URL (list of items or a suit id)
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Create the beautiful UI

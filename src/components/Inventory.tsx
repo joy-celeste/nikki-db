@@ -1,7 +1,6 @@
 import React from 'react';
 import Results from './Results';
 import SearchBar from './SearchBar';
-import SearchOptions from './SearchOptions';
 import Categories from './Categories';
 import NewFilters from './NewFilters';
 import Sort from './Sort';

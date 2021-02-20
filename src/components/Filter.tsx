@@ -18,8 +18,8 @@ export const operatorOptions: Options[] = [
 
 export const filterValueOptions: Options[] = [
   { value: 'name', label: 'Name', type: 'userInput' },
-  { value: 'special', label: 'Special', type: 'select' },
-  { value: 'rarity', label: 'Rarity', type: 'select' },
+  { value: 'spec', label: 'Special', type: 'select' },
+  { value: 'rare', label: 'Rarity', type: 'select' },
   { value: 'posed', label: 'is Posed', type: 'checkbox' },
   { value: 'isSuit', label: 'is Suit', type: 'checkbox' },
   { value: 'subtype', label: 'Subtype', type: 'select' },
@@ -141,8 +141,8 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
         );
       case 'select':
         const options: OptionsType<any> = filter.filterValue === 'genre' ? genreOptions
-          : filter.filterValue === 'special' ? specialOptions
-            : filter.filterValue === 'rarity' ? rarityOptions : null;
+          : filter.filterValue === 'spec' ? specialOptions
+            : filter.filterValue === 'rare' ? rarityOptions : null;
         return filter.selectType === 'any' ? (
           <Select
             options={options}

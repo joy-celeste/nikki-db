@@ -88,6 +88,11 @@
 - [ ] Create flag for version with only certain suit names
 - [ ] Add report menu
 - [ ] Load sessions by URL (list of items or a suit id)
+- [ ] Disable scrolling on main simulator
+- [ ] Clean up Closet
+- - [ ] Add background buttons
+- - [ ] Update trash icon, confirmation
+- - [ ] Update toggle
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Create the beautiful UI

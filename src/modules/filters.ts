@@ -1,6 +1,4 @@
-import { Index } from 'lunr';
-import { RootState } from '.';
-import SearchIndex, { SUITS_BOOST_TERM, updateFilterSet } from './search';
+import SearchIndex, { SUITS_BOOST_TERM } from './search';
 
 export type Operator = 'and' | 'or';
 
@@ -45,12 +43,8 @@ export class FilterSet {
     return this.filters.map((f) => f.toString()).join(' ');
   }
 
-  common(a: Iterable<unknown>, b: any[]) {
-    return b.filter(Set.prototype.has.bind(new Set(a)));
-  }
-
   intersection(array: any[][]): any[] {
-    return array.reduce(this.common);
+    return array.reduce((a, b) => b.filter(Set.prototype.has.bind(new Set(a))));
   }
 
   search(index: SearchIndex) {
@@ -72,7 +66,6 @@ export class FilterSet {
         return multiSelectFiltersWithAnyResults.concat(restResults);
       }
     } else {
-      console.log("here?")
       if (this.filters.length === 1 || this.operator === 'and') {
         const searchTerm = `${this.toString()} ${SUITS_BOOST_TERM}`;
         return index.searchWithTerm(searchTerm);
@@ -146,11 +139,3 @@ export class Filter {
     }
   }
 }
-
-// USE-CASE
-export const updateFilter = (id: string) =>
-  async(dispatch: Function, getState: () => RootState): Promise<void> => {
-    const { filterSet } = getState().search;
-    const newFilterSet = new FilterSet(filterSet);
-    dispatch(updateFilterSet(newFilterSet));
-  };

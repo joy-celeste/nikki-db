@@ -1,19 +1,13 @@
 import { combineReducers, Store } from 'redux';
 import { ItemId } from '../../modules/data';
-import { createStoreWithMiddleware } from '../helpers';
+import { createSeedFunction, createStoreWithMiddleware } from '../helpers';
 import { FilterSet, } from '../../modules/filters';
 import SearchIndex, { DEFAULT_BOOST_FACTOR, searchReducer, generateSimpleSearchString, updateFilterSet, updateSearchString, searchInventory, updateSortOption, updateMaxResults, setAdvancedSearch } from '../../modules/search';
 import { RootState } from '../../modules';
 import { sortOptions } from '../../modules/constants';
 
-const seed = (s: any) => {
-  return function() {
-      s = Math.sin(s) * 10000; return s - Math.floor(s);
-  };
-};
-
 const mockMath = Object.create(global.Math);
-mockMath.random = seed(42);
+mockMath.random = createSeedFunction(42);
 global.Math = mockMath;
 
 const RELEVANCE_SORT = sortOptions[0];

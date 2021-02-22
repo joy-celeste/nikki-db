@@ -164,7 +164,6 @@ export const searchInventory = () =>
       initialResults = index.searchWithTerm(searchTerm, maxResults);
     } else {
       initialResults = filterSet.search(index);
-      console.log(initialResults)
     }
     initialResults = Array.from(new Set(initialResults));
 

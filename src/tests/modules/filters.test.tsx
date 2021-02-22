@@ -1,23 +1,12 @@
 import { combineReducers, Store } from 'redux';
-import { ItemId } from '../../modules/data';
-import { createStoreWithMiddleware } from '../helpers';
+import { createSeedFunction, createStoreWithMiddleware } from '../helpers';
 import { Filter, FilterSet, } from '../../modules/filters';
-import { searchReducer, updateFilterSet, updateSearchString, searchInventory, updateSortOption, updateMaxResults, setAdvancedSearch } from '../../modules/search';
+import { searchReducer, updateFilterSet, updateSearchString, searchInventory, updateMaxResults, setAdvancedSearch } from '../../modules/search';
 import { RootState } from '../../modules';
-import { sortOptions } from '../../modules/constants';
-
-const seed = (s: any) => {
-  return function() {
-      s = Math.sin(s) * 10000; return s - Math.floor(s);
-  };
-};
 
 const mockMath = Object.create(global.Math);
-mockMath.random = seed(42);
+mockMath.random = createSeedFunction(42);
 global.Math = mockMath;
-
-const RELEVANCE_SORT = sortOptions[0];
-const ID_SORT = sortOptions[1];
 
 describe('FilterSet', () => {
   let filterSet: FilterSet;
@@ -27,41 +16,45 @@ describe('FilterSet', () => {
   });
 
   test('Initializes to with correct default data', () => {
-    expect(filterSet.operator).toBeNull();
-    expect(filterSet.filters.length).toBe(0);
+    expect(filterSet.operator).toBe('and');
+    expect(filterSet.filters.length).toBe(1);
     expect(filterSet.id.substring(0,10)).toBe('filterSet-')
     expect(filterSet).toMatchSnapshot();
   });
 
   test('Correctly changes operator', () => {
-    expect(filterSet.operator).toBeNull();
-    filterSet.setOperator('and');
     expect(filterSet.operator).toBe('and');
+    filterSet.setOperator('or');
+    expect(filterSet.operator).toBe('or');
   });
 
   test('Correctly adds and removes filter', () => {
+    expect(filterSet.filters.length).toBe(1);
     const userInputFilter = new Filter({userInputContains: true, userInputValue: 'love'} as Filter);
     const checkboxFilter = new Filter({filterType: 'checkbox', filterValue: 'isPosed'} as Filter);
 
     filterSet.addFilter(userInputFilter);
-    expect(filterSet.filters.length).toBe(1);
+    expect(filterSet.filters.length).toBe(2);
 
     filterSet.addFilter(checkboxFilter);
-    expect(filterSet.filters.length).toBe(2);
+    expect(filterSet.filters.length).toBe(3);
     expect(filterSet).toMatchSnapshot();
 
     filterSet.removeFilter(userInputFilter)
-    expect(filterSet.filters.length).toBe(1);
+    expect(filterSet.filters.length).toBe(2);
     expect(filterSet).toMatchSnapshot();
   });
 
   test('Correctly creates AND search term from multiple filters', () => {
-    const userInputFilter = new Filter({userInputContains: true, userInputValue: 'love'} as Filter);
-    const checkboxFilter = new Filter({filterType: 'checkbox', filterValue: 'isPosed'} as Filter);
+    // Fill out default first filter
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('love');
 
-    filterSet.addFilter(userInputFilter);
+    // Add additional posed filter
+    const checkboxFilter = new Filter({filterType: 'checkbox', filterValue: 'isPosed'} as Filter);
     filterSet.addFilter(checkboxFilter);
-    expect(filterSet.toString()).toBe('+name:*love* +isPosed:true')
+
+    expect(filterSet.toString()).toBe('+name:*_love_* +isPosed:true')
   });
 });
 
@@ -72,7 +65,7 @@ describe('Filter', () => {
     expect(filter.filterValue).toBe('name');
     expect(filter.userInputValue).toBe('');
     expect(filter.userInputContains).toBe(true);
-    expect(filter.selectType).toBe('any');
+    expect(filter.selectType).toBe('only');
     expect(filter.selections.length).toBe(0);
     expect(filter.checkboxIsChecked).toBe(true);
     expect(filter).toMatchSnapshot();
@@ -85,7 +78,7 @@ describe('Filter', () => {
     filter.setFilterValue('genre');
     filter.setUserInputValue('test-string');
     filter.setUserInputContains(false);
-    filter.setSelectType('only');
+    filter.setSelectType('any');
     filter.setSelection(['a']);
     filter.setCheckboxIsChecked(false);
 
@@ -93,7 +86,7 @@ describe('Filter', () => {
     expect(filter.filterValue).toBe('genre');
     expect(filter.userInputValue).toBe('test-string');
     expect(filter.userInputContains).toBe(false);
-    expect(filter.selectType).toBe('only');
+    expect(filter.selectType).toBe('any');
     expect(filter.selections.length).toBe(1);
     expect(filter.checkboxIsChecked).toBe(false);
     expect(filter).toMatchSnapshot();
@@ -104,19 +97,19 @@ describe('Filter', () => {
         userInputContains: true,
         userInputValue: 'New Love'
       } as Filter);
-    expect(userInputFilter.toString()).toBe('+name:*new_love*')
+    expect(userInputFilter.toString()).toBe('+name:*_new_love_*')
 
     userInputFilter = new Filter({
       userInputContains: false,
       userInputValue: 'New Love'
     } as Filter);
-    expect(userInputFilter.toString()).toBe('-name:*new_love*')
+    expect(userInputFilter.toString()).toBe('-name:*_new_love_*')
 
     userInputFilter = new Filter({
       userInputContains: true,
       userInputValue: 'Brilliant Light ♥ Rapunzel'
     } as Filter);
-    expect(userInputFilter.toString()).toBe('+name:*brilliant_light_♥_rapunzel*')   
+    expect(userInputFilter.toString()).toBe('+name:*_brilliant_light_♥_rapunzel_*')   
   });
 
   test('Select filter returns correct search strings', () => {
@@ -134,7 +127,7 @@ describe('Filter', () => {
       selectType: 'any',
       selections: ['2', '4', '6', '8']
     } as Filter);
-    expect(selectFilter.toString()).toBe('special:2 special:4 special:6 special:8')
+    expect(selectFilter.toString()).toBe(undefined)
   });
 
   test('Checkbox filter returns correct search strings', () => {
@@ -169,19 +162,17 @@ describe('FilterState', () => {
 
   test('Assert initial state uses default values', async () => {
     const filterSet: FilterSet = store.getState().search.filterSet;
-    expect(filterSet.filters.length).toEqual(0);
-    expect(filterSet.operator).toBeNull();
+    expect(filterSet.filters.length).toEqual(1);
+    expect(filterSet.operator).toBe('and');
   });
 
   test(`If there are filters, ignore simple search`, async () => {
-    let userInputFilter = new Filter({
-      userInputContains: true,
-      userInputValue: 'ariel'
-    } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.addFilter(userInputFilter);
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
+    // Fill out default first filter
+    const filterSet: FilterSet = store.getState().search.filterSet;
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('ariel');
+
+    await store.dispatch<any>(setAdvancedSearch(true));
     await store.dispatch<any>(updateSearchString('love'));
     await store.dispatch<any>(updateMaxResults(3));
     await store.dispatch<any>(searchInventory());
@@ -190,15 +181,12 @@ describe('FilterState', () => {
   });
 
   test(`Looking up items via the NAME filter - ONLY items with "ariel" included`, async () => {
-    let userInputFilter = new Filter({
-      userInputContains: true,
-      userInputValue: 'ariel'
-    } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.addFilter(userInputFilter);
+    // Fill out default first filter
+    const filterSet: FilterSet = store.getState().search.filterSet;
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('ariel');
 
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
+    await store.dispatch<any>(setAdvancedSearch(true));
     await store.dispatch<any>(updateMaxResults(20));
     await store.dispatch<any>(searchInventory());
 
@@ -209,14 +197,12 @@ describe('FilterState', () => {
   });
 
   test(`Looking up items via the NAME filter - ONLY items with "Legend of Light" included`, async () => {
-    let userInputFilter = new Filter({
-      userInputContains: true,
-      userInputValue: 'Legend of Light'
-    } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.addFilter(userInputFilter);
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
+    // Fill out default first filter
+    const filterSet: FilterSet = store.getState().search.filterSet;
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('Legend of Light');
+
+    await store.dispatch<any>(setAdvancedSearch(true));
     await store.dispatch<any>(updateMaxResults(3));
     await store.dispatch<any>(searchInventory());
     state = store.getState();
@@ -227,20 +213,20 @@ describe('FilterState', () => {
   });
 
   test(`OR filter - 'little mermaid' OR 'legend of light`, async () => {
-    const userInputFilter1 = new Filter({
-      userInputContains: true,
-      userInputValue: 'Legend of Light'
-    } as Filter);
+    // Fill out default first filter
+    const filterSet: FilterSet = store.getState().search.filterSet;
+    filterSet.setOperator('or');
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('Legend of Light');
+
+    // Add second filter
     const userInputFilter2 = new Filter({
       userInputContains: true,
       userInputValue: 'Little Mermaid'
     } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.setOperator('or');
-    currFilterSet.addFilter(userInputFilter1);
-    currFilterSet.addFilter(userInputFilter2);
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
+    filterSet.addFilter(userInputFilter2);
+
+    await store.dispatch<any>(setAdvancedSearch(true));
     await store.dispatch<any>(updateMaxResults(10));
     await store.dispatch<any>(searchInventory());
     state = store.getState();
@@ -251,51 +237,25 @@ describe('FilterState', () => {
     expect(state.search.results).toMatchSnapshot();
   });
 
-  test(`AND filter - 'little mermaid' OR 'legend of light`, async () => {
-    const userInputFilter1 = new Filter({
-      userInputContains: true,
-      userInputValue: 'Legend of Light'
-    } as Filter);
+  test(`AND filter - 'little mermaid' AND 'legend of light`, async () => {
+    // Fill out default first filter
+    const filterSet: FilterSet = store.getState().search.filterSet;
+    filterSet.setOperator('and');
+    filterSet.filters[0].setUserInputContains(true);
+    filterSet.filters[0].setUserInputValue('Legend of Light');
+
+    // Add second filter
     const userInputFilter2 = new Filter({
       userInputContains: true,
       userInputValue: 'Little Mermaid'
     } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.setOperator('and');
-    currFilterSet.addFilter(userInputFilter1);
-    currFilterSet.addFilter(userInputFilter2);
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
-    await store.dispatch<any>(updateMaxResults(10));
+    filterSet.addFilter(userInputFilter2);
 
+    await store.dispatch<any>(setAdvancedSearch(true));
+    await store.dispatch<any>(updateMaxResults(10));
     await store.dispatch<any>(searchInventory());
     state = store.getState();
-  
-    expect(state.search.results.length).toEqual(0); 
-    expect(state.search.filterSet).toMatchSnapshot();
-    expect(state.search.results).toMatchSnapshot();
-  });
 
-  test(`AND filter - 'little mermaid' OR 'legend of light`, async () => {
-    const userInputFilter1 = new Filter({
-      userInputContains: true,
-      userInputValue: 'Legend of Light'
-    } as Filter);
-    const userInputFilter2 = new Filter({
-      userInputContains: true,
-      userInputValue: 'Little Mermaid'
-    } as Filter);
-    
-    const currFilterSet = store.getState().search.filterSet;
-    currFilterSet.setOperator('and');
-    currFilterSet.addFilter(userInputFilter1);
-    currFilterSet.addFilter(userInputFilter2);
-    await store.dispatch<any>(updateFilterSet(currFilterSet));
-    await store.dispatch<any>(updateMaxResults(10));
-
-    await store.dispatch<any>(searchInventory());
-    state = store.getState();
-  
     expect(state.search.results.length).toEqual(0); 
     expect(state.search.filterSet).toMatchSnapshot();
     expect(state.search.results).toMatchSnapshot();

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select, { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select';
-import { generalOptions, rarityOptions, genreOptions, specialOptions } from '../modules/constants';
+import { generalOptions, rarityOptions, genreOptions, specialOptions, categoryOptions as subtypeOptions } from '../modules/constants';
 import { Filter as FilterClass, FilterType, Operator, SelectType } from '../modules/filters';
 import { RootState } from '../modules';
 
@@ -17,13 +17,13 @@ export const operatorOptions: Options[] = [
 ];
 
 export const filterValueOptions: Options[] = [
-  { value: 'name', label: 'Name', type: 'userInput' },
-  { value: 'spec', label: 'Special', type: 'select' },
-  { value: 'rare', label: 'Rarity', type: 'select' },
+  { value: 'name', label: 'name', type: 'userInput' },
+  { value: 'subtype', label: 'category', type: 'select' },
   { value: 'posed', label: 'is Posed', type: 'checkbox' },
   { value: 'isSuit', label: 'is Suit', type: 'checkbox' },
-  { value: 'subtype', label: 'Subtype', type: 'select' },
-  { value: 'genre', label: 'Genre', type: 'select' },
+  { value: 'genre', label: 'genre', type: 'select' },
+  { value: 'spec', label: 'special', type: 'select' },
+  { value: 'rare', label: 'rarity', type: 'select' },
 ];
 
 export const containsOptions: Options[] = [
@@ -32,8 +32,8 @@ export const containsOptions: Options[] = [
 ];
 
 export const selectOptions: Options[] = [
-  { value: 'any', label: 'contains any of' },
   { value: 'only', label: 'contains only' },
+  { value: 'any', label: 'contains any of' },
 ];
 
 export const isCheckedOptions: Options[] = [
@@ -46,10 +46,12 @@ export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
   { label: 'Genre', options: genreOptions },
   { label: 'Special', options: specialOptions },
   { label: 'Rarity', options: rarityOptions },
+  { label: 'Category', options: subtypeOptions },
 ];
 
 export interface FilterProps {
   id: string;
+  setSubmitMessage: Function;
 }
 
 export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
@@ -84,16 +86,17 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
     }
     filter.setFilterValue(options.value);
     filter.setFilterType(options.type);
+    props.setSubmitMessage(filterSet.generateSubmitMessage());
   };
 
   const onChangeThird = (options: Options) => {
     setThirdValue(options);
     switch (filter.filterType) {
       case 'checkbox':
-        filter.setCheckboxIsChecked(Boolean(options.value));
+        filter.setCheckboxIsChecked(JSON.parse(options.value));
         break;
       case 'userInput':
-        filter.setUserInputContains(Boolean(options.value));
+        filter.setUserInputContains(JSON.parse(options.value));
         break;
       case 'select':
         filter.setSelectType(options.value as SelectType);
@@ -119,16 +122,20 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
         }
         break;
     }
+    props.setSubmitMessage(filterSet.generateSubmitMessage());
   };
 
   const renderFourth = () => {
     switch (filter.filterType) {
       case 'checkbox':
         return (
-          <input
-            type="checkbox"
-            onChange={onChangeFourth}
-          />
+          <div className="advancedFilterFourth">
+            <input
+              type="checkbox"
+              onChange={onChangeFourth}
+              checked
+            />
+          </div>
         );
       case 'userInput':
         return (
@@ -142,12 +149,15 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
       case 'select':
         const options: OptionsType<any> = filter.filterValue === 'genre' ? genreOptions
           : filter.filterValue === 'spec' ? specialOptions
-            : filter.filterValue === 'rare' ? rarityOptions : null;
+            : filter.filterValue === 'rare' ? rarityOptions
+              : filter.filterValue === 'subtype' ? subtypeOptions : null;
         return filter.selectType === 'any' ? (
           <Select
+            className="reactselect-valid"
             options={options}
             onChange={onChangeFourth}
             isSearchable
+            isClearable
             isMulti
           />
         ) : (
@@ -161,8 +171,8 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
   };
 
   return filter ? (
-    <div key={filter.id} className="searchOptions">
-      <div key={`${filter.id}-first`} style={{ width: '20%' }}>
+    <div key={filter.id} className="advancedFilter">
+      <div className={index !== 1 ? 'advancedFilterFirst' : ''} key={`${filter.id}-first`} style={{ width: '20%' }}>
         {index === 0 ? (<span>Where</span>)
           : index !== 1 ? (<span>{filterSet.operator}</span>)
             : (
@@ -173,7 +183,7 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
               />
             )}
       </div>
-      <div key={`${filter.id}-second`} style={{ width: '20%' }}>
+      <div key={`${filter.id}-second`} style={{ width: '25%' }}>
         <Select
           defaultValue={filterValueOptions[0]}
           options={filterValueOptions}
@@ -187,14 +197,17 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
           onChange={onChangeThird}
         />
       </div>
-      <div key={`${filter.id}-fourth`} style={{ width: '30%' }}>
+      <div key={`${filter.id}-fourth`} style={{ width: '25%' }}>
         {renderFourth()}
       </div>
       <button
         type="button"
         className="equipped-trash"
         key={`${filter.id}_trash`}
-        onClick={() => filterSet.removeFilter(filter)}
+        onClick={() => {
+          filterSet.removeFilter(filter);
+          props.setSubmitMessage(filterSet.generateSubmitMessage());
+        }}
       >🗑️
       </button>
     </div>

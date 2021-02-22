@@ -16,7 +16,7 @@ export const BackgroundOptions = (): JSX.Element => {
   }, [background]);
 
   return (
-    <div className="backgroundOptions">
+    <div className="fullwidth">
       {DEFAULT_BACKGROUND_OPTIONS.map((backgroundName) => (
         <button type="button" key={backgroundName} onClick={() => setBackground(backgroundName)}>
           {backgroundName}

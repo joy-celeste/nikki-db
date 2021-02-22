@@ -22,7 +22,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* background-color: rgba(255, 255, 255, .2); */
 }
 
 .disabled {
@@ -36,14 +35,70 @@
 	max-width: 600px;
 }
 
-.backgroundOptions, .searchOptions, .newSearchOptions {
+.backgroundOptions, .advancedFilter, .advancedFilters, .simpleSearch {
 	width: 100%;
 	flex-basis: 100%;
 }
 
-.searchOptions {
+.advancedFilter {
 	display: flex;
-	justify-content: flex-end;
+}
+
+.advancedSearch, .simpleSearch {
+	width: 100%;
+	flex-wrap: wrap;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.advancedFilterToolbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.simpleSearch input, .advancedFilter input, .advancedFilterToolbar input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #cdcdcd;
+}
+
+.advancedFilterFirst, .advancedFilterFourth, .maxResultsLabel {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	max-height: 17px;
+	min-width: 110px;
+	max-width: 160px;
+	text-align: center;
+}
+
+.sortFilter {
+	min-width: 150px;
+}
+
+.advancedFilter input, .maxResultsLabel input {
+    height: 20px;
+	max-width: 118px;
+}
+
+.simpleSearch {
+	max-width: 100%;
+}
+
+.searchbar input {
+    height: 17px;
+	width: 60%;
+}
+
+.searchInputText {
+	display: flex;
+	justify-content: space-between;
+}
+
+.searchInputText b{
+	position: relative;
+	top: 10px;
 }
 
 .categories {
@@ -63,30 +118,21 @@
 	width: 100px;
 }
 
-.items {
-	width: 470px;
-	height: 430px;
-	padding-left: 30px;
+.search-results {
+	height: 500px;
 	overflow-x: hidden; 
-	overflow-y: auto; 
+	overflow-y: auto;
+	margin-top: -10px;
 }
 
-.items.hideCategories {
-	width: 800px;
-}
-
-.items ul {
+.search-results ul {
 	display: flex;
 	flex-wrap: wrap;
 	padding-left: 0px;
 }
 
-.items ul li {
+.search-results ul li {
 	list-style: none;
-	flex-basis: 33.333%;
-}
-
-.items.hideCategories ul li {
 	flex-basis: 25%;
 }
 
@@ -106,9 +152,8 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 35px;
-	padding-left: 40px;
-	width: 450px;
 	height: 350px;
+	width: 100%;
 }
 
 .window {
@@ -131,23 +176,6 @@
     border: none;
     cursor: pointer;
     outline: none;
-}
-
-.searchbar input {
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 15 px;
-    border: 1px solid #cdcdcd;
-}
-
-.searchbar-input input {
-    height: 17px;
-    width: 80%;
-    max-width: 100%;
-}
-
-.searchbar {
-    width: 100%;
 }
 
 .closet {
@@ -252,13 +280,14 @@
 .slider {
 	position: absolute;
 	cursor: pointer;
-	top: 0;
+	top: -7px;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	background-color: #ccc;
 	-webkit-transition: .4s;
 	transition: .4s;
+	height: 33px;
 }
 
 .slider:before {

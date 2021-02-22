@@ -3,7 +3,7 @@ import { simpleDress, simpleHair } from '../test_data/data';
 import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
 import { Filter, FilterSet, } from '../../modules/filters';
-import { DEFAULT_BOOST_FACTOR, generateSearchTerm, searchReducer, updateFilterSet, updateSearchString, searchInventory, updateSortOption } from '../../modules/search';
+import { DEFAULT_BOOST_FACTOR, searchReducer, generateSimpleSearchTerm, updateFilterSet, updateSearchString, searchInventory, updateSortOption } from '../../modules/search';
 import { RootState } from '../../modules';
 import { genreOptions, specialOptions, generalOptions, sortOptions } from '../../modules/constants';
 
@@ -182,21 +182,21 @@ describe('FilterState', () => {
   test(`Creates correct SEARCH TERM: case - no key words, all subtypes, no filters`, async () => {
     await store.dispatch<any>(updateSearchString(''));
     state = store.getState();
-    const generatedSearchTerm = generateSearchTerm(state.search, store.dispatch);
+    const generatedSearchTerm = generateSimpleSearchTerm(state.search, store.dispatch);
     expect(generatedSearchTerm).toContain(`isSuit:true^${DEFAULT_BOOST_FACTOR}`);
   });
 
   test(`Creates correct SEARCH TERM: case - one key word, all subtypes, no filters`, async () => {
     await store.dispatch<any>(updateSearchString('love'));
     state = store.getState();
-    const generatedSearchTerm = generateSearchTerm(state.search, store.dispatch);
+    const generatedSearchTerm = generateSimpleSearchTerm(state.search, store.dispatch);
     expect(generatedSearchTerm).toEqual(`+name:*love* isSuit:true^${DEFAULT_BOOST_FACTOR}`);
   });
 
   test(`Creates correct SEARCH TERM: case - multiple key words, all subtypes, no filters`, async () => {
     await store.dispatch<any>(updateSearchString('knit vest'));
     state = store.getState();
-    const generatedSearchTerm = generateSearchTerm(state.search, store.dispatch);
+    const generatedSearchTerm = generateSimpleSearchTerm(state.search, store.dispatch);
     expect(generatedSearchTerm).toEqual(`+name:*knit_vest* isSuit:true^${DEFAULT_BOOST_FACTOR}`);
   });
 

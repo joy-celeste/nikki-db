@@ -2,15 +2,15 @@ import lunr, { Index } from 'lunr';
 import { AnyAction } from 'redux';
 import searchIndexData from '../data/search_index.json';
 import refToSearchResult from '../data/ref_to_search_result.json';
-import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS, SUBTYPES } from './constants';
+import { ACTION_CONSTANTS, ITEM_SUFFIX, OPTIONS } from './constants';
 import { RootState } from '.';
 import { ItemId, SubType } from './data';
 import { FilterSet } from './filters';
 
-export const DEFAULT_MAX_RESULTS_CATEGORY = 8000;
-export const DEFAULT_MAX_RESULTS_SEARCH = 150;
+export const DEFAULT_MAX_RESULTS_SEARCH = 500;
 export const DEFAULT_BOOST_FACTOR = 3;
 const DEFAULT_SEARCH_VALUE = '';
+export const SUITS_BOOST_TERM = ` isSuit:true^${DEFAULT_BOOST_FACTOR}`;
 
 export interface SearchOption {
   value: string | number,
@@ -59,15 +59,13 @@ export default class SearchIndex {
    * @param searchTerm The search input.
    * @param maxResults The max number of results to return.
    */
-  searchWithTerm(searchTerm: string, maxResults = DEFAULT_MAX_RESULTS_SEARCH): string[] {
+  searchWithTerm(searchTerm: string, maxResults?: number): string[] {
     const output: string[] = [];
-    if (maxResults) {
-      this.index.search(searchTerm).some((result) => {
-        output.push(result.ref);
-        return output.length === maxResults;
-      });
-      return output;
-    }
+    this.index.search(searchTerm).some((result) => {
+      output.push(result.ref);
+      return maxResults ? output.length === maxResults : false;
+    });
+    return output;
   }
 }
 
@@ -83,22 +81,24 @@ export type SearchResult = {
 
 export type SearchState = {
   index: SearchIndex;
-  userInput: string;
+  simpleSearchString: string;
   filterSet: FilterSet;
   results: SearchResult[];
   subtype: SubType;
-  hideCategories: boolean;
+  useAdvancedSearch: boolean;
   sortOption: string;
+  maxResults: number;
 };
 
 const initialState: SearchState = {
   index: new SearchIndex(),
-  userInput: DEFAULT_SEARCH_VALUE,
+  simpleSearchString: DEFAULT_SEARCH_VALUE,
   filterSet: new FilterSet(),
   results: null,
   subtype: null,
-  hideCategories: false,
+  useAdvancedSearch: false,
   sortOption: OPTIONS.RELEVANCE,
+  maxResults: DEFAULT_MAX_RESULTS_SEARCH,
 };
 
 export type RefToSearchData = Record<string, SearchData>;
@@ -139,37 +139,41 @@ export const updateFilterSet = (filterSet: FilterSet): AnyAction => ({
   payload: filterSet,
 });
 
+export const updateMaxResults = (maxResults: number): AnyAction => ({
+  type: ACTION_CONSTANTS.SEARCH_UPDATE_MAX_RESULTS,
+  payload: maxResults,
+});
+
+export const setAdvancedSearch = (useAdvancedSearch: boolean): AnyAction => ({
+  type: ACTION_CONSTANTS.SEARCH_USE_ADVANCED_SEARCH,
+  payload: useAdvancedSearch,
+});
+
 // USE-CASES
-export const generateSearchTerm = (searchState: SearchState, dispatch: Function): string => {
-  const userInput = searchState.userInput
-    ? `+name:*${searchState.userInput.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}*`
+export const generateSimpleSearchTerm = (simpleSearchString: string): string => {
+  const userInput = simpleSearchString
+    ? `+name:*_${simpleSearchString.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}_*`
     : '';
-  const suitsBoost = `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
-  const subtype = searchState.subtype ? `+subtype:${searchState.subtype}` : '';
-  return [subtype, userInput, suitsBoost].filter((x) => x).join(' ');
+  return [userInput, SUITS_BOOST_TERM].filter((x) => x).join(' ');
 };
 
 /* istanbul ignore next */ /* branch not passing coverage check for MAX_RESULT? */
-export const searchInventory = (maxResults?: number) =>
+export const searchInventory = () =>
   async(dispatch: Function, getState: () => RootState): Promise<void> => {
     const searchState = getState().search;
-    const { index, filterSet, sortOption } = searchState;
+    const { index, filterSet, sortOption, simpleSearchString, useAdvancedSearch, maxResults } = searchState;
 
     let initialResults: any[];
-    if (filterSet.filters.length === 0) { // use simple search
-      const searchTerm = generateSearchTerm(searchState, dispatch); // suits prioritized
-      initialResults = index.searchWithTerm(searchTerm, maxResults);
-    } else if (filterSet.filters.length === 1 || filterSet.operator === 'and') {
-      const searchTerm = filterSet.toString();
+    if (!useAdvancedSearch ) {
+      const searchTerm = generateSimpleSearchTerm(simpleSearchString);
       initialResults = index.searchWithTerm(searchTerm, maxResults);
     } else {
-      initialResults = [];
-      filterSet.filters.forEach((filter: any) => {
-        initialResults = initialResults.concat(index.searchWithTerm(filter.toString(), maxResults));
-      });
+      initialResults = filterSet.search(index);
+      console.log(initialResults)
     }
+    initialResults = Array.from(new Set(initialResults));
 
-    const parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
+    let parsedResults: SearchResult[] = initialResults.flatMap((key: string) => {
       const suitData = refToData[key];
       let displayName = suitData?.name;
 
@@ -212,6 +216,9 @@ export const searchInventory = (maxResults?: number) =>
         break;
     }
 
+    if (maxResults) {
+      parsedResults = parsedResults.slice(0, maxResults);
+    }
     dispatch(updateSearchResults(parsedResults));
   };
 
@@ -234,17 +241,22 @@ export function searchReducer(
     case ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_STRING:
       return {
         ...state,
-        userInput: action.payload,
+        simpleSearchString: action.payload,
       };
     case ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_SUBTYPE:
       return {
         ...state,
         subtype: action.payload,
       };
-    case ACTION_CONSTANTS.SEARCH_UPDATE_SUITS_ONLY:
+    case ACTION_CONSTANTS.SEARCH_USE_ADVANCED_SEARCH:
       return {
         ...state,
-        hideCategories: action.payload,
+        useAdvancedSearch: action.payload,
+      };
+    case ACTION_CONSTANTS.SEARCH_UPDATE_MAX_RESULTS:
+      return {
+        ...state,
+        maxResults: action.payload,
       };
     case ACTION_CONSTANTS.SEARCH_UPDATE_SORT_OPTION:
       return {

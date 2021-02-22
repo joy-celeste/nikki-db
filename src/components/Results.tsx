@@ -6,10 +6,10 @@ import { loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
 import { updateDownloadName } from '../modules/downloader';
 import EmptyResults from './EmptyResults';
+import { Sort } from './Sort';
 
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);
-  const hideCategories = useSelector((state: RootState) => state.search.hideCategories);
 
   const [result, setResult] = useState(null);
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const Results = (): JSX.Element => {
   }, [result, dispatch]);
 
   return results?.length > 0 ? (
-    <div className={hideCategories ? 'items hideCategories' : 'items'}>
+    <div className="search-results">
       <ul>
         {Object.values(results).map((result) => {
           const key = `${result.key}`;

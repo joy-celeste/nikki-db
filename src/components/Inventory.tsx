@@ -1,18 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Results from './Results';
-import SearchBar from './SearchBar';
-import Categories from './Categories';
-import NewFilters from './NewFilters';
-import Sort from './Sort';
+import SimpleSearch from './SimpleSearch';
+import AdvancedSearch from './AdvancedSearch';
+import { RootState } from '../modules';
 
-export const Inventory = (): JSX.Element => (
-  <div className="inventory-container">
-    <div style={{ width: '30%' }}><Sort /></div>
-    <div style={{ width: '70%' }}><SearchBar /></div>
-    <NewFilters />
-    <Categories />
-    <Results />
-  </div>
-);
+export const Inventory = (): JSX.Element => {
+  const useAdvancedSearch = useSelector((state: RootState) => state.search.useAdvancedSearch);
+
+  return (
+    <div className="inventory-container">
+      { useAdvancedSearch ? <AdvancedSearch /> : <SimpleSearch />}
+      <Results />
+    </div>
+  );
+};
 
 export default Inventory;

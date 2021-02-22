@@ -20,7 +20,8 @@ export const ACTION_CONSTANTS = {
   SEARCH_UPDATE_SEARCH_FILTERS: 'search/UPDATE_SEARCH_FILTERS',
   SEARCH_UPDATE_SEARCH_STRING: 'search/UPDATE_SEARCH_STRING',
   SEARCH_UPDATE_SEARCH_SUBTYPE: 'search/UPDATE_SEARCH_SUBTYPE',
-  SEARCH_UPDATE_SUITS_ONLY: 'search/UPDATE_SUITS_ONLY',
+  SEARCH_UPDATE_MAX_RESULTS: 'search/SEARCH_UPDATE_MAX_RESULTS',
+  SEARCH_USE_ADVANCED_SEARCH: 'search/USE_ADVANCED_SEARCH',
   SEARCH_UPDATE_SORT_OPTION: 'search/UPDATE_SORT_OPTION',
   EDITOR_CHANGE_HIDDEN_ITEM_LIST: 'editor/CHANGE_HIDDEN_ITEM_LIST',
   EDITOR_CHANGE_MINIMIZED_MENUS: 'editor/EDITOR_CHANGE_MINIMIZED_MENUS',
@@ -88,9 +89,46 @@ export const OPTIONS = {
 };
 
 export const sortOptions = [
-  { value: 'relevance', label: 'Relevancy', color: '#00B8D9' },
+  { value: 'relevance', label: 'relevancy', color: '#00B8D9' },
   { value: 'id', label: 'ID', color: '#00B8D9' },
-  { value: 'name', label: 'Name', color: '#0052CC' },
+  { value: 'name', label: 'name', color: '#0052CC' },
+];
+
+export const categoryOptions = [
+  { value: '1', label: 'Hair', color: '#00B8D9' },
+  { value: '2', label: 'Dress', color: '#00B8D9' },
+  { value: '3', label: 'Coat', color: '#00B8D9' },
+  { value: '4', label: 'Top', color: '#00B8D9' },
+  { value: '5', label: 'Bottom', color: '#00B8D9' },
+  { value: '6', label: 'Leglet', color: '#00B8D9' },
+  { value: '7', label: 'Hosiery', color: '#00B8D9' },
+  { value: '8', label: 'Shoes', color: '#00B8D9' },
+  { value: '10', label: 'Hair Ornament', color: '#00B8D9' },
+  { value: '20', label: 'Veil', color: '#00B8D9' },
+  { value: '28', label: 'Hairpin', color: '#00B8D9' },
+  { value: '29', label: 'Ear', color: '#00B8D9' },
+  { value: '11', label: 'Earrings', color: '#00B8D9' },
+  { value: '12', label: 'Scarf', color: '#00B8D9' },
+  { value: '13', label: 'Necklace', color: '#00B8D9' },
+  { value: '14', label: 'Right Hand Ornament', color: '#00B8D9' },
+  { value: '15', label: 'Left Hand Ornament', color: '#00B8D9' },
+  { value: '16', label: 'Gloves', color: '#00B8D9' },
+  { value: '17', label: 'Right Hand Holding', color: '#00B8D9' },
+  { value: '18', label: 'Left Hand Holding', color: '#00B8D9' },
+  { value: '33', label: 'Both Hand Holding', color: '#00B8D9' },
+  { value: '19', label: 'Waist', color: '#00B8D9' },
+  { value: '21', label: 'Face', color: '#00B8D9' },
+  { value: '22', label: 'Brooch', color: '#00B8D9' },
+  { value: '23', label: 'Tattoo', color: '#00B8D9' },
+  { value: '24', label: 'Wing', color: '#00B8D9' },
+  { value: '25', label: 'Tail', color: '#00B8D9' },
+  { value: '26', label: 'Foreground', color: '#00B8D9' },
+  { value: '27', label: 'Background', color: '#00B8D9' },
+  { value: '30', label: 'Hair Ornament', color: '#00B8D9' },
+  { value: '31', label: 'Ground', color: '#00B8D9' },
+  { value: '32', label: 'Skin', color: '#00B8D9' },
+  { value: '9', label: 'Makeup', color: '#00B8D9' },
+  { value: '34', label: 'Spirit', color: '#00B8D9' },
 ];
 
 export const generalOptions = [

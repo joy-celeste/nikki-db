@@ -9,7 +9,6 @@ import BackgroundOptions from './BackgroundOptions';
 
 export const Closet = (): JSX.Element => {
   const [useSubtypeSort, setToggle] = useState(false);
-  const handleClick = () => setToggle(!useSubtypeSort);
   const itemsData: ItemsData = useSelector((state: RootState) => state.data.itemsData);
   const { clothes } = useSelector((state: RootState) => state.character.history[state.character.step]);
   const currentlyWorn = new Set<ItemId>(Object.values(clothes));
@@ -62,7 +61,7 @@ export const Closet = (): JSX.Element => {
       <div className="row closet-toolbar">
         <div>
           <label className="switch" htmlFor="checkbox">
-            <input id="checkbox" type="checkbox" onClick={handleClick} checked={useSubtypeSort} readOnly />
+            <input id="checkbox" type="checkbox" onClick={() => setToggle(!useSubtypeSort)} checked={useSubtypeSort} readOnly />
             <span className="slider round" />
           </label>
           {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}

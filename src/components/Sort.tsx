@@ -3,7 +3,7 @@ import Select, { StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { useDispatch } from 'react-redux';
 import { sortOptions } from '../modules/constants';
-import { searchInventory, updateSortOption } from '../modules/search';
+import { DEFAULT_MAX_RESULTS_SEARCH, updateMaxResults, updateSortOption } from '../modules/search';
 
 const dot = (color = '#ccc') => ({
   alignItems: 'center',
@@ -41,18 +41,31 @@ const colourStyles: StylesConfig<any, boolean> = {
 };
 
 export const Sort = (): JSX.Element => {
+  let textInput: HTMLInputElement = null;
   const dispatch = useDispatch();
+  
   return (
-    <Select
-      defaultValue={sortOptions[0]}
-      label="Single select"
-      options={sortOptions}
-      styles={colourStyles}
-      onChange={(options: any) => {
-        dispatch(updateSortOption(options.value));
-        dispatch(searchInventory());
-      }}
-    />
+    <div className="advancedFilter">
+      <div className="advancedFilterFirst" style={{ width: '20%' }}>Sort by</div>
+      <div className="sortFilter" style={{ width: '25%' }}>
+        <Select
+          styles={colourStyles}
+          defaultValue={sortOptions[0]}
+          options={sortOptions}
+          onChange={(options) => dispatch(updateSortOption(options.value))}
+        />
+      </div>
+      <div className="maxResultsLabel" style={{ width: '30%' }}>Max results</div>
+      <div className="maxResultsField" style={{ width: '25%' }}>
+        <input
+          defaultValue={DEFAULT_MAX_RESULTS_SEARCH}
+          onClick={() => textInput.focus()}
+          ref={(input) => textInput = input}
+          onChange={(e) => dispatch(updateMaxResults(parseInt(e.target.value, 10)))}
+        />
+      </div>
+      <div style={{ width: '12%' }} />
+      </div>
   );
 };
 

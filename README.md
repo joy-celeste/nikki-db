@@ -76,17 +76,19 @@
 - [x] Create script for version with current prod clothes
 - [x] Display only suits that are visible in Achievements section
 - [x] Fix bug where sorting by ID crashes
-- [ ] New search UI: sort - category - toggle between simple/adv search
-- - [ ] Move search bars / add toggle
-- - [ ] Remove menu
-- - [ ] Tell user what they were searching, add search button
+- [x] New search UI: sort - category - toggle between simple/adv search
+- - [x] Move search bars / add toggle
+- - [x] Remove menu
+- - [x] Tell user what they were searching, add search button
 - [ ] Make menus interactive
 - - [x] Make windows draggable
 - - [x] Make windows more transparent when not active
 - - [ ] Add icon to minimize windows to the bottom right
+- - [ ] Make windows resizable
 - [ ] Create flag for version with only certain suit names
 - [ ] Add report menu
 - [ ] Load sessions by URL (list of items or a suit id)
+- [ ] Animated assets
 
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Create the beautiful UI

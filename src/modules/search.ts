@@ -10,7 +10,7 @@ import { FilterSet } from './filters';
 export const DEFAULT_MAX_RESULTS_SEARCH = 500;
 export const DEFAULT_BOOST_FACTOR = 3;
 const DEFAULT_SEARCH_VALUE = '';
-export const SUITS_BOOST_TERM = ` isSuit:true^${DEFAULT_BOOST_FACTOR}`;
+export const SUITS_BOOST_TERM = `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
 
 export interface SearchOption {
   value: string | number,
@@ -124,11 +124,6 @@ export const updateSearchString = (searchString: string): AnyAction => ({
   payload: searchString,
 });
 
-export const updateSearchSubtype = (subtype: SubType): AnyAction => ({
-  type: ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_SUBTYPE,
-  payload: subtype,
-});
-
 export const updateSortOption = (sortOption: string): AnyAction => ({
   type: ACTION_CONSTANTS.SEARCH_UPDATE_SORT_OPTION,
   payload: sortOption,
@@ -150,7 +145,7 @@ export const setAdvancedSearch = (useAdvancedSearch: boolean): AnyAction => ({
 });
 
 // USE-CASES
-export const generateSimpleSearchTerm = (simpleSearchString: string): string => {
+export const generateSimpleSearchString = (simpleSearchString: string): string => {
   const userInput = simpleSearchString
     ? `+name:*_${simpleSearchString.split(' ').map((word: string) => `${word.toLowerCase()}`).join('_')}_*`
     : '';
@@ -165,7 +160,7 @@ export const searchInventory = () =>
 
     let initialResults: any[];
     if (!useAdvancedSearch ) {
-      const searchTerm = generateSimpleSearchTerm(simpleSearchString);
+      const searchTerm = generateSimpleSearchString(simpleSearchString);
       initialResults = index.searchWithTerm(searchTerm, maxResults);
     } else {
       initialResults = filterSet.search(index);
@@ -242,11 +237,6 @@ export function searchReducer(
       return {
         ...state,
         simpleSearchString: action.payload,
-      };
-    case ACTION_CONSTANTS.SEARCH_UPDATE_SEARCH_SUBTYPE:
-      return {
-        ...state,
-        subtype: action.payload,
       };
     case ACTION_CONSTANTS.SEARCH_USE_ADVANCED_SEARCH:
       return {

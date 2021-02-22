@@ -55,7 +55,6 @@ export class FilterSet {
 
   search(index: SearchIndex) {
     const multiSelectFiltersWithAny: Filter[] = this.filters.filter((filter) => filter.filterType === 'select' && filter.selectType === 'any');
-    // console.log('multiSelectFiltersWithAny', multiSelectFiltersWithAny)
 
     if (multiSelectFiltersWithAny.length > 0) {
       if (this.filters.length === 1) {
@@ -63,17 +62,11 @@ export class FilterSet {
       }
       const otherFilters: Filter[] = this.filters.filter((filter) => filter.filterType !== 'select' || filter.selectType !== 'any');
       const multiSelectFiltersWithAnyResults = multiSelectFiltersWithAny.map((filter) => filter.search(index));
-      const restSearchTerm = otherFilters.map((f) => f.toString()).join(' ') + SUITS_BOOST_TERM;
+      const restSearchTerm = `${otherFilters.map((f) => f.toString()).join(' ')} ${SUITS_BOOST_TERM}`;
       const restResults = otherFilters.length > 0 ? index.searchWithTerm(restSearchTerm) : [];
-
-      // console.log("otherFilters", otherFilters)
-      // console.log("multiSelectFiltersWithAnyResults", multiSelectFiltersWithAnyResults)
-      // console.log("restSearchTerm", restSearchTerm)
-      // console.log("restResults", restResults)
 
       if (this.operator === 'and') {
         const multiIntersection = this.intersection(multiSelectFiltersWithAnyResults);
-        console.log('multiIntersection', multiIntersection);
         return restResults.length > 0 ? multiIntersection.filter((result) => restResults.includes(result)) : multiIntersection;
       } if (this.operator === 'or') {
         return multiSelectFiltersWithAnyResults.concat(restResults);
@@ -81,8 +74,7 @@ export class FilterSet {
     } else {
       console.log("here?")
       if (this.filters.length === 1 || this.operator === 'and') {
-        const searchTerm = this.toString() + SUITS_BOOST_TERM;
-        console.log(searchTerm);
+        const searchTerm = `${this.toString()} ${SUITS_BOOST_TERM}`;
         return index.searchWithTerm(searchTerm);
       }
       return this.filters.flatMap((filter: any) => index.searchWithTerm(filter.toString()));

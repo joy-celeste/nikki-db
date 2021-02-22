@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter Setters work correctly 1`] = `
+Filter {
+  "checkboxIsChecked": false,
+  "filterType": "select",
+  "filterValue": "genre",
+  "id": "filter-xgpi84",
+  "selectType": "only",
+  "selections": Array [
+    "a",
+  ],
+  "userInputContains": false,
+  "userInputValue": "test-string",
+}
+`;

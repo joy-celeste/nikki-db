@@ -17,11 +17,11 @@ export class FilterSet {
     this.addFilter(new Filter());
   }
 
-  allFiltersValid() {
+  allFiltersValid(): boolean {
     return this.filters.every((filter) => filter.isValid());
   }
 
-  generateSubmitMessage() {
+  generateSubmitMessage(): string {
     if (this.filters.length === 0) {
       return PLEASE_CREATE_A_FILTER;
     } if (!this.allFiltersValid()) {
@@ -30,19 +30,19 @@ export class FilterSet {
     return SEARCH_BUTTON_LABEL;
   }
 
-  setOperator(operator: Operator) {
+  setOperator(operator: Operator): void {
     this.operator = operator;
   }
 
-  addFilter(filter: Filter) {
+  addFilter(filter: Filter): void {
     this.filters.push(filter);
   }
 
-  removeFilter(filter: Filter) {
+  removeFilter(filter: Filter): void {
     this.filters = this.filters.filter((f) => filter.id !== f.id);
   }
 
-  toString() {
+  toString(): string {
     return this.filters.map((f) => f.toString()).join(' ');
   }
 
@@ -50,15 +50,15 @@ export class FilterSet {
     return array.reduce((a, b) => b.filter(Set.prototype.has.bind(new Set(a))));
   }
 
-  filtersWithAny() {
+  filtersWithAny(): Filter[] {
     return this.filters.filter((filter) => filter.filterType === 'select' && filter.selectType === 'any');
   }
 
-  filtersWithoutAny() {
+  filtersWithoutAny(): Filter[] {
     return this.filters.filter((filter) => filter.filterType !== 'select' || filter.selectType !== 'any');
   }
 
-  search(index: SearchIndex) {
+  search(index: SearchIndex): string[] {
     const withAny: Filter[] = this.filtersWithAny();
 
     // Without any multi-select filters with 'any' selectType ==========================================
@@ -67,7 +67,7 @@ export class FilterSet {
         const searchTerm = `${this.toString()} ${SUITS_BOOST_TERM}`;
         return index.searchWithTerm(searchTerm);
       }
-      return this.filters.flatMap((filter: any) => index.searchWithTerm(filter.toString()));
+      return this.filters.flatMap((filter: Filter) => index.searchWithTerm(filter.toString()));
     }
 
     // With any multi-select filters with 'any' selectType =============================================
@@ -81,13 +81,12 @@ export class FilterSet {
     if (this.operator === 'and') {
       const withAnyResults = withAny.map((filter) => filter.search(index));
       const intersection = this.intersection(withAnyResults);
-      return withoutAnyResults.length 
+      return withoutAnyResults.length
         ? intersection.filter((res) => withoutAnyResults.includes(res))
         : intersection;
-    } else {
-      const withAnyResults = withAny.flatMap((filter) => filter.search(index));
-      return withAnyResults.concat(withoutAnyResults);
     }
+    const withAnyResults = withAny.flatMap((filter) => filter.search(index));
+    return withAnyResults.concat(withoutAnyResults);
   }
 }
 
@@ -115,13 +114,13 @@ export class Filter {
     this.checkboxIsChecked = input?.checkboxIsChecked ?? true;
   }
 
-  setFilterType(filterType: FilterType) { this.filterType = filterType; }
-  setFilterValue(filterValue: string) { this.filterValue = filterValue; }
-  setUserInputValue(userInputValue: string) { this.userInputValue = userInputValue; }
-  setUserInputContains(userInputContains: boolean) { this.userInputContains = userInputContains; }
-  setSelectType(selectType: SelectType) { this.selectType = selectType; }
-  setSelection(selection: string[]) { this.selections = selection; }
-  setCheckboxIsChecked(checkboxIsChecked: boolean) { this.checkboxIsChecked = checkboxIsChecked; }
+  setFilterType(filterType: FilterType): void { this.filterType = filterType; }
+  setFilterValue(filterValue: string): void { this.filterValue = filterValue; }
+  setUserInputValue(userInputValue: string): void { this.userInputValue = userInputValue; }
+  setUserInputContains(userInputContains: boolean): void { this.userInputContains = userInputContains; }
+  setSelectType(selectType: SelectType): void { this.selectType = selectType; }
+  setSelection(selection: string[]): void { this.selections = selection; }
+  setCheckboxIsChecked(checkboxIsChecked: boolean): void { this.checkboxIsChecked = checkboxIsChecked; }
 
   isValid(): boolean {
     switch (this.filterType) {
@@ -131,10 +130,12 @@ export class Filter {
         return true;
       case 'select':
         return Array.isArray(this.selections) ? !!this.selections.length : !!this.selections;
+      default:
+        return false;
     }
   }
 
-  toString() {
+  toString(): string {
     if (this.isValid()) {
       switch (this.filterType) {
         case 'userInput':
@@ -147,15 +148,18 @@ export class Filter {
           if (this.selectType === 'only') {
             return `+${this.filterValue}:${this.selections}`;
           }
+          break;
+        default:
+          return '';
       }
-    } else {
-      return ''
     }
+    return '';
   }
 
-  search(index: SearchIndex, maxResultsEach?: number) {
+  search(index: SearchIndex, maxResultsEach?: number): string[] {
     if (this.filterType === 'select' && this.selectType === 'any' && Array.isArray(this.selections)) {
       return this.selections.flatMap((s) => index.searchWithTerm(`+${this.filterValue}:${s}`, maxResultsEach));
     }
+    return undefined;
   }
 }

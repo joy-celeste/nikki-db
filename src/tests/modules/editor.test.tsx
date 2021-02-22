@@ -8,14 +8,12 @@ import { RootState } from '../../modules';
 describe('EditorState', () => {
   let store: Store<any>;
   let mockRootReducer: any;
-  let mockCallback: any;
   
   beforeEach(() => {
     mockRootReducer = combineReducers({
       editor: editorReducer,
     });
     store = createStoreWithMiddleware(mockRootReducer);
-    mockCallback = jest.fn(input => input);
   });
 
   test('Assert initial state uses default values', async () => {

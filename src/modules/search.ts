@@ -158,8 +158,8 @@ export const searchInventory = () =>
     const searchState = getState().search;
     const { index, filterSet, sortOption, simpleSearchString, useAdvancedSearch, maxResults } = searchState;
 
-    let initialResults: any[];
-    if (!useAdvancedSearch ) {
+    let initialResults: string[];
+    if (!useAdvancedSearch) {
       const searchTerm = generateSimpleSearchString(simpleSearchString);
       initialResults = index.searchWithTerm(searchTerm, maxResults);
     } else {

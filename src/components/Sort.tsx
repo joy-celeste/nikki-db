@@ -43,7 +43,7 @@ const colourStyles: StylesConfig<any, boolean> = {
 export const Sort = (): JSX.Element => {
   let textInput: HTMLInputElement = null;
   const dispatch = useDispatch();
-  
+
   return (
     <div className="advancedFilter">
       <div className="advancedFilterFirst" style={{ width: '20%' }}>Sort by</div>
@@ -65,7 +65,7 @@ export const Sort = (): JSX.Element => {
         />
       </div>
       <div style={{ width: '12%' }} />
-      </div>
+    </div>
   );
 };
 

@@ -6,7 +6,6 @@ import { loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
 import { updateDownloadName } from '../modules/downloader';
 import EmptyResults from './EmptyResults';
-import { Sort } from './Sort';
 
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);

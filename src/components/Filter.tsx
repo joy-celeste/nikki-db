@@ -51,15 +51,14 @@ export const groupedOptions: GroupedOptionsType<OptionTypeBase> = [
 
 export interface FilterProps {
   id: string;
-  setSubmitMessage: Function;
+  setSubmitMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
   let textInput: HTMLInputElement = null;
-  let filter: FilterClass;
   const filterSet = useSelector((state: RootState) => state.search.filterSet);
   const index = filterSet.filters.findIndex((filter) => filter.id === props.id);
-  filter = filterSet.filters[index];
+  const filter: FilterClass = filterSet.filters[index];
 
   const [fourthValue, setFourthValue] = useState('');
   const [thirdValue, setThirdValue] = useState(containsOptions[0]);
@@ -83,6 +82,8 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
         setThirdValue(selectOptions[0]);
         setThirdOptions(selectOptions);
         break;
+      default:
+        break;
     }
     filter.setFilterValue(options.value);
     filter.setFilterType(options.type);
@@ -101,10 +102,12 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
       case 'select':
         filter.setSelectType(options.value as SelectType);
         break;
+      default:
+        break;
     }
   };
 
-  const onChangeFourth = (input: any) => {
+  const onChangeFourth = (input: any): void => {
     switch (filter.filterType) {
       case 'checkbox':
         filter.setCheckboxIsChecked(input.target.checked);
@@ -121,11 +124,14 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
           filter.setSelection(input.value);
         }
         break;
+      default:
+        break;
     }
     props.setSubmitMessage(filterSet.generateSubmitMessage());
   };
 
-  const renderFourth = () => {
+  const renderFourth = (): JSX.Element => {
+    let options: OptionsType<any>;
     switch (filter.filterType) {
       case 'checkbox':
         return (
@@ -147,10 +153,23 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
           />
         );
       case 'select':
-        const options: OptionsType<any> = filter.filterValue === 'genre' ? genreOptions
-          : filter.filterValue === 'spec' ? specialOptions
-            : filter.filterValue === 'rare' ? rarityOptions
-              : filter.filterValue === 'subtype' ? subtypeOptions : null;
+        switch (filter.filterValue) {
+          case 'genre':
+            options = genreOptions;
+            break;
+          case 'spec':
+            options = specialOptions;
+            break;
+          case 'rare':
+            options = rarityOptions;
+            break;
+          case 'subtype':
+            options = subtypeOptions;
+            break;
+          default:
+            options = null;
+        }
+
         return filter.selectType === 'any' ? (
           <Select
             className="reactselect-valid"
@@ -167,6 +186,8 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
             isSearchable
           />
         );
+      default:
+        return null;
     }
   };
 

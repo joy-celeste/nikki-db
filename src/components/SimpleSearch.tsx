@@ -5,13 +5,21 @@ import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
 import { RootState } from '../modules';
 import SearchToggle from './SearchToggle';
 
-const SearchText = (props: any): JSX.Element => {
+interface SearchTextProps {
+  text: string;
+  onClickBack: any;
+}
+
+const SearchText = (props: SearchTextProps): JSX.Element => {
+  const { text, onClickBack } = props;
   const searchResults = useSelector((state: RootState) => state.search.results);
 
-  return (<span className="searchInputText">
-    {searchResults ? (<b>Searching for ... "{props.text}" ... found {searchResults.length} results!</b>) : null}
-    <input type="submit" value="Go Back" onClick={props.onClickBack} />
-  </span>)
+  return (
+    <span className="searchInputText">
+      {searchResults ? (<b>Searching for ... '{text}' ... found {searchResults.length} results!</b>) : null}
+      <input type="submit" value="Go Back" onClick={onClickBack} />
+    </span>
+  );
 };
 
 const SearchBar = (): JSX.Element => {
@@ -46,8 +54,8 @@ const SearchBar = (): JSX.Element => {
                 onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))}
               />
             </span>
-            <input type="submit" value={"Search"}/>
-            <span className="toggle"><SearchToggle initialValue={false}/></span>
+            <input type="submit" value="Search" />
+            <span className="toggle"><SearchToggle initialValue={false} /></span>
           </form>
         )}
     </div>

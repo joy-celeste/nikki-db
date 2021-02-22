@@ -10,10 +10,8 @@ export function createStoreWithMiddleware(reducer?: Reducer): Store {
   );
 }
 
-export const createSeedFunction = (s: any) => {
-  return function() {
-      s = Math.sin(s) * 10000; return s - Math.floor(s);
-  };
-}
+export const createSeedFunction = (s: any) => function() {
+  s = Math.sin(s) * 10000; return s - Math.floor(s);
+};
 
 export {};

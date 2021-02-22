@@ -3,8 +3,13 @@ import { useDispatch } from 'react-redux';
 import { FilterSet } from '../modules/filters';
 import { setAdvancedSearch, updateFilterSet, updateSearchString } from '../modules/search';
 
-export const SearchToggle = (props: any): JSX.Element => {
-  const [useAdvancedSearch, setToggle] = useState(props.initialValue);
+interface SearchToggleProps {
+  initialValue: boolean;
+}
+
+export const SearchToggle = (props: SearchToggleProps): JSX.Element => {
+  const { initialValue } = props;
+  const [useAdvancedSearch, setToggle] = useState(initialValue);
   const dispatch = useDispatch();
 
   useEffect(() => {

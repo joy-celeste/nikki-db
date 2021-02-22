@@ -4,10 +4,8 @@ import subtypesJSON from '../data/subtypes_names_to_number.json';
 import depthTypeToSubtypesJSON from '../data/depth_type_to_subtype.json';
 import underwearDataJSON from '../data/underwear_data.json';
 import bodyItemPositionDataJSON from '../data/body_item_position_data.json';
-import menuDataJSON from '../data/menu_data.json';
 import SuitNameToIDJSON from '../data/suit_name_to_suit_id.json';
 import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json';
-import { MenuItem } from './editor';
 
 export const BODY_ITEM_ID = 1;
 
@@ -74,7 +72,6 @@ export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BREAST, BODY.BRA, BODY
 export const DEPTHTYPE_TO_SUBTYPES: Record<string, SubtypeInfo> = Object.freeze(depthTypeToSubtypesJSON);
 export const BODY_PARTS_DEPTHS = Object.freeze(DEPTHTYPE_TO_SUBTYPES[59]); // 59 = body's depthtype
 export const DEFAULT_CLOTHES = { [SUBTYPES.HAIR]: 10001 }; // 10001 = Nikki's Pinky
-export const MENU_DATA: ReadonlyArray<MenuItem> = Object.freeze(menuDataJSON);
 export const SUIT_NAME_TO_ID: Record<string, string | string[]> = Object.freeze(SuitNameToIDJSON);
 export const SUBTYPES_MAP: Record<number, string> = Object.freeze(SubtypesNumberToNamesJSON);
 

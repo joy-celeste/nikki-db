@@ -7,7 +7,7 @@ import { RootState } from '../../modules';
 import { sortOptions } from '../../modules/constants';
 
 const mockMath = Object.create(global.Math);
-mockMath.random = createSeedFunction(42);
+mockMath.random = createSeedFunction(10);
 global.Math = mockMath;
 
 const RELEVANCE_SORT = sortOptions[0];

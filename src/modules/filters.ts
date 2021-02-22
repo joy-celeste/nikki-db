@@ -1,6 +1,9 @@
 import SearchIndex, { SUITS_BOOST_TERM } from './search';
 
 export type Operator = 'and' | 'or';
+export const PLEASE_CREATE_A_FILTER = 'Please create a filter.';
+export const PLEASE_FILL_ALL_VALUES = 'Please fill all values.';
+export const SEARCH_BUTTON_LABEL = 'Search';
 
 export class FilterSet {
   id: string;
@@ -20,11 +23,11 @@ export class FilterSet {
 
   generateSubmitMessage() {
     if (this.filters.length === 0) {
-      return 'Please create a filter.';
+      return PLEASE_CREATE_A_FILTER;
     } if (!this.allFiltersValid()) {
-      return 'Please fill all values.';
+      return PLEASE_FILL_ALL_VALUES;
     }
-    return 'Search';
+    return SEARCH_BUTTON_LABEL;
   }
 
   setOperator(operator: Operator) {
@@ -47,30 +50,43 @@ export class FilterSet {
     return array.reduce((a, b) => b.filter(Set.prototype.has.bind(new Set(a))));
   }
 
+  filtersWithAny() {
+    return this.filters.filter((filter) => filter.filterType === 'select' && filter.selectType === 'any');
+  }
+
+  filtersWithoutAny() {
+    return this.filters.filter((filter) => filter.filterType !== 'select' || filter.selectType !== 'any');
+  }
+
   search(index: SearchIndex) {
-    const multiSelectFiltersWithAny: Filter[] = this.filters.filter((filter) => filter.filterType === 'select' && filter.selectType === 'any');
+    const withAny: Filter[] = this.filtersWithAny();
 
-    if (multiSelectFiltersWithAny.length > 0) {
-      if (this.filters.length === 1) {
-        return this.filters[0].search(index);
-      }
-      const otherFilters: Filter[] = this.filters.filter((filter) => filter.filterType !== 'select' || filter.selectType !== 'any');
-      const multiSelectFiltersWithAnyResults = multiSelectFiltersWithAny.map((filter) => filter.search(index));
-      const restSearchTerm = `${otherFilters.map((f) => f.toString()).join(' ')} ${SUITS_BOOST_TERM}`;
-      const restResults = otherFilters.length > 0 ? index.searchWithTerm(restSearchTerm) : [];
-
-      if (this.operator === 'and') {
-        const multiIntersection = this.intersection(multiSelectFiltersWithAnyResults);
-        return restResults.length > 0 ? multiIntersection.filter((result) => restResults.includes(result)) : multiIntersection;
-      } if (this.operator === 'or') {
-        return multiSelectFiltersWithAnyResults.concat(restResults);
-      }
-    } else {
+    // Without any multi-select filters with 'any' selectType ==========================================
+    if (!withAny.length) {
       if (this.filters.length === 1 || this.operator === 'and') {
         const searchTerm = `${this.toString()} ${SUITS_BOOST_TERM}`;
         return index.searchWithTerm(searchTerm);
       }
       return this.filters.flatMap((filter: any) => index.searchWithTerm(filter.toString()));
+    }
+
+    // With any multi-select filters with 'any' selectType =============================================
+    if (this.filters.length === 1) {
+      return this.filters[0].search(index);
+    }
+    const withoutAny: Filter[] = this.filtersWithoutAny();
+    const withoutAnySearchTerm = `${withoutAny.map((f) => f.toString()).join(' ')} ${SUITS_BOOST_TERM}`;
+    const withoutAnyResults = withoutAny.length ? index.searchWithTerm(withoutAnySearchTerm) : [];
+
+    if (this.operator === 'and') {
+      const withAnyResults = withAny.map((filter) => filter.search(index));
+      const intersection = this.intersection(withAnyResults);
+      return withoutAnyResults.length 
+        ? intersection.filter((res) => withoutAnyResults.includes(res))
+        : intersection;
+    } else {
+      const withAnyResults = withAny.flatMap((filter) => filter.search(index));
+      return withAnyResults.concat(withoutAnyResults);
     }
   }
 }
@@ -85,7 +101,7 @@ export class Filter {
   userInputValue: string;
   userInputContains: boolean;
   selectType: SelectType;
-  selections: string[];
+  selections: string[] | string;
   checkboxIsChecked: boolean;
 
   constructor(input?: Filter) {
@@ -107,35 +123,39 @@ export class Filter {
   setSelection(selection: string[]) { this.selections = selection; }
   setCheckboxIsChecked(checkboxIsChecked: boolean) { this.checkboxIsChecked = checkboxIsChecked; }
 
-  isValid() {
+  isValid(): boolean {
     switch (this.filterType) {
       case 'userInput':
         return this.userInputValue.length > 0;
       case 'checkbox':
         return true;
       case 'select':
-        return(this.selectType) || this.selections.length >= 1;
+        return Array.isArray(this.selections) ? !!this.selections.length : !!this.selections;
     }
   }
 
   toString() {
-    switch (this.filterType) {
-      case 'userInput':
-        const containsPrefix = this.userInputContains ? '+' : '-';
-        const sanitizedString = this.userInputValue.split(' ').join('_').toLowerCase();
-        return `${containsPrefix}${this.filterValue}:*_${sanitizedString}_*`;
-      case 'checkbox':
-        return `+${this.filterValue}:${this.checkboxIsChecked}`;
-      case 'select':
-        if (this.selectType === 'only') {
-          return `+${this.filterValue}:${this.selections}`;
-        }
+    if (this.isValid()) {
+      switch (this.filterType) {
+        case 'userInput':
+          const containsPrefix = this.userInputContains ? '+' : '-';
+          const sanitizedString = this.userInputValue.split(' ').join('_').toLowerCase();
+          return `${containsPrefix}${this.filterValue}:*_${sanitizedString}_*`;
+        case 'checkbox':
+          return `+${this.filterValue}:${this.checkboxIsChecked}`;
+        case 'select':
+          if (this.selectType === 'only') {
+            return `+${this.filterValue}:${this.selections}`;
+          }
+      }
+    } else {
+      return ''
     }
   }
 
-  search(index: SearchIndex) {
-    if (this.filterType === 'select' && this.selectType === 'any') {
-      return this.selections.flatMap((s) => index.searchWithTerm(`+${this.filterValue}:${s}`));
+  search(index: SearchIndex, maxResultsEach?: number) {
+    if (this.filterType === 'select' && this.selectType === 'any' && Array.isArray(this.selections)) {
+      return this.selections.flatMap((s) => index.searchWithTerm(`+${this.filterValue}:${s}`, maxResultsEach));
     }
   }
 }

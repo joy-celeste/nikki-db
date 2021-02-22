@@ -1,18 +1,27 @@
 import { combineReducers, Store } from 'redux';
 import { createSeedFunction, createStoreWithMiddleware } from '../helpers';
-import { Filter, FilterSet, } from '../../modules/filters';
-import { searchReducer, updateFilterSet, updateSearchString, searchInventory, updateMaxResults, setAdvancedSearch } from '../../modules/search';
+import { Filter, FilterSet, PLEASE_CREATE_A_FILTER, PLEASE_FILL_ALL_VALUES, SEARCH_BUTTON_LABEL, } from '../../modules/filters';
+import SearchIndex, { searchReducer, updateFilterSet, updateSearchString, searchInventory, updateMaxResults, setAdvancedSearch, SearchState } from '../../modules/search';
 import { RootState } from '../../modules';
 
 const mockMath = Object.create(global.Math);
-mockMath.random = createSeedFunction(42);
+mockMath.random = createSeedFunction(40);
 global.Math = mockMath;
 
 describe('FilterSet', () => {
+  let searchState: SearchState;
+  let mockRootReducer: any;
   let filterSet: FilterSet;
+  let firstFilter: Filter;
 
   beforeEach(() => {
-    filterSet = new FilterSet();
+    mockRootReducer = combineReducers({
+      search: searchReducer,
+    });
+    searchState = createStoreWithMiddleware(mockRootReducer).getState().search;
+    searchState.filterSet = new FilterSet();
+    filterSet = searchState.filterSet;
+    firstFilter = filterSet.filters[0];
   });
 
   test('Initializes to with correct default data', () => {
@@ -47,18 +56,127 @@ describe('FilterSet', () => {
 
   test('Correctly creates AND search term from multiple filters', () => {
     // Fill out default first filter
-    filterSet.filters[0].setUserInputContains(true);
-    filterSet.filters[0].setUserInputValue('love');
+    firstFilter.setUserInputContains(true);
+    firstFilter.setUserInputValue('love');
 
     // Add additional posed filter
     const checkboxFilter = new Filter({filterType: 'checkbox', filterValue: 'isPosed'} as Filter);
     filterSet.addFilter(checkboxFilter);
-
     expect(filterSet.toString()).toBe('+name:*_love_* +isPosed:true')
+  });
+
+  test('Correctly searches when there is a multi-select filter with "ANY" selectType', () => {
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('genre');
+    firstFilter.setSelection(['22', '23']);
+    firstFilter.setSelectType('any');
+
+    const result = filterSet.search(searchState.index).sort();
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Correctly searches when there is a multi-select filter with "ANY" selectType with both operators | operator = or', () => {
+    filterSet.setOperator('or');
+
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('genre');
+    firstFilter.setSelection(['22', '23']);
+    firstFilter.setSelectType('any');
+
+    const otherSelectFilter = new Filter({
+      filterType: 'select',
+      filterValue: 'spec',
+      selectType: 'any',
+      selections: ['2', '4', '6', '8']
+    } as Filter);
+    filterSet.addFilter(otherSelectFilter);
+
+    let result = filterSet.search(searchState.index).sort();
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Correctly searches when there is a multi-select filter with "ANY" selectType with both operators | operator = and', () => {
+    filterSet.setOperator('and');
+
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('genre');
+    firstFilter.setSelection(['22', '23']);
+    firstFilter.setSelectType('any');
+
+    const otherSelectFilter = new Filter({
+      filterType: 'select',
+      filterValue: 'spec',
+      selectType: 'any',
+      selections: ['2', '4', '6', '8']
+    } as Filter);
+    filterSet.addFilter(otherSelectFilter);
+
+    let result = filterSet.search(searchState.index).sort();
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Correctly searches when there is a mix of filter types | operator = and', () => {
+    filterSet.setOperator('and');
+
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('genre');
+    firstFilter.setSelection(['22', '23']);
+    firstFilter.setSelectType('any');
+
+    const otherSelectFilter = new Filter({
+      filterType: 'select',
+      filterValue: 'rare',
+      selectType: 'only',
+      selections: '2'
+    } as Filter);
+    filterSet.addFilter(otherSelectFilter);
+
+    let result = filterSet.search(searchState.index).sort();
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Correctly searches when there is a mix of filter types | operator = or', () => {
+    filterSet.setOperator('or');
+
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('genre');
+    firstFilter.setSelection(['22', '23']);
+    firstFilter.setSelectType('any');
+
+    const otherSelectFilter = new Filter({
+      filterType: 'select',
+      filterValue: 'rare',
+      selectType: 'only',
+      selections: '2'
+    } as Filter);
+    filterSet.addFilter(otherSelectFilter);
+
+    let result = filterSet.search(searchState.index).sort();
+    expect(result).toMatchSnapshot();
   });
 });
 
 describe('Filter', () => {
+  let searchState: SearchState;
+  let mockRootReducer: any;
+  let filterSet: FilterSet;
+  let firstFilter: Filter;
+
+  beforeEach(() => {
+    mockRootReducer = combineReducers({
+      search: searchReducer,
+    });
+    searchState = createStoreWithMiddleware(mockRootReducer).getState().search;
+    searchState.filterSet = new FilterSet();
+    filterSet = searchState.filterSet;
+    firstFilter = filterSet.filters[0];
+  });
+
   test('Initializes to with correct default data', () => {
     let filter = new Filter();
     expect(filter.filterType).toBe('userInput');
@@ -92,24 +210,67 @@ describe('Filter', () => {
     expect(filter).toMatchSnapshot();
   });
 
+  test('Successfully generates submit message', () => {
+    expect(filterSet.generateSubmitMessage()).toBe(PLEASE_FILL_ALL_VALUES); // Should be this on first init
+
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('rare');
+    firstFilter.setSelectType('any');
+    firstFilter.setSelection(['3', '4']); // 2 choices
+    expect(filterSet.generateSubmitMessage()).toBe(SEARCH_BUTTON_LABEL);
+
+    filterSet.removeFilter(filterSet.filters[0])
+    filterSet.removeFilter(filterSet.filters[1])
+    expect(filterSet.generateSubmitMessage()).toBe(PLEASE_CREATE_A_FILTER);
+
+    filterSet.addFilter(new Filter());
+    expect(filterSet.generateSubmitMessage()).toBe(PLEASE_FILL_ALL_VALUES);
+  });
+
+  test('By default, allFiltersValid() returns false', () => {
+    expect(filterSet.allFiltersValid()).toBe(false);
+  });
+
+  test('Successfully verifies whether all filters are valid', () => {
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('rare');
+    firstFilter.setSelectType('any');
+    firstFilter.setSelection(['3', '4']); // 2 choices
+    
+    let userInputFilter = new Filter({
+        userInputContains: true,
+        userInputValue: 'New Love'
+      } as Filter);
+    expect(userInputFilter.toString()).toBe('+name:*_new_love_*')
+    expect(userInputFilter.isValid()).toBe(true);
+    filterSet.addFilter(userInputFilter)
+    expect(filterSet.allFiltersValid()).toBe(true);
+  });
+
   test('User input filter returns correct search strings', () => {
     let userInputFilter = new Filter({
         userInputContains: true,
         userInputValue: 'New Love'
       } as Filter);
     expect(userInputFilter.toString()).toBe('+name:*_new_love_*')
+    expect(userInputFilter.isValid()).toBe(true);
+    filterSet.addFilter(userInputFilter)
 
     userInputFilter = new Filter({
       userInputContains: false,
       userInputValue: 'New Love'
     } as Filter);
     expect(userInputFilter.toString()).toBe('-name:*_new_love_*')
+    expect(userInputFilter.isValid()).toBe(true);
+    filterSet.addFilter(userInputFilter)
 
     userInputFilter = new Filter({
       userInputContains: true,
       userInputValue: 'Brilliant Light ♥ Rapunzel'
     } as Filter);
-    expect(userInputFilter.toString()).toBe('+name:*_brilliant_light_♥_rapunzel_*')   
+    expect(userInputFilter.toString()).toBe('+name:*_brilliant_light_♥_rapunzel_*')  
+    expect(userInputFilter.isValid()).toBe(true); 
+    filterSet.addFilter(userInputFilter)
   });
 
   test('Select filter returns correct search strings', () => {
@@ -117,9 +278,20 @@ describe('Filter', () => {
       filterType: 'select',
       filterValue: 'genre',
       selectType: 'only',
+      selections: []
+    } as Filter);
+    expect(selectFilter.toString()).toBe('')
+    expect(selectFilter.isValid()).toBe(false);
+    filterSet.addFilter(selectFilter)
+
+    selectFilter = new Filter({
+      filterType: 'select',
+      filterValue: 'genre',
+      selectType: 'only',
       selections: ['14']
     } as Filter);
     expect(selectFilter.toString()).toBe('+genre:14')
+    expect(selectFilter.isValid()).toBe(true);
 
     selectFilter = new Filter({
       filterType: 'select',
@@ -128,6 +300,7 @@ describe('Filter', () => {
       selections: ['2', '4', '6', '8']
     } as Filter);
     expect(selectFilter.toString()).toBe(undefined)
+    expect(selectFilter.isValid()).toBe(true);
   });
 
   test('Checkbox filter returns correct search strings', () => {
@@ -137,6 +310,7 @@ describe('Filter', () => {
         checkboxIsChecked: true,
       } as Filter);
     expect(checkboxFilter.toString()).toBe('+isSuit:true')
+    expect(checkboxFilter.isValid()).toBe(true);
 
     checkboxFilter = new Filter({
       filterType: 'checkbox',
@@ -144,6 +318,22 @@ describe('Filter', () => {
       checkboxIsChecked: false,
     } as Filter);
     expect(checkboxFilter.toString()).toBe('+isPosed:false')
+    expect(checkboxFilter.isValid()).toBe(true);
+  });
+
+  test('Filter instance search() should only work on multi-select "any" filters', () => {
+    const index: SearchIndex = searchState.index;
+    expect(firstFilter.search(index)).toBeUndefined();
+    expect(firstFilter.isValid()).toBe(false);
+
+    // Fill out default first filter
+    firstFilter.setFilterType('select');
+    firstFilter.setFilterValue('rare');
+    firstFilter.setSelectType('any');
+    firstFilter.setSelection(['3', '4']); // 2 choices
+    const searchResult = firstFilter.search(index, 10)
+    expect(searchResult.length).toBe(20); // 2 choices x 10 = 20
+    expect(searchResult).toMatchSnapshot();
   });
 });
 

@@ -103,7 +103,7 @@ export class PositionData {
     this.z = null;
     this.height = input.height || null;
     this.width = input.width || null;
-    this.scale = input.pot_scale || null;
+    this.scale = 1 / input.pot_scale || 1;
 
     if (depths) {
       this.calculateDepth(depth, depths);

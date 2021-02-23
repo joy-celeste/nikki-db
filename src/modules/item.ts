@@ -10,11 +10,13 @@ export class Piece {
   width: number;
   height: number;
   z?: number;
+  scale: number;
 
   constructor(position: PositionData, body?: BodyParts) {
     this.x = position.x;
     this.y = position.y;
     this.z = position.z;
+    this.scale = position.scale;
     this.depth = position.depth;
     this.width = position.width;
     this.height = position.height;

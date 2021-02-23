@@ -16,7 +16,7 @@ export const Figure = (): JSX.Element => {
     return item.pieces.map((piece) => {
       const { isVisible } = piece;
       const imageName = `${item.itemId}-${piece.depth}`;
-      const imageStyle: CSSProperties = {
+      let imageStyle: CSSProperties = {
         top: -piece.y,
         right: piece.width ? -piece.x - Math.max((piece.width - window.innerWidth), piece.width) : -piece.x,
         bottom: piece.y,
@@ -25,6 +25,10 @@ export const Figure = (): JSX.Element => {
         margin: 'auto',
         position: 'absolute',
       };
+
+      if (piece.scale !== 1) {
+        imageStyle = { ...imageStyle, transform: `scale(${piece.scale})` };
+      }
 
       return <Image key={imageName} visible={isVisible} imageName={imageName} style={imageStyle} />;
     });

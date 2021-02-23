@@ -16,7 +16,7 @@ const SearchText = (props: SearchTextProps): JSX.Element => {
 
   return (
     <span className="searchInputText">
-      {searchResults ? (<b>Searching for ... '{text}' ... found {searchResults.length} results!</b>) : null}
+      {searchResults ? (<b>Searching for ... '{text}' ... found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}!</b>) : null}
       <input type="submit" value="Go Back" onClick={onClickBack} />
     </span>
   );

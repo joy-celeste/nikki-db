@@ -34,7 +34,7 @@ export const AdvancedSearch = (): JSX.Element => {
       <div className="advancedFilterToolbar">
         <span className="advancedFilterToolbarLeft">
           <input type="submit" value="+ Add Filter" onClick={addFilter} />
-          {searchResults ? (<b> ... found {searchResults.length} results!</b>) : null}
+          {searchResults ? (<b> ... found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}!</b>) : null}
         </span>
         <span className="advancedFilterToolbarRight">
           <form onSubmit={handleSearchSubmit}>

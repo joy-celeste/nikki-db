@@ -20,7 +20,7 @@ Object {
       PositionData {
         "depth": 1,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -14,
         "y": 310,
@@ -29,7 +29,7 @@ Object {
       PositionData {
         "depth": 2,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -42.5,
         "y": 245.5,
@@ -38,7 +38,7 @@ Object {
       PositionData {
         "depth": 9,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -25,
         "y": 248.5,
@@ -221,7 +221,7 @@ Object {
       PositionData {
         "depth": 1,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -14,
         "y": 310,
@@ -230,7 +230,7 @@ Object {
       PositionData {
         "depth": 2,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -42.5,
         "y": 245.5,
@@ -239,7 +239,7 @@ Object {
       PositionData {
         "depth": 9,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -25,
         "y": 248.5,
@@ -429,7 +429,7 @@ Object {
         PositionData {
           "depth": 1,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -14,
           "y": 310,
@@ -438,7 +438,7 @@ Object {
         PositionData {
           "depth": 2,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -42.5,
           "y": 245.5,
@@ -447,7 +447,7 @@ Object {
         PositionData {
           "depth": 9,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -25,
           "y": 248.5,
@@ -699,7 +699,7 @@ Object {
       PositionData {
         "depth": 1,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -14,
         "y": 310,
@@ -708,7 +708,7 @@ Object {
       PositionData {
         "depth": 2,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -42.5,
         "y": 245.5,
@@ -717,7 +717,7 @@ Object {
       PositionData {
         "depth": 9,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -25,
         "y": 248.5,
@@ -798,7 +798,7 @@ Object {
       PositionData {
         "depth": 1,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -14,
         "y": 310,
@@ -807,7 +807,7 @@ Object {
       PositionData {
         "depth": 2,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -42.5,
         "y": 245.5,
@@ -816,7 +816,7 @@ Object {
       PositionData {
         "depth": 9,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -25,
         "y": 248.5,
@@ -843,7 +843,7 @@ Object {
       PositionData {
         "depth": 1,
         "height": null,
-        "scale": null,
+        "scale": 1,
         "width": null,
         "x": -21.5,
         "y": 426,
@@ -984,7 +984,7 @@ Object {
         PositionData {
           "depth": 1,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -14,
           "y": 310,
@@ -993,7 +993,7 @@ Object {
         PositionData {
           "depth": 2,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -42.5,
           "y": 245.5,
@@ -1002,7 +1002,7 @@ Object {
         PositionData {
           "depth": 9,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -25,
           "y": 248.5,
@@ -1029,7 +1029,7 @@ Object {
         PositionData {
           "depth": 1,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -21.5,
           "y": 426,
@@ -1282,7 +1282,7 @@ Object {
         PositionData {
           "depth": 1,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -14,
           "y": 310,
@@ -1291,7 +1291,7 @@ Object {
         PositionData {
           "depth": 2,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -42.5,
           "y": 245.5,
@@ -1300,7 +1300,7 @@ Object {
         PositionData {
           "depth": 9,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -25,
           "y": 248.5,
@@ -1327,7 +1327,7 @@ Object {
         PositionData {
           "depth": 1,
           "height": null,
-          "scale": null,
+          "scale": 1,
           "width": null,
           "x": -21.5,
           "y": 426,
@@ -1722,7 +1722,7 @@ ItemData {
     PositionData {
       "depth": 1,
       "height": null,
-      "scale": null,
+      "scale": 1,
       "width": null,
       "x": 124.5,
       "y": 51,
@@ -1748,7 +1748,7 @@ ItemData {
     PositionData {
       "depth": 1,
       "height": null,
-      "scale": null,
+      "scale": 1,
       "width": null,
       "x": 154,
       "y": -200,
@@ -1987,7 +1987,7 @@ ItemData {
     PositionData {
       "depth": 1,
       "height": null,
-      "scale": null,
+      "scale": 1,
       "width": null,
       "x": -17.5,
       "y": 426,
@@ -1996,7 +1996,7 @@ ItemData {
     PositionData {
       "depth": 2,
       "height": null,
-      "scale": null,
+      "scale": 1,
       "width": null,
       "x": -96.5,
       "y": 447,
@@ -2026,7 +2026,7 @@ ItemData {
     PositionData {
       "depth": 1,
       "height": null,
-      "scale": null,
+      "scale": 1,
       "width": null,
       "x": -21.5,
       "y": 426,
@@ -2055,7 +2055,7 @@ exports[`ItemData Successfully deserializes for the null cases 2`] = `
 PositionData {
   "depth": 10,
   "height": null,
-  "scale": null,
+  "scale": 1,
   "width": null,
   "x": undefined,
   "y": undefined,

@@ -130,8 +130,6 @@ export class Filter {
         return true;
       case 'select':
         return Array.isArray(this.selections) ? !!this.selections.length : !!this.selections;
-      default:
-        return false;
     }
   }
 
@@ -148,12 +146,8 @@ export class Filter {
           if (this.selectType === 'only') {
             return `+${this.filterValue}:${this.selections}`;
           }
-          break;
-        default:
-          return '';
       }
     }
-    return '';
   }
 
   search(index: SearchIndex, maxResultsEach?: number): string[] {

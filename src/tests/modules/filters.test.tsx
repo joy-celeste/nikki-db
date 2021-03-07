@@ -280,7 +280,7 @@ describe('Filter', () => {
       selectType: 'only',
       selections: []
     } as Filter);
-    expect(selectFilter.toString()).toBe('')
+    expect(selectFilter.toString()).toBe(undefined);
     expect(selectFilter.isValid()).toBe(false);
     filterSet.addFilter(selectFilter)
 
@@ -299,8 +299,14 @@ describe('Filter', () => {
       selectType: 'any',
       selections: ['2', '4', '6', '8']
     } as Filter);
-    expect(selectFilter.toString()).toBe(undefined)
+    expect(selectFilter.toString()).toBe(undefined);
     expect(selectFilter.isValid()).toBe(true);
+
+    selectFilter = new Filter({
+      filterType: null,
+    } as Filter);
+    expect(selectFilter.toString()).toBe(undefined);
+    expect(selectFilter.isValid()).toBe(false);
   });
 
   test('Checkbox filter returns correct search strings', () => {

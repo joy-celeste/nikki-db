@@ -2,7 +2,7 @@ import { combineReducers, Store } from 'redux';
 import { simpleDress, simpleHair } from '../test_data/data';
 import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { EditorState, editorReducer, toggleItemVisibility, setDownloadName, setDownloadedItems, setMinimizedMenus, setActiveMenus } from '../../modules/editor';
+import { EditorState, editorReducer, toggleItemVisibility, setDownloadName, setDownloadedItems, setMinimizedMenus, setActiveMenus, CLOSET, focusMenu, INVENTORY, minimizeMenu, maximizeMenu } from '../../modules/editor';
 import { RootState } from '../../modules';
 
 describe('EditorState', () => {
@@ -92,5 +92,65 @@ describe('EditorState', () => {
     state = store.getState();
     expect(state.editor.activeMenus.closet).toEqual(true);
     expect(state.editor.activeMenus.inventory).toEqual(true);
+  });
+
+  test('Action: EDITOR_CHANGE_ACTIVE_MENUS / Use-case: focusMenu - ' +
+    'switches focus between menus successfully', async () => {
+    let state: RootState = store.getState();
+    expect(state.editor.activeMenus.inventory).toEqual(true);
+    expect(state.editor.activeMenus.closet).toEqual(false);
+    
+    await store.dispatch<any>(focusMenu(CLOSET));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(true);
+    expect(state.editor.activeMenus.inventory).toEqual(false);
+
+    await store.dispatch<any>(focusMenu(INVENTORY));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(false);
+    expect(state.editor.activeMenus.inventory).toEqual(true);
+  });
+
+  test('Action: EDITOR_CHANGE_MINIMIZED_MENUS / EDITOR_CHANGE_ACTIVE_MENUS / Use-case: minimizeMenu - ' +
+  'switches focus between menus successfully when minimizing', async () => {
+    let state: RootState = store.getState();
+    expect(state.editor.activeMenus.inventory).toEqual(true);
+    expect(state.editor.activeMenus.closet).toEqual(false);
+    expect(state.editor.minimizedMenus.closet).toEqual(false);
+    expect(state.editor.minimizedMenus.inventory).toEqual(false);
+
+    await store.dispatch<any>(minimizeMenu(CLOSET));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(false);
+    expect(state.editor.activeMenus.inventory).toEqual(true);
+    expect(state.editor.minimizedMenus.closet).toEqual(true);
+    expect(state.editor.minimizedMenus.inventory).toEqual(false);
+
+    await store.dispatch<any>(minimizeMenu(INVENTORY));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(true);
+    expect(state.editor.activeMenus.inventory).toEqual(false);
+    expect(state.editor.minimizedMenus.closet).toEqual(true);
+    expect(state.editor.minimizedMenus.inventory).toEqual(true);
+  });
+
+  test('Action: EDITOR_CHANGE_MINIMIZED_MENUS / EDITOR_CHANGE_ACTIVE_MENUS / Use-case: maximizeMenu - ' +
+  'switches focus between menus successfully when maximizing', async () => {
+    let state: RootState = store.getState();
+    await store.dispatch<any>(minimizeMenu(INVENTORY));
+    await store.dispatch<any>(minimizeMenu(CLOSET));
+    await store.dispatch<any>(maximizeMenu(CLOSET));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(true);
+    expect(state.editor.activeMenus.inventory).toEqual(false);
+    expect(state.editor.minimizedMenus.closet).toEqual(false);
+    expect(state.editor.minimizedMenus.inventory).toEqual(true);
+
+    await store.dispatch<any>(maximizeMenu(INVENTORY));
+    state = store.getState();
+    expect(state.editor.activeMenus.closet).toEqual(false);
+    expect(state.editor.activeMenus.inventory).toEqual(true);
+    expect(state.editor.minimizedMenus.closet).toEqual(false);
+    expect(state.editor.minimizedMenus.inventory).toEqual(false);
   });
 });

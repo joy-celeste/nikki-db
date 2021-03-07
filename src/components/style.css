@@ -158,7 +158,7 @@
 
 .minimizedMenus {
     z-index: 90000;
-    position: absolute;
+    position: fixed;
 }
 
 .window {

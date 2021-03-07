@@ -5,6 +5,8 @@ import { ACTION_CONSTANTS } from './constants';
 import { ItemId } from './data';
 
 const DEFAULT_BACKGROUND_IMAGE_NAME = 'medium';
+export const INVENTORY = 'inventory';
+export const CLOSET = 'closet';
 
 export interface MenuState {
   closet: boolean,
@@ -30,12 +32,12 @@ const initialState: EditorState = {
 };
 
 // ACTIONS
-export const setMinimized = (minimizedMenus: MenuState): AnyAction => ({
+export const setMinimizedMenus = (minimizedMenus: MenuState): AnyAction => ({
   type: ACTION_CONSTANTS.EDITOR_CHANGE_MINIMIZED_MENUS,
   payload: minimizedMenus,
 });
 
-export const setActive = (activeMenus: MenuState): AnyAction => ({
+export const setActiveMenus = (activeMenus: MenuState): AnyAction => ({
   type: ACTION_CONSTANTS.EDITOR_CHANGE_ACTIVE_MENUS,
   payload: activeMenus,
 });
@@ -67,6 +69,39 @@ export const toggleItemVisibility = (itemId: ItemId) =>
       newHiddenItems.delete(itemId);
     }
     dispatch(changeHiddenItemList(newHiddenItems));
+  };
+
+export const focusMenu = (menuName: string) =>
+  async(dispatch: Dispatch<AnyAction>, _getState: () => RootState): Promise<void> => {
+    if (menuName === INVENTORY) {
+      dispatch(setActiveMenus({closet: false, inventory: true})); // set all other values false
+    } else {
+      dispatch(setActiveMenus({closet: true, inventory: false}));
+    }
+  };
+
+export const minimizeMenu = (menuName: string) =>
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
+    const oldMinimizedMenus: MenuState = getState().editor.minimizedMenus;
+    if (menuName === INVENTORY) {
+      dispatch(setMinimizedMenus({...oldMinimizedMenus, inventory: true}));
+      dispatch(setActiveMenus({closet: true, inventory: false}));
+    } else {
+      dispatch(setMinimizedMenus({...oldMinimizedMenus, closet: true}));
+      dispatch(setActiveMenus({closet: false, inventory: true}));
+    }
+  };
+
+export const maximizeMenu = (menuName: string) =>
+  async(dispatch: Dispatch<AnyAction>, getState: () => RootState): Promise<void> => {
+    const oldMinimizedMenus: MenuState = getState().editor.minimizedMenus;
+    if (menuName === INVENTORY) {
+      dispatch(setMinimizedMenus({...oldMinimizedMenus, inventory: false}));
+      dispatch(setActiveMenus({closet: false, inventory: true}));
+    } else {
+      dispatch(setMinimizedMenus({...oldMinimizedMenus, closet: false}));
+      dispatch(setActiveMenus({closet: true, inventory: false}));
+    }
   };
 
 // REDUCER

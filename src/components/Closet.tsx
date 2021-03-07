@@ -6,6 +6,7 @@ import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import { SUBTYPES_MAP } from '../modules/constants';
 import BackgroundOptions from './BackgroundOptions';
+import { CLOSET, focusMenu } from '../modules/editor';
 
 export const Closet = (): JSX.Element => {
   const [useSubtypeSort, setToggle] = useState(false);
@@ -18,7 +19,7 @@ export const Closet = (): JSX.Element => {
   const subtypeSort = (a: string, b: string) => itemsData[parseInt(a, 10)].subType - itemsData[parseInt(b, 10)].subType || chronoSort(a, b);
 
   return (
-    <div className="closet">
+    <div className="closet" onClick={() => dispatch(focusMenu(CLOSET))}>
       <div className="row closet-items">
         <ul>
           {(Object.keys(itemsData).sort(useSubtypeSort ? subtypeSort : chronoSort) as Array<string>).map((itemId) => {
@@ -76,3 +77,4 @@ export const Closet = (): JSX.Element => {
 };
 
 export default Closet;
+

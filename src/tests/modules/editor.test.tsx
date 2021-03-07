@@ -2,7 +2,7 @@ import { combineReducers, Store } from 'redux';
 import { simpleDress, simpleHair } from '../test_data/data';
 import { ItemId } from '../../modules/data';
 import { createStoreWithMiddleware } from '../helpers';
-import { EditorState, editorReducer, toggleItemVisibility, setDownloadName, setDownloadedItems, setMinimized, setActive } from '../../modules/editor';
+import { EditorState, editorReducer, toggleItemVisibility, setDownloadName, setDownloadedItems, setMinimizedMenus, setActiveMenus } from '../../modules/editor';
 import { RootState } from '../../modules';
 
 describe('EditorState', () => {
@@ -57,17 +57,17 @@ describe('EditorState', () => {
     expect(state.editor.minimizedMenus.closet).toEqual(false);
     expect(state.editor.minimizedMenus.inventory).toEqual(false);
     
-    await store.dispatch<any>(setMinimized({ closet: true, inventory: false }));
+    await store.dispatch<any>(setMinimizedMenus({ closet: true, inventory: false }));
     state = store.getState();
     expect(state.editor.minimizedMenus.closet).toEqual(true);
     expect(state.editor.minimizedMenus.inventory).toEqual(false);
 
-    await store.dispatch<any>(setMinimized({ closet: false, inventory: true }));
+    await store.dispatch<any>(setMinimizedMenus({ closet: false, inventory: true }));
     state = store.getState();
     expect(state.editor.minimizedMenus.closet).toEqual(false);
     expect(state.editor.minimizedMenus.inventory).toEqual(true);
 
-    await store.dispatch<any>(setMinimized({ closet: true, inventory: true }));
+    await store.dispatch<any>(setMinimizedMenus({ closet: true, inventory: true }));
     state = store.getState();
     expect(state.editor.minimizedMenus.closet).toEqual(true);
     expect(state.editor.minimizedMenus.inventory).toEqual(true);
@@ -78,17 +78,17 @@ describe('EditorState', () => {
     expect(state.editor.activeMenus.closet).toEqual(false);
     expect(state.editor.activeMenus.inventory).toEqual(true);
     
-    await store.dispatch<any>(setActive({ closet: true, inventory: false }));
+    await store.dispatch<any>(setActiveMenus({ closet: true, inventory: false }));
     state = store.getState();
     expect(state.editor.activeMenus.closet).toEqual(true);
     expect(state.editor.activeMenus.inventory).toEqual(false);
 
-    await store.dispatch<any>(setActive({ closet: false, inventory: false }));
+    await store.dispatch<any>(setActiveMenus({ closet: false, inventory: false }));
     state = store.getState();
     expect(state.editor.activeMenus.closet).toEqual(false);
     expect(state.editor.activeMenus.inventory).toEqual(false);
 
-    await store.dispatch<any>(setActive({ closet: true, inventory: true }));
+    await store.dispatch<any>(setActiveMenus({ closet: true, inventory: true }));
     state = store.getState();
     expect(state.editor.activeMenus.closet).toEqual(true);
     expect(state.editor.activeMenus.inventory).toEqual(true);

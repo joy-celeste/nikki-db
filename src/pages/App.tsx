@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Draggable from '../components/Draggable';
@@ -7,8 +7,7 @@ import Menu from '../components/Menu';
 import Closet from '../components/Closet';
 import Inventory from '../components/Inventory';
 import { RootState } from '../modules';
-import { MenuState, setActive, setMinimized } from '../modules/editor';
-import MinimizedMenus from '../components/MinimizedMenus';
+import { CLOSET, INVENTORY, maximizeMenu, MenuState, minimizeMenu } from '../modules/editor';
 
 export const MARGIN = 30;
 
@@ -16,7 +15,7 @@ const App = (): JSX.Element => {
   const minimizedMenus: MenuState = useSelector((state: RootState) => state.editor.minimizedMenus);
   const activeMenus: MenuState = useSelector((state: RootState) => state.editor.activeMenus);
   const dispatch = useDispatch();
-
+  
   return (
     <div className="App">
       <div className="figure">
@@ -25,23 +24,22 @@ const App = (): JSX.Element => {
         </Draggable>
       </div>
 
-      {minimizedMenus.inventory ? null : (
-      <div onClick={() => dispatch(setActive({ closet: false, inventory: true }))}>
-        <Menu minimized={minimizedMenus.inventory} active={activeMenus.inventory} top={MARGIN} left={MARGIN}>
-          {activeMenus.inventory ? <a className="minimize" id="minimize" onClick={() => {dispatch(setMinimized({...minimizedMenus, inventory: true}))}} /> : null}
+      {minimizedMenus.inventory ? null : 
+        (<Menu minimized={minimizedMenus.inventory} active={activeMenus.inventory} top={MARGIN} left={MARGIN}>
+          {activeMenus.inventory ? <a className="minimize" id="minimize" onClick={() => dispatch(minimizeMenu(INVENTORY))} /> : null}
           <Inventory />
-        </Menu>
-      </div>)}
+        </Menu>)}
 
-      {minimizedMenus.closet ? null : (
-      <div onClick={() => dispatch(setActive({ closet: true, inventory: false }))}>
+      {minimizedMenus.closet ? null : 
         <Menu minimized={minimizedMenus.closet} active={activeMenus.closet} top={MARGIN} right={MARGIN}>
-          {activeMenus.closet ? <a className="minimize" id="minimize" onClick={() =>dispatch(setMinimized({...minimizedMenus, closet: true}))} /> : null}
+          {activeMenus.closet ? <a className="minimize" id="minimize" onClick={() => dispatch(minimizeMenu(CLOSET))} /> : null}
           <Closet />
-        </Menu>
-      </div>)}
+        </Menu>}
 
-      <MinimizedMenus/>
+      <div className="minimizedMenus" style={{bottom: MARGIN, right: MARGIN}}>
+        {minimizedMenus.inventory ? (<img src="/assets/btn_searchcloth.png" onClick={() => dispatch(maximizeMenu(INVENTORY))}/>) : null}
+        {minimizedMenus.closet ? (<img src="/assets/btn_goitems.png" onClick={() => dispatch(maximizeMenu(CLOSET))}/>) : null}
+      </div>
     </div>
   );
 };

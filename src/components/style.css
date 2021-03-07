@@ -156,6 +156,11 @@
 	width: 100%;
 }
 
+.minimizedMenus {
+    z-index: 90000;
+    position: absolute;
+}
+
 .window {
     overflow: none;
     background-color: rgba(255, 255, 255, 0.50);
@@ -176,6 +181,26 @@
     border: none;
     cursor: pointer;
     outline: none;
+}
+
+.minimize:before {
+    content: "-";
+}
+
+a.minimize {
+	float: right;
+    margin-top: -40px;
+    margin-right: -40px;
+    cursor: pointer;
+    color: #fff;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+    background: #c6458c;
+    font-size: 40px;
+    font-weight: bold;
+	line-height: 33px;
+    display: inline-block;   
 }
 
 .closet {

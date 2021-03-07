@@ -7,7 +7,8 @@ import Menu from '../components/Menu';
 import Closet from '../components/Closet';
 import Inventory from '../components/Inventory';
 import { RootState } from '../modules';
-import { MenuState, setActive } from '../modules/editor';
+import { MenuState, setActive, setMinimized } from '../modules/editor';
+import MinimizedMenus from '../components/MinimizedMenus';
 
 export const MARGIN = 30;
 
@@ -24,17 +25,23 @@ const App = (): JSX.Element => {
         </Draggable>
       </div>
 
-      <div className="menu" onClick={() => dispatch(setActive({ closet: false, inventory: true }))}>
+      {minimizedMenus.inventory ? null : (
+      <div onClick={() => dispatch(setActive({ closet: false, inventory: true }))}>
         <Menu minimized={minimizedMenus.inventory} active={activeMenus.inventory} top={MARGIN} left={MARGIN}>
+          {activeMenus.inventory ? <a className="minimize" id="minimize" onClick={() => {dispatch(setMinimized({...minimizedMenus, inventory: true}))}} /> : null}
           <Inventory />
         </Menu>
-      </div>
+      </div>)}
 
-      <div className="menu" onClick={() => dispatch(setActive({ closet: true, inventory: false }))}>
+      {minimizedMenus.closet ? null : (
+      <div onClick={() => dispatch(setActive({ closet: true, inventory: false }))}>
         <Menu minimized={minimizedMenus.closet} active={activeMenus.closet} top={MARGIN} right={MARGIN}>
+          {activeMenus.closet ? <a className="minimize" id="minimize" onClick={() =>dispatch(setMinimized({...minimizedMenus, closet: true}))} /> : null}
           <Closet />
         </Menu>
-      </div>
+      </div>)}
+
+      <MinimizedMenus/>
     </div>
   );
 };

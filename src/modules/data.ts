@@ -31,6 +31,7 @@ export class ItemData {
   loadedTime: number;
 
   constructor(input?: DocumentData) {
+    console.log(input)
     this.deserialize(input);
   }
 
@@ -71,7 +72,7 @@ export class ItemData {
     if (input.position) {
       const position: PositionData[] = [];
       Object.entries(input.position).forEach(([key, value]) => {
-        position.push(new PositionData(parseInt(key, 10), value, this.depths));
+        position.push(new PositionData(+key, value, this.depths));
       });
       this.position = position;
     }

@@ -94,6 +94,10 @@
 - - [ ] Update trash icon, confirmation
 - - [ ] Update toggle
 
+
+BUG: SOULS ARE BROKEN, need to put in layering data for ir
+file:///Users/joyce/nikki/extracted/lua/manager/clothes_manager.lua
+
 ### Milestone 3: Performance increases, additional features, address initial feedback
 - [ ] Create the beautiful UI
 - - [ ] Window

@@ -99,7 +99,9 @@ export const takeScreenshot = (filename: string = getCurrentDatetime()): void =>
     windowWidth: 4000,
   }).then((canvas) => {
     const copy = trimCanvas(canvas, 30);
+    console.log("copy", copy)
     copy.toBlob((blob: Blob) => {
+      console.log(blob)
       FileSaver.saveAs(blob, `${filename}.png`);
     });
   // eslint-disable-next-line no-console

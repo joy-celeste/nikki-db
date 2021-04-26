@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode } from 'react';
-import { MARGIN } from '../pages/App';
+export const MARGIN = 30;
 
 interface DraggableProps {
   top?: string;

@@ -11,7 +11,7 @@ export const Inventory = (): JSX.Element => {
   const dispatch = useDispatch();
 
   return (
-    <div className="inventory-container"  onClick={() => dispatch(focusMenu(INVENTORY))}>
+    <div>
       { useAdvancedSearch ? <AdvancedSearch /> : <SimpleSearch />}
       <Results />
     </div>

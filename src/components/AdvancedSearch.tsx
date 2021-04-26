@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './style.css';
 import { RootState } from '../modules';
 import { Filter, FilterSet } from '../modules/filters';
 import { Filter as FilterComponent } from '../components/Filter';

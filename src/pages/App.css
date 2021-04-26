@@ -19,14 +19,15 @@
   --tablet-phone-width: calc(50vw - (4 * var(--grid-gap)));
   --mobile-phone-height: calc(var(--mobile-phone-width) / var(--phone-width-height-ratio));
   --mobile-phone-width: calc(100vw);
-  --purple-pink-gradient: linear-gradient(to right,#6471E2, #BC87E5 );
+  --purple-pink-gradient: linear-gradient(to right,#6471E2, #BC87E5);
+  --purple-light: #FAF2FF;
 }
 
-body {
-  background-color: #FAF2FF;
+body, button {
+  background-color: var(--purple-light);
   color: var(--black);
   font-family: 'Roboto', sans-serif;
-  line-height: 1.4;
+  line-height: 1.25;
   scrollbar-width: thin;
   font-size: 1em;
 }
@@ -75,7 +76,7 @@ footer {
 /* CONTAINERS --------------------------------------------------------------------*/
 
 .window {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: var(--border-radius);
   filter: var(--soft-purple-shadow);
   padding: calc(var(--grid-gap) * 0.5);
@@ -105,7 +106,6 @@ div#phone-image {
   height: 100%;
   overflow-y: hidden;
   width: var(--phone-width);
-  background-color: red;
 }
 
 div#phone-image img {
@@ -226,11 +226,11 @@ div#closet {
 
   div#inventory {
     grid-row: 1 / span 6;
-    display: none
+    /* display: none */
   }
   
   div#closet {
     grid-row: 7 / span 4;
-    display: none
+    /* display: none */
   }
 }

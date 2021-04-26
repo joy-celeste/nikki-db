@@ -21,14 +21,14 @@ export const Closet = (): JSX.Element => {
   return (
     <div className="closet" onClick={() => dispatch(focusMenu(CLOSET))}>
       <div className="row closet-items">
-        <ul>
+      <ul className="item-array">
           {(Object.keys(itemsData).sort(useSubtypeSort ? subtypeSort : chronoSort) as Array<string>).map((itemId) => {
             const clothesId = parseInt(itemId, 10);
             const itemName = `${itemsData[clothesId]?.name} (${SUBTYPES_MAP[itemsData[clothesId]?.subType].replace(/_/g, ' ')})`;
 
             return (
               <li key={`${clothesId}_wrapper`}>
-                <div className="closet-item">
+                <div className="item">
                   <div className="closet-icon-container">
                     <button
                       type="button"
@@ -52,7 +52,7 @@ export const Closet = (): JSX.Element => {
                       <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
                     </button>
                   </div>
-                  <div className="closet-text" key={`${clothesId}_text`}>{itemName}</div>
+                  <div key={`${clothesId}_text`}>{itemName}</div>
                 </div>
               </li>
             );

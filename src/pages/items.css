@@ -1,0 +1,89 @@
+:root {
+  --icon-size: 110px;
+  --row-padding: 16px;
+  --icon-resize-scale: 0.8;
+  --check-icon-offset: var(--grid-gap);
+  --check-icon-size: 40px;
+}
+
+/* Used in ICON component ---- */
+.icon-wrapper {
+	width: var(--icon-size);
+	height: var(--icon-size);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  transform: scale(var(--icon-resize-scale));
+}
+
+/* Styles for both icon arrays ---- */
+.item-array {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--icon-size), 1fr));
+}
+
+.item-array li {
+  text-align: center;
+  align-items: center;
+  padding-bottom: var(--row-padding);
+  margin: 5px;
+}
+
+.item button:hover {
+  background-color: var(--purple-light);
+}
+
+.item button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Styles used for closet ---- */
+.disabled {
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+}
+
+.closet-icon-container {
+	position: relative;
+  width: var(--icon-size);
+}
+
+.closet-icon-container:hover .closet-trash,
+.closet-icon-container:hover .closet-info,
+.closet-icon-container:hover .closet-equipped {
+	visibility: visible;
+}
+
+.closet-equipped, .closet-info, .closet-trash {
+	visibility: hidden;
+	position: absolute;
+	width:30px;
+	height:30px;
+}
+
+.closet-icon-container .closet-equipped {
+	top: 0;
+	left: calc(var(--icon-size) - var(--check-icon-offset));
+	width: var(--check-icon-size);
+	height: var(--check-icon-size);
+	background-image: url('../assets/sprite_side_selected.png');
+	background-size: calc(var(--check-icon-size) + 10px);
+	background-repeat: no-repeat;
+	background-position: -1px;
+	visibility: visible;
+  z-index: 10;
+}
+
+.closet-icon-container .closet-trash {
+	bottom: 0;
+	left: 0;
+}
+
+.closet-icon-container .closet-info {
+	top: 0;
+	left: 0;
+}

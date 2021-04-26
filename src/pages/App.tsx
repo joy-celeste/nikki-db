@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './base.css';
 import './App.css';
-import '../components/filter.css';
+import './items.css';
 
 import Phone from '../components/Phone';
 import Closet from '../components/Closet';

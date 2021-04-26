@@ -19,21 +19,19 @@ export const Results = (): JSX.Element => {
 
   return results?.length > 0 ? (
     <div className="search-results">
-      <ul>
+      <ul className="item-array">
         {Object.values(results).map((result) => {
-          const key = `${result.key}`;
+          const key = result.key;
           return (
-            <li key={key}>
-              <div className="item" key={result.key}>
-                <button
-                  type="button"
-                  key={`${key}_result_container`}
-                  onClick={() => { setResult(result); dispatch(loadMultipleItems(result.contents)); }}
-                >
-                  <Icon key={`${key}_icon`} clothesId={result.iconId} />
-                  <div key={`${key}_text`} className="text">{result.displayName}</div>
-                </button>
-              </div>
+            <li className="item" key={key}>
+              <button
+                type="button"
+                key={`${key}_result_container`}
+                onClick={() => { setResult(result); dispatch(loadMultipleItems(result.contents)); }}
+              >
+                <Icon key={`${key}_icon`} clothesId={result.iconId} />
+                <div key={`${key}_text`}>{result.displayName}</div>
+              </button>
             </li>
           );
         })}

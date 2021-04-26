@@ -11,12 +11,12 @@ export const BackgroundOptions = (): JSX.Element => {
   const [background, setBackground] = useState(DEFAULT_BACKGROUND_IMAGE_NAME);
   const downloadName: string = useSelector((state: RootState) => state.editor.downloadName);
 
-  useEffect(() => {
-    document.body.style.backgroundImage = getAssetImg(background);
-  }, [background]);
+  // useEffect(() => {
+  //   document.body.style.backgroundImage = getAssetImg(background);
+  // }, [background]);
 
   return (
-    <div className="fullwidth">
+    <div>
       {DEFAULT_BACKGROUND_OPTIONS.map((backgroundName) => (
         <button type="button" key={backgroundName} onClick={() => setBackground(backgroundName)}>
           {backgroundName}

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import './sprites.css';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';

@@ -1,23 +1,236 @@
-.App {
-  	text-align: center;
-	/* background-repeat: no-repeat;
-  	background-size: cover; */
-  	height: 100%;
-}
+/* CSS VARIABLES ----------------------------------------------------------------*/
 
-.closet, .searchResults {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow-y: auto;
-}
-
-html {
-  overflow-x: hidden;
-  height: 100%;
+:root {
+  --black: #2D2F34;
+  --border-radius: 40px;
+  --content-height: calc(100vh - var(--header-height) - (3 * var(--grid-gap)) - var(--footer-height));
+  --footer-height: calc(var(--header-height) * 0.5);
+  --grid-gap: 30px;
+  --head_y: calc(150/1740); /* distance from top of rendered image to the top of the simulator phone's image */
+  --header-height: 44px;
+  --menu-width-ratio: calc(236/803); /* proportion of the screen the menu covers on the right side, calculated from screenshot */
+  --padding: calc(var(--grid-gap) * 0.5);
+  --phone-height: calc(var(--content-height) - var(--grid-gap));
+  --phone-image-ratios: calc(803 / 1000); /* rendered image height vs the simulator's phone container height */
+  --phone-width-height-ratio: calc(803 / 1427); /* 803/1427 => LN screen size */
+  --phone-width: calc(var(--phone-height) * var(--phone-width-height-ratio));
+  --soft-purple-shadow: drop-shadow(24px 4px 30px rgba(168, 188, 240, 0.45));
+  --tablet-phone-height: calc(var(--tablet-phone-width) / var(--phone-width-height-ratio));
+  --tablet-phone-width: calc(50vw - (4 * var(--grid-gap)));
+  --mobile-phone-height: calc(var(--mobile-phone-width) / var(--phone-width-height-ratio));
+  --mobile-phone-width: calc(100vw);
+  --purple-pink-gradient: linear-gradient(to right,#6471E2, #BC87E5 );
 }
 
 body {
-  height: 100%;
+  background-color: #FAF2FF;
+  color: var(--black);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  scrollbar-width: thin;
+  font-size: 1em;
+}
+
+/* HEADER ------------------------------------------------------------------------*/
+
+header {
+  align-items: center;
+  background-image:  var(--purple-pink-gradient);
+  display: flex;
+  filter: var(--soft-purple-shadow);
+  font-family: 'Sarabun', sans-serif;
+  font-size: 1.25em;
+  font-weight: 500;
+  height: var(--header-height);
+  justify-content: space-between;
+}
+
+header h1, header nav {
+  margin: 0 40px 0 40px;
+}
+
+header a, header h1 {
+  color: #ffffff;
+  text-decoration-color: transparent;
+  margin:  0 0 0 32px;
+  transition: text-decoration 0.25s;
+}
+
+header a:hover, header h1:hover {
+  text-decoration-color: #ffffff;
+}
+
+/* FOOTER ------------------------------------------------------------------------*/
+
+footer {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  height: var(--footer-height);
+  justify-content: center;
+  margin: 0 auto var(--grid-gap) auto;
+  color: #6471E2;
+}
+
+/* CONTAINERS --------------------------------------------------------------------*/
+
+.window {
+  background-color: white;
+  border-radius: var(--border-radius);
+  filter: var(--soft-purple-shadow);
+  padding: calc(var(--grid-gap) * 0.5);
+}
+
+div#content {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-template-columns: calc(var(--phone-width) + var(--grid-gap)) 3fr 2fr;
+  grid-template-rows: repeat(10, 1fr);
+  height: var(--content-height);
+  margin: var(--grid-gap);
+}
+
+/* PHONE -------------------------------------------------------------------------*/
+
+div#phone {
+  border-radius: var(--border-radius);
+  direction: rtl;
+  grid-column: 1 / 2;
+  grid-row: 1 / span 10;
   overflow: hidden;
+}
+
+div#phone-image {
+  border-radius: var(--border-radius);
+  height: 100%;
+  overflow-y: hidden;
+  width: var(--phone-width);
+  background-color: red;
+}
+
+div#phone-image img {
+  min-width: calc(var(--phone-width) / var(--phone-image-ratios));
+  position: relative;
+  top: calc(-1 * var(--phone-height) * var(--head_y) - var(--padding));
+}
+
+div#phone-menu {
+  background-color: rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(-4px 0px 4px rgba(168, 188, 240, 0.45));
+  border-left: 1px solid white;
+  height: var(--phone-height);
+  left: calc(var(--phone-width) * (1 - var(--menu-width-ratio)) + var(--padding));
+  padding: var(--padding);
+  position: absolute;
+  width: calc(var(--phone-width) * var(--menu-width-ratio));
+  z-index: 10;
+}
+
+/* inventory + closet container ----------------------------------------------------------------------*/
+
+div#inventory, div#closet {
+  padding: var(--grid-gap);
+  overflow-y: auto;
+}
+
+div#inventory {
+  grid-column: 2 / 3;
+  grid-row: 1 / span 10;
+}
+
+div#closet {
+  grid-column: 3 / span 4;
+  grid-row: 1 / span 10;
+}
+
+/* RESPONSIVE CSS ----------------------------------------------------------------*/
+
+@media (min-width: 1600px) {
+  div#content {
+    max-width: 1540px;
+    margin: var(--grid-gap) auto var(--grid-gap) auto;
+  }
+}
+
+@media (max-width: 1366px) {
+  div#content {
+    grid-template-columns: calc(var(--phone-width) + var(--grid-gap)) 1fr;
+  }
+
+  div#inventory {
+    grid-row: 1 / span 6;
+  }
+  
+  div#closet {
+    grid-column: 2 / 3;
+    grid-row: 7 / span 4;
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 1200px) {
+  :root {
+    --phone-height: var(--tablet-phone-height);
+    --phone-width: var(--tablet-phone-width);
+  }
+
+  div#content {
+    grid-template-columns: calc(var(--tablet-phone-width) + var(--grid-gap)) 1fr;
+  }
+
+  div#phone {
+    height: calc(var(--tablet-phone-height) + var(--grid-gap));
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 1100px) {
+  :root {
+    --grid-gap: 20px;
+    --content-height: calc(100vh);
+    --phone-height: var(--mobile-phone-height);
+    --phone-width: var(--mobile-phone-width);
+  }
+
+  header, footer {
+    display: none
+  }
+
+  div#content {
+    grid-template-columns: 1fr;
+    margin: 0px;
+  }
+
+  .window, div#phone, div#phone-image {
+    border-radius: 0px;
+    padding: 0px;
+  }
+
+  div#phone {
+    grid-column: 1 / 1;
+    height: 100%
+  }
+  
+  div#phone-image img {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  div#phone-menu, div#inventory, div#closet {
+    grid-column: 1 / 1;
+    padding: var(--padding);
+    z-index: 10;
+  }
+  
+  div#phone-menu {
+    right: 0px;
+  }
+
+  div#inventory {
+    grid-row: 1 / span 6;
+    display: none
+  }
+  
+  div#closet {
+    grid-row: 7 / span 4;
+    display: none
+  }
 }

@@ -1,9 +1,9 @@
 :root {
-  --icon-size: 110px;
-  --row-padding: 16px;
+  --icon-size: 120px;
   --icon-resize-scale: 0.8;
   --check-icon-offset: var(--grid-gap);
   --check-icon-size: 40px;
+  --row-padding: 2px;
 }
 
 /* Used in ICON component ---- */
@@ -26,7 +26,7 @@
   text-align: center;
   align-items: center;
   padding-bottom: var(--row-padding);
-  margin: 5px;
+  margin: 6px;
 }
 
 .item button:hover {

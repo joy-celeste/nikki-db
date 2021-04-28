@@ -31,7 +31,6 @@ export class ItemData {
   loadedTime: number;
 
   constructor(input?: DocumentData) {
-    console.log(input)
     this.deserialize(input);
   }
 

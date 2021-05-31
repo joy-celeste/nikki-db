@@ -43,6 +43,7 @@ const SearchBar = (): JSX.Element => {
 
   return (
     <div className="simpleSearch">
+      <SearchToggle initialValue={false} />
       {showResult ? <SearchText onClickBack={() => setShowResult(false)} text={searchValue} />
         : (
           <form onSubmit={handleSearchSubmit}>
@@ -55,7 +56,6 @@ const SearchBar = (): JSX.Element => {
               />
             </span>
             <input type="submit" value="Search" />
-            <span className="toggle"><SearchToggle initialValue={false} /></span>
           </form>
         )}
     </div>

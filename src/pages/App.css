@@ -19,7 +19,9 @@
   --tablet-phone-width: calc(50vw - (4 * var(--grid-gap)));
   --mobile-phone-height: calc(var(--mobile-phone-width) / var(--phone-width-height-ratio));
   --mobile-phone-width: calc(100vw);
-  --purple-pink-gradient: linear-gradient(to right,#6471E2, #BC87E5);
+  --purple: #6471E2;
+  --pink: #BC87E5;
+  --purple-pink-gradient: linear-gradient(to right, var(--purple), var(--pink));
   --purple-light: #FAF2FF;
   --grey: #d5d5d5;
 }
@@ -71,7 +73,7 @@ footer {
   height: var(--footer-height);
   justify-content: center;
   margin: 0 auto var(--grid-gap) auto;
-  color: #6471E2;
+  color: var(--purple);
 }
 
 /* CONTAINERS --------------------------------------------------------------------*/
@@ -164,9 +166,9 @@ div#closet {
 
 /* RESPONSIVE CSS ----------------------------------------------------------------*/
 
-@media (min-width: 1600px) {
+@media (min-width: 1800px) {
   div#content {
-    max-width: 1540px;
+    max-width: 1740px;
     margin: var(--grid-gap) auto var(--grid-gap) auto;
   }
 }

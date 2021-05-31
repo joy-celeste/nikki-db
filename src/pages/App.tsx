@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './base.css';
 import './App.css';
 import './items.css';
+import './filters.css';
 
 import Phone from '../components/Phone';
 import Closet from '../components/Closet';

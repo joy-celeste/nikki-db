@@ -22,11 +22,14 @@ export const SearchToggle = (props: SearchToggleProps): JSX.Element => {
   }, [useAdvancedSearch]);
 
   return (
-    <a onClick={() => setToggle(!useAdvancedSearch)}>
-      <span>  </span>
-      <u>{useAdvancedSearch ? 'Nevermind.' : 'Advanced Search'}</u>
-      <span>  </span>
-    </a>
+    <div id="filterToggle">
+      <table>
+        <tr>
+          <td id={useAdvancedSearch ? '': 'selected'}><a onClick={() => setToggle(false)}>Simple Search</a></td>
+          <td id={useAdvancedSearch ? 'selected': ''}><a onClick={() => setToggle(true)}>Advanced Search</a></td>
+        </tr>
+      </table>
+    </div>
   );
 };
 

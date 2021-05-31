@@ -26,6 +26,7 @@ export const AdvancedSearch = (): JSX.Element => {
 
   return (
     <div className="advancedSearch">
+      <SearchToggle initialValue />
       <div className="advancedFilters">
         {filterSet.filters.map((f) => <FilterComponent setSubmitMessage={setSubmitMessage} key={f.id} id={f.id} />)}
         <Sort />
@@ -37,7 +38,6 @@ export const AdvancedSearch = (): JSX.Element => {
         </span>
         <span className="advancedFilterToolbarRight">
           <form onSubmit={handleSearchSubmit}>
-            <SearchToggle initialValue />
             <input type="submit" value={submitMessage} disabled={submitMessage !== 'Search'} />
           </form>
         </span>

@@ -13,7 +13,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  transform: scale(var(--icon-resize-scale));
+	transform: scale(var(--icon-resize-scale));
 }
 
 /* Styles for both icon arrays ---- */

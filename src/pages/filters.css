@@ -1,0 +1,105 @@
+#filterToggle table {
+    width: 100%;
+    table-layout: fixed;
+    border-radius: var(--border-radius);
+    border-collapse:separate;
+    border: 1px solid var(--pink);
+    margin-bottom: var(--padding);
+    background-color: var(--purple-light);
+    color: var(--pink);
+}
+
+#filterToggle td {
+    height: var(--grid-gap);
+    text-align: center;
+    vertical-align: middle;
+    height: 32px;
+}
+
+#filterToggle #selected {
+    color: white;
+    background-color: var(--pink);
+    border-radius: var(--border-radius);
+}
+
+#filterToggle a {
+    display: block;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+/* ==================== */
+
+#empty-results {
+    text-align: center;
+}
+
+/* ==================== */
+
+.advancedFilter, .advancedFilters, .simpleSearch {
+	width: 100%;
+	flex-basis: 100%;
+}
+
+.advancedFilter {
+	display: flex;
+}
+
+.advancedSearch, .simpleSearch {
+	width: 100%;
+	flex-wrap: wrap;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.advancedFilterToolbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+}
+
+.simpleSearch input, .advancedFilter input, .advancedFilterToolbar input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #cdcdcd;
+}
+
+.advancedFilterFirst, .advancedFilterFourth, .maxResultsLabel {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	max-height: 17px;
+	min-width: 110px;
+	max-width: 160px;
+	text-align: center;
+}
+
+.sortFilter {
+	min-width: 150px;
+}
+
+.advancedFilter input, .maxResultsLabel input {
+    height: 20px;
+	max-width: 118px;
+}
+
+.simpleSearch {
+	max-width: 100%;
+}
+
+.searchbar input {
+    height: 17px;
+	width: 60%;
+}
+
+.searchInputText {
+	display: flex;
+	justify-content: space-between;
+}
+
+.searchInputText b{
+	position: relative;
+	top: 10px;
+}
+
+

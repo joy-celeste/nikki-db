@@ -20,7 +20,6 @@
     "eslint-config-react-app": "^6.0.0",
     "file-saver": "^2.0.5",
     "firebase": "^8.0.0",
-    "html2canvas": "^1.0.0-rc.7",
     "lunr": "^2.3.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -54,7 +53,6 @@
       "!src/modules/database.ts",
       "!src/modules/errors.ts",
       "!src/modules/crop.ts",
-      "!src/modules/downloader.ts",
       "!src/tests/**"
     ]
   },
@@ -78,8 +76,7 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.21.4",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "object-sizeof": "^1.6.1"
+    "eslint-plugin-react-hooks": "^4.2.0"
   },
   "resolutions": {
     "**/jest-haste-map/fsevents": "1.2.7"

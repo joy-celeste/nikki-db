@@ -1,32 +1,14 @@
-import { SubtypeInfo } from './data';
-import clothesDataJSON from '../data/clothes_data.json';
 import subtypesJSON from '../data/subtypes_names_to_number.json';
-import depthTypeToSubtypesJSON from '../data/depth_type_to_subtype.json';
 import underwearDataJSON from '../data/underwear_data.json';
-import bodyItemPositionDataJSON from '../data/body_item_position_data.json';
-import SuitNameToIDJSON from '../data/suit_name_to_suit_id.json';
 import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json';
+import refToSearchResult from '../data/ref_to_search_result.json';
+import SearchData from '../models/SearchData';
 
 export const BODY_ITEM_ID = 1;
-
-export const ACTION_CONSTANTS = {
-  DATA_ADD_ITEMS: 'data/ADD_ITEMS',
-  DATA_SET_ITEMDATA: 'data/SET_ITEMDATA',
-  CHARACTER_ADD_TO_HISTORY: 'character/ADD_TO_HISTORY',
-  CHARACTER_REMOVE_FROM_HISTORY: 'character/REMOVE_FROM_HISTORY',
-  SEARCH_UPDATE_RESULTS: 'search/UPDATE_RESULTS',
-  SEARCH_UPDATE_SEARCH_FILTERS: 'search/UPDATE_SEARCH_FILTERS',
-  SEARCH_UPDATE_SEARCH_STRING: 'search/UPDATE_SEARCH_STRING',
-  SEARCH_UPDATE_MAX_RESULTS: 'search/SEARCH_UPDATE_MAX_RESULTS',
-  SEARCH_USE_ADVANCED_SEARCH: 'search/USE_ADVANCED_SEARCH',
-  SEARCH_UPDATE_SORT_OPTION: 'search/UPDATE_SORT_OPTION',
-  EDITOR_CHANGE_HIDDEN_ITEM_LIST: 'editor/CHANGE_HIDDEN_ITEM_LIST',
-  EDITOR_CHANGE_MINIMIZED_MENUS: 'editor/EDITOR_CHANGE_MINIMIZED_MENUS',
-  EDITOR_CHANGE_ACTIVE_MENUS: 'editor/EDITOR_CHANGE_ACTIVE_MENUS',
-  EDITOR_UPDATE_MENU: 'editor/UPDATE_MENU',
-  EDITOR_SET_DOWNLOAD_NAME: 'editor/SET_DOWNLOAD_NAME',
-  EDITOR_SET_ALREADY_DOWNLOADED_ITEM: 'editor/SET_ALREADY_DOWNLOADED_ITEM',
-};
+export const DEFAULT_MAX_RESULTS_SEARCH = 500;
+export const DEFAULT_BOOST_FACTOR = 3;
+export const SUITS_BOOST_TERM = `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
+export const DEFAULT_SEARCH_VALUE = '';
 
 export const API_CONSTANTS = {
   CLOTHES: 'clothes',
@@ -62,17 +44,12 @@ export const BODY = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CLOTHES_DATA: {[key: string]: any} = clothesDataJSON;
 export const SUBTYPES = Object.freeze(subtypesJSON);
-export const SUBTYPES_LIST = Object.values(SUBTYPES);
-export const BODY_ITEM_DATA = Object.freeze(bodyItemPositionDataJSON);
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
 export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
-export const DEPTHTYPE_TO_SUBTYPES: Record<string, SubtypeInfo> = Object.freeze(depthTypeToSubtypesJSON);
-export const BODY_PARTS_DEPTHS = Object.freeze(DEPTHTYPE_TO_SUBTYPES[59]); // 59 = body's depthtype
 export const DEFAULT_CLOTHES = { [SUBTYPES.HAIR]: 10001 }; // 10001 = Nikki's Pinky
-export const SUIT_NAME_TO_ID: Record<string, string | string[]> = Object.freeze(SuitNameToIDJSON);
 export const SUBTYPES_MAP: Record<number, string> = Object.freeze(SubtypesNumberToNamesJSON);
+export const REF_TO_SEARCH_DATA: Record<string, SearchData> = JSON.parse(JSON.stringify(refToSearchResult));
 
 export const OPTIONS = {
   RELEVANCE: 'relevance',

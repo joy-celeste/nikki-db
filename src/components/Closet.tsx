@@ -5,7 +5,6 @@ import { ItemId, removeItemFromCloset, ItemsData, removeAllUnwornFromCloset } fr
 import { wearItem } from '../modules/character';
 import Icon from './Icon';
 import { SUBTYPES_MAP } from '../modules/constants';
-import BackgroundOptions from './BackgroundOptions';
 import { CLOSET, focusMenu } from '../modules/editor';
 
 export const Closet = (): JSX.Element => {
@@ -71,7 +70,6 @@ export const Closet = (): JSX.Element => {
           </button>
         </div>
       </div>
-      <BackgroundOptions />
     </div>
   );
 };

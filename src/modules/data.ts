@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux';
-import { DocumentData } from '@firebase/firestore-types';
 import { DeserializeNullException } from './errors';
 import { ACTION_CONSTANTS, BODY, BODY_ITEM_DATA, BODY_ITEM_ID, BODY_PARTS_DEPTHS,
   DEFAULT_AMPUTATIONS_LIST, DEPTHTYPE_TO_SUBTYPES, SUBTYPES_LIST, CLOTHES_DATA } from './constants';
@@ -30,11 +29,11 @@ export class ItemData {
   depths?: Depths;
   loadedTime: number;
 
-  constructor(input?: DocumentData) {
+  constructor(input?: any) {
     this.deserialize(input);
   }
 
-  deserialize(input: DocumentData): ItemData {
+  deserialize(input: any): ItemData {
     if (!input) {
       throw new DeserializeNullException('Cannot deserialize null input for ItemData');
     }
@@ -88,11 +87,11 @@ export class PositionData {
   width?: number;
   scale?: number;
 
-  constructor(depth: number, input: DocumentData, depths?: Depths) {
+  constructor(depth: number, input: any, depths?: Depths) {
     this.deserialize(depth, input, depths);
   }
 
-  deserialize(depth: number, input: DocumentData, depths?: Depths): PositionData {
+  deserialize(depth: number, input: any, depths?: Depths): PositionData {
     if (!depth || !input) {
       throw new DeserializeNullException('Cannot deserialize null input for PositionData');
     }

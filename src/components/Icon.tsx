@@ -11,7 +11,7 @@ export const Icon: React.FC<IconProps> = (props: IconProps) => {
 
   return (
     <div className="icon-wrapper">
-      <div className={`${disabled ? 'disabled' : ''} icon${clothesId}`} />
+      <img className={`${disabled ? 'disabled' : ''}`} src={`https://www.miraland.net/assets/clothes_icons/icon${clothesId}.png`}/>
     </div>
   );
 };

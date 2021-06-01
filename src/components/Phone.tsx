@@ -1,10 +1,7 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { Character } from '../modules/character';
-import { ItemData, SubType } from '../modules/data';
-import { Body, Item } from '../modules/item';
-import { Image } from './Image';
 import { getImagePayload } from '../modules/api';
 import { ItemId } from '../modules/data';
 
@@ -19,7 +16,7 @@ export const Phone = (): JSX.Element => {
   
   useEffect(() => {
     const itemIds: ItemId[] = Object.values(clothes);
-    const response = getImagePayload(itemIds, parsePayload);
+    getImagePayload(itemIds, parsePayload);
   }, [characterData])
 
   return (
@@ -33,7 +30,7 @@ export const Phone = (): JSX.Element => {
         <p>Toggle On Autorender Image</p><br></br>
         <p>Render Image</p><br></br>
       </div>
-      <img src={image} draggable="false" />
+      <img src={image}/>
     </div>
   );
 };

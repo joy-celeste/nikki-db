@@ -11,21 +11,22 @@ AWS.config.update({
 const lambda = new AWS.Lambda();
 
 const invokeLambda = (params: any, callback?: any) => {
-	return lambda.invoke(params).promise()
-		.then((response) => {
+	return lambda.invoke(params).promise().then((response) => {
       if (!response) {
         console.log('Null response!');
         return null;
       }
-      return callback ? callback(response) : response;
+      return response;
     })
     .catch((error) => {
       console.log(new HttpRequestException(error, 'Error getting response.'));
-		});
+	});
 };
 
-export const getImagePayload = async (itemIds: Array<number>, callback: Function): Promise<any> => {
-	return generateCoordinates(itemIds).then((coordinateInfo) => callImageGenerationBackend(coordinateInfo, callback))
+export const generateImage = async (itemIds: Array<number>, callback: Function): Promise<any> => {
+	return generateCoordinates(itemIds)
+		.then((coordinateInfo) => callImageGenerationBackend(coordinateInfo, callback)
+		.then((response) => callback(JSON.parse(response.Payload).url)))
 }
 
 export const generateCoordinates = async (itemIds: Array<number>): Promise<any> => {
@@ -39,5 +40,5 @@ export const callImageGenerationBackend = async (coordinateInfo: any, callback: 
 	return await invokeLambda({
 		FunctionName: keys.LAMBDA_BACKEND, 
 		Payload: coordinateInfo.Payload
-	}, callback);
+	});
 }

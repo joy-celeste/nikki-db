@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../modules';
-import { Character } from '../modules/character';
-import { getImagePayload } from '../modules/api';
-import { ItemId } from '../modules/data';
+import { ItemId } from 'models/ItemId';
+import { generateImage } from 'modules/api';
+import { selectCurrentItemIds } from 'redux/selectors/character-selectors';
 
 export const Phone = (): JSX.Element => {
-  const characterData = useSelector((state: RootState) => state.character.history[state.character.step]);
-  const clothes = new Character(characterData).clothes;
+  // const itemIds: ItemId[] = useSelector(selectCurrentItemIds);
+  const itemIds: ItemId[] = [10001];
   const [image, setImage] = useState('assets/fairytale.jpeg');
 
-  const parsePayload = (response: any) => {
-    setImage(JSON.parse(response.Payload).url);
-  };
-  
   useEffect(() => {
-    const itemIds: ItemId[] = Object.values(clothes);
-    getImagePayload(itemIds, parsePayload);
-  }, [characterData])
+    generateImage(itemIds, setImage);
+  }, [itemIds])
 
   return (
     <div id="phone-image">
       <div id="phone-menu">
         <p>View Full Image</p><br></br>
         <p>Download Image</p><br></br>
-        <p>Change background</p><br></br>
+        <p>Change Background</p><br></br>
         <p>Generate Link</p><br></br>
         <p>View Full Screen</p><br></br>
         <p>Toggle On Autorender Image</p><br></br>

@@ -4,6 +4,7 @@
   --check-icon-offset: var(--grid-gap);
   --check-icon-size: 40px;
   --row-padding: 2px;
+  --high-meaningless-value: 300px;
 }
 
 /* Used in ICON component ---- */
@@ -47,9 +48,14 @@
 	filter: grayscale(1);
 }
 
+/* Styles the invisible container that keeps the scrollbar at top of the Closet div on state changes. */
+.containerTop {
+	scroll-margin: var(--high-meaningless-value);
+}
+
 .closet-icon-container {
 	position: relative;
-  width: var(--icon-size);
+	width: var(--icon-size);
 }
 
 .closet-icon-container:hover .closet-trash,

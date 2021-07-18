@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from './Icon';
-import { SearchResult } from '../modules/search';
-import { loadMultipleItems } from '../modules/data';
-import { RootState } from '../modules';
+import { RootState } from 'redux/reducers/store';
 import EmptyResults from './EmptyResults';
+import { SearchResult } from 'models/SearchResult';
+import { wearItems } from 'use-cases/wearItem';
 
 export const Results = (): JSX.Element => {
   const results: SearchResult[] = useSelector((state: RootState) => state.search.results);
-
-  const [result, setResult] = useState(null);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(updateDownloadName(result));
-  // }, [result, dispatch]);
 
   return results?.length > 0 ? (
     <div className="search-results">
@@ -26,7 +20,7 @@ export const Results = (): JSX.Element => {
               <button
                 type="button"
                 key={`${key}_result_container`}
-                onClick={() => { setResult(result); dispatch(loadMultipleItems(result.contents)); }}
+                onClick={() => dispatch(wearItems(result.contents))}
               >
                 <Icon key={`${key}_icon`} clothesId={result.iconId} />
                 <div key={`${key}_text`}>{result.displayName}</div>

@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { rootReducer } from './modules';
 import * as serviceWorker from './serviceWorker';
 import App from './pages/App';
+import { rootReducer } from 'redux/reducers/store';
 
 require('set.prototype.tojson');
 

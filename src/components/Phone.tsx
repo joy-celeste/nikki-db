@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ItemId } from 'models/ItemId';
+import { ItemId } from 'models/Item';
 import { generateImage } from 'modules/api';
 import { selectCurrentItemIds } from 'redux/selectors/character-selectors';
 
 export const Phone = (): JSX.Element => {
-  // const itemIds: ItemId[] = useSelector(selectCurrentItemIds);
-  const itemIds: ItemId[] = [10001];
+  const itemIds: ItemId[] = useSelector(selectCurrentItemIds);
   const [image, setImage] = useState('assets/fairytale.jpeg');
 
   useEffect(() => {

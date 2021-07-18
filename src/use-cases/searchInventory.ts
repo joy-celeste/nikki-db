@@ -1,8 +1,8 @@
-import { generateSimpleSearchString } from '../use-cases/generateSimpleSearchString';
-import { ITEM_SUFFIX, OPTIONS, REF_TO_SEARCH_DATA } from '../modules/constants';
-import { RootState } from '../reducers/store';
-import { SearchResult } from '../models/SearchResult';
-import { updateSearchResults } from '../actions/search-actions';
+import { generateSimpleSearchString } from 'use-cases/generateSimpleSearchString';
+import { ITEM_SUFFIX, OPTIONS, REF_TO_SEARCH_DATA } from 'modules/constants';
+import { RootState } from 'redux/reducers/store';
+import { SearchResult } from 'models/SearchResult';
+import { updateSearchResults } from 'redux/actions/search-actions';
 
 /* istanbul ignore next */ /* branch not passing coverage check for MAX_RESULT? */
 export const searchInventory = () =>
@@ -31,19 +31,8 @@ export const searchInventory = () =>
         }
       }
 
-      if (suitData?.variation) {
-        return {
-          key: `${suitData?.iconId}-${displayName}-${suitData?.variation}`,
-          displayName,
-          iconId: suitData?.iconId,
-          contents: suitData?.contents,
-          posed: suitData?.posed,
-          variation: suitData?.variation,
-          isSuit: suitData?.isSuit,
-        };
-      }
       return {
-        key: `${suitData?.iconId}-${displayName}`,
+        key: `${suitData?.iconId}-${displayName}${suitData?.variation}`,
         displayName,
         iconId: suitData?.iconId,
         contents: suitData?.contents,

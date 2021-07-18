@@ -1,11 +1,8 @@
-import { ItemId } from '../models/ItemId';
+import { ItemId } from 'models/Item';
     
 export type SearchResult = {
-    key?: string;
+    key: string;
     displayName: string;
-    iconId?: ItemId;
+    iconId: ItemId;
     contents: ItemId[];
-    posed?: boolean;
-    variation?: string;
-    isSuit?: boolean;
 };

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchInventory, updateSearchString } from '../modules/search';
-import { ItemId, loadItem, loadMultipleItems } from '../modules/data';
-import { RootState } from '../modules';
+import { RootState } from 'redux/reducers/store';
 import SearchToggle from './SearchToggle';
+import { searchInventory } from '../use-cases/searchInventory';
+import { updateSearchString } from '../redux/actions/search-actions';
+import { ItemId } from 'models/Item';
 
 interface SearchTextProps {
   text: string;
@@ -33,11 +34,11 @@ const SearchBar = (): JSX.Element => {
     setShowResult(true);
     if (searchValue[0] === '[') { // Load multiple items
       const items: ItemId[] = JSON.parse(searchValue);
-      dispatch(loadMultipleItems(items));
+      // dispatch(loadMultipleItems(items));
     } else if (Number.isNaN(+searchValue)) { // Search term
       dispatch(searchInventory());
     } else {
-      dispatch(loadItem(parseInt(searchValue, 10))); // Wear one item
+      // dispatch(loadItem(parseInt(searchValue, 10))); // Wear one item
     }
   };
 

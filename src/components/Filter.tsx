@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Select, { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select';
 import { generalOptions, rarityOptions, genreOptions, specialOptions, categoryOptions as subtypeOptions } from '../modules/constants';
 import { Filter as FilterClass, FilterType, Operator, SelectType } from '../modules/filters';
-import { RootState } from '../modules';
+import { RootState } from 'redux/reducers/store';
 
 export interface Options {
   value: string;
@@ -57,7 +57,7 @@ export interface FilterProps {
 export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
   let textInput: HTMLInputElement = null;
   const filterSet = useSelector((state: RootState) => state.search.filterSet);
-  const index = filterSet.filters.findIndex((filter) => filter.id === props.id);
+  const index = filterSet.filters.findIndex((filter: any) => filter.id === props.id);
   const filter: FilterClass = filterSet.filters[index];
 
   const [fourthValue, setFourthValue] = useState('');

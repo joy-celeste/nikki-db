@@ -1,5 +1,5 @@
-import SearchIndex from "models/SearchIndex";
-import { SUITS_BOOST_TERM } from "./constants";
+import SearchIndex from 'models/SearchIndex';
+import { SUITS_BOOST_TERM } from 'modules/constants';
 
 export type Operator = 'and' | 'or';
 export const PLEASE_CREATE_A_FILTER = 'Please create a filter.';

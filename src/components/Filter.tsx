@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select, { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select';
 import { generalOptions, rarityOptions, genreOptions, specialOptions, categoryOptions as subtypeOptions } from '../modules/constants';
-import { Filter as FilterClass, FilterType, Operator, SelectType } from '../modules/filters';
+import { Filter as FilterClass, FilterType, Operator, SelectType } from 'models/Filters';
 import { RootState } from 'redux/reducers/store';
 
 export interface Options {

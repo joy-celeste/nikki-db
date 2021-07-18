@@ -1,7 +1,7 @@
 import { combineReducers, Store } from 'redux';
 import { ItemId } from '../../modules/data';
 import { createSeedFunction, createStoreWithMiddleware } from '../helpers';
-import { FilterSet, } from '../../modules/filters';
+import { FilterSet, } from '../../models/Filters';
 import SearchIndex, { DEFAULT_BOOST_FACTOR, searchReducer, generateSimpleSearchString, updateFilterSet, updateSearchString, searchInventory, updateSortOption, updateMaxResults, setAdvancedSearch } from '../../modules/search';
 import { RootState } from '../../modules';
 import { sortOptions } from '../../modules/constants';

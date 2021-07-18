@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setAdvancedSearch, updateFilterSet, updateSearchString } from '../redux/actions/search-actions';
-import { FilterSet } from '../modules/filters';
+import { setAdvancedSearch, updateFilterSet, updateSearchString } from 'redux/actions/search-actions';
+import { FilterSet } from 'models/Filters';
 
 interface SearchToggleProps {
   initialValue: boolean;

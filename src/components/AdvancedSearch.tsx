@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchToggle from './SearchToggle';
 import Sort from './Sort';
 import { RootState } from 'redux/reducers/store';
-import { Filter, FilterSet } from '../modules/filters';
-import { Filter as FilterComponent } from '../components/Filter';
-import { searchInventory, updateFilterSet } from 'modules/search';
+import { Filter, FilterSet } from 'models/Filters';
+import { Filter as FilterComponent } from 'components/Filter';
+import { updateFilterSet } from 'redux/actions/search-actions';
+import { searchInventory } from 'use-cases/searchInventory';
 
 export const AdvancedSearch = (): JSX.Element => {
   const dispatch = useDispatch();

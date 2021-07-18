@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { SearchResult } from 'models/SearchResult';
-import { FilterSet } from '../../modules/filters';
+import { FilterSet } from 'models/Filters';
 
 export const SearchActions = {
   SEARCH_UPDATE_RESULTS: 'search/UPDATE_RESULTS',

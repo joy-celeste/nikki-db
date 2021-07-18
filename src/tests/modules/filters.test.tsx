@@ -1,8 +1,7 @@
 import { combineReducers, Store } from 'redux';
 import { createSeedFunction, createStoreWithMiddleware } from '../helpers';
-import { Filter, FilterSet, PLEASE_CREATE_A_FILTER, PLEASE_FILL_ALL_VALUES, SEARCH_BUTTON_LABEL, } from '../../modules/filters';
+import { Filter, FilterSet, PLEASE_CREATE_A_FILTER, PLEASE_FILL_ALL_VALUES, SEARCH_BUTTON_LABEL, } from '../../models/Filters';
 import SearchIndex, { searchReducer, updateFilterSet, updateSearchString, searchInventory, updateMaxResults, setAdvancedSearch, SearchState } from '../../modules/search';
-import { RootState } from '../../modules';
 
 const mockMath = Object.create(global.Math);
 mockMath.random = createSeedFunction(40);

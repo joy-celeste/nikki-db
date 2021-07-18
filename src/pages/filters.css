@@ -1,8 +1,13 @@
+:root {
+  --filter-input-height: 38px;
+  --filter-toggle-height: 30px;
+}
+
 #filterToggle table {
     width: 100%;
     table-layout: fixed;
     border-radius: var(--border-radius);
-    border-collapse:separate;
+    border-collapse: separate;
     border: 1px solid var(--pink);
     margin-bottom: var(--padding);
     background-color: var(--purple-light);
@@ -10,10 +15,9 @@
 }
 
 #filterToggle td {
-    height: var(--grid-gap);
+    height: var(--filter-toggle-height);
     text-align: center;
     vertical-align: middle;
-    height: 32px;
 }
 
 #filterToggle #selected {
@@ -78,9 +82,9 @@
 	min-width: 150px;
 }
 
-.advancedFilter input, .maxResultsLabel input {
-    height: 20px;
-	max-width: 118px;
+.advancedFilterInput input, .maxResultsField input {
+    height: 38px;
+	width: 100%;
 }
 
 .simpleSearch {
@@ -88,8 +92,12 @@
 }
 
 .searchbar input {
-    height: 17px;
-	width: 60%;
+    height: var(--filter-input-height);
+	width: 80%;
+}
+
+input.searchbar-submit {
+	width: 20%;
 }
 
 .searchInputText {

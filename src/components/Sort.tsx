@@ -55,8 +55,9 @@ export const Sort = (): JSX.Element => {
           onChange={(options) => dispatch(updateSortOption(options.value))}
         />
       </div>
-      <div className="maxResultsLabel" style={{ width: '30%' }}>Max results</div>
-      <div className="maxResultsField" style={{ width: '25%' }}>
+      <div style={{ width: '40%' }} />
+      <div className="maxResultsLabel">Max results</div>
+      <div className="maxResultsField">
         <input
           defaultValue={DEFAULT_MAX_RESULTS_SEARCH}
           onClick={() => textInput.focus()}
@@ -64,7 +65,6 @@ export const Sort = (): JSX.Element => {
           onChange={(e) => dispatch(updateMaxResults(parseInt(e.target.value, 10)))}
         />
       </div>
-      <div style={{ width: '12%' }} />
     </div>
   );
 };

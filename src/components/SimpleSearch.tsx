@@ -56,7 +56,7 @@ const SearchBar = (): JSX.Element => {
                 onChange={(e) => dispatch(updateSearchString(e.target.value.toString()))}
               />
             </span>
-            <input type="submit" value="Search" />
+            <input className="searchbar-submit" type="submit" value="Search" />
           </form>
         )}
     </div>

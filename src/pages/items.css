@@ -27,7 +27,6 @@
   text-align: center;
   align-items: center;
   padding-bottom: var(--row-padding);
-  margin: 6px;
 }
 
 .item button:hover {

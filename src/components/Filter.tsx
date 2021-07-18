@@ -145,12 +145,14 @@ export const Filter: React.FC<FilterProps> = (props: FilterProps) => {
         );
       case 'userInput':
         return (
-          <input
-            value={fourthValue}
-            onClick={() => textInput.focus()}
-            ref={(input) => textInput = input}
-            onChange={onChangeFourth}
+          <div className="advancedFilterInput">
+            <input
+              value={fourthValue}
+              onClick={() => textInput.focus()}
+              ref={(input) => textInput = input}
+              onChange={onChangeFourth}
           />
+          </div>
         );
       case 'select':
         switch (filter.filterValue) {

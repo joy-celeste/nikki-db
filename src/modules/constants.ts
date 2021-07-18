@@ -5,7 +5,7 @@ import refToSearchResult from '../data/ref_to_search_result.json';
 import SearchData from 'models/SearchData';
 
 export const BODY_ITEM_ID = 1;
-export const DEFAULT_MAX_RESULTS_SEARCH = 500;
+export const DEFAULT_MAX_RESULTS_SEARCH = 50;
 export const DEFAULT_BOOST_FACTOR = 3;
 export const SUITS_BOOST_TERM = `isSuit:true^${DEFAULT_BOOST_FACTOR}`;
 export const DEFAULT_SEARCH_VALUE = '';

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Filter, FilterSet } from 'modules/filters';
-import { Filter as FilterComponent } from 'components/Filter';
 import SearchToggle from './SearchToggle';
 import Sort from './Sort';
-import { updateFilterSet } from 'redux/actions/search-actions';
-import { searchInventory } from 'use-cases/searchInventory';
 import { RootState } from 'redux/reducers/store';
+import { Filter, FilterSet } from '../modules/filters';
+import { Filter as FilterComponent } from '../components/Filter';
+import { searchInventory, updateFilterSet } from 'modules/search';
 
 export const AdvancedSearch = (): JSX.Element => {
   const dispatch = useDispatch();

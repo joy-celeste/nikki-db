@@ -57,11 +57,7 @@ export const Closet = (): JSX.Element => {
       <div className="row closet-toolbar">
         <div>
           <label className="switch" htmlFor="checkbox">
-            <input id="checkbox" type="checkbox" onClick={() => {
-              document.getElementById('closet').scrollTop = 4000;
-              dispatch(setSubtypeSort(!useSubtypeSort))
-              document.getElementById('closet').scrollTop = 4000;
-            }} checked={useSubtypeSort} />
+            <input id="checkbox" type="checkbox" onClick={() => dispatch(setSubtypeSort(!useSubtypeSort))} checked={useSubtypeSort} readOnly/>
             <span className="slider round" />
           </label>
           {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}

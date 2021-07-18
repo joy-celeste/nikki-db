@@ -2,7 +2,7 @@ import subtypesJSON from '../data/subtypes_names_to_number.json';
 import underwearDataJSON from '../data/underwear_data.json';
 import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json';
 import refToSearchResult from '../data/ref_to_search_result.json';
-import SearchData from '../models/SearchData';
+import SearchData from 'models/SearchData';
 
 export const BODY_ITEM_ID = 1;
 export const DEFAULT_MAX_RESULTS_SEARCH = 500;
@@ -45,9 +45,9 @@ export const BODY = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SUBTYPES = Object.freeze(subtypesJSON);
+export const SUBTYPES_LIST = Object.values(SUBTYPES);
 export const DEFAULT_BODY = new Set([BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG, BODY.HEAD, BODY.TORSO]);
 export const DEFAULT_AMPUTATIONS_LIST = [BODY.TORSO, BODY.BREAST, BODY.BRA, BODY.PANTY, BODY.ARM, BODY.LEG] as const;
-export const DEFAULT_CLOTHES = { [SUBTYPES.HAIR]: 10001 }; // 10001 = Nikki's Pinky
 export const SUBTYPES_MAP: Record<number, string> = Object.freeze(SubtypesNumberToNamesJSON);
 export const REF_TO_SEARCH_DATA: Record<string, SearchData> = JSON.parse(JSON.stringify(refToSearchResult));
 

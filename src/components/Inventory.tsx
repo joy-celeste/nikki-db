@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Results from './Results';
 import SimpleSearch from './SimpleSearch';
 import AdvancedSearch from './AdvancedSearch';
-import { RootState } from '../modules';
-import { focusMenu, INVENTORY } from '../modules/editor';
+import { RootState } from 'redux/reducers/store';
 
 export const Inventory = (): JSX.Element => {
   const useAdvancedSearch = useSelector((state: RootState) => state.search.useAdvancedSearch);

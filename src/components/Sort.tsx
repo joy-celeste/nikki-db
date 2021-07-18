@@ -2,8 +2,8 @@ import React, { CSSProperties } from 'react';
 import Select, { StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
 import { useDispatch } from 'react-redux';
-import { sortOptions } from '../modules/constants';
-import { DEFAULT_MAX_RESULTS_SEARCH, updateMaxResults, updateSortOption } from '../modules/search';
+import { DEFAULT_MAX_RESULTS_SEARCH, sortOptions } from '../modules/constants';
+import { updateMaxResults, updateSortOption } from 'redux/actions/search-actions';
 
 const dot = (color = '#ccc') => ({
   alignItems: 'center',

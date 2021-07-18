@@ -1,71 +1,72 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../modules';
-import { ItemId, removeItemFromCloset, ItemsData, removeAllUnwornFromCloset } from '../modules/data';
-import { wearItem } from '../modules/character';
 import Icon from './Icon';
-import { SUBTYPES_MAP } from '../modules/constants';
-import { CLOSET, focusMenu } from '../modules/editor';
+import { wearItem } from 'use-cases/wearItem';
+import { createPresentableCloset, PresentableClosetItem } from 'presenters/closet-presenter';
+import { RootState } from 'redux/reducers/store';
+import { setSubtypeSort } from 'redux/actions/editor-actions';
 
 export const Closet = (): JSX.Element => {
-  const [useSubtypeSort, setToggle] = useState(false);
-  const itemsData: ItemsData = useSelector((state: RootState) => state.data.itemsData);
-  const { clothes } = useSelector((state: RootState) => state.character.history[state.character.step]);
-  const currentlyWorn = new Set<ItemId>(Object.values(clothes));
+  const useSubtypeSort: boolean = useSelector((state: RootState) => state.editor.useSubtypeSort);
+  const closet: PresentableClosetItem[] = useSelector(createPresentableCloset);
   const dispatch = useDispatch();
 
-  const chronoSort = (a: string, b: string) => itemsData[parseInt(a, 10)].loadedTime - itemsData[parseInt(b, 10)].loadedTime;
-  const subtypeSort = (a: string, b: string) => itemsData[parseInt(a, 10)].subType - itemsData[parseInt(b, 10)].subType || chronoSort(a, b);
+  const renderItemArray = () => {
+    return closet.map((item: PresentableClosetItem) => {
+        return (
+          <li key={`${item.itemId}_wrapper`}>
+            <div className="item">
+              <div className="closet-icon-container">
+                <button
+                  type="button"
+                  className="closet-trash"
+                  key={`${item.itemId}_trash`}
+                  onClick={() => {
+                    // dispatch(removeItemFromCloset(item.itemId))}
+                  }}
+                >
+                  <span role="img" aria-label="trash">🗑️</span>
+                </button>
+                <button type="button" className="closet-info" key={`${item.itemId}_info`}>
+                  <span role="img" aria-label="info">🔎</span>
+                </button>
+                {item.isWorn ? <span className="closet-equipped" key={`${item.itemId}_equipped`} /> : null}
+                <button
+                  type="button"
+                  className="closet-icon"
+                  key={`${item.itemId}_icon`}
+                  onClick={() => dispatch(wearItem(item.itemId))}
+                >
+                  <Icon clothesId={item.itemId} disabled={!item.isWorn} />
+                </button>
+              </div>
+              <div key={`${item.itemId}_text`}>{item.displayLabel}</div>
+            </div>
+          </li>
+        );
+      })
+  };
 
   return (
-    <div className="closet" onClick={() => dispatch(focusMenu(CLOSET))}>
+    <div className="closet">
       <div className="row closet-items">
       <ul className="item-array">
-          {(Object.keys(itemsData).sort(useSubtypeSort ? subtypeSort : chronoSort) as Array<string>).map((itemId) => {
-            const clothesId = parseInt(itemId, 10);
-            const itemName = `${itemsData[clothesId]?.name} (${SUBTYPES_MAP[itemsData[clothesId]?.subType].replace(/_/g, ' ')})`;
-
-            return (
-              <li key={`${clothesId}_wrapper`}>
-                <div className="item">
-                  <div className="closet-icon-container">
-                    <button
-                      type="button"
-                      className="closet-trash"
-                      key={`${clothesId}_trash`}
-                      onClick={() => dispatch(removeItemFromCloset(clothesId))}
-                    >
-                      <span role="img" aria-label="trash">🗑️</span>
-                    </button>
-                    <button type="button" className="closet-info" key={`${clothesId}_info`}>
-                      <span role="img" aria-label="info">🔎</span>
-                    </button>
-                    {currentlyWorn.has(clothesId)
-                      ? <span className="closet-equipped" key={`${clothesId}_equipped`} /> : null}
-                    <button
-                      type="button"
-                      className="closet-icon"
-                      key={`${clothesId}_icon`}
-                      onClick={() => dispatch(wearItem(clothesId))}
-                    >
-                      <Icon clothesId={clothesId} disabled={!currentlyWorn.has(clothesId)} />
-                    </button>
-                  </div>
-                  <div key={`${clothesId}_text`}>{itemName}</div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        {renderItemArray()}
+      </ul>
       </div>
       <div className="row closet-toolbar">
         <div>
           <label className="switch" htmlFor="checkbox">
-            <input id="checkbox" type="checkbox" onClick={() => setToggle(!useSubtypeSort)} checked={useSubtypeSort} readOnly />
+            <input id="checkbox" type="checkbox" onClick={() => {
+              document.getElementById('closet').scrollTop = 4000;
+              dispatch(setSubtypeSort(!useSubtypeSort))
+              document.getElementById('closet').scrollTop = 4000;
+            }} checked={useSubtypeSort} />
             <span className="slider round" />
           </label>
           {useSubtypeSort ? ' sort by subtype + chronological order' : 'sort by chronological order'}
-          <button type="button" className="closet-all-trash" key="all_trash" onClick={() => dispatch(removeAllUnwornFromCloset())}>
+          <button type="button" className="closet-all-trash" key="all_trash">
+          {/* <button type="button" className="closet-all-trash" key="all_trash" onClick={() => dispatch(removeAllUnwornFromCloset())}> */}
             <span role="img" aria-label="trash">🗑️</span>
           </button>
         </div>

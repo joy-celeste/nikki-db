@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { ItemId } from 'models/Item';
 import { generateImage } from 'modules/api';
 import { selectCurrentItemIds } from 'redux/selectors/character-selectors';
-import { useRef } from 'react';
 import { useHorizontalScroll } from 'modules/horizontal-scroll';
 
 export const Phone = (): JSX.Element => {

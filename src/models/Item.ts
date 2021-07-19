@@ -23,7 +23,7 @@ export class Item {
     }
 
     get label(): string { // e.g. Nikki's Pinky (Hair)
-        return `${this.name} (${SUBTYPES_MAP[this.subtype].replaceAll('_', ' ')})`;
+        return `${this.name} (${SUBTYPES_MAP[this.subtype]?.replaceAll('_', ' ')})`;
     }
 }
 

@@ -5,7 +5,6 @@ import { EditorState } from '../redux/states/editor-state';
 import { Item, ItemId } from 'models/Item';
 import { Character } from 'models/Character';
 import { setCharacter, setLoadedItems } from 'redux/actions/editor-actions';
-import { useSelector } from 'react-redux';
 import { selectCurrentItemIds } from 'redux/selectors/character-selectors';
 
 export const removeItemFromCloset = (itemId: ItemId, isWorn: boolean) =>

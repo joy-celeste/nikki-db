@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import * as serviceWorker from './serviceWorker';
 import App from './pages/App';
 import { rootReducer } from 'redux/reducers/store';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 require('set.prototype.tojson');
 
@@ -14,9 +15,9 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <BrowserRouter>
+      <Route path="/:closet?/:wear?" component={App}/>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

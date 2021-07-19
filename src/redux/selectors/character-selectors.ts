@@ -20,3 +20,25 @@ export const selectItemById = createSelector([
         return findItem || new Item(itemId);
     }
 )
+
+export const currentUrlParams = createSelector([
+    (state: RootState) => state.editor.loadedItems,
+    selectCurrentItemIds
+], (
+    loadedItems: Item[],
+    wornItems: ItemId[]) => {
+
+    const wornItemsSet: Set<ItemId> = new Set<ItemId>(wornItems);
+    const loadedItemIds = loadedItems.filter((item: Item) => !wornItemsSet.has(item.id))
+                                     .map((item: Item) => item.id)
+                                     .sort();
+    const wornItemIds = wornItems.sort();
+    
+    if (loadedItemIds.length > 0 && wornItemIds.length > 0) {
+        return `?closet=${loadedItemIds}&wear=${wornItemIds}`;
+    } else if (loadedItemIds.length > 0) {
+        return `?closet=${loadedItemIds}`;
+    } else {
+        return `?wear=${wornItemIds}`;
+    }
+})

@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import { ItemId } from 'models/Item';
 import { generateImage } from 'modules/api';
 import { selectCurrentItemIds } from 'redux/selectors/character-selectors';
+import { useRef } from 'react';
+import { useHorizontalScroll } from 'modules/horizontal-scroll';
 
 export const Phone = (): JSX.Element => {
+  const scrollRef = useHorizontalScroll();
   const itemIds: ItemId[] = useSelector(selectCurrentItemIds);
   const [image, setImage] = useState('assets/fairytale.jpeg');
 
@@ -13,7 +16,7 @@ export const Phone = (): JSX.Element => {
   }, [itemIds])
 
   return (
-    <div id="phone-image">
+    <div id="phone-image" ref={scrollRef}>
       <div id="phone-menu">
         <p>View Full Image</p><br></br>
         <p>Download Image</p><br></br>

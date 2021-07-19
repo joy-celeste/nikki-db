@@ -95,12 +95,8 @@ div#content {
 }
 
 ::-webkit-scrollbar {
-  width: 01px;
+  width: 0px;
   height: 20px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -131,11 +127,13 @@ div#phone-image img {
   min-width: calc(var(--phone-width) / var(--phone-image-ratios));
   position: relative;
   top: calc(-1 * var(--phone-height) * var(--head_y) - var(--padding));
+  z-index: -20;
 }
 
 div#phone-menu {
   background-color: rgba(255, 255, 255, 0.6);
   border-left: 1px solid white;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
   filter: drop-shadow(-4px 0px 4px rgba(168, 188, 240, 0.45));
   height: var(--phone-height);
   left: calc(var(--phone-width) * (1 - var(--menu-width-ratio)) + var(--padding));
@@ -143,7 +141,7 @@ div#phone-menu {
   position: absolute;
   text-align: center;
   width: calc(var(--phone-width) * var(--menu-width-ratio));
-  z-index: 10;
+  z-index: -10;
 }
 
 /* inventory + closet container ----------------------------------------------------------------------*/

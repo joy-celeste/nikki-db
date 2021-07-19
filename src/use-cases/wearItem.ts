@@ -45,7 +45,7 @@ export const loadParamItems = (closetItems: ItemId[], wornItems: ItemId[]) =>
     dispatch(setLoadedItems(loadedItems));
 
     wornItems.forEach((itemId: ItemId) => {
-      const item: Item = selectItemById(state, itemId);
+      const item: Item = loadedItems.find((item: Item) => item.id === itemId);
       newChar.wear(item);
     })
     dispatch(setCharacter(newChar));

@@ -5,12 +5,12 @@ import Inventory from 'components/Inventory';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUrlParams } from 'use-cases/loadUrlParams';
+import { currentUrlParams } from 'redux/selectors/character-selectors';
+import { SIMULATOR_HEADER } from 'modules/constants';
 import './base.css';
 import './App.css';
 import './items.css';
 import './filters.css';
-import { currentUrlParams } from 'redux/selectors/character-selectors';
-import { SIMULATOR_HEADER } from 'modules/constants';
 
 const App = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const App = (): JSX.Element => {
   const updatedUrlParams = useSelector(currentUrlParams);
 
   useEffect(() => {
-    dispatch(loadUrlParams(urlParams))
+    dispatch(loadUrlParams(urlParams));
   }, [])
 
   useEffect(() => {

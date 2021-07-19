@@ -62,7 +62,7 @@ export const Closet = (): JSX.Element => {
                   <Icon clothesId={item.itemId} disabled={!item.isWorn} />
                 </button>
               </div>
-              <div key={`${item.itemId}_text`}>{item.displayLabel}</div>
+              <div className="closet-icon-text" key={`${item.itemId}_text`}>{item.displayLabel}</div>
             </div>
           </li>
         );

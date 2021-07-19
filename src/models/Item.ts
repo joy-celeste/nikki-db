@@ -11,7 +11,7 @@ export class Item {
     constructor(itemId: ItemId) {
         this.key = `I${itemId}`;
         this.id = itemId;
-        this.loadedTime = Date.now();
+        this.loadedTime = Math.floor(Date.now() / 100);
     }
 
     get subtype(): SubType {

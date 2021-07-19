@@ -3,7 +3,8 @@
   --icon-resize-scale: 0.8;
   --check-icon-offset: var(--grid-gap);
   --check-icon-size: 40px;
-  --row-padding: 2px;
+  --search-row-padding: 2px;
+  --closet-row-padding: 10px;
   --high-meaningless-value: 300px;
 }
 
@@ -11,6 +12,7 @@
 .icon-wrapper {
 	width: var(--icon-size);
 	height: var(--icon-size);
+	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -26,7 +28,15 @@
 .item-array li {
   text-align: center;
   align-items: center;
-  padding-bottom: var(--row-padding);
+  padding-bottom: var(--search-row-padding);
+}
+
+.closet .item-array {
+  padding-right: 5px;
+}
+
+.closet .item-array li {
+  padding-bottom: var(--closet-row-padding);
 }
 
 .item button:hover {
@@ -54,7 +64,6 @@
 
 .closet-icon-container {
 	position: relative;
-	width: var(--icon-size);
 }
 
 .closet-icon-container:hover .closet-trash,
@@ -66,8 +75,8 @@
 .closet-equipped, .closet-info, .closet-trash {
 	visibility: hidden;
 	position: absolute;
-	width:30px;
-	height:30px;
+	width: 30px;
+	height: 30px;
 }
 
 .closet-icon-container .closet-equipped {
@@ -80,7 +89,7 @@
 	background-repeat: no-repeat;
 	background-position: -1px;
 	visibility: visible;
-  z-index: 10;
+ 	z-index: 10;
 }
 
 .closet-icon-container .closet-trash {

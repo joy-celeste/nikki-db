@@ -80,66 +80,63 @@
 - - [x] Move search bars / add toggle
 - - [x] Remove menu
 - - [x] Tell user what they were searching, add search button
-- [ ] Make menus interactive
+- [x] Make menus interactive
 - - [x] Make windows draggable
 - - [x] Make windows more transparent when not active
-- - [ ] Add icon to minimize windows to the bottom right
-- - [ ] Make windows resizable
-- [ ] Create flag for version with only certain suit names
+- - [ ] ~~Add icon to minimize windows to the bottom right~~
+
+### Milestone 4: Standard Definition mode
+- [x] Load sessions by URL (list of items or a suit id)
+- [ ] Create flag for production version
 - [ ] Add report menu
-- [ ] Load sessions by URL (list of items or a suit id)
-- [ ] Disable scrolling on main simulator
 - [ ] Clean up Closet
 - - [ ] Add background buttons
 - - [ ] Update trash icon, confirmation
-- - [ ] Update toggle
+- - [ ] Update sort toggle
+- [ ] Phone Icons
+- - [ ] Add image icons
+- - [ ] Change background
+- - [ ] Generate shortlink
+- - [ ] Manual vs autorender
+- - [ ] View full image
+- - [ ] View full screen
+- [ ] Loading
+- - [ ] Phone loading indicator
+- - [ ] Initial page load indicator
+- [ ] Mobile experience
+- - [ ] Switch between view and inventory/closet
+- - [ ] Add separator between inventory/closet
+- [ ] Disclaimer, please don't reuse, etc
+- [ ] Rewrite tests
+- [ ] Clean up old code
+- [ ] Create API to keep keys private
 
-
-BUG: SOULS ARE BROKEN, need to put in layering data for ir
-file:///Users/joyce/nikki/extracted/lua/manager/clothes_manager.lua
-
-### Milestone 3: Performance increases, additional features, address initial feedback
-- [ ] Create the beautiful UI
-- - [ ] Window
-- - [ ] Menu
-- - [ ] Equipped
-- - [ ] Add subtype icons to menu
+### Milestone 5: Performance increases, additional features, address initial feedback
 - [ ] Unit tests for UI
-- [ ] Add URL Shortener
+- [ ] Add layering for souls data (lua/manager/clothes_manager.lua)
 - [ ] Add shadow support
 - [ ] Add tilt support
 - [ ] Add animations
-- [ ] PNG compression
 - [ ] Obfuscate filenames
 - [ ] Obfuscate JSON
-- [ ] Refactor loadMultipleItems() for better separation of concerns
-- [ ] Bug: Downloaded image fails if the top of the character is above the top of the viewport.
-- [ ] Copy list of items to clipboard
-- [ ] Invest in ways to reduce image theft (for Paper's sake, not mine)
 - [ ] Upload wardrobe file - load into simulator
-- [ ] Undo / Redo
-- [ ] Hide / delete backgrounds/characters from the layers panel
-- [ ] Figure out how to provide this public service without screwing over Paper's artists/developers revenue
 - [ ] Sort by color
 - [ ] Auto update when the game updates
-- [ ] Animations
+- [ ] Make windows resizable
 
-### Milestone 4: Assets from other versions
+### Milestone 6: Assets from other versions
 - [ ] Localize UI
 - [ ] Update presenters/etc to handle new languages
 - [ ] Upload assets
 
-### Milestone 5: Public beta of mobile functionality / Nikki DB Lite (API v2)
-- [ ] Design API to build images without having to load all assets locally
-- [ ] Design mobile site
-
-### Milestone 6: Advanced account features - saving, favorites, social
+### Milestone 8: Advanced account features - saving, favorites, social
+- [ ] Upload wardrobe info to see which items you already own
 - [ ] Save designed suits to account
 - [ ] Favorite items
 - [ ] Publicized most favorited items
 - [ ] Social: give users ability to upload styling
 
-### Milestone 7: Advanced simulator
+### Milestone 9: Advanced simulator
 - [ ] Upload custom clothes
 - - [ ] Allow custom clothes to be shared on site / users can favorite, save, etc
 - [ ] Edit hue/saturation/color of clothes

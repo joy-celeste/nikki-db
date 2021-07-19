@@ -4,6 +4,7 @@ import SubtypesNumberToNamesJSON from '../data/subtypes_number_to_names.json';
 import refToSearchResult from '../data/ref_to_search_result.json';
 import SearchData from 'models/SearchData';
 
+export const SIMULATOR_HEADER = 'Miraland.net 💕 LN Simulator'
 export const BODY_ITEM_ID = 1;
 export const DEFAULT_MAX_RESULTS_SEARCH = 50;
 export const DEFAULT_BOOST_FACTOR = 3;
